@@ -9,6 +9,7 @@ repositories {
 
 dependencies {
     implementation(kotlin("gradle-plugin"))
+    implementation("org.jetbrains.compose:compose-gradle-plugin:1.1.1")
 }
 
 pluginBundle {
@@ -22,8 +23,9 @@ version = "0.1.0-SNAPSHOT"
 
 gradlePlugin {
     plugins {
+        val commonPackage = group
         fun scriptConventionsPlugin(shortName: String, displayNameAndDescription: String) =
-            getByName("com.huanshankeji.$shortName") {
+            getByName("$commonPackage.$shortName") {
                 displayName = displayNameAndDescription
                 description = displayNameAndDescription
             }
@@ -53,5 +55,24 @@ gradlePlugin {
             "kotlin-multiplatform-jvm-and-js-browser-conventions",
             "Kotlin Multiplatform conventions with the JVM target and the JS browser target"
         )
+
+        scriptConventionsPlugin(
+            "default-web-frontend-conventions",
+            "Default web frontend conventions for our projects with Compose for Web and kotlinx.html HTML generation"
+        )
+        /* TODO
+        scriptConventionsPlugin(
+            "default-material-web-frontend-conventions",
+            "Default web frontend conventions for our projects with Compose for Web, kotlinx.html HTML generation, and Material Design"
+        )
+        */
+
+        val name = "generate-kotlin-js-browser-webroot-for-vertx-web"
+        create(name) {
+            id = "$commonPackage.$name"
+            implementationClass = "$commonPackage.GenerateKotlinJsBrowserWebrootForVertxWebPlugin"
+            displayName = "Generate Kotlin/JS browser webroot for Vert.x Web"
+            description = "Generate webroot from a Kotlin/JS with browser target for Vert.x Web"
+        }
     }
 }
