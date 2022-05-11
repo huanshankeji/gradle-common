@@ -9,3 +9,4 @@
 
 rootProject.name = "kotlin-common-gradle-plugin"
 include("plugin")
+project(":plugin").name = rootProject.name

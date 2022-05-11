@@ -21,6 +21,14 @@ pluginBundle {
 group = "com.huanshankeji"
 version = "0.1.1-SNAPSHOT"
 
+/*publishing {
+    publications {
+        create<MavenPublication>("pluginMaven") {
+            artifactId = rootProject.name
+        }
+    }
+}*/
+
 gradlePlugin {
     plugins {
         val commonPackage = group
