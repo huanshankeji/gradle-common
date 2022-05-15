@@ -8,7 +8,8 @@ repositories {
 }
 
 dependencies {
-    implementation(kotlin("gradle-plugin"))
+    // Not specifying version can cause build issues when added to a project's buildscript dependencies.
+    implementation(kotlin("gradle-plugin", "1.6.21"))
     implementation("org.jetbrains.compose:compose-gradle-plugin:1.1.1")
 }
 
@@ -51,17 +52,33 @@ gradlePlugin {
             "Kotlin/JVM library conventions"
         )
 
+
         scriptConventionsPlugin(
             "kotlin-multiplatform-conventions",
             "Kotlin Multiplatform conventions"
         )
+        /* There seems to be no need to use this currently.
         scriptConventionsPlugin(
             "kotlin-multiplatform-js-browser-conventions",
             "Kotlin Multiplatform conventions with the JS browser target"
         )
+        */
         scriptConventionsPlugin(
             "kotlin-multiplatform-jvm-and-js-browser-conventions",
             "Kotlin Multiplatform conventions with the JVM target and the JS browser target"
+        )
+
+        scriptConventionsPlugin(
+            "kotlin-multiplatform-app-conventions",
+            "Kotlin Multiplatform app conventions"
+        )
+        scriptConventionsPlugin(
+            "kotlin-multiplatform-js-browser-app-conventions",
+            "Kotlin Multiplatform app conventions with the JS browser target"
+        )
+        scriptConventionsPlugin(
+            "kotlin-multiplatform-jvm-and-js-browser-app-conventions",
+            "Kotlin Multiplatform app conventions with the JVM target and the JS browser target"
         )
 
         scriptConventionsPlugin(
@@ -82,5 +99,15 @@ gradlePlugin {
             displayName = "Generate Kotlin/JS browser webroot for Vert.x Web"
             description = "Generate webroot from a Kotlin/JS with browser target for Vert.x Web"
         }
+
+
+        scriptConventionsPlugin(
+            "kotlin-jvm-library-default-maven-publish-conventions",
+            "Kotlin/JVM library conventions with default Maven publish"
+        )
+        scriptConventionsPlugin(
+            "kotlin-multiplatform-jvm-and-js-browser-default-maven-publish-conventions",
+            "Kotlin Multiplatform conventions with the JVM target and the JS browser target, and with default Maven publish"
+        )
     }
 }

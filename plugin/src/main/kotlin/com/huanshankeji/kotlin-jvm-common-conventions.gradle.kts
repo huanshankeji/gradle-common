@@ -1,12 +1,5 @@
 package com.huanshankeji
 
-import gradle.kotlin.dsl.accessors._e955592cfcca1783c48ac959ec339844.*
-import org.gradle.kotlin.dsl.dependencies
-import org.gradle.kotlin.dsl.invoke
-import org.gradle.kotlin.dsl.kotlin
-import org.gradle.kotlin.dsl.provideDelegate
-import org.gradle.kotlin.dsl.repositories
-import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -48,5 +41,5 @@ tasks.withType<KotlinCompile> {
 base.archivesName.set(fullNameForFileSystem)
 
 kotlin.sourceSets.all {
-    languageSettings.projectOptIns()
+    languageSettings.defaultOptIns()
 }

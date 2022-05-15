@@ -10,3 +10,8 @@
 rootProject.name = "kotlin-common-gradle-plugin"
 include("plugin")
 project(":plugin").name = rootProject.name
+
+/* to separate buildscript functions and constants from plugins if necessary
+include("common")
+project(":common").name = "kotlin-common-gradle-common"
+*/
