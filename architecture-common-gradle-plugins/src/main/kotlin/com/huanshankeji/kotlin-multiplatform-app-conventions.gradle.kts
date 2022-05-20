@@ -6,19 +6,17 @@ plugins {
 
 kotlin {
     sourceSets {
-        val kotlinCoroutinesVersion: String by project
-
         val commonMain by getting {
             dependencies {
                 //implementation(platform(kotlin("bom", kotlinVersion)))
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinCoroutinesVersion")
+                implementation(CommonDependencies.Kotlinx.Coroutines.core())
             }
         }
 
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:$kotlinCoroutinesVersion")
+                implementation(CommonDependencies.Kotlinx.Coroutines.test())
             }
         }
 

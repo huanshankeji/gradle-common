@@ -1,19 +1,17 @@
 package com.huanshankeji
 
 plugins {
-    // TODO: temporarily not using kotlin-jvm-library-conventions before architecture-specific logic is separated
-    kotlin("jvm")
+    id("com.huanshankeji.kotlin-jvm-common-conventions")
     `java-library`
     id("com.huanshankeji.default-maven-publish")
-}
-
-repositories {
-    mavenCentral()
 }
 
 java {
     withJavadocJar()
     withSourcesJar()
+
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
 }
 
 publishing {

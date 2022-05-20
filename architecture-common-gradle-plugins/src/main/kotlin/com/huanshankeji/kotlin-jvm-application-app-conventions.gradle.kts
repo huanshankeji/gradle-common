@@ -6,7 +6,7 @@ package com.huanshankeji
 
 plugins {
     // Apply the common convention plugin for shared build configuration between library and application projects.
-    id("com.huanshankeji.kotlin-jvm-common-conventions")
+    id("com.huanshankeji.kotlin-jvm-common-app-conventions")
 
     // Apply the application plugin to add support for building a CLI application in Java.
     application

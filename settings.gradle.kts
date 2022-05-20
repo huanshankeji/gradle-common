@@ -7,11 +7,8 @@
  * in the user manual at https://docs.gradle.org/7.4.2/userguide/multi_project_builds.html
  */
 
-rootProject.name = "kotlin-common-gradle-plugin"
-include("plugin")
-project(":plugin").name = rootProject.name
+rootProject.name = "gradle-common"
 
-/* to separate buildscript functions and constants from plugins if necessary
-include("common")
-project(":common").name = "kotlin-common-gradle-common"
-*/
+include("kotlin-common-gradle-plugins")
+include("architecture-common-gradle-plugins")
+include("common-gradle-dependencies")
