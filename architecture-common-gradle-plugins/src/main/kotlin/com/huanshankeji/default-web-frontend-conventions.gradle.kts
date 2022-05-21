@@ -1,7 +1,7 @@
 package com.huanshankeji
 
 plugins {
-    id("com.huanshankeji.kotlin-multiplatform-js-browser-conventions")
+    id("com.huanshankeji.kotlin-multiplatform-js-browser-app-conventions")
     id("org.jetbrains.compose")
 }
 

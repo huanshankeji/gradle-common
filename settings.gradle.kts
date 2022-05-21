@@ -7,5 +7,8 @@
  * in the user manual at https://docs.gradle.org/7.4.2/userguide/multi_project_builds.html
  */
 
-rootProject.name = "kotlin-common-gradle-plugin"
-include("plugin")
+rootProject.name = "gradle-common"
+
+include("kotlin-common-gradle-plugins")
+include("architecture-common-gradle-plugins")
+include("common-gradle-dependencies")
