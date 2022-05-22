@@ -1,7 +1,7 @@
 package com.huanshankeji
 
 object DefaultVersions {
-    val kotlin = "1.6.21"
+    val kotlin = "1.6.10"
 
     val kotlinCommon = "0.1.0"
 
