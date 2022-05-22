@@ -3,7 +3,7 @@ package com.huanshankeji
 object DefaultVersions {
     val kotlin = "1.6.21"
 
-    val kotlinCommon = "0.1.0-SNAPSHOT" // TODO
+    val kotlinCommon = "0.1.0"
 
     val exposed = "0.38.2"
     val kotlinxCoroutines = "1.6.1"
