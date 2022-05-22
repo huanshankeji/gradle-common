@@ -3,15 +3,15 @@ package com.huanshankeji
 object DefaultVersions {
     val kotlin = "1.6.10"
 
-    val kotlinCommon = "0.1.0"
+    val kotlinCommon = "0.1.0-kotlin-1.6.10"
 
     val exposed = "0.38.2"
     val kotlinxCoroutines = "1.6.1"
     val kotlinxHtml = "0.7.5"
-    val kotlinxSerialization = "1.3.3"
+    val kotlinxSerialization = "1.3.2"
     val ktor = "1.6.8"
 
-    val arrow = "1.1.2"
+    val arrow = "1.0.1"
     val junitJupiter = "5.8.2"
     val kotest = "5.2.3"
     val postgreSql = "42.3.5"
