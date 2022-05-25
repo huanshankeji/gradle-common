@@ -8,7 +8,7 @@ dependencies {
     implementation(kotlin("gradle-plugin", "1.6.21"))
 }
 
-version = "0.1.1-SNAPSHOT"
+version = "0.1.2-SNAPSHOT"
 
 pluginBundle {
     website = "https://github.com/huanshankeji/gradle-plugin"
