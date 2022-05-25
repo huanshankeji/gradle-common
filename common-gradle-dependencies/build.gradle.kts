@@ -2,4 +2,4 @@ plugins {
     id("build-dependency-library-conventions")
 }
 
-version = "0.1.0-20220522-dev"
+version = "0.1.0-20220522-kotlin-1.6.10-dev"
