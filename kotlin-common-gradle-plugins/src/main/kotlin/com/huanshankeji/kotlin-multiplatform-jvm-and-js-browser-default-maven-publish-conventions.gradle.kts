@@ -5,15 +5,6 @@ plugins {
     id("com.huanshankeji.default-maven-publish")
 }
 
-val javadocJar by tasks.registering(Jar::class) {
-    archiveClassifier.set("javadoc")
-}
-
-publishing {
-    publications {
-        withType<MavenPublication> {
-            artifactId = "$defaultPrefixForPublishing-$artifactId"
-            artifact(javadocJar)
-        }
-    }
+publishing.publications.withType<MavenPublication> {
+    artifactId = "$defaultPrefixForPublishing-$artifactId"
 }
