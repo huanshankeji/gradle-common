@@ -3,7 +3,7 @@ package com.huanshankeji
 object DefaultVersions {
     val kotlin = "1.6.10"
 
-    val kotlinCommon = "0.1.0-kotlin-1.6.10"
+    val kotlinCommon = "0.1.1-kotlin-1.6.10"
 
     val exposed = "0.38.2"
     val kotlinxCoroutines = "1.6.1"
