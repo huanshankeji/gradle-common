@@ -5,10 +5,6 @@ plugins {
     id("com.huanshankeji.default-maven-publish")
 }
 
-publishing {
-    publications {
-        withType<MavenPublication> {
-            artifactId = "$defaultPrefixForPublishing-$artifactId"
-        }
-    }
+publishing.publications.withType<MavenPublication> {
+    artifactId = "$defaultPrefixForPublishing-$artifactId"
 }

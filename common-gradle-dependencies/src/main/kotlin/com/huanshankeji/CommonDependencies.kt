@@ -1,5 +1,7 @@
 package com.huanshankeji
 
+import org.gradle.api.artifacts.dsl.DependencyHandler
+
 // some but not all default dependencies
 object CommonDependencies {
     object KotlinCommon {
@@ -83,11 +85,18 @@ object CommonDependencies {
 
     object Vertx {
         val defaultVersion = DefaultVersions.vertx
-        fun stackDepchain(version: String = defaultVersion) =
-            "io.vertx:vertx-stack-depchain:$version"
 
-        fun module(module: String) =
+        private fun stackDepchain(version: String = defaultVersion) =
+            moduleWithVersion("stack-depchain", version)
+
+        fun DependencyHandler.platformStackDepchain(version: String = defaultVersion) =
+            platform(stackDepchain(version))
+
+        fun moduleWithoutVersion(module: String) =
             "io.vertx:vertx-$module"
+
+        fun moduleWithVersion(module: String, version: String = defaultVersion) =
+            "${moduleWithoutVersion(module)}:$version"
     }
 
     object Arrow {
