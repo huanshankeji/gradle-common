@@ -11,7 +11,7 @@ dependencies {
 version = "0.1.5-kotlin-1.6.10-SNAPSHOT"
 
 pluginBundle {
-    website = "https://github.com/huanshankeji/gradle-plugin"
-    vcsUrl = "https://github.com/huanshankeji/gradle-plugin.git"
+    website = "https://github.com/huanshankeji/gradle-common"
+    vcsUrl = "$website.git"
     tags = listOf("kotlin", "multiplatform")
 }
