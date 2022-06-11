@@ -28,7 +28,8 @@ class GenerateKotlinJsBrowserWebrootForVertxWebPlugin : Plugin<Project> {
         tasks.register<Copy>(copyJsBrowserDistributionToResourcesWebroot) {
             dependsOn(jsBrowserProductionWebpack)
             from(jsBrowserProductionWebpack.destinationDirectory)
-            include("*.html", "*.css", "*.js")
+            if (extension.production.get())
+                include("*.html", "*.css", "*.js")
             into(browserDistributionResourcesDirectory.resolve("webroot"))
         }
 
@@ -41,5 +42,6 @@ class GenerateKotlinJsBrowserWebrootForVertxWebPlugin : Plugin<Project> {
 
     interface Extension {
         val webFrontendProjectPath: Property<String>
+        val production: Property<Boolean>
     }
 }
