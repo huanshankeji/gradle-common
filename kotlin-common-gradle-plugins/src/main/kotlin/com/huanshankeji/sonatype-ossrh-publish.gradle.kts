@@ -6,6 +6,7 @@ plugins {
 }
 
 signing {
+    isRequired = false
     sign(publishing.publications)
 }
 

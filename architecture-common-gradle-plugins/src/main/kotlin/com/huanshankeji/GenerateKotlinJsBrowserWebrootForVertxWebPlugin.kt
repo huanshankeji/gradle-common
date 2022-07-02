@@ -19,16 +19,20 @@ class GenerateKotlinJsBrowserWebrootForVertxWebPlugin : Plugin<Project> {
         /*val jsBrowserDistributionTask by lazy {
             tasks.getByPath(extension.webFrontendProjectPath.get() + ":jsBrowserDistribution") as KotlinWebpack
         }*/
-        val jsBrowserProductionWebpack by lazy {
-            tasks.getByPath(extension.webFrontendProjectPath.get() + ":jsBrowserProductionWebpack") as KotlinWebpack
+        val jsBrowserWebpack by lazy {
+            tasks.getByPath(
+                extension.webFrontendProjectPath.get() +
+                        if (extension.production.get()) ":jsBrowserProductionWebpack" else ":jsBrowserDevelopmentWebpack"
+            ) as KotlinWebpack
         }
         val copyJsBrowserDistributionToResourcesWebroot = "copyJsBrowserDistributionToResourcesWebroot"
         val browserDistributionResourcesDirectory = buildDir.resolve("browserDistributionResources")
 
         tasks.register<Copy>(copyJsBrowserDistributionToResourcesWebroot) {
-            dependsOn(jsBrowserProductionWebpack)
-            from(jsBrowserProductionWebpack.destinationDirectory)
-            include("*.html", "*.css", "*.js")
+            dependsOn(jsBrowserWebpack)
+            from(jsBrowserWebpack.destinationDirectory)
+            if (extension.production.get())
+                include("*.html", "*.css", "*.js")
             into(browserDistributionResourcesDirectory.resolve("webroot"))
         }
 
@@ -41,5 +45,6 @@ class GenerateKotlinJsBrowserWebrootForVertxWebPlugin : Plugin<Project> {
 
     interface Extension {
         val webFrontendProjectPath: Property<String>
+        val production: Property<Boolean>
     }
 }
