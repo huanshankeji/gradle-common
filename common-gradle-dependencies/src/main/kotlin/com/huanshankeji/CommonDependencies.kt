@@ -3,9 +3,9 @@ package com.huanshankeji
 import org.gradle.api.artifacts.dsl.DependencyHandler
 
 // some but not all default dependencies
-object CommonDependencies {
-    object KotlinCommon {
-        val defaultVersion = DefaultVersions.kotlinCommon
+class CommonDependencies(val versions: CommonVersions = CommonVersions()) {
+    inner class KotlinCommon internal constructor() {
+        val defaultVersion = versions.kotlinCommon
         fun module(module: String, version: String = defaultVersion) =
             "com.huanshankeji:kotlin-common-$module:$version"
 
@@ -16,20 +16,24 @@ object CommonDependencies {
         fun coroutines(version: String = defaultVersion) = module("coroutines", version)
         fun exposed(version: String = defaultVersion) = module("exposed", version)
 
-        object Ktor {
+        inner class Ktor internal constructor() {
             fun module(module: String, version: String = defaultVersion) =
-                KotlinCommon.module("ktor-$module", version)
+                this@KotlinCommon.module("ktor-$module", version)
 
             fun client(version: String = defaultVersion) = module("client", version)
         }
+
+        val ktor = Ktor()
 
         fun serialization(version: String = defaultVersion) = module("serialization", version)
         fun vertx(version: String = defaultVersion) = module("vertx", version)
     }
 
-    object Kotlinx {
-        object Coroutines {
-            val defaultVersion = DefaultVersions.kotlinxCoroutines
+    val kotlinCommon = KotlinCommon()
+
+    inner class Kotlinx internal constructor() {
+        inner class Coroutines internal constructor() {
+            val defaultVersion = versions.kotlinxCoroutines
             fun module(module: String, version: String = defaultVersion) =
                 kotlinx("coroutines-$module", version)
 
@@ -37,14 +41,18 @@ object CommonDependencies {
             fun test(version: String = defaultVersion) = module("test", version)
         }
 
-        object Html {
-            val defaultVersion = DefaultVersions.kotlinxHtml
+        val coroutines = Coroutines()
+
+        inner class Html internal constructor() {
+            val defaultVersion = versions.kotlinxHtml
             fun module(module: String, version: String = defaultVersion) =
                 "org.jetbrains.kotlinx:kotlinx-html-$module:$version"
         }
 
-        object Serialization {
-            val defaultVersion = DefaultVersions.kotlinxSerialization
+        val html = Html()
+
+        inner class Serialization internal constructor() {
+            val defaultVersion = versions.kotlinxSerialization
             fun module(module: String, version: String = defaultVersion) =
                 kotlinx("serialization-$module", version)
 
@@ -52,13 +60,17 @@ object CommonDependencies {
             fun protobuf(version: String = defaultVersion) = module("protobuf", version)
             fun json(version: String = defaultVersion) = module("json", version)
         }
+
+        val serialization = Serialization()
     }
+
+    val kotlinx = Kotlinx()
 
 
     // official libraries from JetBrains
 
-    object Exposed {
-        val defaultVersion = DefaultVersions.exposed
+    inner class Exposed internal constructor() {
+        val defaultVersion = versions.exposed
         fun module(module: String, version: String = defaultVersion) =
             "org.jetbrains.exposed:exposed-$module:$version"
 
@@ -66,25 +78,31 @@ object CommonDependencies {
             module("core", version)
     }
 
-    object Ktor {
-        val defaultVersion = DefaultVersions.ktor
+    val exposed = Exposed()
+
+    inner class Ktor internal constructor() {
+        val defaultVersion = versions.ktor
         fun module(module: String, version: String = defaultVersion) =
             "io.ktor:ktor-$module:$version"
 
-        object Client {
+        inner class Client internal constructor() {
             fun module(module: String, version: String = defaultVersion) =
-                Ktor.module("client-$module", version)
+                this@Ktor.module("client-$module", version)
 
             fun core(version: String = defaultVersion) =
                 module("core", version)
         }
+
+        val client = Client()
     }
+
+    val ktor = Ktor()
 
 
     // others
 
-    object Vertx {
-        val defaultVersion = DefaultVersions.vertx
+    inner class Vertx internal constructor() {
+        val defaultVersion = versions.vertx
 
         private fun stackDepchain(version: String = defaultVersion) =
             moduleWithVersion("stack-depchain", version)
@@ -99,12 +117,16 @@ object CommonDependencies {
             "${moduleWithoutVersion(module)}:$version"
     }
 
-    object Arrow {
-        val defaultVersion = DefaultVersions.arrow
+    val vertx = Vertx()
+
+    inner class Arrow internal constructor() {
+        val defaultVersion = versions.arrow
         fun module(module: String, version: String = defaultVersion) =
             "io.arrow-kt:arrow-$module:$version"
 
         fun core(version: String = defaultVersion) =
             module("core", version)
     }
+
+    val arrow = Arrow()
 }
