@@ -6,6 +6,7 @@ plugins {
 }
 
 signing {
+    isRequired = false
     sign(publishing.publications)
 }
 
@@ -14,7 +15,7 @@ publishing.repositories.maven {
     val snapshotsRepoUrl = "https://s01.oss.sonatype.org/content/repositories/snapshots/"
     url = uri(if (version.toString().endsWith("SNAPSHOT")) snapshotsRepoUrl else releasesRepoUrl)
     credentials {
-        username = project.property("ossrhUsername") as String
-        password = project.property("ossrhPassword") as String
+        project.findProperty("ossrhUsername")?.let { username = it as String }
+        project.findProperty("ossrhPassword")?.let { password = it as String }
     }
 }
