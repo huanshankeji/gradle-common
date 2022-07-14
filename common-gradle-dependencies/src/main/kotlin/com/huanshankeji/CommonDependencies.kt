@@ -62,6 +62,9 @@ class CommonDependencies(val versions: CommonVersions = CommonVersions()) {
         }
 
         val serialization = Serialization()
+
+        fun datetime(version: String = versions.kotlinxDatetime) =
+            kotlinx("datetime", version)
     }
 
     val kotlinx = Kotlinx()
