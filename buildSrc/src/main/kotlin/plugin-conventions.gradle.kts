@@ -8,10 +8,10 @@ dependencies {
     implementation(kotlin("gradle-plugin", "1.6.10"))
 }
 
-version = "0.1.6-kotlin-1.6.10"
+version = "0.1.7-kotlin-1.6.10"
 
 pluginBundle {
-    website = "https://github.com/huanshankeji/gradle-plugin"
-    vcsUrl = "https://github.com/huanshankeji/gradle-plugin.git"
+    website = "https://github.com/huanshankeji/gradle-common"
+    vcsUrl = "$website.git"
     tags = listOf("kotlin", "multiplatform")
 }
