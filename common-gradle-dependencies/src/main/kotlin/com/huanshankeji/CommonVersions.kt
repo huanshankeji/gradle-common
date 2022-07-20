@@ -9,6 +9,7 @@ class CommonVersions(
     val kotlinxCoroutines: String = "1.6.1",
     val kotlinxHtml: String = "0.7.5",
     val kotlinxSerialization: String = "1.3.2",
+    val kotlinxDatetime: String = "0.4.0",
     val ktor: String = "1.6.8",
 
     val arrow: String = "1.0.1",
