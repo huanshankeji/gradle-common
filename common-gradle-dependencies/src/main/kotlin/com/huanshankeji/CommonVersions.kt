@@ -3,7 +3,7 @@ package com.huanshankeji
 class CommonVersions(
     val kotlin: String = "1.6.10",
 
-    val kotlinCommon: String = "0.1.1-kotlin-1.6.10",
+    val kotlinCommon: String = "0.1.2-kotlin-1.6.10",
 
     val exposed: String = "0.38.2",
     val kotlinxCoroutines: String = "1.6.1",
