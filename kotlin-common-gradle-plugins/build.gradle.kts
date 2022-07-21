@@ -47,10 +47,16 @@ gradlePlugin {
             "kotlin-multiplatform-jvm-and-js-browser-sonatype-ossrh-publish-conventions",
             "Kotlin Multiplatform conventions with the JVM target and the JS browser target, and with Sonatype OSSRH Maven Central publish"
         )
+
         scriptConventionsPlugin(
             "jvm-integration-test",
             "JVM integration test",
             "Adds a JVM integration test source set."
+        )
+        scriptConventionsPlugin(
+            "jvm-test-common-feature-variant",
+            "JVM test common feature variant",
+            "Adds a JVM test common feature variant with a source set that depends on `main`."
         )
     }
 }
