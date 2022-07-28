@@ -2,4 +2,6 @@ plugins {
     id("build-dependency-library-conventions")
 }
 
-version = "0.1.0-20220522-dev"
+// "x.y.z" indicates the version of the way of organizing the code,
+// and the date indicates the version when the dependency versions are updated.
+version = "0.2.0-20220720-kotlin-1.6.10-SNAPSHOT"

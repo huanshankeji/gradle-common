@@ -9,14 +9,14 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 //implementation(platform(kotlin("bom", kotlinVersion)))
-                implementation(CommonDependencies.Kotlinx.Coroutines.core())
+                implementation(commonDependencies.kotlinx.coroutines.core())
             }
         }
 
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
-                implementation(CommonDependencies.Kotlinx.Coroutines.test())
+                implementation(commonDependencies.kotlinx.coroutines.test())
             }
         }
 

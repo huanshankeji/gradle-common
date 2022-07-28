@@ -8,11 +8,11 @@ dependencies {
     implementation(platform(kotlin("bom")))
 
     testImplementation(kotlin("test"))
-    testImplementation("org.junit.jupiter:junit-jupiter-api:${DefaultVersions.junitJupiter}")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:${commonVersions.junitJupiter}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
 
-    implementation(CommonDependencies.Kotlinx.Coroutines.core())
-    testImplementation(CommonDependencies.Kotlinx.Coroutines.test())
+    implementation(commonDependencies.kotlinx.coroutines.core())
+    testImplementation(commonDependencies.kotlinx.coroutines.test())
 }
 
 tasks.test {
