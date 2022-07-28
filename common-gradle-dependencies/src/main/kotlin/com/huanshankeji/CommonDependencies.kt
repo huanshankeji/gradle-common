@@ -132,4 +132,72 @@ class CommonDependencies(val versions: CommonVersions = CommonVersions()) {
     }
 
     val arrow = Arrow()
+
+    inner class OrgJunit internal constructor() {
+        val defaultVersion = versions.orgJunit
+
+        private fun bom(version: String = defaultVersion) =
+            "org.junit:junit-bom:$version"
+
+        fun DependencyHandler.platformBom(version: String = defaultVersion) =
+            platform(bom(version))
+
+        inner class Jupiter internal constructor() {
+            fun withVersion(version: String = defaultVersion) =
+                "${withoutVersion()}:$version"
+
+            fun withoutVersion() =
+                "org.junit.jupiter:junit-jupiter"
+
+            fun moduleWithVersion(module: String, version: String = defaultVersion) =
+                "${moduleWithoutVersion(module)}:$version"
+
+            fun moduleWithoutVersion(module: String) =
+                "org.junit.jupiter:junit-jupiter-$module"
+
+            fun apiWithVersion(version: String = defaultVersion) =
+                moduleWithVersion("api", version)
+
+            fun apiWithoutVersion() =
+                moduleWithoutVersion("api")
+
+            fun engineWithVersion(version: String = defaultVersion) =
+                moduleWithVersion("engine", version)
+
+            fun engineWithoutVersion() =
+                moduleWithoutVersion("engine")
+        }
+
+        val jupiter = Jupiter()
+    }
+
+    val orgJunit = OrgJunit()
+
+    inner class Kotest internal constructor() {
+        val defaultVersion = versions.kotest
+        fun module(module: String, version: String = defaultVersion) =
+            "io.kotest:kotest-$module:$version"
+
+        fun property(version: String = defaultVersion) =
+            module("property", version)
+    }
+
+    val kotest = Kotest()
+
+    fun postgreSql(version: String = versions.postgreSql) =
+        "org.postgresql:postgresql:$version"
+
+    inner class Slf4j internal constructor() {
+        val defaultVersion = versions.slf4j
+        fun module(module: String, version: String = defaultVersion) =
+            "org.slf4j:slf4j-$module:$version"
+
+        fun api(version: String = defaultVersion) =
+            module("api", version)
+
+        fun simple(version: String = defaultVersion) =
+            module("simple", version)
+    }
+
+    val slf4j = Slf4j()
 }
