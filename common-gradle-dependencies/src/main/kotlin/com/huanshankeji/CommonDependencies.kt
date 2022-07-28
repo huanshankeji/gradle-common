@@ -27,6 +27,16 @@ class CommonDependencies(val versions: CommonVersions = CommonVersions()) {
 
         fun serialization(version: String = defaultVersion) = module("serialization", version)
         fun vertx(version: String = defaultVersion) = module("vertx", version)
+
+        inner class Vertx internal constructor() {
+            fun module(module: String, version: String = defaultVersion) =
+                this@KotlinCommon.module("vertx-$module", version)
+
+            fun withContextReceivers(version: String = defaultVersion) =
+                module("with-context-receivers", version)
+        }
+
+        val vertx = Vertx()
     }
 
     val kotlinCommon = KotlinCommon()
