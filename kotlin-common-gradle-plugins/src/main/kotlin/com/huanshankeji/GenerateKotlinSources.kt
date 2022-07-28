@@ -1,13 +1,14 @@
-plugins {
-    id("build-dependency-library-conventions")
-}
+package com.huanshankeji
 
-// "x.y.z" indicates the version of the way of organizing the code,
-// and the date indicates the version when the dependency versions are updated.
-version = "0.3.0-20220727"
+import org.gradle.api.Project
+import org.gradle.api.tasks.TaskContainer
+import org.gradle.api.tasks.TaskProvider
+import org.gradle.kotlin.dsl.get
+import org.gradle.kotlin.dsl.invoke
+import org.gradle.kotlin.dsl.named
+import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-// copied from GenerateKotlinSources.kt in "kotlin-common-gradle-plugins"
-// Depending on a version of "kotlin-common-gradle-plugins" directly might lead to a dependency hell.
 class SourceFile(val filePath: String, val content: String)
 
 fun Project.generateKotlinSources(
@@ -31,11 +32,12 @@ fun Project.generateKotlinSources(
     kotlin.sourceSets["main"].kotlin.srcDir(generatedSourcesDir)
 }
 
-generateKotlinSources(
-    sourceFiles = listOf(
-        SourceFile(
-            "GeneratedKotlinVersion.kt",
-            "internal const val kotlinVersion = \"$kotlinVersion\"\n"
-        )
-    )
-)
+
+// copied and adapted from generated sources
+// made private to avoid conflicts with generated code
+
+private val TaskContainer.compileKotlin: TaskProvider<KotlinCompile>
+    get() = named<KotlinCompile>("compileKotlin")
+
+private val Project.kotlin: KotlinJvmProjectExtension
+    get() = extensions.getByName("kotlin") as KotlinJvmProjectExtension

@@ -11,14 +11,14 @@ dependencies {
     //api(project(":common-gradle-dependencies"))
     implementation(project(":common-gradle-dependencies"))
 
-    implementation("org.jetbrains.compose:compose-gradle-plugin:1.1.1")
+    implementation("org.jetbrains.compose:compose-gradle-plugin:1.2.0-alpha01-dev753") // TODO: extract "common-gradle-dependencies" into a standalone project and use the dependency there
 }
 
 gradlePlugin {
     plugins {
         val `package` = group as String
-        fun scriptConventionsPlugin(shortName: String, displayNameAndDescription: String) =
-            scriptPlugin(`package`, shortName, displayNameAndDescription)
+        fun scriptConventionsPlugin(shortName: String, displayName: String, description: String = displayName) =
+            scriptPlugin(`package`, shortName, displayName, description)
 
         scriptConventionsPlugin(
             "kotlin-jvm-common-app-conventions",
