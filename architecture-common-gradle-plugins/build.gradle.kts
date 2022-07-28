@@ -11,7 +11,7 @@ dependencies {
     //api(project(":common-gradle-dependencies"))
     implementation(project(":common-gradle-dependencies"))
 
-    implementation("org.jetbrains.compose:compose-gradle-plugin:1.1.1")
+    implementation("org.jetbrains.compose:compose-gradle-plugin:1.2.0-alpha01-dev753") // TODO: extract "common-gradle-dependencies" into a standalone project and use the dependency there
 }
 
 gradlePlugin {

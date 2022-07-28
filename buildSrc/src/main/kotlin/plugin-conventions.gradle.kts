@@ -5,10 +5,10 @@ plugins {
 
 dependencies {
     // Not specifying version can cause build issues when added to a project's buildscript dependencies.
-    implementation(kotlin("gradle-plugin", "1.6.10"))
+    implementation(kotlin("gradle-plugin", kotlinVersion))
 }
 
-version = "0.1.9-kotlin-1.6.10-SNAPSHOT"
+version = "0.1.9-SNAPSHOT"
 
 pluginBundle {
     website = "https://github.com/huanshankeji/gradle-common"
