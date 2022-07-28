@@ -5,7 +5,7 @@ import kotlinVersion
 class CommonVersions(
     val kotlin: String = kotlinVersion,
 
-    val kotlinCommon: String = "0.2.0",
+    val kotlinCommon: String = "0.2.1",
 
     val kotlinxCoroutines: String = "1.6.4",
     val kotlinxHtml: String = "0.8.0",
