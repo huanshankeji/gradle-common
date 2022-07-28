@@ -5,9 +5,3 @@ plugins {
 }
 
 group = "com.huanshankeji"
-
-publishing {
-    repositories {
-        mavenCentral()
-    }
-}
