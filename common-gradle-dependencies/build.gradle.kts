@@ -31,11 +31,14 @@ fun Project.generateKotlinSources(
     kotlin.sourceSets["main"].kotlin.srcDir(generatedSourcesDir)
 }
 
-generateKotlinSources(
-    sourceFiles = listOf(
-        SourceFile(
-            "GeneratedKotlinVersion.kt",
-            "internal const val kotlinVersion = \"$kotlinVersion\"\n"
+fun Project.generateKotlinVersion(kotlinVersion: String) =
+    generateKotlinSources(
+        sourceFiles = listOf(
+            SourceFile(
+                "GeneratedKotlinVersion.kt",
+                "internal const val kotlinVersion = \"$kotlinVersion\"\n"
+            )
         )
     )
-)
+
+generateKotlinVersion(kotlinVersion)

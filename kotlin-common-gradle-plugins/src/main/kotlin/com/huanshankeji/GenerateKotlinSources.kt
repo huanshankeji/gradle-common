@@ -32,6 +32,16 @@ fun Project.generateKotlinSources(
     kotlin.sourceSets["main"].kotlin.srcDir(generatedSourcesDir)
 }
 
+fun Project.generateKotlinVersion(kotlinVersion: String) =
+    generateKotlinSources(
+        sourceFiles = listOf(
+            SourceFile(
+                "GeneratedKotlinVersion.kt",
+                "internal const val kotlinVersion = \"$kotlinVersion\"\n"
+            )
+        )
+    )
+
 
 // copied and adapted from generated sources
 // made private to avoid conflicts with generated code
