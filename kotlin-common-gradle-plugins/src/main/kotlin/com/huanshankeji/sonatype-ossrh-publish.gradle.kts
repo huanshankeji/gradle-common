@@ -1,7 +1,7 @@
 package com.huanshankeji
 
 plugins {
-    id("com.huanshankeji.default-maven-publish")
+    `maven-publish`
     signing
 }
 
