@@ -3,7 +3,7 @@ package com.huanshankeji
 plugins {
     id("com.huanshankeji.kotlin-jvm-common-conventions")
     `java-library`
-    id("com.huanshankeji.default-maven-publish")
+    `maven-publish`
 }
 
 java {

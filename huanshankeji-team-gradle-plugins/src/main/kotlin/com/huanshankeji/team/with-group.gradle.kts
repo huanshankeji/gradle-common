@@ -1,4 +1,4 @@
-package com.huanshankeji
+package com.huanshankeji.team
 
 plugins {
     `maven-publish`
