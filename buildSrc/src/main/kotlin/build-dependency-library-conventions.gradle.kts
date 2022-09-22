@@ -1,7 +1,7 @@
 // Maybe it's better to use Maven publish and Maven repositories (Maven Central)
 plugins {
     kotlin("jvm")
-    id("com.gradle.plugin-publish")
+    `maven-publish`
 }
 
 repositories {
