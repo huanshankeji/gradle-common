@@ -46,11 +46,17 @@ gradlePlugin {
             "kotlin-multiplatform-jvm-and-js-browser-sonatype-ossrh-publish-conventions",
             "Kotlin Multiplatform conventions with the JVM target and the JS browser target, and with Sonatype OSSRH Maven Central publish"
         )
-        create("github-packages-publish") {
+        create("github-packages-maven-publish") {
             id = "$`package`.$name"
-            implementationClass = "$`package`.GithubPackagesPublishPlugin"
+            implementationClass = "$`package`.GithubPackagesMavenPublishPlugin"
             displayName = "GitHub Packages publish"
             description = "Publishes to a Maven registry of GitHub Packages."
+        }
+        create("gitlab-project-level-maven-endpoint-publish") {
+            id = "$`package`.$name"
+            implementationClass = "$`package`.GitlabProjectLevelMavenEndpointPublishPlugin"
+            displayName = "GitLab project-level Maven endpoint publish"
+            description = "Publishes to a GitLab project-level Maven endpoint."
         }
 
         scriptConventionsPlugin(
