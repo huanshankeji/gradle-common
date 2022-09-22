@@ -1,6 +1,7 @@
 plugins {
     id("build-dependency-library-conventions")
     id("org.gradle.kotlin.kotlin-dsl")
+    id("com.gradle.plugin-publish")
 }
 
 dependencies {
@@ -8,10 +9,10 @@ dependencies {
     implementation(kotlin("gradle-plugin", kotlinVersion))
 }
 
-version = "0.1.9"
+version = "0.2.0"
 
 pluginBundle {
-    website = "https://github.com/huanshankeji/gradle-common"
-    vcsUrl = "$website.git"
+    website = GITHUB_URL
+    vcsUrl = GITHUB_GIT_URL
     tags = listOf("kotlin", "multiplatform")
 }
