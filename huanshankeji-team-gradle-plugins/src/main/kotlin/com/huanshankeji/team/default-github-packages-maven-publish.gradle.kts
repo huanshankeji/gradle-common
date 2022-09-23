@@ -1,7 +1,7 @@
 package com.huanshankeji.team
 
 plugins {
-    id("com.huanshankeji.team.github-packages-publish")
+    id("com.huanshankeji.team.github-packages-maven-publish")
 }
 
 githubPackagesPublish {

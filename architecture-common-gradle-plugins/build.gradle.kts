@@ -55,12 +55,11 @@ gradlePlugin {
             "default-web-frontend-conventions",
             "Default web frontend conventions for our projects with Compose for Web and kotlinx.html HTML generation"
         )
-        /* TODO
+        // TODO
         scriptConventionsPlugin(
             "default-material-web-frontend-conventions",
-            "Default web frontend conventions for our projects with Compose for Web, kotlinx.html HTML generation, and Material Design"
+            "(not implemented yet) Default web frontend conventions for our projects with Compose for Web, kotlinx.html HTML generation, and Material Design"
         )
-        */
 
         val name = "generate-kotlin-js-browser-webroot-for-vertx-web"
         create(name) {

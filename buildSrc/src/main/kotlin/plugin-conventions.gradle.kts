@@ -9,7 +9,7 @@ dependencies {
     implementation(kotlin("gradle-plugin", kotlinVersion))
 }
 
-version = "0.2.0"
+version = "0.3.0"
 
 pluginBundle {
     website = GITHUB_URL

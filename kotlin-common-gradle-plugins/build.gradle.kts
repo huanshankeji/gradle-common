@@ -31,12 +31,20 @@ gradlePlugin {
         )
 
         scriptConventionsPlugin(
+            "java-1-8-compatibility-publish-conventions",
+            "Java conventions with Javadoc, sources, and 1.8 compatibility for publish"
+        )
+        scriptConventionsPlugin(
             "kotlin-jvm-library-maven-publish-conventions",
             "Kotlin/JVM library conventions with Maven publish"
         )
         scriptConventionsPlugin(
             "kotlin-multiplatform-jvm-and-js-browser-maven-publish-conventions",
             "Kotlin Multiplatform conventions with the JVM target and the JS browser target, and with Maven publish"
+        )
+        scriptConventionsPlugin(
+            "sonatype-ossrh-publish",
+            "Sonatype OSSRH Maven Central publish"
         )
         scriptConventionsPlugin(
             "kotlin-jvm-library-sonatype-ossrh-publish-conventions",
@@ -58,6 +66,12 @@ gradlePlugin {
             displayName = "GitLab project-level Maven endpoint publish"
             description = "Publishes to a GitLab project-level Maven endpoint."
         }
+
+        // TODO
+        scriptConventionsPlugin(
+            "nexus-staging",
+            "Not implemented yet"
+        )
 
         scriptConventionsPlugin(
             "jvm-integration-test",
