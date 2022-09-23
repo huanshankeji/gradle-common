@@ -4,8 +4,11 @@ import com.huanshankeji.team.pomForTeamDefaultOpenSource
 
 plugins {
     `build-dependency-library-conventions`
+
+    // This project is published to Maven Central instead of the Gradle Plugin Portal.
+
     `java-gradle-plugin` // This plugin is needed to add the necessary Gradle dependencies.
-    id("com.huanshankeji.kotlin-jvm-library-sonatype-ossrh-publish-conventions")
+    id("com.huanshankeji.sonatype-ossrh-publish")
 }
 
 // "x.y.z" indicates the version of the way of organizing the code,
