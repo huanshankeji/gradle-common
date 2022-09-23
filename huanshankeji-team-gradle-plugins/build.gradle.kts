@@ -20,5 +20,9 @@ gradlePlugin {
             "github-packages-maven-publish",
             "GitHub Packages Maven publish (to Huanshankeji team's repository)"
         )
+        scriptConventionsPlugin(
+            "default-github-packages-maven-publish",
+            "GitHub Packages Maven publish (to Huanshankeji team's repository) with default conventions"
+        )
     }
 }
