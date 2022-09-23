@@ -32,6 +32,27 @@ fun Project.generateKotlinSources(
     kotlin.sourceSets["main"].kotlin.srcDir(generatedSourcesDir)
 }
 
+fun Project.generateKotlinVersion(kotlinVersion: String) =
+    generateKotlinSources(
+        sourceFiles = listOf(
+            SourceFile(
+                "GeneratedKotlinVersion.kt",
+                "internal const val kotlinVersion = \"$kotlinVersion\"\n"
+            )
+        )
+    )
+
+// TODO: should be adapted for Kotlin Multiplatform
+fun Project.generateRootProjectName() =
+    generateKotlinSources(
+        sourceFiles = listOf(
+            SourceFile(
+                "GeneratedRootProjectName.kt",
+                "internal const val ROOT_PROJECT_NAME = \"${rootProject.name}\"\n"
+            )
+        )
+    )
+
 
 // copied and adapted from generated sources
 // made private to avoid conflicts with generated code

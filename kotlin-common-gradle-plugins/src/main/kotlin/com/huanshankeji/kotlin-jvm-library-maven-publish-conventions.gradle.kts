@@ -3,15 +3,8 @@ package com.huanshankeji
 plugins {
     id("com.huanshankeji.kotlin-jvm-common-conventions")
     `java-library`
-    id("com.huanshankeji.default-maven-publish")
-}
-
-java {
-    withJavadocJar()
-    withSourcesJar()
-
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+    `maven-publish`
+    id("com.huanshankeji.java-1-8-compatibility-publish-conventions")
 }
 
 publishing {

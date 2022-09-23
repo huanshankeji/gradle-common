@@ -1,9 +1,8 @@
 plugins {
-    id("plugin-conventions")
+    id("aligned-version-plugin-conventions")
 }
 
 dependencies {
-    //api(project(":common-gradle-dependencies"))
     //implementation("io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.30.0")
 }
 
@@ -32,12 +31,20 @@ gradlePlugin {
         )
 
         scriptConventionsPlugin(
-            "kotlin-jvm-library-default-maven-publish-conventions",
-            "Kotlin/JVM library conventions with default Maven publish"
+            "java-1-8-compatibility-publish-conventions",
+            "Java conventions with Javadoc, sources, and 1.8 compatibility for publish"
         )
         scriptConventionsPlugin(
-            "kotlin-multiplatform-jvm-and-js-browser-default-maven-publish-conventions",
-            "Kotlin Multiplatform conventions with the JVM target and the JS browser target, and with default Maven publish"
+            "kotlin-jvm-library-maven-publish-conventions",
+            "Kotlin/JVM library conventions with Maven publish"
+        )
+        scriptConventionsPlugin(
+            "kotlin-multiplatform-jvm-and-js-browser-maven-publish-conventions",
+            "Kotlin Multiplatform conventions with the JVM target and the JS browser target, and with Maven publish"
+        )
+        scriptConventionsPlugin(
+            "sonatype-ossrh-publish",
+            "Sonatype OSSRH Maven Central publish"
         )
         scriptConventionsPlugin(
             "kotlin-jvm-library-sonatype-ossrh-publish-conventions",
@@ -46,6 +53,24 @@ gradlePlugin {
         scriptConventionsPlugin(
             "kotlin-multiplatform-jvm-and-js-browser-sonatype-ossrh-publish-conventions",
             "Kotlin Multiplatform conventions with the JVM target and the JS browser target, and with Sonatype OSSRH Maven Central publish"
+        )
+        create("github-packages-maven-publish") {
+            id = "$`package`.$name"
+            implementationClass = "$`package`.GithubPackagesMavenPublishPlugin"
+            displayName = "GitHub Packages publish"
+            description = "Publishes to a Maven registry of GitHub Packages."
+        }
+        create("gitlab-project-level-maven-endpoint-publish") {
+            id = "$`package`.$name"
+            implementationClass = "$`package`.GitlabProjectLevelMavenEndpointPublishPlugin"
+            displayName = "GitLab project-level Maven endpoint publish"
+            description = "Publishes to a GitLab project-level Maven endpoint."
+        }
+
+        // TODO
+        scriptConventionsPlugin(
+            "nexus-staging",
+            "Not implemented yet"
         )
 
         scriptConventionsPlugin(
