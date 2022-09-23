@@ -1,7 +1,7 @@
 import com.huanshankeji.generateKotlinVersion
 
 plugins {
-    `plugin-conventions`
+    conventions
 }
 
 // "x.y.z" indicates the version of the way of organizing the code,
