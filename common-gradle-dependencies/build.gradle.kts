@@ -13,6 +13,7 @@ version = "0.3.2-20220728-SNAPSHOT"
 generateKotlinVersion(kotlinVersion)
 
 publishing.publications.withType<MavenPublication> {
+    // TODO: use `pomForDefaultOpenSourceWithApacheLicense20OnGitHub`
     pom {
         /*
         name.set("Huanshankeji Gradle Common (in and for Kotlin)")
