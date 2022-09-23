@@ -3,17 +3,13 @@ import com.huanshankeji.team.`Shreck Ye`
 import com.huanshankeji.team.pomForTeamDefaultOpenSource
 
 plugins {
-    `build-dependency-library-conventions`
+    `common-gradle-dependencies-helper`
 
     // This project is published to Maven Central instead of the Gradle Plugin Portal.
 
     `java-gradle-plugin` // This plugin is needed to add the necessary Gradle dependencies.
     id("com.huanshankeji.sonatype-ossrh-publish")
 }
-
-// "x.y.z" indicates the version of the way of organizing the code,
-// and the date indicates the version when the dependency versions are updated.
-version = "0.3.2-20220728-SNAPSHOT"
 
 generateKotlinVersion(kotlinVersion)
 
