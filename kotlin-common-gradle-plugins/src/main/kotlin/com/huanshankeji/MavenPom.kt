@@ -8,7 +8,7 @@ import org.gradle.api.publish.maven.MavenPublication
 // copied and adapted from "/common-gradle-dependencies/build.gradle.kts"
 fun MavenPom.setUpForDefaultOpenSourceWithApacheLicense20OnGitHub(
     nameArg: String, descriptionArg: String, githubUrl: String, gitUrl: String = "$githubUrl.git",
-    developersBlock: (MavenPomDeveloperSpec) -> Unit
+    developersBlock: MavenPomDeveloperSpec.() -> Unit
 ) {
     name.set(nameArg)
     description.set(descriptionArg)
@@ -31,7 +31,7 @@ fun MavenPom.setUpForDefaultOpenSourceWithApacheLicense20OnGitHub(
 
 fun MavenPublication.pomForDefaultOpenSourceWithApacheLicense20OnGitHub(
     nameArg: String, descriptionArg: String, githubUrl: String, gitUrl: String = "$githubUrl.git",
-    developersBlock: (MavenPomDeveloperSpec) -> Unit
+    developersBlock: MavenPomDeveloperSpec.() -> Unit
 ) =
     pom {
         setUpForDefaultOpenSourceWithApacheLicense20OnGitHub(
