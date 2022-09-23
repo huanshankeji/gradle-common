@@ -4,14 +4,7 @@ plugins {
     id("com.huanshankeji.kotlin-jvm-common-conventions")
     `java-library`
     `maven-publish`
-}
-
-java {
-    withJavadocJar()
-    withSourcesJar()
-
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+    id("com.huanshankeji.java-1-8-compatibility-publish-conventions")
 }
 
 publishing {

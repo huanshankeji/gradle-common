@@ -17,12 +17,8 @@ gradlePlugin {
 
         scriptConventionsPlugin("with-group", "With Huanshankeji team's group, aka \"com.huanshankeji\"")
         scriptConventionsPlugin(
-            "github-packages-publish",
-            "GitHub Packages publish (to Huanshankeji team's repository)"
-        )
-        scriptConventionsPlugin(
-            "default-github-packages-publish",
-            "GitHub Packages publish (to Huanshankeji team's repository) with default conventions"
+            "github-packages-maven-publish",
+            "GitHub Packages Maven publish (to Huanshankeji team's repository)"
         )
     }
 }
