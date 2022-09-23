@@ -4,8 +4,6 @@ import org.gradle.api.publish.maven.MavenPom
 import org.gradle.api.publish.maven.MavenPomDeveloperSpec
 import org.gradle.api.publish.maven.MavenPublication
 
-// TODO: remove the comment below when this function is used there
-// copied and adapted from "/common-gradle-dependencies/build.gradle.kts"
 fun MavenPom.setUpForDefaultOpenSourceWithApacheLicense20OnGitHub(
     nameArg: String, descriptionArg: String, githubUrl: String, gitUrl: String = "$githubUrl.git",
     developersBlock: MavenPomDeveloperSpec.() -> Unit
