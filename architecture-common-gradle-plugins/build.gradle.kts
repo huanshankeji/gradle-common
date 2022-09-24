@@ -1,5 +1,5 @@
 plugins {
-    id("plugin-conventions")
+    id("aligned-version-plugin-conventions")
 }
 
 repositories {
@@ -16,7 +16,9 @@ dependencies {
      enabling it to always depend on a release version. */
     implementation("com.huanshankeji:common-gradle-dependencies:0.3.1-20220728")
 
-    implementation("org.jetbrains.compose:compose-gradle-plugin:1.2.0-alpha01-dev753") // TODO: extract "common-gradle-dependencies" into a standalone project and use the dependency there
+    with(commonGradleClasspathDependencies.composeJb) {
+        implementation("$gradlePluginProjectGroupAndArtifact:$defaultVersion")
+    }
 }
 
 gradlePlugin {
