@@ -19,4 +19,6 @@ dependencies {
     implementation("com.gradle.publish:plugin-publish-plugin:1.0.0-rc-2")
     // This is a bootstrapping dependency (cross-version self-dependency). Try not to update its version unless necessary.
     implementation("com.huanshankeji.team:gradle-plugins:0.3.0")
+    // This is also a bootstrapping dependency.
+    implementation("com.huanshankeji:common-gradle-dependencies:0.3.2-20220728")
 }
