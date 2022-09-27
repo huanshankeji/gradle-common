@@ -4,6 +4,7 @@ import org.gradle.api.Project
 import org.gradle.api.artifacts.ProjectDependency
 import org.gradle.api.artifacts.dsl.DependencyHandler
 import org.gradle.kotlin.dsl.project
+import org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler
 
 // CPN: concatenated project name
 
@@ -19,9 +20,13 @@ fun Project.getConcatenatedProjectNamePath(path: String) =
     getConcatenatedProjectNamePath(rootProject.name, path)
 
 // TODO: use context receivers when it's stable
+
 fun DependencyHandler.cpnProject(
-    project: Project,
-    path: String,
-    configuration: String? = null
+    project: Project, path: String, configuration: String? = null
+): ProjectDependency =
+    project(project.getConcatenatedProjectNamePath(path), configuration)
+
+fun KotlinDependencyHandler.cpnProject(
+    project: Project, path: String, configuration: String? = null
 ): ProjectDependency =
     project(project.getConcatenatedProjectNamePath(path), configuration)
