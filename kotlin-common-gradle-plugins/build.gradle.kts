@@ -4,6 +4,8 @@ plugins {
 
 dependencies {
     //implementation("io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.30.0")
+
+    testImplementation(kotlin("test"))
 }
 
 gradlePlugin {
@@ -30,6 +32,11 @@ gradlePlugin {
             "Kotlin Multiplatform conventions with the JVM target and the JS browser target"
         )
 
+        create("maven-publish-conventions") {
+            id = "$`package`.$name"
+            implementationClass = "$`package`.MavenPublishConventionsPlugin"
+            displayName = "Maven publish conventions"
+        }
         scriptConventionsPlugin(
             "java-1-8-compatibility-publish-conventions",
             "Java conventions with Javadoc, sources, and 1.8 compatibility for publish"

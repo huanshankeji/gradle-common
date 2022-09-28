@@ -5,13 +5,15 @@ import org.gradle.api.publish.maven.MavenPomDeveloperSpec
 import org.gradle.api.publish.maven.MavenPublication
 
 fun MavenPom.setUpForDefaultOpenSourceWithApacheLicense20OnGitHub(
-    nameArg: String, descriptionArg: String, githubUrl: String, gitUrl: String = "$githubUrl.git",
+    nameArg: String, descriptionArg: String,
+    gitProjectPageUrl: String,
+    gitUrl: String = "$gitProjectPageUrl.git", scmConnection: String = "scm:git:$gitUrl",
     developersBlock: MavenPomDeveloperSpec.() -> Unit
 ) {
     name.set(nameArg)
     description.set(descriptionArg)
 
-    url.set(githubUrl)
+    url.set(gitProjectPageUrl)
 
     licenses {
         license {
@@ -21,18 +23,20 @@ fun MavenPom.setUpForDefaultOpenSourceWithApacheLicense20OnGitHub(
     }
     developers(developersBlock)
     scm {
-        connection.set(gitUrl)
-        developerConnection.set(gitUrl)
-        url.set(githubUrl)
+        connection.set(scmConnection)
+        developerConnection.set(scmConnection)
+        url.set(gitProjectPageUrl)
     }
 }
 
 fun MavenPublication.pomForDefaultOpenSourceWithApacheLicense20OnGitHub(
-    nameArg: String, descriptionArg: String, githubUrl: String, gitUrl: String = "$githubUrl.git",
+    nameArg: String, descriptionArg: String,
+    gitProjectPageUrl: String,
+    gitUrl: String = "$gitProjectPageUrl.git", scmConnection: String = "scm:git:$gitUrl",
     developersBlock: MavenPomDeveloperSpec.() -> Unit
 ) =
     pom {
         setUpForDefaultOpenSourceWithApacheLicense20OnGitHub(
-            nameArg, descriptionArg, githubUrl, gitUrl, developersBlock
+            nameArg, descriptionArg, gitProjectPageUrl, gitUrl, scmConnection, developersBlock
         )
     }
