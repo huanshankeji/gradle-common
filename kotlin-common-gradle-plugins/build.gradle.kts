@@ -36,6 +36,7 @@ gradlePlugin {
             id = "$`package`.$name"
             implementationClass = "$`package`.MavenPublishConventionsPlugin"
             displayName = "Maven publish conventions"
+            description = displayName
         }
         scriptConventionsPlugin(
             "java-1-8-compatibility-publish-conventions",
