@@ -7,6 +7,7 @@ import org.gradle.api.credentials.HttpHeaderCredentials
 import org.gradle.api.provider.Property
 import org.gradle.authentication.http.HttpHeaderAuthentication
 import org.gradle.kotlin.dsl.create
+import org.gradle.kotlin.dsl.credentials
 
 // TODO: use context receivers when it's stable.
 
@@ -17,12 +18,12 @@ fun Project.gitlabMavenRepository(repositoryHandler: RepositoryHandler, nameArg:
     repositoryHandler.maven {
         url = uri(urlArg)
         name = nameArg
-        credentials(HttpHeaderCredentials::class.java) {
+        credentials(HttpHeaderCredentials::class) {
             name = "Private-Token"
             value = findProperty("gitLabPrivateToken") as String?
         }
         authentication {
-            create("header", HttpHeaderAuthentication::class.java)
+            create("header", HttpHeaderAuthentication::class)
         }
     }
 
