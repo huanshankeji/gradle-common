@@ -47,8 +47,8 @@ gradlePlugin {
             "Kotlin/JVM library conventions with Maven publish"
         )
         scriptConventionsPlugin(
-            "kotlin-multiplatform-jvm-and-js-browser-maven-publish-conventions",
-            "Kotlin Multiplatform conventions with the JVM target and the JS browser target, and with Maven publish"
+            "kotlin-multiplatform-maven-publish-conventions",
+            "Kotlin Multiplatform conventions with Maven publish"
         )
         scriptConventionsPlugin(
             "sonatype-ossrh-publish",
@@ -59,8 +59,8 @@ gradlePlugin {
             "Kotlin/JVM library conventions with Sonatype OSSRH Maven Central publish"
         )
         scriptConventionsPlugin(
-            "kotlin-multiplatform-jvm-and-js-browser-sonatype-ossrh-publish-conventions",
-            "Kotlin Multiplatform conventions with the JVM target and the JS browser target, and with Sonatype OSSRH Maven Central publish"
+            "kotlin-multiplatform-sonatype-ossrh-publish-conventions",
+            "Kotlin Multiplatform conventions with Sonatype OSSRH Maven Central publish"
         )
         create("github-packages-maven-publish") {
             id = "$`package`.$name"
