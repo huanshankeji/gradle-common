@@ -1,5 +1,5 @@
 plugins {
-    id("aligned-version-plugin-conventions")
+    `aligned-version-plugin-conventions`
 }
 
 dependencies {
