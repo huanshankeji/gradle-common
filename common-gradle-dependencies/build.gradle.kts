@@ -14,8 +14,8 @@ gradlePlugin {
     plugins {
         scriptPlugin(
             "com.huanshankeji",
-            "dummy-plugin",
-            "A dummy plugin defined to enable publishing the repository to the Gradle Plugin Portal"
+            "common-gradle-dependencies-dummy-plugin",
+            "A dummy plugin defined to enable publishing the package to the Gradle Plugin Portal"
         )
     }
 }

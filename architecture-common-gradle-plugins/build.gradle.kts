@@ -24,8 +24,8 @@ dependencies {
 gradlePlugin {
     plugins {
         val `package` = group as String
-        fun scriptConventionsPlugin(shortName: String, displayName: String, description: String = displayName) =
-            scriptPlugin(`package`, shortName, displayName, description)
+        fun scriptConventionsPlugin(idSuffix: String, displayName: String, description: String = displayName) =
+            scriptPlugin(`package`, idSuffix, displayName, description)
 
         scriptConventionsPlugin(
             "kotlin-jvm-common-app-conventions",
