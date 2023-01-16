@@ -3,9 +3,13 @@ package com.huanshankeji
 plugins {
     id("com.huanshankeji.kotlin-jvm-common-conventions")
     `java-library`
-    id("com.huanshankeji.java-1-8-compatibility-publish-conventions")
 }
 apply<MavenPublishConventionsPlugin>()
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
 
 publishing {
     publications {
@@ -13,4 +17,8 @@ publishing {
             from(components["java"])
         }
     }
+}
+
+afterEvaluate {
+    require(java.toolchain.languageVersion.isPresent) { "Specify an explicit `java.toolchain.languageVersion` when publishing a JVM library." }
 }

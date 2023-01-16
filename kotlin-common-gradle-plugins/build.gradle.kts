@@ -39,10 +39,6 @@ gradlePlugin {
             description = displayName
         }
         scriptConventionsPlugin(
-            "java-1-8-compatibility-publish-conventions",
-            "Java conventions with Javadoc, sources, and 1.8 compatibility for publish"
-        )
-        scriptConventionsPlugin(
             "kotlin-jvm-library-maven-publish-conventions",
             "Kotlin/JVM library conventions with Maven publish"
         )
