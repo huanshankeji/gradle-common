@@ -39,12 +39,6 @@ gradlePlugin {
             description = displayName
         }
         scriptConventionsPlugin(
-            "java-8-publish-conventions",
-            "Java 8 publish conventions",
-            // TODO: change the description if the script content is changed.
-            "Java conventions with Javadoc, sources, and Java language version 8 for publish"
-        )
-        scriptConventionsPlugin(
             "kotlin-jvm-library-maven-publish-conventions",
             "Kotlin/JVM library conventions with Maven publish"
         )
