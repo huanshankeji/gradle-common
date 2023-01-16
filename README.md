@@ -26,6 +26,25 @@ dependencies {
 }
 ```
 
+Or:
+
+```kotlin
+dependencies {
+   implementation(kotlin("gradle-plugin", "1.7.20"))
+   implementation("org.jetbrains.compose:compose-gradle-plugin:1.2.2")
+
+   api("com.huanshankeji:common-gradle-dependencies:0.3.2-20220728")
+   implementation("com.huanshankeji:kotlin-common-gradle-plugins:0.3.2")
+   implementation("com.huanshankeji:architecture-common-gradle-plugins:0.3.2")
+}
+
+configurations.all {
+    resolutionStrategy {
+        force("org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.20")
+    }
+}
+```
+
 ## Notices
 
 1. IntelliJ IDEA doesn't work well with applying plugins to script plugins in project sources. If a script plugin's code
