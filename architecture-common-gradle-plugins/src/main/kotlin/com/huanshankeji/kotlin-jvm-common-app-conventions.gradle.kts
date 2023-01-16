@@ -24,17 +24,6 @@ tasks.test {
     useJUnitPlatform()
 }
 
-/*
-java {
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
-}
-
-tasks.withType<KotlinCompile> {
-    kotlinOptions.jvmTarget = "11"
-}
-*/
-
 kotlin.sourceSets.all {
     languageSettings.defaultOptIns()
 }
