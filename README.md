@@ -7,11 +7,7 @@ Huanshankeji's Gradle common code in Kotlin, mainly for common projects in Kotli
 
 ## About the version of the Kotlin Gradle plugins
 
-The projects and plugins depend on a certain version of the Kotlin Gradle plugins. Sometimes it's needed to specify your
-own version of the Kotlin Gradle plugins when using the plugins in the project. For example, a version
-of [Compose Multiplatform](https://www.jetbrains.com/lp/compose-mpp/) currently supports only a certain version of the
-Kotlin Gradle plugins. Especially, if your desired Kotlin version is lower than this project's dependent Kotlin version,
-you need to exclude the transitive Kotlin dependencies.
+The projects and plugins depend on a certain version of the Kotlin Gradle plugins. Sometimes it's needed to specify your own version of the Kotlin Gradle plugins when using the plugins in your project. For example, a version of [Compose Multiplatform](https://www.jetbrains.com/lp/compose-mpp/) currently supports only a certain version of the Kotlin Gradle plugins. Especially, if your desired Kotlin version is lower than this project's dependent Kotlin version, you need to exclude the transitive Kotlin dependencies.
 
 For example, with Compose 1.2.2 in `buildSrc/build.gradle.kts`:
 
@@ -47,5 +43,4 @@ configurations.all {
 
 ## Developer notices
 
-1. IntelliJ IDEA doesn't work well with applying plugins to script plugins in project sources. If a script plugin's code
-   does not resolve, try restarting IntelliJ IDEA.
+1. IntelliJ IDEA doesn't work well with applying plugins to script plugins in project sources. If a script plugin's code does not resolve, try restarting IntelliJ IDEA.
