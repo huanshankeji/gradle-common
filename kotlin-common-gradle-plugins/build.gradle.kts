@@ -1,16 +1,18 @@
 plugins {
-    id("aligned-version-plugin-conventions")
+    `aligned-version-plugin-conventions`
 }
 
 dependencies {
     //implementation("io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.30.0")
+
+    testImplementation(kotlin("test"))
 }
 
 gradlePlugin {
     plugins {
         val `package` = group as String
-        fun scriptConventionsPlugin(shortName: String, displayName: String, description: String = displayName) =
-            scriptPlugin(`package`, shortName, displayName, description)
+        fun scriptConventionsPlugin(idSuffix: String, displayName: String, description: String = displayName) =
+            scriptPlugin(`package`, idSuffix, displayName, description)
 
         scriptConventionsPlugin(
             "kotlin-jvm-common-conventions",
@@ -30,17 +32,19 @@ gradlePlugin {
             "Kotlin Multiplatform conventions with the JVM target and the JS browser target"
         )
 
-        scriptConventionsPlugin(
-            "java-1-8-compatibility-publish-conventions",
-            "Java conventions with Javadoc, sources, and 1.8 compatibility for publish"
-        )
+        create("maven-publish-conventions") {
+            id = "$`package`.$name"
+            implementationClass = "$`package`.MavenPublishConventionsPlugin"
+            displayName = "Maven publish conventions"
+            description = displayName
+        }
         scriptConventionsPlugin(
             "kotlin-jvm-library-maven-publish-conventions",
             "Kotlin/JVM library conventions with Maven publish"
         )
         scriptConventionsPlugin(
-            "kotlin-multiplatform-jvm-and-js-browser-maven-publish-conventions",
-            "Kotlin Multiplatform conventions with the JVM target and the JS browser target, and with Maven publish"
+            "kotlin-multiplatform-maven-publish-conventions",
+            "Kotlin Multiplatform conventions with Maven publish"
         )
         scriptConventionsPlugin(
             "sonatype-ossrh-publish",
@@ -51,8 +55,8 @@ gradlePlugin {
             "Kotlin/JVM library conventions with Sonatype OSSRH Maven Central publish"
         )
         scriptConventionsPlugin(
-            "kotlin-multiplatform-jvm-and-js-browser-sonatype-ossrh-publish-conventions",
-            "Kotlin Multiplatform conventions with the JVM target and the JS browser target, and with Sonatype OSSRH Maven Central publish"
+            "kotlin-multiplatform-sonatype-ossrh-publish-conventions",
+            "Kotlin Multiplatform conventions with Sonatype OSSRH Maven Central publish"
         )
         create("github-packages-maven-publish") {
             id = "$`package`.$name"

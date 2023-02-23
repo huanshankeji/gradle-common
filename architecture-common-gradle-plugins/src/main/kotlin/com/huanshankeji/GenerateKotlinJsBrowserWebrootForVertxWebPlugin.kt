@@ -16,9 +16,9 @@ class GenerateKotlinJsBrowserWebrootForVertxWebPlugin : Plugin<Project> {
 
         // see: https://play.kotlinlang.org/hands-on/Full%20Stack%20Web%20App%20with%20Kotlin%20Multiplatform/04_Frontend_Setup
 
-        /*val jsBrowserDistributionTask by lazy {
-            tasks.getByPath(extension.webFrontendProjectPath.get() + ":jsBrowserDistribution") as KotlinWebpack
-        }*/
+        val jsBrowserDistributionTask by lazy {
+            tasks.getByPath(extension.webFrontendProjectPath.get() + ":jsBrowserDistribution")
+        }
         val jsBrowserWebpack by lazy {
             tasks.getByPath(
                 extension.webFrontendProjectPath.get() +
@@ -30,6 +30,7 @@ class GenerateKotlinJsBrowserWebrootForVertxWebPlugin : Plugin<Project> {
 
         tasks.register<Copy>(copyJsBrowserDistributionToResourcesWebroot) {
             dependsOn(jsBrowserWebpack)
+            dependsOn(jsBrowserDistributionTask) // needed for Gradle 8.0.1 whenever `production` is `true` or `false` // TODO: this may be a bug.
             from(jsBrowserWebpack.destinationDirectory)
             if (extension.production.get())
                 include("*.html", "*.css", "*.js")

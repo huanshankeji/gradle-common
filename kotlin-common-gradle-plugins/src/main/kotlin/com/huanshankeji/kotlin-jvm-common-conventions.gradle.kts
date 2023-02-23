@@ -7,6 +7,3 @@ plugins {
 repositories {
     mavenCentral()
 }
-
-// to prevent duplicate archive names and support Windows
-base.archivesName.set(fullNameForFileSystem)

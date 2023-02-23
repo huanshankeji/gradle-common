@@ -1,7 +1,7 @@
 package com.huanshankeji
 
 plugins {
-    id("com.huanshankeji.kotlin-multiplatform-jvm-and-js-browser-maven-publish-conventions")
+    id("com.huanshankeji.kotlin-multiplatform-maven-publish-conventions")
     id("com.huanshankeji.sonatype-ossrh-publish")
 }
 

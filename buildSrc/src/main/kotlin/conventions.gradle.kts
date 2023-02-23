@@ -16,9 +16,11 @@ dependencies {
     implementation(kotlin("gradle-plugin", kotlinVersion))
 }
 
+java.toolchain.languageVersion.set(JavaLanguageVersion.of(8))
 
-pluginBundle {
-    website = GITHUB_URL
-    vcsUrl = GITHUB_GIT_URL
-    tags = listOf("kotlin", "multiplatform")
+
+gradlePlugin {
+    website.set(GITHUB_URL)
+    vcsUrl.set(GITHUB_GIT_URL)
+    //tags = listOf("kotlin", "multiplatform")
 }

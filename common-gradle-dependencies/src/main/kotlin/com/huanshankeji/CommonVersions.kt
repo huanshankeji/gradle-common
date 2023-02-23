@@ -13,7 +13,7 @@ class CommonVersions(
     val kotlinxDatetime: String = "0.4.0",
     val exposed: String = "0.38.2",
     val ktor: String = "2.0.3",
-    val composeJb: String = "1.2.0-alpha01-dev753", // TODO: try to use a stable version in production
+    val composeJb: String = "1.3.0",
 
     val vertx: String = "4.3.2",
     val arrow: String = "1.1.2",
