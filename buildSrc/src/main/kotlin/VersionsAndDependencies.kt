@@ -10,6 +10,6 @@ val alignedPluginVersion = "0.4.0-SNAPSHOT"
 
 // "x.y.z" indicates the version of the way of organizing the code,
 // and the date indicates the version when the dependency versions are updated.
-val commonGradleDependenciesVersion = "0.4.0-20230223-SNAPSHOT"
+val commonGradleDependenciesVersion = "0.4.0-20230223"
 
 val pluginProjectDependentStableCommonGradleDependenciesVersion = "0.3.2-20220728"
