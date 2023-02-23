@@ -22,5 +22,5 @@ java.toolchain.languageVersion.set(JavaLanguageVersion.of(8))
 gradlePlugin {
     website.set(GITHUB_URL)
     vcsUrl.set(GITHUB_GIT_URL)
-    //tags = listOf("kotlin", "multiplatform")
+    plugins.all { tags.set(listOf("kotlin", "kotlin-multiplatform")) }
 }
