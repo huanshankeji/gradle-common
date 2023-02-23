@@ -17,16 +17,20 @@ class CommonGradleClasspathDependencies(val versions: CommonVersions) {
     val kotlin = Kotlin()
 
     inner class ComposeJb internal constructor() {
-        val gradlePluginProjectGroupAndArtifact = "org.jetbrains.compose:compose-gradle-plugin"
-        val gradlePluginId = "org.jetbrains.compose"
         val defaultVersion = versions.composeJb
 
+        inner class GradlePlugin {
+            fun PluginDependenciesSpec.applyPluginWithoutVersion() =
+                id("org.jetbrains.compose")
 
-        fun PluginDependenciesSpec.applyPluginWithoutVersion() =
-            id(gradlePluginId)
+            fun PluginDependenciesSpec.applyPluginWithVersion(version: String = defaultVersion) =
+                applyPluginWithoutVersion().version(version)
 
-        fun PluginDependenciesSpec.applyPluginWithVersion(version: String = defaultVersion) =
-            applyPluginWithoutVersion().version(version)
+            fun pluginProject(version: String = defaultVersion) =
+                "org.jetbrains.compose:compose-gradle-plugin:$version"
+        }
+
+        val gradlePlugin = GradlePlugin()
     }
 
     val composeJb = ComposeJb()

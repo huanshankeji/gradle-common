@@ -1,6 +1,6 @@
 plugins {
     `kotlin-dsl`
-    // Gradle 7.6's dependent Kotlin version is 1.7.10.
+    // Gradle 8.0.1's dependent Kotlin version is 1.8.10.
     //kotlin("jvm") version "1.8.0"
 }
 
@@ -24,8 +24,8 @@ dependencies {
         implementation("org.jetbrains.kotlin:kotlin-sam-with-receiver:1.8.0")
     }
     */
-    //implementation(kotlin("gradle-plugin", "1.8.0")) // 1.7.10 has to be used for Gradle 7.6.
-    implementation("org.gradle.kotlin:gradle-kotlin-dsl-plugins:2.4.1") // This version has to be used for Gradle 7.6.
+    //implementation(kotlin("gradle-plugin", "1.8.0")) // for Compose 1.3.0, but 1.8.10 has to be used for Gradle 8.0.1.
+    implementation("org.gradle.kotlin:gradle-kotlin-dsl-plugins:4.0.6") // This version has to be used for Gradle 8.0.1.
 
     implementation("com.gradle.publish:plugin-publish-plugin:1.1.0")
 
