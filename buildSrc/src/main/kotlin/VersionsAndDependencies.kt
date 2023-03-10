@@ -12,6 +12,6 @@ val alignedPluginVersion = "0.4.0-SNAPSHOT"
 // and the date indicates the version when the dependency versions are updated.
 val commonGradleDependenciesVersion = "0.5.0-20230310-SNAPSHOT"
 
-val pluginProjectDependentStableCommonGradleDependenciesVersion = "0.4.0-20230223".apply {
+val pluginProjectDependentStableCommonGradleDependenciesVersion = "0.5.0-20230310".apply {
     require(!endsWith("SNAPSHOT"))
 }
