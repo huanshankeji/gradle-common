@@ -5,6 +5,10 @@
 
 Huanshankeji's Gradle common code in Kotlin, mainly for common projects in Kotlin
 
+## Examples
+
+There are currently no docs or tutorials on how to use the plugins. See the build scripts in [kotlin-common](https://github.com/huanshankeji/kotlin-common) for examples.
+
 ## Gradle version and Kotlin version
 
 See [gradle/wrapper/gradle-wrapper.properties](gradle/wrapper/gradle-wrapper.properties) for the currently dependent Gradle version and [buildSrc/build.gradle.kts](buildSrc/build.gradle.kts) for the currently dependent Kotlin version. These versions are tested against and used by us. There might be compatibility issues when you use other versions of Gradle or Kotlin, especially versions with different [MAJOR](https://semver.org/) versions.
