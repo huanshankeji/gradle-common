@@ -16,10 +16,7 @@ dependencies {
      enabling it to always depend on a release version. */
     implementation("com.huanshankeji:common-gradle-dependencies:$pluginProjectDependentStableCommonGradleDependenciesVersion")
 
-    // TODO: simplify
-    with(commonGradleClasspathDependencies.composeJb) {
-        implementation("$gradlePluginProjectGroupAndArtifact:$defaultVersion")
-    }
+    implementation(commonGradleClasspathDependencies.composeJb.gradlePlugin.pluginProject())
 }
 
 gradlePlugin {

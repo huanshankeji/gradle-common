@@ -16,8 +16,8 @@ class CommonGradleClasspathDependencies(val versions: CommonVersions) {
 
     val kotlin = Kotlin()
 
-    inner class ComposeJb internal constructor() {
-        val defaultVersion = versions.composeJb
+    inner class ComposeMultiplatform internal constructor() {
+        val defaultVersion = versions.composeMultiplatform
 
         inner class GradlePlugin {
             fun PluginDependenciesSpec.applyPluginWithoutVersion() =
@@ -33,5 +33,5 @@ class CommonGradleClasspathDependencies(val versions: CommonVersions) {
         val gradlePlugin = GradlePlugin()
     }
 
-    val composeJb = ComposeJb()
+    val composeMultiplatform = ComposeMultiplatform()
 }
