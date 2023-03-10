@@ -1,5 +1,5 @@
 plugins {
-    id("aligned-version-plugin-conventions")
+    `aligned-version-plugin-conventions`
 }
 
 repositories {
@@ -14,18 +14,16 @@ dependencies {
     /* This project depends on a specific version of the Maven dependency of "common-gradle-dependencies"
      since now they are developed together in the same branch `main`,
      enabling it to always depend on a release version. */
-    implementation("com.huanshankeji:common-gradle-dependencies:0.3.1-20220728")
+    implementation("com.huanshankeji:common-gradle-dependencies:$pluginProjectDependentStableCommonGradleDependenciesVersion")
 
-    with(commonGradleClasspathDependencies.composeJb) {
-        implementation("$gradlePluginProjectGroupAndArtifact:$defaultVersion")
-    }
+    implementation(commonGradleClasspathDependencies.composeJb.gradlePlugin.pluginProject())
 }
 
 gradlePlugin {
     plugins {
         val `package` = group as String
-        fun scriptConventionsPlugin(shortName: String, displayName: String, description: String = displayName) =
-            scriptPlugin(`package`, shortName, displayName, description)
+        fun scriptConventionsPlugin(idSuffix: String, displayName: String, description: String = displayName) =
+            scriptPlugin(`package`, idSuffix, displayName, description)
 
         scriptConventionsPlugin(
             "kotlin-jvm-common-app-conventions",

@@ -15,7 +15,7 @@ class MavenPublishConventionsPlugin : Plugin<Project> {
         object DefaultUnchanged : ArtifactIdConfig()
 
         // Use a name created by concatenating the subproject names.
-        @Deprecated("This way has potential bugs with Kotlin Multiplatform projects. See \"https://youtrack.jetbrains.com/issue/KT-54182\".")
+        @Deprecated("Adopting this config may cause potential bugs in Kotlin Multiplatform projects. See \"https://youtrack.jetbrains.com/issue/KT-54182\".")
         object SubprojectNameConcatenated : ArtifactIdConfig()
 
         class Custom(val artifactId: String) : ArtifactIdConfig()
