@@ -6,7 +6,7 @@ val commonGradleClasspathDependencies = CommonGradleClasspathDependencies(common
 
 val kotlinVersion = "1.8.10" // for Compose 1.3.1
 
-val alignedPluginVersion = "0.4.0-SNAPSHOT"
+val alignedPluginVersion = "0.4.0"
 
 // "x.y.z" indicates the version of the way of organizing the code,
 // and the date indicates the version when the dependency versions are updated.
