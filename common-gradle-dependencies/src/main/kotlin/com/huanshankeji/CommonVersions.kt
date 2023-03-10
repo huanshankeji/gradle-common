@@ -13,7 +13,7 @@ class CommonVersions(
     val kotlinxDatetime: String = "0.4.0",
     val exposed: String = "0.38.2",
     val ktor: String = "2.0.3",
-    val composeJb: String = "1.3.0",
+    val composeMultiplatform: String = "1.3.1",
 
     val vertx: String = "4.3.2",
     val arrow: String = "1.1.2",
