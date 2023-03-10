@@ -9,6 +9,13 @@ val javadocJar by tasks.registering(Jar::class) {
     archiveClassifier.set("javadoc")
 }
 
-publishing.publications.withType<MavenPublication> {
-    artifact(javadocJar)
+afterEvaluate {
+    // TODO: support JVM targets of other names?
+    //val jvmTargetNames = kotlin.targets.mapNotNull { if (it.platformType == KotlinPlatformType.jvm) it.name else null }
+
+    publishing.publications.withType<MavenPublication> {
+        //if (name in jvmTargetNames)
+        if (name == "jvm")
+            artifact(javadocJar)
+    }
 }
