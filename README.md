@@ -25,8 +25,8 @@ dependencies {
     implementation("org.jetbrains.compose:compose-gradle-plugin:1.3.1")
 
     api("com.huanshankeji:common-gradle-dependencies:0.5.0-20230310") { exclude("org.jetbrains.kotlin") }
-    implementation("com.huanshankeji:kotlin-common-gradle-plugins:0.3.2") { exclude("org.jetbrains.kotlin") }
-    implementation("com.huanshankeji:architecture-common-gradle-plugins:0.3.2") { exclude("org.jetbrains.kotlin") }
+    implementation("com.huanshankeji:kotlin-common-gradle-plugins:0.4.0") { exclude("org.jetbrains.kotlin") }
+    implementation("com.huanshankeji:architecture-common-gradle-plugins:0.4.0") { exclude("org.jetbrains.kotlin") }
 }
 ```
 
@@ -38,8 +38,8 @@ dependencies {
    implementation("org.jetbrains.compose:compose-gradle-plugin:1.3.1")
 
    api("com.huanshankeji:common-gradle-dependencies:0.5.0-20230310")
-   implementation("com.huanshankeji:kotlin-common-gradle-plugins:0.3.2")
-   implementation("com.huanshankeji:architecture-common-gradle-plugins:0.3.2")
+   implementation("com.huanshankeji:kotlin-common-gradle-plugins:0.4.0")
+   implementation("com.huanshankeji:architecture-common-gradle-plugins:0.4.0")
 }
 
 configurations.all {
