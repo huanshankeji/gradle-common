@@ -1,5 +1,7 @@
 package com.huanshankeji
 
+import org.gradle.kotlin.dsl.kotlin
+import org.gradle.kotlin.dsl.version
 import org.gradle.plugin.use.PluginDependenciesSpec
 
 class CommonGradleClasspathDependencies(val versions: CommonVersions) {
@@ -9,6 +11,9 @@ class CommonGradleClasspathDependencies(val versions: CommonVersions) {
         inner class SerializationPlugin internal constructor() {
             val moduleName = "plugin.serialization"
             val version get() = versions.kotlin
+
+            fun PluginDependenciesSpec.apply() =
+                kotlin(moduleName) version version
         }
 
         val serializationPlugin = SerializationPlugin()
