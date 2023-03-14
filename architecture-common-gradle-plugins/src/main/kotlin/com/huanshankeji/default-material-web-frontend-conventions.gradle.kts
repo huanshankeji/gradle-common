@@ -1,5 +1,7 @@
 package com.huanshankeji
 
-apply(DefaultWebFrontendConventionsPlugin::class)
+plugins {
+    id("com.huanshankeji.default-web-frontend-conventions")
+}
 
 // TODO

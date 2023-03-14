@@ -50,16 +50,11 @@ gradlePlugin {
             "kotlin-multiplatform-jvm-and-js-browser-app-conventions",
             "Kotlin Multiplatform app conventions with the JVM target and the JS browser target"
         )
-        run {
-            val name = "default-web-frontend-conventions"
-            create(name) {
-                id = "$`package`.$name"
-                implementationClass = "$`package`.DefaultWebFrontendConventionsPlugin"
-                displayName = "Default web frontend conventions"
-                description =
-                    "Default web frontend conventions for our projects with Compose for Web and kotlinx.html HTML generation"
-            }
-        }
+
+        scriptConventionsPlugin(
+            "default-web-frontend-conventions",
+            "Default web frontend conventions for our projects with Compose for Web and kotlinx.html HTML generation"
+        )
         // TODO
         scriptConventionsPlugin(
             "default-material-web-frontend-conventions",
