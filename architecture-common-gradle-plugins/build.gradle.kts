@@ -50,23 +50,30 @@ gradlePlugin {
             "kotlin-multiplatform-jvm-and-js-browser-app-conventions",
             "Kotlin Multiplatform app conventions with the JVM target and the JS browser target"
         )
-
-        scriptConventionsPlugin(
-            "default-web-frontend-conventions",
-            "Default web frontend conventions for our projects with Compose for Web and kotlinx.html HTML generation"
-        )
+        run {
+            val name = "default-web-frontend-conventions"
+            create(name) {
+                id = "$`package`.$name"
+                implementationClass = "$`package`.DefaultWebFrontendConventionsPlugin"
+                displayName = "Default web frontend conventions"
+                description =
+                    "Default web frontend conventions for our projects with Compose for Web and kotlinx.html HTML generation"
+            }
+        }
         // TODO
         scriptConventionsPlugin(
             "default-material-web-frontend-conventions",
             "(not implemented yet) Default web frontend conventions for our projects with Compose for Web, kotlinx.html HTML generation, and Material Design"
         )
 
-        val name = "generate-kotlin-js-browser-webroot-for-vertx-web"
-        create(name) {
-            id = "$`package`.$name"
-            implementationClass = "$`package`.GenerateKotlinJsBrowserWebrootForVertxWebPlugin"
-            displayName = "Generate Kotlin/JS browser webroot for Vert.x Web"
-            description = "Generate webroot from a Kotlin/JS subproject with browser target for Vert.x Web"
+        run {
+            val name = "generate-kotlin-js-browser-webroot-for-vertx-web"
+            create(name) {
+                id = "$`package`.$name"
+                implementationClass = "$`package`.GenerateKotlinJsBrowserWebrootForVertxWebPlugin"
+                displayName = "Generate Kotlin/JS browser webroot for Vert.x Web"
+                description = "Generate webroot from a Kotlin/JS subproject with browser target for Vert.x Web"
+            }
         }
     }
 }
