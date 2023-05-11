@@ -16,7 +16,7 @@ dependencies {
      enabling it to always depend on a release version. */
     implementation("com.huanshankeji:common-gradle-dependencies:$pluginProjectDependentStableCommonGradleDependenciesVersion")
 
-    implementation(commonGradleClasspathDependencies.composeJb.gradlePlugin.pluginProject())
+    implementation(commonGradleClasspathDependencies.composeMultiplatform.gradlePlugin.pluginProject())
 }
 
 gradlePlugin {
@@ -61,12 +61,14 @@ gradlePlugin {
             "(not implemented yet) Default web frontend conventions for our projects with Compose for Web, kotlinx.html HTML generation, and Material Design"
         )
 
-        val name = "generate-kotlin-js-browser-webroot-for-vertx-web"
-        create(name) {
-            id = "$`package`.$name"
-            implementationClass = "$`package`.GenerateKotlinJsBrowserWebrootForVertxWebPlugin"
-            displayName = "Generate Kotlin/JS browser webroot for Vert.x Web"
-            description = "Generate webroot from a Kotlin/JS subproject with browser target for Vert.x Web"
+        run {
+            val name = "generate-kotlin-js-browser-webroot-for-vertx-web"
+            create(name) {
+                id = "$`package`.$name"
+                implementationClass = "$`package`.GenerateKotlinJsBrowserWebrootForVertxWebPlugin"
+                displayName = "Generate Kotlin/JS browser webroot for Vert.x Web"
+                description = "Generate webroot from a Kotlin/JS subproject with browser target for Vert.x Web"
+            }
         }
     }
 }
