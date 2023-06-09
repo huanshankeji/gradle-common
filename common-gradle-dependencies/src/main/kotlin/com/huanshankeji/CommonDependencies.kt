@@ -15,6 +15,7 @@ class CommonDependencies(val versions: CommonVersions = CommonVersions()) {
         fun arrow(version: String = defaultVersion) = module("arrow", version)
         fun coroutines(version: String = defaultVersion) = module("coroutines", version)
         fun exposed(version: String = defaultVersion) = module("exposed", version)
+        fun reflect(version: String = defaultVersion) = module("reflect", version)
 
         inner class Ktor internal constructor() {
             fun module(module: String, version: String = defaultVersion) =
