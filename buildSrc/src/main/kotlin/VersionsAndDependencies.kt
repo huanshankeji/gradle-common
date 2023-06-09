@@ -13,6 +13,6 @@ val alignedPluginVersion = "0.5.0-SNAPSHOT"
 val commonGradleDependenciesVersion = "0.6.0-20230609-SNAPSHOT"
 
 // This is the source dependency version. There is another build source dependency in "buildSrc/build.gradle.kts".
-val pluginProjectDependentStableCommonGradleDependenciesVersion = "0.5.0-20230310".apply {
+val pluginProjectDependentStableCommonGradleDependenciesVersion = "0.6.0-20230609".apply {
     require(!endsWith("SNAPSHOT"))
-} // TODO: update
+}
