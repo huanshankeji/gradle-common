@@ -1,6 +1,6 @@
 plugins {
     `kotlin-dsl`
-    // Gradle 8.0.2's dependent Kotlin version is 1.8.10.
+    // Gradle 8.1.1's dependent Kotlin version is 1.8.10.
     //kotlin("jvm") version "1.8.10"
 }
 
@@ -25,9 +25,9 @@ dependencies {
     }
     */
     //implementation(kotlin("gradle-plugin", "1.8.10")) // for Compose 1.3.1
-    implementation("org.gradle.kotlin:gradle-kotlin-dsl-plugins:4.0.6") // This version has to be used for Gradle 8.0.1.
+    implementation("org.gradle.kotlin:gradle-kotlin-dsl-plugins:4.0.7") // This version has to be used for Gradle 8.1.1.
 
-    implementation("com.gradle.publish:plugin-publish-plugin:1.1.0")
+    implementation("com.gradle.publish:plugin-publish-plugin:1.2.0")
 
     // This is a bootstrapping dependency (cross-version self-dependency). Try not to update its version unless necessary.
     implementation("com.huanshankeji.team:gradle-plugins:0.3.0") { exclude("org.jetbrains.kotlin") }
