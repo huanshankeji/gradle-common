@@ -76,6 +76,17 @@ class CommonDependencies(val versions: CommonVersions = CommonVersions()) {
 
         fun datetime(version: String = versions.kotlinxDatetime) =
             kotlinx("datetime", version)
+
+        inner class Benchmark internal constructor() {
+            val defaultVersion = versions.kotlinxBenchmark
+            fun module(module: String, version: String = defaultVersion) =
+                kotlinx("benchmark-$module", version)
+
+            fun runtime(version: String = defaultVersion) =
+                module("runtime", version)
+        }
+
+        val benchmark = Benchmark()
     }
 
     val kotlinx = Kotlinx()
@@ -211,4 +222,22 @@ class CommonDependencies(val versions: CommonVersions = CommonVersions()) {
     }
 
     val slf4j = Slf4j()
+
+    inner class TestContainers internal constructor() {
+        val defaultVersion = versions.testContainers
+        fun moduleWithoutVersion(module: String) =
+            "org.testcontainers:$module"
+
+        fun moduleWithVersion(module: String, version: String = defaultVersion) =
+            "${moduleWithoutVersion(module)}:$version"
+
+        fun DependencyHandler.platformBom(version: String = defaultVersion) =
+            platform(moduleWithVersion("testcontainers-bom", version))
+
+        val testContainers = moduleWithoutVersion("testcontainers")
+        val junitJupiter = moduleWithoutVersion("junit-jupiter")
+        val postgreSql = moduleWithoutVersion("postgresql")
+    }
+
+    val testContainers = TestContainers()
 }

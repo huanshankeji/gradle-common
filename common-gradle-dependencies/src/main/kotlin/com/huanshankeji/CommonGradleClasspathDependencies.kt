@@ -7,18 +7,25 @@ class CommonGradleClasspathDependencies(val versions: CommonVersions) {
     inner class Kotlin internal constructor() {
         val group = "org.jetbrains.kotlin"
 
-        inner class SerializationPlugin internal constructor() {
-            val moduleName = "plugin.serialization"
-            val defaultVersion get() = versions.kotlin
+        inner class Plugin internal constructor() {
+            inner class Serialization internal constructor() {
+                val moduleName = "plugin.serialization"
+                val defaultVersion get() = versions.kotlin
 
-            fun PluginDependenciesSpec.applyPluginWithoutVersion() =
-                kotlin(moduleName)
+                fun PluginDependenciesSpec.applyPluginWithoutVersion() =
+                    kotlin(moduleName)
 
-            fun PluginDependenciesSpec.applyPluginWithVersion(version: String = defaultVersion) =
-                applyPluginWithoutVersion().version(version)
+                fun PluginDependenciesSpec.applyPluginWithVersion(version: String = defaultVersion) =
+                    applyPluginWithoutVersion().version(version)
+            }
+
+            val serialization = Serialization()
         }
 
-        val serializationPlugin = SerializationPlugin()
+        val plugin = Plugin()
+
+        @Deprecated("Use `plugin.serialization` instead.")
+        val serializationPlugin = plugin.serialization
     }
 
     val kotlin = Kotlin()
@@ -41,4 +48,16 @@ class CommonGradleClasspathDependencies(val versions: CommonVersions) {
     }
 
     val composeMultiplatform = ComposeMultiplatform()
+
+    inner class Kotlinx internal constructor() {
+        inner class Benchmark {
+            val defaultVersion = versions.kotlinxBenchmark
+            fun PluginDependenciesSpec.applyPluginWithVersion(version: String = defaultVersion) =
+                id("org.jetbrains.kotlinx.benchmark").version(defaultVersion)
+        }
+
+        val benchmark = Benchmark()
+    }
+
+    val kotlinx = Kotlinx()
 }
