@@ -24,7 +24,7 @@ class CommonGradleClasspathDependencies(val versions: CommonVersions) {
 
         val plugin = Plugin()
 
-        @Deprecated("Use `plugin.serialization` instead.")
+        @Deprecated("Use `plugin.serialization` instead.", ReplaceWith("plugin.serialization"))
         val serializationPlugin = plugin.serialization
     }
 
