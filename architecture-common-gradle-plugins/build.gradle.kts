@@ -70,5 +70,11 @@ gradlePlugin {
                 description = "Generate webroot from a Kotlin/JS subproject with browser target for Vert.x Web"
             }
         }
+
+        scriptConventionsPlugin(
+            "jvm.native.osandarch.register-feature-variants",
+            "Register the OS and architecture feature variants",
+            "Registers feature variants for different operating systems (Linux, Windows, macOS) and CPU architectures."
+        )
     }
 }
