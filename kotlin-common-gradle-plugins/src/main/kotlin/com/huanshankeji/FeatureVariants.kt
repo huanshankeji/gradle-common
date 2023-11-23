@@ -2,6 +2,7 @@ package com.huanshankeji
 
 import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.api.tasks.SourceSet
+import org.gradle.kotlin.dsl.DependencyHandlerScope
 import org.gradle.kotlin.dsl.get
 
 fun JavaPluginExtension.registerFeatureVariantWithNewSourceSet(
@@ -24,3 +25,15 @@ fun JavaPluginExtension.registerFeatureVariantWithSourceSet(
     withJavadocJar()
     withSourcesJar()
 }
+
+
+fun DependencyHandlerScope.addDependencyToFeatureVariants(
+    featureVariantNames: List<String>, targetConfigurationType: String, dependencyNotation: Any
+) {
+    for (featureVariantName in featureVariantNames)
+        add(featureVariantName camelCaseConcat targetConfigurationType, dependencyNotation)
+}
+
+
+fun String.isValidFeatureVariantName() =
+    matches(camelCaseRegex)

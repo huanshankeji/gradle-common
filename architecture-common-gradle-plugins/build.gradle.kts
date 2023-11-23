@@ -72,7 +72,7 @@ gradlePlugin {
         }
 
         scriptConventionsPlugin(
-            "jvm.native.osandarch.register-feature-variants",
+            "jvm.native.osandarch.register-default-supported-feature-variants",
             "Register the OS and architecture feature variants",
             "Registers feature variants for different operating systems (Linux, Windows, macOS) and CPU architectures."
         )

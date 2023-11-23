@@ -1,34 +1,25 @@
 package com.huanshankeji.jvm.native.osandarch
 
+import com.huanshankeji.camelCaseConcat
 import com.huanshankeji.jvm.native.osandarch.CpuArchitecture.Aarch64
 import com.huanshankeji.jvm.native.osandarch.CpuArchitecture.X8664
 import com.huanshankeji.jvm.native.osandarch.Os.*
+import com.huanshankeji.kebabCaseConcat
 import org.gradle.nativeplatform.platform.internal.DefaultNativePlatform
-import java.util.*
 
 // TODO possibly use feature variant name
 enum class Os(val identifier: String) {
-    Linux("linux"), Windows("windows"), Macos("osx");
-
-    // Note: not using `get()` in an enum here causes initialization errors.
-    val featureVariantName: String get() = identifier.toFeatureVariantName()
+    Linux("linux"), Windows("windows"), Macos("osx")
 }
 
 enum class CpuArchitecture(val identifier: String) {
-    X8664("x86_64"), Aarch64("aarch64");
-
-    val featureVariantName: String get() = identifier.toFeatureVariantName()
+    X8664("x8664"), Aarch64("aarch64")
 }
 
-
-val supportedOsArchs = listOf(
-    Linux to listOf(X8664, Aarch64),
-    Windows to listOf(X8664),
-    Macos to listOf(X8664, Aarch64)
-)
-val supportedOsArchMap = EnumMap(supportedOsArchs.toMap())
-
-data class OsAndArch(val os: Os, val arch: CpuArchitecture)
+data class OsAndArch(val os: Os, val arch: CpuArchitecture) {
+    val kebabCaseIdentifier = os.identifier kebabCaseConcat arch.identifier
+    val camelCaseIdentifier = os.identifier camelCaseConcat arch.identifier
+}
 
 fun getCurrentOsAndArch(): OsAndArch {
     val currentOperatingSystem = DefaultNativePlatform.getCurrentOperatingSystem()

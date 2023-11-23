@@ -1,152 +1,115 @@
 package com.huanshankeji.jvm.native.osandarch
 
-import com.huanshankeji.jvm.native.osandarch.Os.*
+import com.huanshankeji.*
 import com.huanshankeji.jvm.native.osandarch.SourceSetType.Main
 import com.huanshankeji.jvm.native.osandarch.SourceSetType.RegisterSeparate
-import com.huanshankeji.registerFeatureVariantWithNewSourceSet
-import com.huanshankeji.registerFeatureVariantWithSourceSet
-import gradle.kotlin.dsl.accessors._4d764c3096d994e4212b8a01328470fd.runtimeOnly
 import org.gradle.api.plugins.JavaPluginExtension
-import org.gradle.api.tasks.SourceSetContainer
 import org.gradle.kotlin.dsl.DependencyHandlerScope
 import org.gradle.kotlin.dsl.accessors.runtime.addExternalModuleDependencyTo
 import org.gradle.kotlin.dsl.get
 
-val featureVariantNameCharRegex = Regex("[a-zA-Z0-9]")
-val featureVariantNameRegex = Regex("${featureVariantNameCharRegex.pattern}+")
-fun String.toFeatureVariantName() =
-    featureVariantNameCharRegex.findAll(this).map { it.value }.joinToString("")
+val OsAndArch.featureVariantName get() = camelCaseIdentifier
 
-fun String.isValidFeatureVariantName() =
-    matches(featureVariantNameRegex)
-
-fun String.camelCaseToKebabCase() =
-    replace(Regex("[A-Z]")) { "-${it.value.lowercase()}" }
-
-
-fun String.capitalizeFirstChar() =
-    replaceFirstChar { it.uppercaseChar() }
-
-
-infix fun String.camelCaseConcat(other: String) =
-    this + other.capitalizeFirstChar()
-
-
-fun OsAndArch.getFeatureVariantName() =
-    os.featureVariantName camelCaseConcat arch.featureVariantName
-
-
-/**
- * @param featureVariantName usually in camel case
- * @param dependencyIdentifier usually in kebab case (sometimes mixed with snake case, for example "X86_64")
- */
-data class Config(val featureVariantName: String, val dependencyIdentifier: String) // TODO classifier
-
-fun Pair<Os, List<CpuArchitecture>>.toConfigSequence(): Sequence<Config> {
-    val (os, archs) = this
-    return archs.asSequence().map { arch ->
-        Config(os.featureVariantName camelCaseConcat arch.featureVariantName, "${os.identifier}-${arch.identifier}")
-    }
-}
-
-fun Pair<Os, List<CpuArchitecture>>.toConfigs() =
-    toConfigSequence().toList()
-
-object Configs {
-    /*
-    // TODO use `entries` when the language version is bumped to 1.9
-    val ofAllOss = Os.values().map {
-        Config(it.featureVariantName, it.identifier)
-    }
-    */
-
-    private fun Os.getConfigs() =
-        (this to supportedOsArchMap.getValue(this)).toConfigs()
-
-    val linux = Linux.getConfigs()
-    val windows = Windows.getConfigs()
-    val macos = Macos.getConfigs()
-
-    val all = supportedOsArchs.flatMap { it.toConfigSequence() }
-}
 
 enum class SourceSetType {
     Main, RegisterSeparate
 }
 
-fun JavaPluginExtension.registerFeatureVariants(sourceSetType: SourceSetType) {
+fun JavaPluginExtension.registerDefaultSupportedFeatureVariants(sourceSetType: SourceSetType) {
     when (sourceSetType) {
         Main -> {
             val mainSourceSet = sourceSets["main"]
-            for (config in Configs.all)
-                registerFeatureVariantWithSourceSet(config.featureVariantName, mainSourceSet)
+            for (osAndArch in DefaultSupported.OsAndArchs.all)
+                registerFeatureVariantWithSourceSet(osAndArch.featureVariantName, mainSourceSet)
         }
 
         RegisterSeparate ->
-            for (config in Configs.all)
-                registerFeatureVariantWithNewSourceSet(config.featureVariantName)
+            for (osAndArch in DefaultSupported.OsAndArchs.all)
+                registerFeatureVariantWithNewSourceSet(osAndArch.featureVariantName)
     }
 }
 
-fun DependencyHandlerScope.addAllFeatureVariantDependencies(
-    featureVariantNames: List<String>, targetConfigurationType: String, dependencyNotation: Any
-) {
-    for (featureVariantName in featureVariantNames)
-        add(featureVariantName camelCaseConcat targetConfigurationType, dependencyNotation)
-}
+
+/**
+ * @param identifier usually in kebab case (sometimes mixed with snake case, for example "X86_64")
+ */
+data class FeatureVariantDependencyConfig(val osAndArch: OsAndArch, val identifier: String)
+
+fun DependencyHandlerScope.addDependencyToFeatureVariants(
+    osAndArchs: List<OsAndArch>, targetConfigurationType: String, dependencyNotation: Any
+) =
+    addDependencyToFeatureVariants(
+        osAndArchs.map { it.featureVariantName }, targetConfigurationType, dependencyNotation
+    )
 
 
 // TODO some functions related to feature variants can be extracted to a separate feature variant package
 
 /**
- * @param configs use a predefined one in [Configs] or make your own with [Config]
+ * @param osAndArchs use a predefined one in [DefaultSupported.OsAndArchs] or make your own with [FeatureVariantDependencyConfig]
  * @param targetConfigurationType the type of the dependency configuration
  * (see https://docs.gradle.org/current/userguide/declaring_dependencies.html#sec:what-are-dependency-configurations
  * and https://docs.gradle.org/current/userguide/java_library_plugin.html#sec:java_library_configurations_graph)
  */
-fun DependencyHandlerScope.addAllFeatureVariantDependenciesWithIdentifiersInNameSuffixes(
-    configs: List<Config>,
+fun DependencyHandlerScope.addDependenciesToFeatureVariantsWithIdentifiersInNameSuffixes(
+    osAndArchs: List<FeatureVariantDependencyConfig>,
     targetConfigurationType: String,
-    group: String,
-    namePrefix: String,
-    version: String? = null
+    group: String, namePrefix: String, version: String? = null
 ) {
-    for ((featureVariantName, dependencyIdentifier) in configs)
+    for ((osAndArch, dependencyIdentifier) in osAndArchs)
         addExternalModuleDependencyTo(
             this,
-            featureVariantName + targetConfigurationType.capitalizeFirstChar(),
+            osAndArch.featureVariantName camelCaseConcat targetConfigurationType,
             group, "$namePrefix-$dependencyIdentifier", version,
             null, null, null, null
         )
 }
 
+/** @see addDependenciesToFeatureVariantsWithIdentifiersInNameSuffixes */
+fun DependencyHandlerScope.addDependenciesToFeatureVariantsWithIdentifiersInNameSuffixes(
+    osAndArchs: List<OsAndArch>, getIdentifier: (OsAndArch) -> String,
+    targetConfigurationType: String,
+    group: String, namePrefix: String, version: String? = null
+) =
+    addDependenciesToFeatureVariantsWithIdentifiersInNameSuffixes(osAndArchs.map {
+        FeatureVariantDependencyConfig(it, getIdentifier(it))
+    }, targetConfigurationType, group, namePrefix, version)
+
 /**
- * @param configs use a predefined one in [Configs] or make your own with [Config]
+ * @param configs use a predefined one in [DefaultSupported.OsAndArchs] or make your own with [FeatureVariantDependencyConfig]
  * @param targetConfigurationType the type of the dependency configuration
  * (see https://docs.gradle.org/current/userguide/declaring_dependencies.html#sec:what-are-dependency-configurations
  * and https://docs.gradle.org/current/userguide/java_library_plugin.html#sec:java_library_configurations_graph)
  */
-fun DependencyHandlerScope.addAllFeatureVariantDependenciesWithIdentifiersInClassifiers(
-    configs: List<Config>,
+fun DependencyHandlerScope.addDependenciesToFeatureVariantsWithIdentifiersInClassifiers(
+    configs: List<FeatureVariantDependencyConfig>,
     targetConfigurationType: String,
-    group: String,
-    name: String,
-    version: String? = null
+    group: String, name: String, version: String? = null
 ) {
-    for ((featureVariantName, dependencyIdentifier) in configs)
+    for ((osAndArch, dependencyIdentifier) in configs)
         addExternalModuleDependencyTo(
             this,
-            featureVariantName + targetConfigurationType.replaceFirstChar { it.uppercaseChar() },
+            osAndArch.featureVariantName camelCaseConcat targetConfigurationType,
             group, name, version,
             null, dependencyIdentifier, null, null
         )
 }
 
+/** @see addDependenciesToFeatureVariantsWithIdentifiersInClassifiers */
+fun DependencyHandlerScope.addDependenciesToFeatureVariantsWithIdentifiersInClassifiers(
+    osAndArchs: List<OsAndArch>, getIdentifier: (OsAndArch) -> String,
+    targetConfigurationType: String,
+    group: String, name: String, version: String? = null
+) =
+    addDependenciesToFeatureVariantsWithIdentifiersInClassifiers(osAndArchs.map {
+        FeatureVariantDependencyConfig(it, getIdentifier(it))
+    }, targetConfigurationType, group, name, version)
+
 
 fun getCapabilityNotation(group: String, name: String, featureVariantName: String) =
     "$group:$name-${featureVariantName.camelCaseToKebabCase()}"
 
-inline fun DependencyHandlerScope.addDependencyWithFeatureVariantCapabilityDependencies(
+private inline fun DependencyHandlerScope.addDependencyWithFeatureVariantCapabilityDependencies(
     featureVariantNames: List<String>, targetConfiguration: (featureVariantName: String?) -> String,
     group: String, name: String, version: String? = null
 ) {
@@ -163,26 +126,6 @@ inline fun DependencyHandlerScope.addDependencyWithFeatureVariantCapabilityDepen
             }
         }
 }
-
-// TODO remove
-/*
-fun DependencyHandlerScope.addFeatureVariantTransitiveCapabilityDependencies(
-    featureVariantNames: List<String>, targetConfigurationType: String,
-    group: String, name: String, version: String? = null
-) {
-    for (featureVariantName in featureVariantNames)
-        addExternalModuleDependencyTo(
-            this,
-            featureVariantName camelCaseConcat targetConfigurationType,
-            group, name, version,
-            null, null, null
-        ) {
-            capabilities {
-                requireCapability(getCapabilityNotation(group, name, featureVariantName))
-            }
-        }
-}
-*/
 
 fun DependencyHandlerScope.addDependencyWithFeatureVariantTransitiveCapabilityDependencies(
     featureVariantNames: List<String>, targetConfigurationType: String,
@@ -209,15 +152,3 @@ fun DependencyHandlerScope.addDependencyWithFeatureVariantCapabilityDependencies
         { _ -> targetConfiguration },
         group, name, version
     )
-
-// TODO remove. This function is not necessary as all feature variant dependencies are added when running code and packaging distributions.
-fun DependencyHandlerScope.addConventionalDependencyWithOsAndArch(
-    osAndArchForMain: OsAndArch = getCurrentOsAndArch(), sourceSets: SourceSetContainer,
-    featureVariantNames: List<String>, targetConfigurationType: String,
-    group: String, name: String, version: String? = null
-) {
-    addDependencyWithFeatureVariantTransitiveCapabilityDependencies(
-        featureVariantNames, targetConfigurationType, group, name, version
-    )
-    runtimeOnly(sourceSets[osAndArchForMain.getFeatureVariantName()])
-}

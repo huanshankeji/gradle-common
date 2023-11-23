@@ -10,4 +10,4 @@ interface Extension {
 
 val extension = extensions.create<Extension>("registerOsAndArchFeatureVariants")
 
-java.registerFeatureVariants(extension.sourceSetType.getOrElse(SourceSetType.Main))
+java.registerDefaultSupportedFeatureVariants(extension.sourceSetType.getOrElse(SourceSetType.Main))
