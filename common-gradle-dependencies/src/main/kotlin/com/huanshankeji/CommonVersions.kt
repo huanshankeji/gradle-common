@@ -16,7 +16,7 @@ class CommonVersions @JvmOverloads constructor(
     val ktor: String = "2.3.6",
     val composeMultiplatform: String = "1.5.10", // this is usually only used in classpath dependencies
 
-    val vertx: String = "4.4.6",
+    val vertx: String = "4.4.6", // TODO bump to "4.5.0". There are some breaking changes however. See https://github.com/vert-x3/wiki/wiki/4.5.0-Deprecations-and-breaking-changes.
     val arrow: String = "1.2.1",
     val orgJunit: String = "5.10.1",
     val kotest: String = "5.8.0",
