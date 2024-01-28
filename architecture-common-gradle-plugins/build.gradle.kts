@@ -14,7 +14,6 @@ dependencies {
     /* This project depends on a specific version of the Maven dependency of "common-gradle-dependencies"
      since now they are developed together in the same branch `main`,
      enabling it to always depend on a release version. */
-    implementation("com.huanshankeji:common-gradle-dependencies:$pluginProjectDependentStableCommonGradleDependenciesVersion")
 
     implementation(commonGradleClasspathDependencies.composeMultiplatform.gradlePlugin.pluginProject())
 }

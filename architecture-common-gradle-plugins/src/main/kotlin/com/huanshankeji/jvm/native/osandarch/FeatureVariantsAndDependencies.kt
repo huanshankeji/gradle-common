@@ -1,8 +1,8 @@
 package com.huanshankeji.jvm.native.osandarch
 
 import com.huanshankeji.*
-import com.huanshankeji.jvm.native.osandarch.SourceSetType.Main
-import com.huanshankeji.jvm.native.osandarch.SourceSetType.RegisterSeparate
+import com.huanshankeji.SourceSetType.Main
+import com.huanshankeji.SourceSetType.RegisterSeparate
 import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.kotlin.dsl.DependencyHandlerScope
 import org.gradle.kotlin.dsl.accessors.runtime.addExternalModuleDependencyTo
@@ -10,10 +10,6 @@ import org.gradle.kotlin.dsl.get
 
 val OsAndArch.featureVariantName get() = camelCaseIdentifier
 
-
-enum class SourceSetType {
-    Main, RegisterSeparate
-}
 
 fun JavaPluginExtension.registerDefaultSupportedFeatureVariants(sourceSetType: SourceSetType) {
     when (sourceSetType) {

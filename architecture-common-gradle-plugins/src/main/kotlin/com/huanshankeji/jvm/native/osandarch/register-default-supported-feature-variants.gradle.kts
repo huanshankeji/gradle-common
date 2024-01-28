@@ -1,5 +1,7 @@
 package com.huanshankeji.jvm.native.osandarch
 
+import com.huanshankeji.SourceSetType
+
 plugins {
     java
 }
