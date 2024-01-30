@@ -14,7 +14,6 @@ dependencies {
     /* This project depends on a specific version of the Maven dependency of "common-gradle-dependencies"
      since now they are developed together in the same branch `main`,
      enabling it to always depend on a release version. */
-    implementation("com.huanshankeji:common-gradle-dependencies:$pluginProjectDependentStableCommonGradleDependenciesVersion")
 
     implementation(commonGradleClasspathDependencies.composeMultiplatform.gradlePlugin.pluginProject())
 }
@@ -61,12 +60,20 @@ gradlePlugin {
             "(not implemented yet) Default web frontend conventions for our projects with Compose for Web, kotlinx.html HTML generation, and Material Design"
         )
 
-        val name = "generate-kotlin-js-browser-webroot-for-vertx-web"
-        create(name) {
-            id = "$`package`.$name"
-            implementationClass = "$`package`.GenerateKotlinJsBrowserWebrootForVertxWebPlugin"
-            displayName = "Generate Kotlin/JS browser webroot for Vert.x Web"
-            description = "Generate webroot from a Kotlin/JS subproject with browser target for Vert.x Web"
+        run {
+            val name = "generate-kotlin-js-browser-webroot-for-vertx-web"
+            create(name) {
+                id = "$`package`.$name"
+                implementationClass = "$`package`.GenerateKotlinJsBrowserWebrootForVertxWebPlugin"
+                displayName = "Generate Kotlin/JS browser webroot for Vert.x Web"
+                description = "Generate webroot from a Kotlin/JS subproject with browser target for Vert.x Web"
+            }
         }
+
+        scriptConventionsPlugin(
+            "jvm.native.osandarch.register-default-supported-feature-variants",
+            "Register the OS and architecture feature variants",
+            "Registers feature variants for different operating systems (Linux, Windows, macOS) and CPU architectures."
+        )
     }
 }

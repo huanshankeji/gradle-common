@@ -5,6 +5,12 @@ plugins {
     id("org.jetbrains.compose")
 }
 
+interface Extension {
+    val htmlGenerationProjectPath: Property<String>
+}
+
+val extension = extensions.create<Extension>("defaultWebFrontendConventions")
+
 repositories {
     google()
     mavenCentral()
@@ -28,7 +34,7 @@ kotlin {
         binaries.executable()
     }
     sourceSets {
-        val jsMain by getting {
+        jsMain {
             dependencies {
                 implementation(compose.web.core)
                 implementation(compose.runtime)
@@ -41,7 +47,9 @@ kotlin {
 val generatedResourcesFile = buildDir.resolve("generatedResources")
 
 tasks.named("jsProcessResources") {
-    val htmlGenerationRun = tasks.getByPath(project.path + ":html-generation:run") as JavaExec
+    val htmlGenerationRun = tasks.getByPath(
+        extension.htmlGenerationProjectPath.getOrElse(project.path + ":html-generation") + ":run"
+    ) as JavaExec
     htmlGenerationRun.args(generatedResourcesFile.absolutePath)
     dependsOn(htmlGenerationRun)
 }

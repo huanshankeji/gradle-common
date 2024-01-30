@@ -20,5 +20,5 @@ publishing {
 }
 
 afterEvaluate {
-    require(java.toolchain.languageVersion.isPresent) { "Specify an explicit `java.toolchain.languageVersion` when publishing a JVM library." }
+    require(java.toolchain.languageVersion.isPresent) { "Specify an explicit `java.toolchain.languageVersion` (or via `kotlin.jvmToolchain()`) when publishing a JVM library." }
 }

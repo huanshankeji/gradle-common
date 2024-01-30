@@ -5,6 +5,10 @@ plugins {
 dependencies {
     //implementation("io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.30.0")
 
+    implementation("org.jetbrains.kotlinx:kotlinx-benchmark-plugin:0.4.9")
+    implementation(commonGradleClasspathDependencies.kotlinx.benchmark.pluginProject())
+    implementation("org.jetbrains.kotlin:kotlin-allopen:$kotlinVersion")
+
     testImplementation(kotlin("test"))
 }
 
@@ -87,5 +91,19 @@ gradlePlugin {
             "JVM test common feature variant",
             "Adds a JVM test common feature variant with a source set that depends on `main`."
         )
+
+        run {
+            scriptConventionsPlugin(
+                "benchmark.kotlinx-benchmark-jvm-conventions",
+                "kotlinx-benchmark conventions for Kotlin JVM",
+                "Applies the kotlinx-benchmark and `allopen` plugins, adds the kotlinx-benchmark dependencies, " +
+                        "and registers a separate `benchmarks` source set that depends on `main` by default."
+            )
+            scriptConventionsPlugin(
+                "benchmark.kotlinx-benchmark-multiplatform-conventions",
+                "kotlinx-benchmark conventions for Kotlin Multiplatform",
+                "Applies the kotlinx-benchmark and `allopen` plugins and adds the koltinx-benchmark dependencies."
+            )
+        }
     }
 }
