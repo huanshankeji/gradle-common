@@ -28,7 +28,7 @@ afterEvaluate {
             Main -> implementationString = "implementation"
             RegisterSeparate -> {
                 implementationString = "benchmarksImplementation"
-                implementationString(sourceSets.main.get().output + sourceSets.main.get().runtimeClasspath)
+                implementationString(with(sourceSets.main.get()) { output + runtimeClasspath })
             }
         }
 
