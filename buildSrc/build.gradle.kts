@@ -24,13 +24,14 @@ dependencies {
         implementation("org.jetbrains.kotlin:kotlin-sam-with-receiver:1.8.0")
     }
     */
-    //implementation(kotlin("gradle-plugin", "1.8.10")) // for Compose 1.3.1
+    // for `KotlinCompilationTask` and the version is for Compose 1.5.1
+    implementation(kotlin("gradle-plugin", "1.9.20"))
     implementation("org.gradle.kotlin:gradle-kotlin-dsl-plugins:4.1.2") // This version has to be used for Gradle 8.4.
 
-    implementation("com.gradle.publish:plugin-publish-plugin:1.2.0")
+    implementation("com.gradle.publish:plugin-publish-plugin:1.2.1")
 
     // This is a bootstrapping dependency (cross-version self-dependency). Try not to update its version unless necessary.
     implementation("com.huanshankeji.team:gradle-plugins:0.3.0") { exclude("org.jetbrains.kotlin") }
     // This is also a bootstrapping dependency.
-    implementation("com.huanshankeji:common-gradle-dependencies:0.5.0-20230310") { exclude("org.jetbrains.kotlin") }
+    implementation("com.huanshankeji:common-gradle-dependencies:0.7.0-20231111") { exclude("org.jetbrains.kotlin") }
 }
