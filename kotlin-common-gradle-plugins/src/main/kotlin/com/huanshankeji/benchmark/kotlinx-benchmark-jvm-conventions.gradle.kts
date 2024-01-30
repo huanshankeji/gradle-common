@@ -12,38 +12,41 @@ plugins {
 }
 
 val extension = extensions.createKotlinxBenchmarkConventionsExtension()
-val sourceSetType = extension.sourceSetType.getOrElse(RegisterSeparate)
 
-private val MAIN = "main"
-private val BENCHMAKRS = "benchmarks"
+afterEvaluate {
+    val sourceSetType = extension.sourceSetType.getOrElse(RegisterSeparate)
 
-if (sourceSetType == RegisterSeparate)
-    sourceSets.create(BENCHMAKRS)
+    val MAIN = "main"
+    val BENCHMAKRS = "benchmarks"
 
-dependencies {
-    val implementationString: String
-    when (sourceSetType) {
-        Main -> implementationString = "implementation"
-        RegisterSeparate -> {
-            implementationString = "benchmarksImplementation"
-            implementationString(sourceSets.main.get().output + sourceSets.main.get().runtimeClasspath)
+    if (sourceSetType == RegisterSeparate)
+        sourceSets.create(BENCHMAKRS)
+
+    dependencies {
+        val implementationString: String
+        when (sourceSetType) {
+            Main -> implementationString = "implementation"
+            RegisterSeparate -> {
+                implementationString = "benchmarksImplementation"
+                implementationString(sourceSets.main.get().output + sourceSets.main.get().runtimeClasspath)
+            }
+        }
+
+        implementationString(commonDependencies.kotlinx.benchmark.runtime())
+    }
+
+    benchmark {
+        targets {
+            register(
+                when (sourceSetType) {
+                    Main -> MAIN
+                    RegisterSeparate -> BENCHMAKRS
+                }
+            )
         }
     }
 
-    implementationString(commonDependencies.kotlinx.benchmark.runtime())
-}
-
-benchmark {
-    targets {
-        register(
-            when (sourceSetType) {
-                Main -> MAIN
-                RegisterSeparate -> BENCHMAKRS
-            }
-        )
+    allOpen {
+        annotation("org.openjdk.jmh.annotations.State")
     }
-}
-
-allOpen {
-    annotation("org.openjdk.jmh.annotations.State")
 }
