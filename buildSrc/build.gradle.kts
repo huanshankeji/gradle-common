@@ -33,5 +33,5 @@ dependencies {
     // This is a bootstrapping dependency (cross-version self-dependency). Try not to update its version unless necessary.
     implementation("com.huanshankeji.team:gradle-plugins:0.3.0") { exclude("org.jetbrains.kotlin") }
     // This is also a bootstrapping dependency.
-    implementation("com.huanshankeji:common-gradle-dependencies:0.7.0-20231111") { exclude("org.jetbrains.kotlin") }
+    implementation("com.huanshankeji:common-gradle-dependencies:0.7.1-20231111") { exclude("org.jetbrains.kotlin") }
 }
