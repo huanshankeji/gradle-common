@@ -6,8 +6,7 @@ dependencies {
     //implementation("io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.30.0")
 
     implementation("org.jetbrains.kotlinx:kotlinx-benchmark-plugin:0.4.9")
-    // TODO
-    //implementation(commonGradleClasspathDependencies.kotlinx.benchmark.pluginProject())
+    implementation(commonGradleClasspathDependencies.kotlinx.benchmark.pluginProject())
     implementation("org.jetbrains.kotlin:kotlin-allopen:$kotlinVersion")
 
     testImplementation(kotlin("test"))
