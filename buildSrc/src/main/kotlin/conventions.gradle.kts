@@ -16,7 +16,7 @@ dependencies {
     implementation(kotlin("gradle-plugin", kotlinVersion))
 }
 
-java.toolchain.languageVersion.set(JavaLanguageVersion.of(8))
+kotlin.jvmToolchain(8)
 
 
 gradlePlugin {
