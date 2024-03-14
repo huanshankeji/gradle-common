@@ -25,8 +25,8 @@ dependencies {
     }
     */
     // for `KotlinCompilationTask` and the version is for Compose 1.5.1
-    implementation(kotlin("gradle-plugin", "1.9.20"))
-    implementation("org.gradle.kotlin:gradle-kotlin-dsl-plugins:4.1.2") // This version has to be used for Gradle 8.4.
+    implementation(kotlin("gradle-plugin", "1.9.22"))
+    implementation("org.gradle.kotlin:gradle-kotlin-dsl-plugins:4.2.1") // This version has to be used for Gradle 8.6.
 
     implementation("com.gradle.publish:plugin-publish-plugin:1.2.1")
 
