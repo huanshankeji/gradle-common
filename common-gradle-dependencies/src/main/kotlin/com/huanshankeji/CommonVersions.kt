@@ -5,7 +5,7 @@ import kotlinVersion
 class CommonVersions @JvmOverloads constructor(
     val kotlin: String = kotlinVersion,
 
-    val kotlinCommon: String = "0.3.0",
+    val kotlinCommon: String = "0.4.0",
 
     val kotlinxCoroutines: String = "1.8.0",
     val kotlinxHtml: String = "0.11.0",
