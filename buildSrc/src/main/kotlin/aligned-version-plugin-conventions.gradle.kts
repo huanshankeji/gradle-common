@@ -7,7 +7,7 @@ plugins {
 version = alignedPluginVersion
 
 dependencies {
-    implementation("com.huanshankeji:common-gradle-dependencies:$pluginProjectDependentStableCommonGradleDependenciesVersion")
+    implementation("com.huanshankeji:common-gradle-dependencies:$pluginProjectSourceDependentStableCommonGradleDependenciesVersion")
 }
 
 tasks.named<KotlinCompilationTask<*>>("compileKotlin").configure {
