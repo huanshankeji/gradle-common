@@ -4,7 +4,7 @@ import com.huanshankeji.CommonVersions
 val commonVersions = CommonVersions()
 val commonGradleClasspathDependencies = CommonGradleClasspathDependencies(commonVersions)
 
-val kotlinVersion = "1.9.23" // for Compose 1.6.1 and 1.6.2
+val kotlinVersion = "1.9.24" // for Compose 1.6.1 and 1.6.2
 
 val alignedPluginVersion = "0.5.1-SNAPSHOT"
 
