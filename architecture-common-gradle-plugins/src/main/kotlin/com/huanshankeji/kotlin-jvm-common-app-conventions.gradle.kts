@@ -1,7 +1,7 @@
 package com.huanshankeji
 
 plugins {
-    id("com.huanshankeji.kotlin-jvm-common-conventions")
+    kotlin("jvm")
 }
 
 dependencies {
