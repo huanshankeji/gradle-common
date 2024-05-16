@@ -46,8 +46,8 @@ gradlePlugin {
             "Kotlin Multiplatform app conventions with the JS browser target"
         )
         scriptConventionsPlugin(
-            "kotlin-multiplatform-jvm-and-js-browser-app-conventions",
-            "Kotlin Multiplatform app conventions with the JVM target and the JS browser target"
+            "kotlin-multiplatform-app-conventions-with-conventional-targets",
+            "Kotlin Multiplatform app conventions with the conventional targets JVM, JS (browser), iOS (`iosX64`, `iosArm64`, and `iosSimulatorArm64`), and Wasm JS"
         )
 
         scriptConventionsPlugin(

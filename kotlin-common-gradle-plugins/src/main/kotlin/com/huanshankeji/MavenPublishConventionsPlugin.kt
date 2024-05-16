@@ -9,6 +9,7 @@ import org.gradle.api.publish.maven.MavenPublication
 import org.gradle.kotlin.dsl.create
 import org.gradle.kotlin.dsl.withType
 
+// TODO refactor into a script plugin
 class MavenPublishConventionsPlugin : Plugin<Project> {
     sealed class ArtifactIdConfig {
         // Use the default artifact ID, which is the subproject name unchanged.
