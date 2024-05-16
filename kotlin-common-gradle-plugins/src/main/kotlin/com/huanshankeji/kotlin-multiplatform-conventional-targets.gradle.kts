@@ -1,7 +1,5 @@
 package com.huanshankeji
 
-import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
-
 plugins {
     id("com.huanshankeji.kotlin-multiplatform-js-browser-conventions")
 }
@@ -15,6 +13,8 @@ kotlin {
     iosArm64()
     iosSimulatorArm64()
 
+    /*
     @OptIn(ExperimentalWasmDsl::class)
     wasmJs()
+    */
 }
