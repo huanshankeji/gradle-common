@@ -13,7 +13,7 @@ repositories {
 
 dependencies {
     // Not specifying version can cause build issues when added to a project's buildscript dependencies.
-    implementation(kotlin("gradle-plugin", kotlinVersion))
+    implementation(kotlin("gradle-plugin", DependencyVersions.kotlin))
 }
 
 kotlin.jvmToolchain(8)

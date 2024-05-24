@@ -24,14 +24,17 @@ dependencies {
         implementation("org.jetbrains.kotlin:kotlin-sam-with-receiver:1.8.0")
     }
     */
-    // for `KotlinCompilationTask` and the version is for Compose 1.6.1 and 1.6.2
-    implementation(kotlin("gradle-plugin", "1.9.24"))
+    // for `KotlinCompilationTask` and the version is for Compose 1.6.10
+    implementation(kotlin("gradle-plugin", "2.0.0"))
     implementation("org.gradle.kotlin:gradle-kotlin-dsl-plugins:4.2.1") // This version has to be used for Gradle 8.6.
 
     implementation("com.gradle.publish:plugin-publish-plugin:1.2.1")
 
     // This is a bootstrapping dependency (cross-version self-dependency). Try not to update its version unless necessary.
     implementation("com.huanshankeji.team:gradle-plugins:0.3.0") { exclude("org.jetbrains.kotlin") }
+    // This approach complicates the project is temporarily given up and commented out. Maybe readopt this when `common-gradle-dependencies` is moved to a separate project.
+    /*
     // This is also a bootstrapping dependency.
     implementation("com.huanshankeji:common-gradle-dependencies:0.7.1-20240314-boostrap") { exclude("org.jetbrains.kotlin") }
+    */
 }

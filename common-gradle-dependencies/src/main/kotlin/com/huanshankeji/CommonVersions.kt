@@ -1,9 +1,7 @@
 package com.huanshankeji
 
-import kotlinVersion
-
 class CommonVersions @JvmOverloads constructor(
-    val kotlin: String = kotlinVersion,
+    val kotlin: String = GeneratedVersions.kotlin,
 
     val kotlinCommon: String = "0.4.0",
 
@@ -11,10 +9,10 @@ class CommonVersions @JvmOverloads constructor(
     val kotlinxHtml: String = "0.11.0",
     val kotlinxSerialization: String = "1.6.3",
     val kotlinxDatetime: String = "0.6.0",
-    val kotlinxBenchmark: String = "0.4.10",
+    val kotlinxBenchmark: String = GeneratedVersions.kotlinxBenchmark,
     val exposed: String = "0.50.1",
     val ktor: String = "2.3.11",
-    val composeMultiplatform: String = "1.6.2", // this is usually only used in classpath dependencies
+    val composeMultiplatform: String = GeneratedVersions.composeMultiplatform, // this is usually only used in classpath dependencies
 
     val vertx: String = "4.5.7",
     val arrow: String = "1.2.4",
