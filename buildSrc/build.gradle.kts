@@ -24,8 +24,8 @@ dependencies {
         implementation("org.jetbrains.kotlin:kotlin-sam-with-receiver:1.8.0")
     }
     */
-    // for `KotlinCompilationTask` and the version is for Compose 1.6.1 and 1.6.2
-    implementation(kotlin("gradle-plugin", "1.9.24"))
+    // for `KotlinCompilationTask` and the version is for Compose 1.6.10
+    implementation(kotlin("gradle-plugin", "2.0.0"))
     implementation("org.gradle.kotlin:gradle-kotlin-dsl-plugins:4.2.1") // This version has to be used for Gradle 8.6.
 
     implementation("com.gradle.publish:plugin-publish-plugin:1.2.1")

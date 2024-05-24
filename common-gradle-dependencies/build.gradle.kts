@@ -1,4 +1,5 @@
-import com.huanshankeji.generateKotlinVersion
+import com.huanshankeji.SourceFile
+import com.huanshankeji.generateKotlinSources
 
 plugins {
     conventions
@@ -6,7 +7,15 @@ plugins {
 
 version = commonGradleDependenciesVersion
 
-generateKotlinVersion(kotlinVersion)
+generateKotlinSources(
+    sourceFiles = listOf(
+        SourceFile(
+            "GeneratedKotlinVersion.kt",
+            "internal const val kotlinVersion = \"$kotlinVersion\"\n" +
+                    "internal const val composeMultiplatformVersion = \"$kotlinVersion\"\n"
+        )
+    )
+)
 
 gradlePlugin {
     plugins {

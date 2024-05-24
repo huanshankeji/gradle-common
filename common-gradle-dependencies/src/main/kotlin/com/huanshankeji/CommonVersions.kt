@@ -14,7 +14,7 @@ class CommonVersions @JvmOverloads constructor(
     val kotlinxBenchmark: String = "0.4.10",
     val exposed: String = "0.50.1",
     val ktor: String = "2.3.11",
-    val composeMultiplatform: String = "1.6.2", // this is usually only used in classpath dependencies
+    val composeMultiplatform: String = "1.6.10", // this is usually only used in classpath dependencies
 
     val vertx: String = "4.5.7",
     val arrow: String = "1.2.4",
