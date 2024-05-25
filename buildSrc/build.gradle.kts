@@ -1,7 +1,7 @@
 plugins {
     `kotlin-dsl`
-    // Gradle 8.1.1's dependent Kotlin version is 1.8.10.
-    //kotlin("jvm") version "1.8.10"
+    // Gradle 8.6's embedded Kotlin version is 1.9.20.
+    //kotlin("jvm") version "2.0.0"
 }
 
 repositories {
