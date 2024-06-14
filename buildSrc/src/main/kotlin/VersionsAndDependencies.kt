@@ -6,8 +6,8 @@ val commonGradleClasspathDependencies = CommonGradleClasspathDependencies(common
 
 
 object DependencyVersions {
-    val kotlin = "2.0.0" // for Compose 1.6.10
-    val composeMultiplatform = "1.6.10"
+    val kotlin = "2.0.0" // compatible with the compose version below
+    val composeMultiplatform = "1.6.11"
     val kotlinxBenchmark = "0.4.10"
 }
 
