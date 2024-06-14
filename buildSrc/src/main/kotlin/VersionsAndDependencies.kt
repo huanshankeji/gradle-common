@@ -15,7 +15,7 @@ val alignedPluginVersion = "0.6.0-SNAPSHOT"
 
 // "x.y.z" indicates the version of the way of organizing the code,
 // and the date indicates the version when the dependency versions are updated.
-val commonGradleDependenciesVersion = "0.7.2-20240524-SNAPSHOT"
+val commonGradleDependenciesVersion = "0.7.2-20240614-SNAPSHOT"
 
 // This is the source dependency version. There is another build source dependency in "buildSrc/build.gradle.kts".
 val pluginProjectSourceDependentStableCommonGradleDependenciesVersion = "0.7.1-20240314-boostrap".apply {
