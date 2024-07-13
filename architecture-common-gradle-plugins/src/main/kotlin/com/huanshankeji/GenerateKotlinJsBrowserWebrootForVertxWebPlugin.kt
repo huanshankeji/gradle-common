@@ -38,6 +38,13 @@ class GenerateKotlinJsBrowserWebrootForVertxWebPlugin : Plugin<Project> {
             tasks.named<Copy>("processResources") {
                 dependsOn(copyJsBrowserDistributionToResourcesWebroot)
             }
+            /*
+            When running a Maven publish task, the error occurs if this line is not added:
+            > Task '...:sourcesJar' uses this output of task '...:copyJsBrowserDistributionToResourcesWebroot' without declaring an explicit or implicit dependency. This can lead to incorrect results being produced, depending on what order the tasks are executed.
+
+            TODO This is probably a bug. remove this line when it's fixed.
+             */
+            tasks.named("sourcesJar") { dependsOn("copyJsBrowserDistributionToResourcesWebroot") }
 
             sourceSets.main { resources.srcDir(browserDistributionResourcesDirectory) }
         }
