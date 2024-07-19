@@ -32,7 +32,7 @@ class GenerateKotlinJsBrowserWebrootForVertxWebPlugin : Plugin<Project> {
                 from(frontendProject.layout.buildDirectory.get().dir("dist/js/productionExecutable"))
                 //if (extension.production.get())
                 extension.includes.getOrNull()?.let { include(it) }
-                into(browserDistributionResourcesDirectory.dir("webroot"))
+                into(browserDistributionResourcesDirectory.dir(extension.webRoot.getOrElse("webroot")))
             }
 
             tasks.named<Copy>("processResources") {
@@ -61,5 +61,7 @@ class GenerateKotlinJsBrowserWebrootForVertxWebPlugin : Plugin<Project> {
          * @see PatternFilterable.include
          */
         val includes: ListProperty<String>
+
+        val webRoot: Property<String>
     }
 }
