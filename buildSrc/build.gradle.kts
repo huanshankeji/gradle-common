@@ -1,7 +1,7 @@
 plugins {
     `kotlin-dsl`
-    // Gradle 8.6's embedded Kotlin version is 1.9.20.
-    //kotlin("jvm") version "2.0.0"
+    // Gradle 8.10's embedded Kotlin version is 1.9.24.
+    //kotlin("jvm") version "2.0.20"
 }
 
 repositories {
@@ -24,9 +24,9 @@ dependencies {
         implementation("org.jetbrains.kotlin:kotlin-sam-with-receiver:1.8.0")
     }
     */
-    // for `KotlinCompilationTask` and the version is for Compose 1.6.11
+    // for `KotlinCompilationTask` and the version is compatible with Compose 1.6.11
     implementation(kotlin("gradle-plugin", "2.0.20"))
-    implementation("org.gradle.kotlin:gradle-kotlin-dsl-plugins:4.2.1") // This version has to be used for Gradle 8.6.
+    implementation("org.gradle.kotlin:gradle-kotlin-dsl-plugins:4.5.0") // This version has to be used for Gradle 8.10.
 
     implementation("com.gradle.publish:plugin-publish-plugin:1.2.1")
 
