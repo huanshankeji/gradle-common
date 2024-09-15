@@ -7,7 +7,7 @@ class CommonVersions @JvmOverloads constructor(
 
     val kotlinxCoroutines: String = "1.8.1",
     val kotlinxHtml: String = "0.11.0",
-    val kotlinxSerialization: String = "1.6.3",
+    val kotlinxSerialization: String = "1.7.2",
     val kotlinxDatetime: String = "0.6.0",
     val kotlinxBenchmark: String = GeneratedVersions.kotlinxBenchmark,
     val exposed: String = "0.50.1",
