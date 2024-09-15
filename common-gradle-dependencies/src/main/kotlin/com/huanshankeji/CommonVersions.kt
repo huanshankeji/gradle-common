@@ -7,7 +7,7 @@ class CommonVersions @JvmOverloads constructor(
 
     val kotlinxCoroutines: String = "1.8.1",
     val kotlinxHtml: String = "0.11.0",
-    val kotlinxSerialization: String = "1.7.2",
+    val kotlinxSerialization: String = "1.7.1", // "1.7.2" uses Kotlin 2.0.20 and seems to cause problems.
     val kotlinxDatetime: String = "0.6.0",
     val kotlinxBenchmark: String = GeneratedVersions.kotlinxBenchmark,
     val exposed: String = "0.50.1",
