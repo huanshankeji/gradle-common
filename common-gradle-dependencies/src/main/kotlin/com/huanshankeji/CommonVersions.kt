@@ -14,7 +14,7 @@ class CommonVersions @JvmOverloads constructor(
     val ktor: String = "2.3.11",
     val composeMultiplatform: String = GeneratedVersions.composeMultiplatform, // this is usually only used in classpath dependencies
 
-    val vertx: String = "4.5.7",
+    val vertx: String = "4.5.10",
     val arrow: String = "1.2.4",
     val orgJunit: String = "5.10.2", // JUnit 5 actually
     val kotest: String = "5.9.0",
