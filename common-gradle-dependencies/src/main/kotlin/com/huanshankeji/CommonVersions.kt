@@ -10,7 +10,7 @@ class CommonVersions @JvmOverloads constructor(
     val kotlinxSerialization: String = "1.7.1", // "1.7.2" uses Kotlin 2.0.20 and seems to cause problems.
     val kotlinxDatetime: String = "0.6.0",
     val kotlinxBenchmark: String = GeneratedVersions.kotlinxBenchmark,
-    val exposed: String = "0.50.1",
+    val exposed: String = "0.53.0", // "0.54.0" deprecates the old DSL APIs as errors while we still depend on them.
     val ktor: String = "2.3.11",
     val composeMultiplatform: String = GeneratedVersions.composeMultiplatform, // this is usually only used in classpath dependencies
 
