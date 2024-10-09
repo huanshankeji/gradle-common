@@ -13,6 +13,7 @@ class CommonVersions @JvmOverloads constructor(
     val exposed: String = "0.53.0", // "0.54.0" deprecates the old DSL APIs as errors while we still depend on them.
     val ktor: String = "2.3.11",
     val composeMultiplatform: String = GeneratedVersions.composeMultiplatform, // this is usually only used in classpath dependencies
+    val androidx: Androidx = Androidx(),
 
     val vertx: String = "4.5.10",
     val arrow: String = "1.2.4",
@@ -21,4 +22,8 @@ class CommonVersions @JvmOverloads constructor(
     val postgreSql: String = "42.7.3",
     val slf4j: String = "1.7.36", // TODO: consider replacing with kotlin-logging (https://github.com/oshai/kotlin-logging)
     val testContainers: String = "1.19.8"
-)
+) {
+    class Androidx(
+        val activityCompose: String = "1.9.2"
+    )
+}

@@ -123,6 +123,14 @@ class CommonDependencies(val versions: CommonVersions = CommonVersions()) {
 
     val ktor = Ktor()
 
+    inner class Androidx internal constructor() {
+        val defaultAndroidxVersions = versions.androidx
+        fun activityCompose(version: String = defaultAndroidxVersions.activityCompose) =
+            "androidx.activity:activity-compose:$version"
+    }
+
+    val androidx = Androidx()
+
 
     // others
 
