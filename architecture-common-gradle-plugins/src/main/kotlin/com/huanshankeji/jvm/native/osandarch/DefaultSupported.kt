@@ -1,6 +1,5 @@
 package com.huanshankeji.jvm.native.osandarch
 
-
 object DefaultSupported {
     object ArchsByOs {
         val linux = listOf(CpuArchitecture.X8664, CpuArchitecture.Aarch64)

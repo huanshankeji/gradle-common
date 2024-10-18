@@ -5,9 +5,8 @@ plugins {
 dependencies {
     //implementation("io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.30.0")
 
-    implementation("org.jetbrains.kotlinx:kotlinx-benchmark-plugin:0.4.9")
-    implementation(commonGradleClasspathDependencies.kotlinx.benchmark.pluginProject())
-    implementation("org.jetbrains.kotlin:kotlin-allopen:$kotlinVersion")
+    implementation("org.jetbrains.kotlinx:kotlinx-benchmark-plugin:${DependencyVersions.kotlinxBenchmark}")
+    implementation(kotlin("allopen", DependencyVersions.kotlin))
 
     testImplementation(kotlin("test"))
 }

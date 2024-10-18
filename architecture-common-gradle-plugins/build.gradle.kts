@@ -9,13 +9,17 @@ repositories {
 
 dependencies {
     implementation(project(":kotlin-common-gradle-plugins"))
+    implementation("org.jetbrains.kotlin:compose-compiler-gradle-plugin:${DependencyVersions.kotlin}")
+    // use the version in `buildSrc` so there is no need to frequently update the dependent bootstrapping `common-gradle-dependencies` version in "buildSrc"
+    implementation("org.jetbrains.compose:compose-gradle-plugin:${DependencyVersions.composeMultiplatform}")
+
     //api(project(":common-gradle-dependencies"))
     //implementation(project(":common-gradle-dependencies"))
     /* This project depends on a specific version of the Maven dependency of "common-gradle-dependencies"
      since now they are developed together in the same branch `main`,
      enabling it to always depend on a release version. */
 
-    implementation(commonGradleClasspathDependencies.composeMultiplatform.gradlePlugin.pluginProject())
+    // implementation(commonGradleClasspathDependencies.composeMultiplatform.gradlePlugin.pluginProject()) // bootstrapping
 }
 
 gradlePlugin {
