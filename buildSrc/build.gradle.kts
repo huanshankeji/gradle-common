@@ -1,7 +1,7 @@
 plugins {
     `kotlin-dsl`
-    // Gradle 8.1.1's dependent Kotlin version is 1.8.10.
-    //kotlin("jvm") version "1.8.10"
+    // Gradle 8.10's embedded Kotlin version is 1.9.24.
+    //kotlin("jvm") version "2.0.10"
 }
 
 repositories {
@@ -24,14 +24,18 @@ dependencies {
         implementation("org.jetbrains.kotlin:kotlin-sam-with-receiver:1.8.0")
     }
     */
-    // for `KotlinCompilationTask` and the version is for Compose 1.6.1
-    implementation(kotlin("gradle-plugin", "1.9.23"))
-    implementation("org.gradle.kotlin:gradle-kotlin-dsl-plugins:4.2.1") // This version has to be used for Gradle 8.6.
+    // for `KotlinCompilationTask` and the version is compatible with Compose 1.6.11
+    // With Kotlin 2.0.20, a "Could not parse POM" build error occurs in the JVM projects of some dependent projects.
+    implementation(kotlin("gradle-plugin", "2.0.10"))
+    implementation("org.gradle.kotlin:gradle-kotlin-dsl-plugins:4.5.0") // This version has to be used for Gradle 8.10.
 
     implementation("com.gradle.publish:plugin-publish-plugin:1.2.1")
 
     // This is a bootstrapping dependency (cross-version self-dependency). Try not to update its version unless necessary.
     implementation("com.huanshankeji.team:gradle-plugins:0.3.0") { exclude("org.jetbrains.kotlin") }
+    // This approach complicates the project is temporarily given up and commented out. Maybe readopt this when `common-gradle-dependencies` is moved to a separate project.
+    /*
     // This is also a bootstrapping dependency.
     implementation("com.huanshankeji:common-gradle-dependencies:0.7.1-20240314-boostrap") { exclude("org.jetbrains.kotlin") }
+    */
 }

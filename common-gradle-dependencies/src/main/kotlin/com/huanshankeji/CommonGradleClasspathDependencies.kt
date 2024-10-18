@@ -53,7 +53,7 @@ class CommonGradleClasspathDependencies(val versions: CommonVersions) {
         inner class Benchmark {
             val defaultVersion = versions.kotlinxBenchmark
             fun PluginDependenciesSpec.applyPluginWithVersion(version: String = defaultVersion) =
-                id("org.jetbrains.kotlinx.benchmark").version(defaultVersion)
+                id("org.jetbrains.kotlinx.benchmark").version(version)
 
             fun pluginProject(version: String = defaultVersion) =
                 "org.jetbrains.kotlinx:kotlinx-benchmark-plugin:$version"

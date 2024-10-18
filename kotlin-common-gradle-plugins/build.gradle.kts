@@ -5,9 +5,8 @@ plugins {
 dependencies {
     //implementation("io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.30.0")
 
-    implementation("org.jetbrains.kotlinx:kotlinx-benchmark-plugin:0.4.9")
-    implementation(commonGradleClasspathDependencies.kotlinx.benchmark.pluginProject())
-    implementation("org.jetbrains.kotlin:kotlin-allopen:$kotlinVersion")
+    implementation("org.jetbrains.kotlinx:kotlinx-benchmark-plugin:${DependencyVersions.kotlinxBenchmark}")
+    implementation(kotlin("allopen", DependencyVersions.kotlin))
 
     testImplementation(kotlin("test"))
 }
@@ -19,21 +18,12 @@ gradlePlugin {
             scriptPlugin(`package`, idSuffix, displayName, description)
 
         scriptConventionsPlugin(
-            "kotlin-jvm-common-conventions",
-            "Kotlin/JVM common conventions"
-        )
-
-        scriptConventionsPlugin(
-            "kotlin-multiplatform-conventions",
-            "Kotlin Multiplatform conventions"
-        )
-        scriptConventionsPlugin(
             "kotlin-multiplatform-js-browser-conventions",
             "Kotlin Multiplatform conventions with the JS browser target"
         )
         scriptConventionsPlugin(
-            "kotlin-multiplatform-jvm-and-js-browser-conventions",
-            "Kotlin Multiplatform conventions with the JVM target and the JS browser target"
+            "kotlin-multiplatform-conventional-targets",
+            "Kotlin Multiplatform conventions with the conventional targets JVM, JS (browser), iOS (`iosX64`, `iosArm64`, and `iosSimulatorArm64`), and Wasm JS"
         )
 
         create("maven-publish-conventions") {

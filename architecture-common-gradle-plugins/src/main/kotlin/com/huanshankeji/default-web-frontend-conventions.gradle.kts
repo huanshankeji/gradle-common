@@ -2,6 +2,7 @@ package com.huanshankeji
 
 plugins {
     id("com.huanshankeji.kotlin-multiplatform-js-browser-app-conventions")
+    kotlin("plugin.compose")
     id("org.jetbrains.compose")
 }
 
@@ -18,7 +19,7 @@ repositories {
 }
 
 kotlin {
-    js(IR) {
+    js {
         browser {
             commonWebpackConfig {
                 outputFileName = "app.js"
@@ -36,7 +37,7 @@ kotlin {
     sourceSets {
         jsMain {
             dependencies {
-                implementation(compose.web.core)
+                implementation(compose.html.core)
                 implementation(compose.runtime)
             }
         }
