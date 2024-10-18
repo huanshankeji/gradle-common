@@ -4,6 +4,14 @@ import org.gradle.api.artifacts.dsl.DependencyHandler
 
 // some but not all default dependencies
 class CommonDependencies(val versions: CommonVersions = CommonVersions()) {
+    interface SubgroupWithNameInArtifact {
+        val groupPrefix: String
+        val subgroupName: String
+        val defaultVersion: String
+        fun module(module: String, version: String = defaultVersion) =
+            "$groupPrefix.$subgroupName:$subgroupName-$module:$version"
+    }
+
     inner class KotlinCommon internal constructor() {
         val defaultVersion = versions.kotlinCommon
         fun module(module: String, version: String = defaultVersion) =
@@ -43,6 +51,8 @@ class CommonDependencies(val versions: CommonVersions = CommonVersions()) {
     val kotlinCommon = KotlinCommon()
 
     inner class Kotlinx internal constructor() {
+        // TODO can be refactored with `SubgroupWithNameInArtifact`
+
         inner class Coroutines internal constructor() {
             val defaultVersion = versions.kotlinxCoroutines
             fun module(module: String, version: String = defaultVersion) =
@@ -94,6 +104,7 @@ class CommonDependencies(val versions: CommonVersions = CommonVersions()) {
 
     // official libraries from JetBrains
 
+    // TODO can be refactored with `SubgroupWithNameInArtifact`
     inner class Exposed internal constructor() {
         val defaultVersion = versions.exposed
         fun module(module: String, version: String = defaultVersion) =
@@ -105,6 +116,7 @@ class CommonDependencies(val versions: CommonVersions = CommonVersions()) {
 
     val exposed = Exposed()
 
+    // TODO can be refactored with `SubgroupWithNameInArtifact`
     inner class Ktor internal constructor() {
         val defaultVersion = versions.ktor
         fun module(module: String, version: String = defaultVersion) =
@@ -123,17 +135,79 @@ class CommonDependencies(val versions: CommonVersions = CommonVersions()) {
 
     val ktor = Ktor()
 
-    inner class Androidx internal constructor() {
-        val defaultAndroidxVersions = versions.androidx
-        fun activityCompose(version: String = defaultAndroidxVersions.activityCompose) =
-            "androidx.activity:activity-compose:$version"
+    // TODO consider refactoring other inner classes to this architecture too
+
+    class JetbrainsAndroidx(defaultVersions: CommonVersions.JetbrainsAndroidx) {
+        interface Subgroup : CommonDependencies.SubgroupWithNameInArtifact {
+            override val groupPrefix: String get() = "org.jetbrains.androidx"
+        }
+
+        class Lifecycle(override val defaultVersion: String) : Subgroup {
+            override val subgroupName: String get() = "lifecycle"
+
+            fun viewmodel(version: String = defaultVersion) =
+                module("viewmodel", version)
+
+            fun viewmodelCompose(version: String = defaultVersion) =
+                module("viewmodel-compose", version)
+        }
+
+        val lifecycle = Lifecycle(defaultVersions.lifecycle)
+
+        class Navigation(override val defaultVersion: String) : Subgroup {
+            override val subgroupName: String get() = "navigation"
+
+            fun runtime(version: String = defaultVersion) =
+                module("runtime", version)
+
+            fun compose(version: String = defaultVersion) =
+                module("compose", version)
+        }
+
+        val navigation = Navigation(defaultVersions.navigation)
     }
 
-    val androidx = Androidx()
+    val jetbrainsAndroidx = JetbrainsAndroidx(versions.jetBrainsAndroidx)
+
+    class Androidx(defaultVersions: CommonVersions.Androidx) {
+        companion object {
+            val `package` = "androidx"
+        }
+
+        interface Subgroup : SubgroupWithNameInArtifact {
+            override val groupPrefix get() = `package`
+        }
+
+        class Activity(override val defaultVersion: String) : Subgroup {
+            override val subgroupName get() = "activity"
+
+            fun compose(version: String = defaultVersion) =
+                module("compose", version)
+        }
+
+        val activity = Activity(defaultVersions.activity)
+
+        class Compose(defaultVersions: CommonVersions.Androidx.Compose) {
+            interface Subgroup : SubgroupWithNameInArtifact {
+                override val groupPrefix get() = "$`package`.compose"
+            }
+
+            class Ui(override val defaultVersion: String) : Subgroup {
+                override val subgroupName get() = "ui"
+            }
+
+            val ui = Ui(defaultVersions.common)
+        }
+
+        val compose = Compose(defaultVersions.compose)
+    }
+
+    val androidx = Androidx(versions.androidx)
 
 
     // others
 
+    // TODO can be refactored with `SubgroupWithNameInArtifact`
     inner class Vertx internal constructor() {
         val defaultVersion = versions.vertx
 
@@ -203,6 +277,7 @@ class CommonDependencies(val versions: CommonVersions = CommonVersions()) {
 
     val orgJunit = OrgJunit()
 
+    // TODO can be refactored with `SubgroupWithNameInArtifact`
     inner class Kotest internal constructor() {
         val defaultVersion = versions.kotest
         fun module(module: String, version: String = defaultVersion) =
@@ -217,6 +292,7 @@ class CommonDependencies(val versions: CommonVersions = CommonVersions()) {
     fun postgreSql(version: String = versions.postgreSql) =
         "org.postgresql:postgresql:$version"
 
+    // TODO can be refactored with `SubgroupWithNameInArtifact`
     inner class Slf4j internal constructor() {
         val defaultVersion = versions.slf4j
         fun module(module: String, version: String = defaultVersion) =
