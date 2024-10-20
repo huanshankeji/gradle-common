@@ -5,19 +5,23 @@ plugins {
     signing
 }
 
-signing {
-    isRequired = false
-    sign(publishing.publications)
-}
+val isSnapshotVersion = isSnapshotVersion()
+
+if (!isSnapshotVersion)
+    signing {
+        isRequired = false
+        sign(publishing.publications)
+    }
 
 // wrapped in `afterEvaluate` because the project version may be set after applying this plugin, on which whether to choose the release URL or the snapshot URL depends
 afterEvaluate {
-    val isSnapshotVersion = isSnapshotVersion()
-
+    //old approach that makes `publishToMavenLocal` significantly slower when the signing key is configured in `~/.gradle/gradle.properties`
+    /*
     // see: https://docs.gradle.org/current/userguide/signing_plugin.html#sec:conditional_signing
     tasks.withType<Sign>().configureEach {
         onlyIf { !isSnapshotVersion }
     }
+    */
 
     publishing.repositories.maven {
         name = "SonatypeOssrh"

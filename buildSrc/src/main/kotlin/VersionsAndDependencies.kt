@@ -11,7 +11,7 @@ object DependencyVersions {
     val kotlinxBenchmark = "0.4.11"
 }
 
-val alignedPluginVersion = "0.6.0-SNAPSHOT"
+val alignedPluginVersion = "0.6.1-SNAPSHOT"
 
 // "x.y.z" indicates the version of the way of organizing the code,
 // and the date indicates the version when the dependency versions are updated.
