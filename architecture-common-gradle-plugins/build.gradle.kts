@@ -2,11 +2,6 @@ plugins {
     `aligned-version-plugin-conventions`
 }
 
-repositories {
-    mavenLocal()
-    maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
-}
-
 dependencies {
     implementation(project(":kotlin-common-gradle-plugins"))
     implementation("org.jetbrains.kotlin:compose-compiler-gradle-plugin:${DependencyVersions.kotlin}")
