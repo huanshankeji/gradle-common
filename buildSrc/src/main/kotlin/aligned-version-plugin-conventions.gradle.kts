@@ -2,6 +2,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask
 
 plugins {
     id("conventions")
+    id("dokka-convention")
 }
 
 version = alignedPluginVersion

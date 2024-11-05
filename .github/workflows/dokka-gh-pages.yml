@@ -2,9 +2,9 @@ name: Deploy the API documentation to GitHub Pages with Dokka
 
 on:
   push:
-    branches: [ "release" ]
+    branches: [ "plugins-release" ]
   pull_request:
-    branches: [ "release" ]
+    branches: [ "plugins-release" ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
