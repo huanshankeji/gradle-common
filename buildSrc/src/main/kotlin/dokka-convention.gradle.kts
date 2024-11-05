@@ -5,7 +5,7 @@ plugins {
 dokka {
     dokkaSourceSets.all {
         sourceLink {
-            remoteUrl("https://github.com/huanshankeji/kotlin-common/tree/v${version}/${project.name}")
+            remoteUrl("https://github.com/huanshankeji/gradle-common/tree/v${version}/${project.name}")
             remoteLineSuffix.set("#L")
         }
     }
