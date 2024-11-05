@@ -38,4 +38,6 @@ dependencies {
     // This is also a bootstrapping dependency.
     implementation("com.huanshankeji:common-gradle-dependencies:0.7.1-20240314-boostrap") { exclude("org.jetbrains.kotlin") }
     */
+
+    implementation("org.jetbrains.dokka:dokka-gradle-plugin:2.0.0-Beta")
 }
