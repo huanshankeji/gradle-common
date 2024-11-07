@@ -2,11 +2,15 @@ plugins {
     id("org.jetbrains.dokka")
 }
 
-dokka {
-    dokkaSourceSets.all {
-        sourceLink {
-            remoteUrl("https://github.com/huanshankeji/gradle-common/tree/v${version}/${project.name}")
-            remoteLineSuffix.set("#L")
+// put in `afterEvaluate` so the project version can be retrieved
+afterEvaluate {
+    dokka {
+        dokkaSourceSets.all {
+            sourceLink {
+                val projectRelativePath = projectDir.relativeTo(rootProject.projectDir)
+                remoteUrl("https://github.com/huanshankeji/gradle-common/tree/plugins-v${version}/$projectRelativePath")
+                remoteLineSuffix.set("#L")
+            }
         }
     }
 }
