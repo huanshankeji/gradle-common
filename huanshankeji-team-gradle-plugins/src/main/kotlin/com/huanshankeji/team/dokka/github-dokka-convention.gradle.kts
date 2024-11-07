@@ -16,12 +16,14 @@ extensions.create<GithubDokkaConventionExtension>("githubDokkaConvention").apply
     repositoryName.convention(defaultRepositoryName())
     commitOrTag.convention("v${version}")
 
-    dokkaConvention {
-        repositoryName.map { repositoryName ->
-            val repositoryUrl = githubRepositoryUrl(repositoryName)
-            commitOrTag.map { commitOrTag ->
-                sourceLinkRemoteUrlRoot.set("$repositoryUrl/blob/$commitOrTag")
-            }
+    val sourceLinkRemoteUrlRoot = repositoryName.flatMap { repositoryName ->
+        val repositoryUrl = githubRepositoryUrl(repositoryName)
+        commitOrTag.map { commitOrTag ->
+            "$repositoryUrl/blob/$commitOrTag"
         }
+    }
+
+    dokkaConvention {
+        this.sourceLinkRemoteUrlRoot.set(sourceLinkRemoteUrlRoot)
     }
 }
