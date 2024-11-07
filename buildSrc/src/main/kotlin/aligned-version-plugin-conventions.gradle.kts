@@ -2,10 +2,9 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask
 
 plugins {
     id("conventions")
+    id("aligned-version-plugin-version")
     id("dokka-convention")
 }
-
-version = alignedPluginVersion
 
 dependencies {
     implementation("com.huanshankeji:common-gradle-dependencies:$pluginProjectSourceDependentStableCommonGradleDependenciesVersion")
