@@ -14,7 +14,7 @@ dokka {
     dokkaSourceSets.all {
         sourceLink {
             val projectRelativePath = projectDir.relativeTo(rootProject.projectDir)
-            remoteUrl("${extension.sourceLinkRemoteUrlRoot.get()}/$projectRelativePath")
+            extension.sourceLinkRemoteUrlRoot.map { remoteUrl("$it/$projectRelativePath") }
             remoteLineSuffix.set("#L")
         }
     }

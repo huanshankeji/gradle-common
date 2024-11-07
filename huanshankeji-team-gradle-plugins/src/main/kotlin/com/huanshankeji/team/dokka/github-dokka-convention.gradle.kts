@@ -7,15 +7,21 @@ plugins {
     id("com.huanshankeji.dokka.dokka-convention")
 }
 
-val extension = extensions.create<GithubDokkaConventionExtension>("githubDokkaConvention")
-
 interface GithubDokkaConventionExtension {
     val repositoryName: Property<String>
     val commitOrTag: Property<String>
 }
 
-dokkaConvention {
-    val repositoryUrl = githubRepositoryUrl(extension.repositoryName.getOrElse(defaultRepositoryName()))
-    val commitOrTag = extension.commitOrTag.getOrElse("v${version}")
-    sourceLinkRemoteUrlRoot.set("$repositoryUrl/blob/$commitOrTag")
+extensions.create<GithubDokkaConventionExtension>("githubDokkaConvention").apply {
+    repositoryName.convention(defaultRepositoryName())
+    commitOrTag.convention("v${version}")
+
+    dokkaConvention {
+        repositoryName.map { repositoryName ->
+            val repositoryUrl = githubRepositoryUrl(repositoryName)
+            commitOrTag.map { commitOrTag ->
+                sourceLinkRemoteUrlRoot.set("$repositoryUrl/blob/$commitOrTag")
+            }
+        }
+    }
 }
