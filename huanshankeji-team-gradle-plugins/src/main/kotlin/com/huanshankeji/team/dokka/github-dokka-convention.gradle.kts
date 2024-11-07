@@ -17,5 +17,5 @@ interface GithubDokkaConventionExtension {
 dokkaConvention {
     val repositoryUrl = githubRepositoryUrl(extension.repositoryName.getOrElse(defaultRepositoryName()))
     val commitOrTag = extension.commitOrTag.getOrElse("v${version}")
-    sourceLinkRemoteUrlRoot.set("$repositoryUrl/tree/$commitOrTag")
+    sourceLinkRemoteUrlRoot.set("$repositoryUrl/blob/$commitOrTag")
 }

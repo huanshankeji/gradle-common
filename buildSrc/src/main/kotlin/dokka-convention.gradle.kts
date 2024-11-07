@@ -8,7 +8,7 @@ afterEvaluate {
         dokkaSourceSets.all {
             sourceLink {
                 val projectRelativePath = projectDir.relativeTo(rootProject.projectDir)
-                remoteUrl("https://github.com/huanshankeji/gradle-common/tree/plugins-v${version}/$projectRelativePath")
+                remoteUrl("https://github.com/huanshankeji/gradle-common/blob/plugins-v${version}/$projectRelativePath")
                 remoteLineSuffix.set("#L")
             }
         }
