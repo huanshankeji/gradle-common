@@ -10,6 +10,7 @@ object DependencyVersions {
     val composeMultiplatform = "1.7.0"
     val kotlinxBenchmark = "0.4.11"
     val dokka = "2.0.0-Beta"
+    val binaryCompatibilityValidator = "0.16.3"
 }
 
 val alignedPluginVersion = "0.7.0-SNAPSHOT"
