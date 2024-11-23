@@ -19,8 +19,18 @@ fun Project.gitlabMavenRepository(repositoryHandler: RepositoryHandler, nameArg:
         url = uri(urlArg)
         name = nameArg
         credentials(HttpHeaderCredentials::class) {
-            name = "Private-Token"
-            value = findProperty("gitLabPrivateToken") as String?
+            val gitLabPrivateToken: String? by properties
+            val ciJobToken: String? = System.getenv("CI_JOB_TOKEN")
+            if (gitLabPrivateToken !== null) {
+                name = "Private-Token"
+                value = gitLabPrivateToken
+
+                if (ciJobToken !== null)
+                    logger.warn("Both the private token and the CI Job token are specified for the GitLab Maven package registry ${this@maven} and the private token takes precedence.")
+            } else if (ciJobToken !== null) {
+                name = "Job-Token"
+                value = ciJobToken
+            }
         }
         authentication {
             create("header", HttpHeaderAuthentication::class)
