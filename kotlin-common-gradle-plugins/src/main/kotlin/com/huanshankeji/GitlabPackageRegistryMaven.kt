@@ -19,7 +19,7 @@ fun Project.gitlabMavenRepository(repositoryHandler: RepositoryHandler, nameArg:
         url = uri(urlArg)
         name = nameArg
         credentials(HttpHeaderCredentials::class) {
-            val gitLabPrivateToken: String? by properties
+            val gitLabPrivateToken: String? = findProperty("gitLabPrivateToken") as String?
             val ciJobToken: String? = System.getenv("CI_JOB_TOKEN")
             if (gitLabPrivateToken !== null) {
                 name = "Private-Token"
