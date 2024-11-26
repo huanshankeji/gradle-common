@@ -1,6 +1,5 @@
 package com.huanshankeji
 
-@RequiresOptIn
+@RequiresOptIn("This API is internal in this project.", RequiresOptIn.Level.WARNING) // TODO consider removing `WARNING`
 @Retention(AnnotationRetention.BINARY)
-@Target(AnnotationTarget.PROPERTY)
 annotation class InternalApi
