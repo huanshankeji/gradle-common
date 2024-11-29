@@ -11,7 +11,7 @@ class CommonVersions(
     val kotlinxDatetime: String = "0.6.1",
     val kotlinxBenchmark: String = GeneratedVersions.kotlinxBenchmark,
     // TODO `kotlinxIo`
-    val exposed: String = "0.53.0", // "0.54.0" deprecates the old DSL APIs as errors while we still depend on them.
+    val exposed: String = "0.56.0",
     val ktor: String = "2.3.12", // "3.0.0" uses Kotlin 2.0.20 too.
     val androidx: Androidx = Androidx(),
 
