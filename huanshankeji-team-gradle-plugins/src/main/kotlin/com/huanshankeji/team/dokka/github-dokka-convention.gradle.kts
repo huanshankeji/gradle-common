@@ -1,3 +1,5 @@
+// TODO consider moving/extracting this plugin out of this "team" module
+
 package com.huanshankeji.team.dokka
 
 import com.huanshankeji.team.github.defaultRepositoryName
