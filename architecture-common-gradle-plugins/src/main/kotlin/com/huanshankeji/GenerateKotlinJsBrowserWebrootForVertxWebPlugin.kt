@@ -5,10 +5,9 @@ import org.gradle.api.Project
 import org.gradle.api.provider.ListProperty
 import org.gradle.api.provider.Property
 import org.gradle.api.tasks.Copy
+import org.gradle.api.tasks.Sync
 import org.gradle.api.tasks.util.PatternFilterable
-import org.gradle.kotlin.dsl.create
-import org.gradle.kotlin.dsl.named
-import org.gradle.kotlin.dsl.register
+import org.gradle.kotlin.dsl.*
 
 class GenerateKotlinJsBrowserWebrootForVertxWebPlugin : Plugin<Project> {
     override fun apply(project: Project): Unit = project.run {
@@ -16,27 +15,25 @@ class GenerateKotlinJsBrowserWebrootForVertxWebPlugin : Plugin<Project> {
 
         afterEvaluate {
             val frontendProject = project(extension.webFrontendProjectPath.get())
-            val jsBrowserDistributionTask = frontendProject.tasks.named("jsBrowserDistribution")
+            val jsBrowserDistribution by frontendProject.tasks.getting(Copy::class)
             /*val jsBrowserWebpack by lazy {
                 tasks.getByPath(
                     extension.webFrontendProjectPath.get() +
                             if (extension.production.get()) ":jsBrowserProductionWebpack" else ":jsBrowserDevelopmentWebpack"
                 ) as KotlinWebpack
             }*/
-            val copyJsBrowserDistributionToResourcesWebroot = "copyJsBrowserDistributionToResourcesWebroot"
             val browserDistributionResourcesDirectory = layout.buildDirectory.get().dir("browserDistributionResources")
 
-            tasks.register<Copy>(copyJsBrowserDistributionToResourcesWebroot) {
-                dependsOn(jsBrowserDistributionTask)
-                // TODO I didn't find a way to get this path using the DSL, so there may be a bug if this path is customized.
-                from(frontendProject.layout.buildDirectory.get().dir("dist/js/productionExecutable"))
+            val syncJsBrowserDistributionToResourcesWebroot by tasks.registering(Sync::class) {
+                //dependsOn(jsBrowserDistribution)
+                from(jsBrowserDistribution)
                 //if (extension.production.get())
                 extension.includes.getOrNull()?.let { include(it) }
                 into(browserDistributionResourcesDirectory.dir(extension.webRoot.getOrElse("webroot")))
             }
 
             tasks.named<Copy>("processResources") {
-                dependsOn(copyJsBrowserDistributionToResourcesWebroot)
+                dependsOn(syncJsBrowserDistributionToResourcesWebroot)
             }
             /*
             When running a Maven publish task, the error occurs if this line is not added:
@@ -44,7 +41,7 @@ class GenerateKotlinJsBrowserWebrootForVertxWebPlugin : Plugin<Project> {
 
             TODO This is probably a bug. remove this line when it's fixed.
              */
-            tasks.named("sourcesJar") { dependsOn("copyJsBrowserDistributionToResourcesWebroot") }
+            tasks.named("sourcesJar") { dependsOn(syncJsBrowserDistributionToResourcesWebroot) }
 
             sourceSets.main { resources.srcDir(browserDistributionResourcesDirectory) }
         }

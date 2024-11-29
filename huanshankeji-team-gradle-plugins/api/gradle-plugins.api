@@ -1,0 +1,71 @@
+public final class com/huanshankeji/team/ConstantsKt {
+	public static final field HUANSHANKEJI_IN_LOWERCASE Ljava/lang/String;
+}
+
+public final class com/huanshankeji/team/DefaultGithubPackagesMavenPublishPlugin : org/gradle/api/Plugin {
+	public fun <init> ()V
+	public synthetic fun apply (Ljava/lang/Object;)V
+	public fun apply (Lorg/gradle/api/Project;)V
+}
+
+public final class com/huanshankeji/team/Default_github_packages_maven_publish_gradle : org/gradle/kotlin/dsl/precompile/v1/PrecompiledProjectScript {
+	public fun <init> (Lorg/gradle/api/Project;Lorg/gradle/api/Project;)V
+	public static final fun main ([Ljava/lang/String;)V
+}
+
+public final class com/huanshankeji/team/GithubPackagesMavenKt {
+	public static final fun repositoriesAddTeamGithubPackagesMavenRegistry (Lorg/gradle/api/Project;Ljava/lang/String;)V
+}
+
+public final class com/huanshankeji/team/GithubPackagesMavenPublishPlugin : org/gradle/api/Plugin {
+	public fun <init> ()V
+	public synthetic fun apply (Ljava/lang/Object;)V
+	public fun apply (Lorg/gradle/api/Project;)V
+}
+
+public final class com/huanshankeji/team/Github_packages_maven_publish_gradle : org/gradle/kotlin/dsl/precompile/v1/PrecompiledProjectScript {
+	public fun <init> (Lorg/gradle/api/Project;Lorg/gradle/api/Project;)V
+	public static final fun main ([Ljava/lang/String;)V
+}
+
+public final class com/huanshankeji/team/MavenPomKt {
+	public static final fun Shreck Ye (Lorg/gradle/api/publish/maven/MavenPomDeveloperSpec;)V
+	public static final fun pomForTeamDefaultOpenSource (Lorg/gradle/api/publish/maven/MavenPublication;Lorg/gradle/api/Project;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun pomForTeamDefaultOpenSource$default (Lorg/gradle/api/publish/maven/MavenPublication;Lorg/gradle/api/Project;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+}
+
+public final class com/huanshankeji/team/WithGroupPlugin : org/gradle/api/Plugin {
+	public fun <init> ()V
+	public synthetic fun apply (Ljava/lang/Object;)V
+	public fun apply (Lorg/gradle/api/Project;)V
+}
+
+public final class com/huanshankeji/team/With_group_gradle : org/gradle/kotlin/dsl/precompile/v1/PrecompiledProjectScript {
+	public fun <init> (Lorg/gradle/api/Project;Lorg/gradle/api/Project;)V
+	public static final fun main ([Ljava/lang/String;)V
+}
+
+public final class com/huanshankeji/team/dokka/GithubDokkaConventionPlugin : org/gradle/api/Plugin {
+	public fun <init> ()V
+	public synthetic fun apply (Ljava/lang/Object;)V
+	public fun apply (Lorg/gradle/api/Project;)V
+}
+
+public final class com/huanshankeji/team/dokka/Github_dokka_convention_gradle : org/gradle/kotlin/dsl/precompile/v1/PrecompiledProjectScript {
+	public final field $$result Lcom/huanshankeji/team/dokka/Github_dokka_convention_gradle$GithubDokkaConventionExtension;
+	public fun <init> (Lorg/gradle/api/Project;Lorg/gradle/api/Project;)V
+	public final fun get$$result ()Lcom/huanshankeji/team/dokka/Github_dokka_convention_gradle$GithubDokkaConventionExtension;
+	public static final fun main ([Ljava/lang/String;)V
+}
+
+public abstract interface class com/huanshankeji/team/dokka/Github_dokka_convention_gradle$GithubDokkaConventionExtension {
+	public abstract fun getCommitOrTag ()Lorg/gradle/api/provider/Property;
+	public abstract fun getRepositoryName ()Lorg/gradle/api/provider/Property;
+}
+
+public final class com/huanshankeji/team/github/GithubKt {
+	public static final fun defaultRepositoryName (Lorg/gradle/api/Project;)Ljava/lang/String;
+	public static final fun defaultRootProjectGithubRepositoryUrl (Lorg/gradle/api/Project;)Ljava/lang/String;
+	public static final fun githubRepositoryUrl (Ljava/lang/String;)Ljava/lang/String;
+}
+

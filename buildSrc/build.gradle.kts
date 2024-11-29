@@ -29,7 +29,7 @@ dependencies {
     implementation(kotlin("gradle-plugin", "2.0.10"))
     implementation("org.gradle.kotlin:gradle-kotlin-dsl-plugins:4.5.0") // This version has to be used for Gradle 8.10.
 
-    implementation("com.gradle.publish:plugin-publish-plugin:1.2.1")
+    implementation("com.gradle.publish:plugin-publish-plugin:1.3.0")
 
     // This is a bootstrapping dependency (cross-version self-dependency). Try not to update its version unless necessary.
     implementation("com.huanshankeji.team:gradle-plugins:0.3.0") { exclude("org.jetbrains.kotlin") }
@@ -38,4 +38,6 @@ dependencies {
     // This is also a bootstrapping dependency.
     implementation("com.huanshankeji:common-gradle-dependencies:0.7.1-20240314-boostrap") { exclude("org.jetbrains.kotlin") }
     */
+
+    implementation("org.jetbrains.dokka:dokka-gradle-plugin:2.0.0-Beta")
 }

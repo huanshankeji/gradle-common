@@ -1,0 +1,394 @@
+public final class com/huanshankeji/CommonDependencies {
+	public fun <init> ()V
+	public fun <init> (Lcom/huanshankeji/CommonVersions;)V
+	public synthetic fun <init> (Lcom/huanshankeji/CommonVersions;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getAndroidx ()Lcom/huanshankeji/CommonDependencies$Androidx;
+	public final fun getArrow ()Lcom/huanshankeji/CommonDependencies$Arrow;
+	public final fun getExposed ()Lcom/huanshankeji/CommonDependencies$Exposed;
+	public final fun getJetbrainsAndroidx ()Lcom/huanshankeji/CommonDependencies$JetbrainsAndroidx;
+	public final fun getKotest ()Lcom/huanshankeji/CommonDependencies$Kotest;
+	public final fun getKotlinCommon ()Lcom/huanshankeji/CommonDependencies$KotlinCommon;
+	public final fun getKotlinx ()Lcom/huanshankeji/CommonDependencies$Kotlinx;
+	public final fun getKtor ()Lcom/huanshankeji/CommonDependencies$Ktor;
+	public final fun getOrgJunit ()Lcom/huanshankeji/CommonDependencies$OrgJunit;
+	public final fun getSlf4j ()Lcom/huanshankeji/CommonDependencies$Slf4j;
+	public final fun getTestContainers ()Lcom/huanshankeji/CommonDependencies$TestContainers;
+	public final fun getVersions ()Lcom/huanshankeji/CommonVersions;
+	public final fun getVertx ()Lcom/huanshankeji/CommonDependencies$Vertx;
+	public final fun postgreSql (Ljava/lang/String;)Ljava/lang/String;
+	public static synthetic fun postgreSql$default (Lcom/huanshankeji/CommonDependencies;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/String;
+}
+
+public final class com/huanshankeji/CommonDependencies$Androidx {
+	public static final field Companion Lcom/huanshankeji/CommonDependencies$Androidx$Companion;
+	public fun <init> (Lcom/huanshankeji/CommonVersions$Androidx;)V
+	public final fun getActivity ()Lcom/huanshankeji/CommonDependencies$Androidx$Activity;
+	public final fun getCompose ()Lcom/huanshankeji/CommonDependencies$Androidx$Compose;
+}
+
+public final class com/huanshankeji/CommonDependencies$Androidx$Activity : com/huanshankeji/CommonDependencies$Androidx$Subgroup {
+	public fun <init> (Ljava/lang/String;)V
+	public final fun compose (Ljava/lang/String;)Ljava/lang/String;
+	public static synthetic fun compose$default (Lcom/huanshankeji/CommonDependencies$Androidx$Activity;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/String;
+	public fun getDefaultVersion ()Ljava/lang/String;
+	public fun getSubgroupName ()Ljava/lang/String;
+}
+
+public final class com/huanshankeji/CommonDependencies$Androidx$Companion {
+	public final fun getPackage ()Ljava/lang/String;
+}
+
+public final class com/huanshankeji/CommonDependencies$Androidx$Compose {
+	public fun <init> (Lcom/huanshankeji/CommonVersions$Androidx$Compose;)V
+	public final fun getUi ()Lcom/huanshankeji/CommonDependencies$Androidx$Compose$Ui;
+}
+
+public abstract interface class com/huanshankeji/CommonDependencies$Androidx$Compose$Subgroup : com/huanshankeji/CommonDependencies$SubgroupWithNameInArtifact {
+	public fun getGroupPrefix ()Ljava/lang/String;
+}
+
+public final class com/huanshankeji/CommonDependencies$Androidx$Compose$Ui : com/huanshankeji/CommonDependencies$Androidx$Compose$Subgroup {
+	public fun <init> (Ljava/lang/String;)V
+	public fun getDefaultVersion ()Ljava/lang/String;
+	public fun getSubgroupName ()Ljava/lang/String;
+}
+
+public abstract interface class com/huanshankeji/CommonDependencies$Androidx$Subgroup : com/huanshankeji/CommonDependencies$SubgroupWithNameInArtifact {
+	public fun getGroupPrefix ()Ljava/lang/String;
+}
+
+public final class com/huanshankeji/CommonDependencies$Arrow {
+	public final fun core (Ljava/lang/String;)Ljava/lang/String;
+	public static synthetic fun core$default (Lcom/huanshankeji/CommonDependencies$Arrow;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/String;
+	public final fun getDefaultVersion ()Ljava/lang/String;
+	public final fun module (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+	public static synthetic fun module$default (Lcom/huanshankeji/CommonDependencies$Arrow;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/String;
+}
+
+public final class com/huanshankeji/CommonDependencies$Exposed {
+	public final fun core (Ljava/lang/String;)Ljava/lang/String;
+	public static synthetic fun core$default (Lcom/huanshankeji/CommonDependencies$Exposed;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/String;
+	public final fun getDefaultVersion ()Ljava/lang/String;
+	public final fun module (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+	public static synthetic fun module$default (Lcom/huanshankeji/CommonDependencies$Exposed;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/String;
+}
+
+public final class com/huanshankeji/CommonDependencies$JetbrainsAndroidx {
+	public fun <init> (Lcom/huanshankeji/CommonVersions$JetbrainsAndroidx;)V
+	public final fun getLifecycle ()Lcom/huanshankeji/CommonDependencies$JetbrainsAndroidx$Lifecycle;
+	public final fun getNavigation ()Lcom/huanshankeji/CommonDependencies$JetbrainsAndroidx$Navigation;
+}
+
+public final class com/huanshankeji/CommonDependencies$JetbrainsAndroidx$Lifecycle : com/huanshankeji/CommonDependencies$JetbrainsAndroidx$Subgroup {
+	public fun <init> (Ljava/lang/String;)V
+	public fun getDefaultVersion ()Ljava/lang/String;
+	public fun getSubgroupName ()Ljava/lang/String;
+	public final fun viewmodel (Ljava/lang/String;)Ljava/lang/String;
+	public static synthetic fun viewmodel$default (Lcom/huanshankeji/CommonDependencies$JetbrainsAndroidx$Lifecycle;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/String;
+	public final fun viewmodelCompose (Ljava/lang/String;)Ljava/lang/String;
+	public static synthetic fun viewmodelCompose$default (Lcom/huanshankeji/CommonDependencies$JetbrainsAndroidx$Lifecycle;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/String;
+}
+
+public final class com/huanshankeji/CommonDependencies$JetbrainsAndroidx$Navigation : com/huanshankeji/CommonDependencies$JetbrainsAndroidx$Subgroup {
+	public fun <init> (Ljava/lang/String;)V
+	public final fun compose (Ljava/lang/String;)Ljava/lang/String;
+	public static synthetic fun compose$default (Lcom/huanshankeji/CommonDependencies$JetbrainsAndroidx$Navigation;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/String;
+	public fun getDefaultVersion ()Ljava/lang/String;
+	public fun getSubgroupName ()Ljava/lang/String;
+	public final fun runtime (Ljava/lang/String;)Ljava/lang/String;
+	public static synthetic fun runtime$default (Lcom/huanshankeji/CommonDependencies$JetbrainsAndroidx$Navigation;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/String;
+}
+
+public abstract interface class com/huanshankeji/CommonDependencies$JetbrainsAndroidx$Subgroup : com/huanshankeji/CommonDependencies$SubgroupWithNameInArtifact {
+	public fun getGroupPrefix ()Ljava/lang/String;
+}
+
+public final class com/huanshankeji/CommonDependencies$Kotest {
+	public final fun getDefaultVersion ()Ljava/lang/String;
+	public final fun module (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+	public static synthetic fun module$default (Lcom/huanshankeji/CommonDependencies$Kotest;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/String;
+	public final fun property (Ljava/lang/String;)Ljava/lang/String;
+	public static synthetic fun property$default (Lcom/huanshankeji/CommonDependencies$Kotest;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/String;
+}
+
+public final class com/huanshankeji/CommonDependencies$KotlinCommon {
+	public final fun arrow (Ljava/lang/String;)Ljava/lang/String;
+	public static synthetic fun arrow$default (Lcom/huanshankeji/CommonDependencies$KotlinCommon;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/String;
+	public final fun core (Ljava/lang/String;)Ljava/lang/String;
+	public static synthetic fun core$default (Lcom/huanshankeji/CommonDependencies$KotlinCommon;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/String;
+	public final fun coroutines (Ljava/lang/String;)Ljava/lang/String;
+	public static synthetic fun coroutines$default (Lcom/huanshankeji/CommonDependencies$KotlinCommon;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/String;
+	public final fun exposed (Ljava/lang/String;)Ljava/lang/String;
+	public static synthetic fun exposed$default (Lcom/huanshankeji/CommonDependencies$KotlinCommon;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/String;
+	public final fun getDefaultVersion ()Ljava/lang/String;
+	public final fun getKtor ()Lcom/huanshankeji/CommonDependencies$KotlinCommon$Ktor;
+	public final fun getVertx ()Lcom/huanshankeji/CommonDependencies$KotlinCommon$Vertx;
+	public final fun module (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+	public static synthetic fun module$default (Lcom/huanshankeji/CommonDependencies$KotlinCommon;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/String;
+	public final fun net (Ljava/lang/String;)Ljava/lang/String;
+	public static synthetic fun net$default (Lcom/huanshankeji/CommonDependencies$KotlinCommon;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/String;
+	public final fun reflect (Ljava/lang/String;)Ljava/lang/String;
+	public static synthetic fun reflect$default (Lcom/huanshankeji/CommonDependencies$KotlinCommon;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/String;
+	public final fun serialization (Ljava/lang/String;)Ljava/lang/String;
+	public static synthetic fun serialization$default (Lcom/huanshankeji/CommonDependencies$KotlinCommon;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/String;
+	public final fun vertx (Ljava/lang/String;)Ljava/lang/String;
+	public static synthetic fun vertx$default (Lcom/huanshankeji/CommonDependencies$KotlinCommon;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/String;
+	public final fun web (Ljava/lang/String;)Ljava/lang/String;
+	public static synthetic fun web$default (Lcom/huanshankeji/CommonDependencies$KotlinCommon;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/String;
+}
+
+public final class com/huanshankeji/CommonDependencies$KotlinCommon$Ktor {
+	public final fun client (Ljava/lang/String;)Ljava/lang/String;
+	public static synthetic fun client$default (Lcom/huanshankeji/CommonDependencies$KotlinCommon$Ktor;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/String;
+	public final fun module (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+	public static synthetic fun module$default (Lcom/huanshankeji/CommonDependencies$KotlinCommon$Ktor;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/String;
+}
+
+public final class com/huanshankeji/CommonDependencies$KotlinCommon$Vertx {
+	public final fun module (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+	public static synthetic fun module$default (Lcom/huanshankeji/CommonDependencies$KotlinCommon$Vertx;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/String;
+	public final fun withContextReceivers (Ljava/lang/String;)Ljava/lang/String;
+	public static synthetic fun withContextReceivers$default (Lcom/huanshankeji/CommonDependencies$KotlinCommon$Vertx;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/String;
+}
+
+public final class com/huanshankeji/CommonDependencies$Kotlinx {
+	public final fun datetime (Ljava/lang/String;)Ljava/lang/String;
+	public static synthetic fun datetime$default (Lcom/huanshankeji/CommonDependencies$Kotlinx;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/String;
+	public final fun getBenchmark ()Lcom/huanshankeji/CommonDependencies$Kotlinx$Benchmark;
+	public final fun getCoroutines ()Lcom/huanshankeji/CommonDependencies$Kotlinx$Coroutines;
+	public final fun getHtml ()Lcom/huanshankeji/CommonDependencies$Kotlinx$Html;
+	public final fun getSerialization ()Lcom/huanshankeji/CommonDependencies$Kotlinx$Serialization;
+}
+
+public final class com/huanshankeji/CommonDependencies$Kotlinx$Benchmark {
+	public final fun getDefaultVersion ()Ljava/lang/String;
+	public final fun module (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+	public static synthetic fun module$default (Lcom/huanshankeji/CommonDependencies$Kotlinx$Benchmark;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/String;
+	public final fun runtime (Ljava/lang/String;)Ljava/lang/String;
+	public static synthetic fun runtime$default (Lcom/huanshankeji/CommonDependencies$Kotlinx$Benchmark;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/String;
+}
+
+public final class com/huanshankeji/CommonDependencies$Kotlinx$Coroutines {
+	public final fun core (Ljava/lang/String;)Ljava/lang/String;
+	public static synthetic fun core$default (Lcom/huanshankeji/CommonDependencies$Kotlinx$Coroutines;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/String;
+	public final fun getDefaultVersion ()Ljava/lang/String;
+	public final fun module (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+	public static synthetic fun module$default (Lcom/huanshankeji/CommonDependencies$Kotlinx$Coroutines;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/String;
+	public final fun test (Ljava/lang/String;)Ljava/lang/String;
+	public static synthetic fun test$default (Lcom/huanshankeji/CommonDependencies$Kotlinx$Coroutines;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/String;
+}
+
+public final class com/huanshankeji/CommonDependencies$Kotlinx$Html {
+	public final fun getDefaultVersion ()Ljava/lang/String;
+	public final fun module (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+	public static synthetic fun module$default (Lcom/huanshankeji/CommonDependencies$Kotlinx$Html;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/String;
+}
+
+public final class com/huanshankeji/CommonDependencies$Kotlinx$Serialization {
+	public final fun core (Ljava/lang/String;)Ljava/lang/String;
+	public static synthetic fun core$default (Lcom/huanshankeji/CommonDependencies$Kotlinx$Serialization;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/String;
+	public final fun getDefaultVersion ()Ljava/lang/String;
+	public final fun json (Ljava/lang/String;)Ljava/lang/String;
+	public static synthetic fun json$default (Lcom/huanshankeji/CommonDependencies$Kotlinx$Serialization;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/String;
+	public final fun module (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+	public static synthetic fun module$default (Lcom/huanshankeji/CommonDependencies$Kotlinx$Serialization;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/String;
+	public final fun protobuf (Ljava/lang/String;)Ljava/lang/String;
+	public static synthetic fun protobuf$default (Lcom/huanshankeji/CommonDependencies$Kotlinx$Serialization;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/String;
+}
+
+public final class com/huanshankeji/CommonDependencies$Ktor {
+	public final fun getClient ()Lcom/huanshankeji/CommonDependencies$Ktor$Client;
+	public final fun getDefaultVersion ()Ljava/lang/String;
+	public final fun module (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+	public static synthetic fun module$default (Lcom/huanshankeji/CommonDependencies$Ktor;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/String;
+}
+
+public final class com/huanshankeji/CommonDependencies$Ktor$Client {
+	public final fun core (Ljava/lang/String;)Ljava/lang/String;
+	public static synthetic fun core$default (Lcom/huanshankeji/CommonDependencies$Ktor$Client;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/String;
+	public final fun module (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+	public static synthetic fun module$default (Lcom/huanshankeji/CommonDependencies$Ktor$Client;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/String;
+}
+
+public final class com/huanshankeji/CommonDependencies$OrgJunit {
+	public final fun getDefaultVersion ()Ljava/lang/String;
+	public final fun getJupiter ()Lcom/huanshankeji/CommonDependencies$OrgJunit$Jupiter;
+	public final fun platformBom (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;)Lorg/gradle/api/artifacts/Dependency;
+	public static synthetic fun platformBom$default (Lcom/huanshankeji/CommonDependencies$OrgJunit;Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;ILjava/lang/Object;)Lorg/gradle/api/artifacts/Dependency;
+}
+
+public final class com/huanshankeji/CommonDependencies$OrgJunit$Jupiter {
+	public final fun apiWithVersion (Ljava/lang/String;)Ljava/lang/String;
+	public static synthetic fun apiWithVersion$default (Lcom/huanshankeji/CommonDependencies$OrgJunit$Jupiter;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/String;
+	public final fun apiWithoutVersion ()Ljava/lang/String;
+	public final fun engineWithVersion (Ljava/lang/String;)Ljava/lang/String;
+	public static synthetic fun engineWithVersion$default (Lcom/huanshankeji/CommonDependencies$OrgJunit$Jupiter;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/String;
+	public final fun engineWithoutVersion ()Ljava/lang/String;
+	public final fun moduleWithVersion (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+	public static synthetic fun moduleWithVersion$default (Lcom/huanshankeji/CommonDependencies$OrgJunit$Jupiter;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/String;
+	public final fun moduleWithoutVersion (Ljava/lang/String;)Ljava/lang/String;
+	public final fun withVersion (Ljava/lang/String;)Ljava/lang/String;
+	public static synthetic fun withVersion$default (Lcom/huanshankeji/CommonDependencies$OrgJunit$Jupiter;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/String;
+	public final fun withoutVersion ()Ljava/lang/String;
+}
+
+public final class com/huanshankeji/CommonDependencies$Slf4j {
+	public final fun api (Ljava/lang/String;)Ljava/lang/String;
+	public static synthetic fun api$default (Lcom/huanshankeji/CommonDependencies$Slf4j;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/String;
+	public final fun getDefaultVersion ()Ljava/lang/String;
+	public final fun module (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+	public static synthetic fun module$default (Lcom/huanshankeji/CommonDependencies$Slf4j;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/String;
+	public final fun simple (Ljava/lang/String;)Ljava/lang/String;
+	public static synthetic fun simple$default (Lcom/huanshankeji/CommonDependencies$Slf4j;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/String;
+}
+
+public abstract interface class com/huanshankeji/CommonDependencies$SubgroupWithNameInArtifact {
+	public abstract fun getDefaultVersion ()Ljava/lang/String;
+	public abstract fun getGroupPrefix ()Ljava/lang/String;
+	public abstract fun getSubgroupName ()Ljava/lang/String;
+	public fun module (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+	public static synthetic fun module$default (Lcom/huanshankeji/CommonDependencies$SubgroupWithNameInArtifact;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/String;
+}
+
+public final class com/huanshankeji/CommonDependencies$TestContainers {
+	public final fun getDefaultVersion ()Ljava/lang/String;
+	public final fun getJunitJupiter ()Ljava/lang/String;
+	public final fun getPostgreSql ()Ljava/lang/String;
+	public final fun getTestContainers ()Ljava/lang/String;
+	public final fun moduleWithVersion (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+	public static synthetic fun moduleWithVersion$default (Lcom/huanshankeji/CommonDependencies$TestContainers;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/String;
+	public final fun moduleWithoutVersion (Ljava/lang/String;)Ljava/lang/String;
+	public final fun platformBom (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;)Lorg/gradle/api/artifacts/Dependency;
+	public static synthetic fun platformBom$default (Lcom/huanshankeji/CommonDependencies$TestContainers;Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;ILjava/lang/Object;)Lorg/gradle/api/artifacts/Dependency;
+}
+
+public final class com/huanshankeji/CommonDependencies$Vertx {
+	public final fun getDefaultVersion ()Ljava/lang/String;
+	public final fun moduleWithVersion (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+	public static synthetic fun moduleWithVersion$default (Lcom/huanshankeji/CommonDependencies$Vertx;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/String;
+	public final fun moduleWithoutVersion (Ljava/lang/String;)Ljava/lang/String;
+	public final fun platformStackDepchain (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;)Lorg/gradle/api/artifacts/Dependency;
+	public static synthetic fun platformStackDepchain$default (Lcom/huanshankeji/CommonDependencies$Vertx;Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;ILjava/lang/Object;)Lorg/gradle/api/artifacts/Dependency;
+}
+
+public final class com/huanshankeji/CommonGradleClasspathDependencies {
+	public fun <init> (Lcom/huanshankeji/CommonVersions;)V
+	public final fun getComposeMultiplatform ()Lcom/huanshankeji/CommonGradleClasspathDependencies$ComposeMultiplatform;
+	public final fun getKotlin ()Lcom/huanshankeji/CommonGradleClasspathDependencies$Kotlin;
+	public final fun getKotlinx ()Lcom/huanshankeji/CommonGradleClasspathDependencies$Kotlinx;
+	public final fun getVersions ()Lcom/huanshankeji/CommonVersions;
+}
+
+public final class com/huanshankeji/CommonGradleClasspathDependencies$ComposeMultiplatform {
+	public final fun getDefaultVersion ()Ljava/lang/String;
+	public final fun getGradlePlugin ()Lcom/huanshankeji/CommonGradleClasspathDependencies$ComposeMultiplatform$GradlePlugin;
+}
+
+public final class com/huanshankeji/CommonGradleClasspathDependencies$ComposeMultiplatform$GradlePlugin {
+	public fun <init> (Lcom/huanshankeji/CommonGradleClasspathDependencies$ComposeMultiplatform;)V
+	public final fun applyPluginWithVersion (Lorg/gradle/plugin/use/PluginDependenciesSpec;Ljava/lang/String;)Lorg/gradle/plugin/use/PluginDependencySpec;
+	public static synthetic fun applyPluginWithVersion$default (Lcom/huanshankeji/CommonGradleClasspathDependencies$ComposeMultiplatform$GradlePlugin;Lorg/gradle/plugin/use/PluginDependenciesSpec;Ljava/lang/String;ILjava/lang/Object;)Lorg/gradle/plugin/use/PluginDependencySpec;
+	public final fun applyPluginWithoutVersion (Lorg/gradle/plugin/use/PluginDependenciesSpec;)Lorg/gradle/plugin/use/PluginDependencySpec;
+	public final fun pluginProject (Ljava/lang/String;)Ljava/lang/String;
+	public static synthetic fun pluginProject$default (Lcom/huanshankeji/CommonGradleClasspathDependencies$ComposeMultiplatform$GradlePlugin;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/String;
+}
+
+public final class com/huanshankeji/CommonGradleClasspathDependencies$Kotlin {
+	public final fun getGroup ()Ljava/lang/String;
+	public final fun getPlugin ()Lcom/huanshankeji/CommonGradleClasspathDependencies$Kotlin$Plugin;
+	public final fun getSerializationPlugin ()Lcom/huanshankeji/CommonGradleClasspathDependencies$Kotlin$Plugin$Serialization;
+}
+
+public final class com/huanshankeji/CommonGradleClasspathDependencies$Kotlin$Plugin {
+	public final fun getSerialization ()Lcom/huanshankeji/CommonGradleClasspathDependencies$Kotlin$Plugin$Serialization;
+}
+
+public final class com/huanshankeji/CommonGradleClasspathDependencies$Kotlin$Plugin$Serialization {
+	public final fun applyPluginWithVersion (Lorg/gradle/plugin/use/PluginDependenciesSpec;Ljava/lang/String;)Lorg/gradle/plugin/use/PluginDependencySpec;
+	public static synthetic fun applyPluginWithVersion$default (Lcom/huanshankeji/CommonGradleClasspathDependencies$Kotlin$Plugin$Serialization;Lorg/gradle/plugin/use/PluginDependenciesSpec;Ljava/lang/String;ILjava/lang/Object;)Lorg/gradle/plugin/use/PluginDependencySpec;
+	public final fun applyPluginWithoutVersion (Lorg/gradle/plugin/use/PluginDependenciesSpec;)Lorg/gradle/plugin/use/PluginDependencySpec;
+	public final fun getDefaultVersion ()Ljava/lang/String;
+	public final fun getModuleName ()Ljava/lang/String;
+}
+
+public final class com/huanshankeji/CommonGradleClasspathDependencies$Kotlinx {
+	public final fun getBenchmark ()Lcom/huanshankeji/CommonGradleClasspathDependencies$Kotlinx$Benchmark;
+}
+
+public final class com/huanshankeji/CommonGradleClasspathDependencies$Kotlinx$Benchmark {
+	public fun <init> (Lcom/huanshankeji/CommonGradleClasspathDependencies$Kotlinx;)V
+	public final fun applyPluginWithVersion (Lorg/gradle/plugin/use/PluginDependenciesSpec;Ljava/lang/String;)Lorg/gradle/plugin/use/PluginDependencySpec;
+	public static synthetic fun applyPluginWithVersion$default (Lcom/huanshankeji/CommonGradleClasspathDependencies$Kotlinx$Benchmark;Lorg/gradle/plugin/use/PluginDependenciesSpec;Ljava/lang/String;ILjava/lang/Object;)Lorg/gradle/plugin/use/PluginDependencySpec;
+	public final fun getDefaultVersion ()Ljava/lang/String;
+	public final fun pluginProject (Ljava/lang/String;)Ljava/lang/String;
+	public static synthetic fun pluginProject$default (Lcom/huanshankeji/CommonGradleClasspathDependencies$Kotlinx$Benchmark;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/String;
+}
+
+public final class com/huanshankeji/CommonGradleDependenciesDummyPluginPlugin : org/gradle/api/Plugin {
+	public fun <init> ()V
+	public synthetic fun apply (Ljava/lang/Object;)V
+	public fun apply (Lorg/gradle/api/Project;)V
+}
+
+public final class com/huanshankeji/CommonVersions {
+	public fun <init> ()V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/huanshankeji/CommonVersions$Androidx;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/huanshankeji/CommonVersions$Androidx;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getAndroidx ()Lcom/huanshankeji/CommonVersions$Androidx;
+	public final fun getArrow ()Ljava/lang/String;
+	public final fun getComposeMultiplatform ()Ljava/lang/String;
+	public final fun getExposed ()Ljava/lang/String;
+	public final fun getJetBrainsAndroidx ()Lcom/huanshankeji/CommonVersions$JetbrainsAndroidx;
+	public final fun getKotest ()Ljava/lang/String;
+	public final fun getKotlin ()Ljava/lang/String;
+	public final fun getKotlinCommon ()Ljava/lang/String;
+	public final fun getKotlinxBenchmark ()Ljava/lang/String;
+	public final fun getKotlinxCoroutines ()Ljava/lang/String;
+	public final fun getKotlinxDatetime ()Ljava/lang/String;
+	public final fun getKotlinxHtml ()Ljava/lang/String;
+	public final fun getKotlinxSerialization ()Ljava/lang/String;
+	public final fun getKtor ()Ljava/lang/String;
+	public final fun getOrgJunit ()Ljava/lang/String;
+	public final fun getPostgreSql ()Ljava/lang/String;
+	public final fun getSlf4j ()Ljava/lang/String;
+	public final fun getTestContainers ()Ljava/lang/String;
+	public final fun getVertx ()Ljava/lang/String;
+}
+
+public final class com/huanshankeji/CommonVersions$Androidx {
+	public fun <init> ()V
+	public fun <init> (Ljava/lang/String;Lcom/huanshankeji/CommonVersions$Androidx$Compose;)V
+	public synthetic fun <init> (Ljava/lang/String;Lcom/huanshankeji/CommonVersions$Androidx$Compose;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getActivity ()Ljava/lang/String;
+	public final fun getCompose ()Lcom/huanshankeji/CommonVersions$Androidx$Compose;
+}
+
+public final class com/huanshankeji/CommonVersions$Androidx$Compose {
+	public fun <init> ()V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getCommon ()Ljava/lang/String;
+	public final fun getCompiler ()Ljava/lang/String;
+	public final fun getMaterial3 ()Ljava/lang/String;
+	public final fun getMaterial3Adaptive ()Ljava/lang/String;
+}
+
+public final class com/huanshankeji/CommonVersions$JetbrainsAndroidx {
+	public fun <init> ()V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getComposeMultiplatform ()Ljava/lang/String;
+	public final fun getLifecycle ()Ljava/lang/String;
+	public final fun getNavigation ()Ljava/lang/String;
+}
+
+public final class com/huanshankeji/Common_gradle_dependencies_dummy_plugin_gradle : org/gradle/kotlin/dsl/precompile/v1/PrecompiledProjectScript {
+	public fun <init> (Lorg/gradle/api/Project;Lorg/gradle/api/Project;)V
+	public static final fun main ([Ljava/lang/String;)V
+}
+
+public final class com/huanshankeji/KotlinxDependencyExtensionsKt {
+	public static final fun kotlinx (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+	public static synthetic fun kotlinx$default (Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/String;
+}
+
