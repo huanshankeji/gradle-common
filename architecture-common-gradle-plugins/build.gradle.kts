@@ -23,19 +23,7 @@ gradlePlugin {
         fun scriptConventionsPlugin(idSuffix: String, displayName: String, description: String = displayName) =
             scriptPlugin(`package`, idSuffix, displayName, description)
 
-        scriptConventionsPlugin(
-            "kotlin-jvm-common-app-conventions",
-            "Kotlin/JVM common app conventions"
-        )
-        scriptConventionsPlugin(
-            "kotlin-jvm-application-app-conventions",
-            "Kotlin/JVM application app conventions"
-        )
-        scriptConventionsPlugin(
-            "kotlin-jvm-library-app-conventions",
-            "Kotlin/JVM library app conventions"
-        )
-
+        // TODO consider removing these too
         scriptConventionsPlugin(
             "kotlin-multiplatform-app-conventions",
             "Kotlin Multiplatform app conventions"

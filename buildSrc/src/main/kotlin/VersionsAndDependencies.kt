@@ -13,7 +13,7 @@ object DependencyVersions {
     val binaryCompatibilityValidator = "0.16.3"
 }
 
-val alignedPluginVersion = "0.7.1-kotlin-2.1.0-SNAPSHOT"
+val alignedPluginVersion = "0.8.0-kotlin-2.1.0-SNAPSHOT"
 
 // "x.y.z" indicates the version of the way of organizing the code,
 // and the date indicates the version when the dependency versions are updated.
