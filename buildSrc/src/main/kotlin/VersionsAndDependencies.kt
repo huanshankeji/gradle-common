@@ -13,11 +13,11 @@ object DependencyVersions {
     val binaryCompatibilityValidator = "0.16.3"
 }
 
-val alignedPluginVersion = "0.7.1-SNAPSHOT"
+val alignedPluginVersion = "0.7.1-kotlin-2.1.0-SNAPSHOT"
 
 // "x.y.z" indicates the version of the way of organizing the code,
 // and the date indicates the version when the dependency versions are updated.
-val commonGradleDependenciesVersion = "0.8.0-20241201-SNAPSHOT"
+val commonGradleDependenciesVersion = "0.8.0-20241201-kotlin-2.1.0-SNAPSHOT"
 
 // This is the source dependency version. There is another build source dependency in "buildSrc/build.gradle.kts".
 val pluginProjectSourceDependentStableCommonGradleDependenciesVersion = "0.8.0-20241016".apply {
