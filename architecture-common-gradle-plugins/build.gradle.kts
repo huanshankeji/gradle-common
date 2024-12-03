@@ -23,20 +23,6 @@ gradlePlugin {
         fun scriptConventionsPlugin(idSuffix: String, displayName: String, description: String = displayName) =
             scriptPlugin(`package`, idSuffix, displayName, description)
 
-        // TODO consider removing these too
-        scriptConventionsPlugin(
-            "kotlin-multiplatform-app-conventions",
-            "Kotlin Multiplatform app conventions"
-        )
-        scriptConventionsPlugin(
-            "kotlin-multiplatform-js-browser-app-conventions",
-            "Kotlin Multiplatform app conventions with the JS browser target"
-        )
-        scriptConventionsPlugin(
-            "kotlin-multiplatform-app-conventions-with-conventional-targets",
-            "Kotlin Multiplatform app conventions with the conventional targets JVM, JS (browser), iOS (`iosX64`, `iosArm64`, and `iosSimulatorArm64`), and Wasm JS"
-        )
-
         scriptConventionsPlugin(
             "default-web-frontend-conventions",
             "Default web frontend conventions for our projects with Compose for Web and kotlinx.html HTML generation"
