@@ -1,5 +1,12 @@
 # "Gradle plugins" change log
 
+## v0.8.0 / 2024-12-03
+
+* bump Kotlin to 2.1.0, Gradle to v8.1.11, kotlinx-benchmark to v0.4.13, and Compose Multiplatform to v1.7.1
+* remove the `*-app-conventions` plugins that are not necessary and buggy
+
+  The JVM dependency configuration line `implementation(platform(kotlin("bom")))` without a Kotlin version has introduced "Could not parse POM" build error in projects consuming the `kotlin-jvm-*-app-conventions` plugins
+
 ## v0.7.0 / 2024-11-20
 
 * do not configure the signing DSL at all when the version is a snapshot in the `com.huanshankeji.sonatype-ossrh-publish` plugin, so `publishToMavenLocal` becomes significantly faster
