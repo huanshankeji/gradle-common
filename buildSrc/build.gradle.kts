@@ -27,7 +27,7 @@ dependencies {
     // for `KotlinCompilationTask` and the version is compatible with Compose 1.6.11
     // With Kotlin 2.0.20, a "Could not parse POM" build error occurs in the JVM projects of some dependent projects.
     implementation(kotlin("gradle-plugin", "2.1.0"))
-    implementation("org.gradle.kotlin:gradle-kotlin-dsl-plugins:5.1.1") // This version has to be used for Gradle 8.11.2.
+    implementation("org.gradle.kotlin:gradle-kotlin-dsl-plugins:5.1.1") // This version has to be used for Gradle 8.11.1.
 
     implementation("com.gradle.publish:plugin-publish-plugin:1.3.0")
 
