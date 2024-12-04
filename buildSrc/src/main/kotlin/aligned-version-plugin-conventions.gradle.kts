@@ -7,7 +7,7 @@ plugins {
 }
 
 dependencies {
-    implementation("com.huanshankeji:common-gradle-dependencies:$pluginProjectSourceDependentStableCommonGradleDependenciesVersion")
+    implementation("com.huanshankeji:common-gradle-dependencies:$pluginProjectSourceDependencyStableCommonGradleDependenciesVersion")
 }
 
 tasks.named<KotlinCompilationTask<*>>("compileKotlin").configure {

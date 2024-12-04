@@ -5,7 +5,7 @@ plugins {
 dependencies {
     implementation(project(":kotlin-common-gradle-plugins"))
     implementation("org.jetbrains.kotlin:compose-compiler-gradle-plugin:${DependencyVersions.kotlin}")
-    // use the version in `buildSrc` so there is no need to frequently update the dependent bootstrapping `common-gradle-dependencies` version in "buildSrc"
+    // use the version in `buildSrc` so there is no need to frequently update the dependency bootstrapping `common-gradle-dependencies` version in "buildSrc"
     implementation("org.jetbrains.compose:compose-gradle-plugin:${DependencyVersions.composeMultiplatform}")
 
     //api(project(":common-gradle-dependencies"))
