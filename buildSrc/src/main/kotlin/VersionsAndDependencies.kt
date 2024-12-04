@@ -20,7 +20,6 @@ val alignedPluginVersion = "0.9.0-SNAPSHOT"
 val commonGradleDependenciesVersion = "0.9.0-20241203-SNAPSHOT"
 
 // This is the source dependency version. There is another build source dependency in "buildSrc/build.gradle.kts".
-// TODO bump this when it's released
-val pluginProjectSourceDependentStableCommonGradleDependenciesVersion = "0.8.0-20241016".apply {
+val pluginProjectSourceDependentStableCommonGradleDependenciesVersion = "0.9.0-20241203".apply {
     require(!endsWith("SNAPSHOT")) // comment this out when debugging and testing snapshots
 }
