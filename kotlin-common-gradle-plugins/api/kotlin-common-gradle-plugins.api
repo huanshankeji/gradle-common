@@ -271,7 +271,7 @@ public final class com/huanshankeji/SourceFile {
 public final class com/huanshankeji/SourceSetConfig {
 	public static final field Companion Lcom/huanshankeji/SourceSetConfig$Companion;
 	public fun <init> (Lcom/huanshankeji/SourceSetConfig$Type;Ljava/lang/String;Ljava/util/List;)V
-	public final fun getDependents ()Ljava/util/List;
+	public final fun getDependencies ()Ljava/util/List;
 	public final fun getName ()Ljava/lang/String;
 	public final fun getType ()Lcom/huanshankeji/SourceSetConfig$Type;
 }
