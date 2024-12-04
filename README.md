@@ -49,6 +49,12 @@ configurations.all {
 }
 ```
 
+## Common Gradle dependencies
+
+The `common-gradle-dependenicies` module includes dependencies and their versions that we use in our projects.
+
+Please note that this project often has breaking/incompatible changes, and the Gradle plugin modules depend on a certain version of `common-gradle-dependenicies` as its library dependency. If you use both the Gradle plugins and `common-gradle-dependenicies` in your project and encounter `java.lang.NoClassDefFoundError` when loading your Gradle build, please consider updating them to matching versions.
+
 ## Developer notices
 
 1. IntelliJ IDEA doesn't work well with applying plugins to script plugins in project sources. If a script plugin's code does not resolve, try restarting IntelliJ IDEA.
