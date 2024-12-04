@@ -1,0 +1,158 @@
+public final class com/huanshankeji/DefaultMaterialWebFrontendConventionsPlugin : org/gradle/api/Plugin {
+	public fun <init> ()V
+	public synthetic fun apply (Ljava/lang/Object;)V
+	public fun apply (Lorg/gradle/api/Project;)V
+}
+
+public final class com/huanshankeji/DefaultWebFrontendConventionsPlugin : org/gradle/api/Plugin {
+	public fun <init> ()V
+	public synthetic fun apply (Ljava/lang/Object;)V
+	public fun apply (Lorg/gradle/api/Project;)V
+}
+
+public final class com/huanshankeji/Default_material_web_frontend_conventions_gradle : org/gradle/kotlin/dsl/precompile/v1/PrecompiledProjectScript {
+	public fun <init> (Lorg/gradle/api/Project;Lorg/gradle/api/Project;)V
+	public static final fun main ([Ljava/lang/String;)V
+}
+
+public final class com/huanshankeji/Default_web_frontend_conventions_gradle : org/gradle/kotlin/dsl/precompile/v1/PrecompiledProjectScript {
+	public fun <init> (Lorg/gradle/api/Project;Lorg/gradle/api/Project;)V
+	public final fun getExtension ()Lcom/huanshankeji/Default_web_frontend_conventions_gradle$Extension;
+	public final fun getGeneratedResourcesFile ()Ljava/io/File;
+	public static final fun main ([Ljava/lang/String;)V
+}
+
+public abstract interface class com/huanshankeji/Default_web_frontend_conventions_gradle$Extension {
+	public abstract fun getHtmlGenerationProjectPath ()Lorg/gradle/api/provider/Property;
+}
+
+public final class com/huanshankeji/GenerateKotlinJsBrowserWebrootForVertxWebPlugin : org/gradle/api/Plugin {
+	public fun <init> ()V
+	public synthetic fun apply (Ljava/lang/Object;)V
+	public fun apply (Lorg/gradle/api/Project;)V
+}
+
+public abstract interface class com/huanshankeji/GenerateKotlinJsBrowserWebrootForVertxWebPlugin$Extension {
+	public abstract fun getIncludes ()Lorg/gradle/api/provider/ListProperty;
+	public abstract fun getWebFrontendProjectPath ()Lorg/gradle/api/provider/Property;
+	public abstract fun getWebRoot ()Lorg/gradle/api/provider/Property;
+}
+
+public final class com/huanshankeji/GenerateKotlinJsBrowserWebrootForVertxWebPlugin$apply$1$1$inlined$sam$i$org_gradle_api_Action$0 : org/gradle/api/Action {
+	public fun <init> (Lkotlin/jvm/functions/Function1;)V
+	public final synthetic fun execute (Ljava/lang/Object;)V
+}
+
+public final class com/huanshankeji/OptInsKt {
+	public static final fun defaultOptIns (Lorg/jetbrains/kotlin/gradle/plugin/LanguageSettingsBuilder;)V
+}
+
+public final class com/huanshankeji/jvm/native/osandarch/CpuArchitecture : java/lang/Enum {
+	public static final field Aarch64 Lcom/huanshankeji/jvm/native/osandarch/CpuArchitecture;
+	public static final field X8664 Lcom/huanshankeji/jvm/native/osandarch/CpuArchitecture;
+	public final fun getIdentifier ()Ljava/lang/String;
+	public static fun valueOf (Ljava/lang/String;)Lcom/huanshankeji/jvm/native/osandarch/CpuArchitecture;
+	public static fun values ()[Lcom/huanshankeji/jvm/native/osandarch/CpuArchitecture;
+}
+
+public final class com/huanshankeji/jvm/native/osandarch/DefaultSupported {
+	public static final field INSTANCE Lcom/huanshankeji/jvm/native/osandarch/DefaultSupported;
+}
+
+public final class com/huanshankeji/jvm/native/osandarch/DefaultSupported$ArchsByOs {
+	public static final field INSTANCE Lcom/huanshankeji/jvm/native/osandarch/DefaultSupported$ArchsByOs;
+	public final fun getLinux ()Ljava/util/List;
+	public final fun getMacos ()Ljava/util/List;
+	public final fun getWindows ()Ljava/util/List;
+}
+
+public final class com/huanshankeji/jvm/native/osandarch/DefaultSupported$OsAndArchs {
+	public static final field INSTANCE Lcom/huanshankeji/jvm/native/osandarch/DefaultSupported$OsAndArchs;
+	public final fun getAll ()Ljava/util/List;
+	public final fun getAllFeatureVariantNames ()Ljava/util/List;
+	public final fun getFutureAll ()Ljava/util/List;
+	public final fun getLinux ()Ljava/util/List;
+	public final fun getMacos ()Ljava/util/List;
+	public final fun getWindows ()Ljava/util/List;
+}
+
+public final class com/huanshankeji/jvm/native/osandarch/FeatureVariantDependencyConfig {
+	public fun <init> (Lcom/huanshankeji/jvm/native/osandarch/OsAndArch;Ljava/lang/String;)V
+	public final fun component1 ()Lcom/huanshankeji/jvm/native/osandarch/OsAndArch;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Lcom/huanshankeji/jvm/native/osandarch/OsAndArch;Ljava/lang/String;)Lcom/huanshankeji/jvm/native/osandarch/FeatureVariantDependencyConfig;
+	public static synthetic fun copy$default (Lcom/huanshankeji/jvm/native/osandarch/FeatureVariantDependencyConfig;Lcom/huanshankeji/jvm/native/osandarch/OsAndArch;Ljava/lang/String;ILjava/lang/Object;)Lcom/huanshankeji/jvm/native/osandarch/FeatureVariantDependencyConfig;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getIdentifier ()Ljava/lang/String;
+	public final fun getOsAndArch ()Lcom/huanshankeji/jvm/native/osandarch/OsAndArch;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/huanshankeji/jvm/native/osandarch/FeatureVariantsAndDependenciesKt {
+	public static final fun addDependenciesToFeatureVariantsWithIdentifiersInClassifiers (Lorg/gradle/kotlin/dsl/DependencyHandlerScope;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public static final fun addDependenciesToFeatureVariantsWithIdentifiersInClassifiers (Lorg/gradle/kotlin/dsl/DependencyHandlerScope;Ljava/util/List;Lkotlin/jvm/functions/Function1;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public static synthetic fun addDependenciesToFeatureVariantsWithIdentifiersInClassifiers$default (Lorg/gradle/kotlin/dsl/DependencyHandlerScope;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)V
+	public static synthetic fun addDependenciesToFeatureVariantsWithIdentifiersInClassifiers$default (Lorg/gradle/kotlin/dsl/DependencyHandlerScope;Ljava/util/List;Lkotlin/jvm/functions/Function1;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)V
+	public static final fun addDependenciesToFeatureVariantsWithIdentifiersInNameSuffixes (Lorg/gradle/kotlin/dsl/DependencyHandlerScope;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public static final fun addDependenciesToFeatureVariantsWithIdentifiersInNameSuffixes (Lorg/gradle/kotlin/dsl/DependencyHandlerScope;Ljava/util/List;Lkotlin/jvm/functions/Function1;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public static synthetic fun addDependenciesToFeatureVariantsWithIdentifiersInNameSuffixes$default (Lorg/gradle/kotlin/dsl/DependencyHandlerScope;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)V
+	public static synthetic fun addDependenciesToFeatureVariantsWithIdentifiersInNameSuffixes$default (Lorg/gradle/kotlin/dsl/DependencyHandlerScope;Ljava/util/List;Lkotlin/jvm/functions/Function1;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)V
+	public static final fun addDependencyToFeatureVariants (Lorg/gradle/kotlin/dsl/DependencyHandlerScope;Ljava/util/List;Ljava/lang/String;Ljava/lang/Object;)V
+	public static final fun addDependencyWithFeatureVariantCapabilityDependenciesToOneConfiguration (Lorg/gradle/kotlin/dsl/DependencyHandlerScope;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public static synthetic fun addDependencyWithFeatureVariantCapabilityDependenciesToOneConfiguration$default (Lorg/gradle/kotlin/dsl/DependencyHandlerScope;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)V
+	public static final fun addDependencyWithFeatureVariantTransitiveCapabilityDependencies (Lorg/gradle/kotlin/dsl/DependencyHandlerScope;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public static synthetic fun addDependencyWithFeatureVariantTransitiveCapabilityDependencies$default (Lorg/gradle/kotlin/dsl/DependencyHandlerScope;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)V
+	public static final fun getCapabilityNotation (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+	public static final fun getFeatureVariantName (Lcom/huanshankeji/jvm/native/osandarch/OsAndArch;)Ljava/lang/String;
+	public static final fun registerDefaultSupportedFeatureVariants (Lorg/gradle/api/plugins/JavaPluginExtension;Lcom/huanshankeji/SourceSetType;)V
+}
+
+public final class com/huanshankeji/jvm/native/osandarch/Os : java/lang/Enum {
+	public static final field Linux Lcom/huanshankeji/jvm/native/osandarch/Os;
+	public static final field Macos Lcom/huanshankeji/jvm/native/osandarch/Os;
+	public static final field Windows Lcom/huanshankeji/jvm/native/osandarch/Os;
+	public final fun getIdentifier ()Ljava/lang/String;
+	public static fun valueOf (Ljava/lang/String;)Lcom/huanshankeji/jvm/native/osandarch/Os;
+	public static fun values ()[Lcom/huanshankeji/jvm/native/osandarch/Os;
+}
+
+public final class com/huanshankeji/jvm/native/osandarch/OsAndArch {
+	public fun <init> (Lcom/huanshankeji/jvm/native/osandarch/Os;Lcom/huanshankeji/jvm/native/osandarch/CpuArchitecture;)V
+	public final fun component1 ()Lcom/huanshankeji/jvm/native/osandarch/Os;
+	public final fun component2 ()Lcom/huanshankeji/jvm/native/osandarch/CpuArchitecture;
+	public final fun copy (Lcom/huanshankeji/jvm/native/osandarch/Os;Lcom/huanshankeji/jvm/native/osandarch/CpuArchitecture;)Lcom/huanshankeji/jvm/native/osandarch/OsAndArch;
+	public static synthetic fun copy$default (Lcom/huanshankeji/jvm/native/osandarch/OsAndArch;Lcom/huanshankeji/jvm/native/osandarch/Os;Lcom/huanshankeji/jvm/native/osandarch/CpuArchitecture;ILjava/lang/Object;)Lcom/huanshankeji/jvm/native/osandarch/OsAndArch;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getArch ()Lcom/huanshankeji/jvm/native/osandarch/CpuArchitecture;
+	public final fun getCamelCaseIdentifier ()Ljava/lang/String;
+	public final fun getKebabCaseIdentifier ()Ljava/lang/String;
+	public final fun getOs ()Lcom/huanshankeji/jvm/native/osandarch/Os;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/huanshankeji/jvm/native/osandarch/OsAndArchKt {
+	public static final fun getCurrentOsAndArch ()Lcom/huanshankeji/jvm/native/osandarch/OsAndArch;
+}
+
+public final class com/huanshankeji/jvm/native/osandarch/RegisterDefaultSupportedFeatureVariantsPlugin : org/gradle/api/Plugin {
+	public fun <init> ()V
+	public synthetic fun apply (Ljava/lang/Object;)V
+	public fun apply (Lorg/gradle/api/Project;)V
+}
+
+public final class com/huanshankeji/jvm/native/osandarch/Register_default_supported_feature_variants_gradle : org/gradle/kotlin/dsl/precompile/v1/PrecompiledProjectScript {
+	public fun <init> (Lorg/gradle/api/Project;Lorg/gradle/api/Project;)V
+	public final fun getExtension ()Lcom/huanshankeji/jvm/native/osandarch/Register_default_supported_feature_variants_gradle$Extension;
+	public static final fun main ([Ljava/lang/String;)V
+}
+
+public abstract interface class com/huanshankeji/jvm/native/osandarch/Register_default_supported_feature_variants_gradle$Extension {
+	public abstract fun getSourceSetType ()Lorg/gradle/api/provider/Property;
+}
+
+public final class com/huanshankeji/spark/SparkKt {
+	public static final fun getSparkJava17CompatibleJvmArgs ()Ljava/util/List;
+}
+

@@ -7,7 +7,7 @@ Huanshankeji's Gradle common code in Kotlin, mainly for common projects in Kotli
 
 ## Examples
 
-There are currently no docs or tutorials on how to use the plugins. See the build scripts in [kotlin-common](https://github.com/huanshankeji/kotlin-common) for examples.
+There are currently no docs or tutorials on how to use the plugins. [Check out the API documentation here.](https://huanshankeji.github.io/gradle-common/.) See the build scripts in [kotlin-common](https://github.com/huanshankeji/kotlin-common) for examples.
 
 ## Gradle version and Kotlin version
 
@@ -49,7 +49,14 @@ configurations.all {
 }
 ```
 
+## Common Gradle dependencies
+
+The `common-gradle-dependenicies` module includes dependencies and their versions that we use in our projects.
+
+Please note that this project often has breaking/incompatible changes, and the Gradle plugin modules depend on a certain version of `common-gradle-dependenicies` as its library dependency. If you use both the Gradle plugins and `common-gradle-dependenicies` in your project and encounter `java.lang.NoClassDefFoundError` when loading your Gradle build, please consider updating them to matching versions.
+
 ## Developer notices
 
 1. IntelliJ IDEA doesn't work well with applying plugins to script plugins in project sources. If a script plugin's code does not resolve, try restarting IntelliJ IDEA.
 1. `./gradlew build` (and tasks depending on it) somehow has to run twice to work. I haven't identified the cause yet.
+1. IntelliJ IDEA 2024.3 doesn't load this project, which is reported at [IDEA-363846](https://youtrack.jetbrains.com/issue/IDEA-363846/Loading-a-Gradle-project-of-Gradle-plugins-changes-a-final-Kotlin-freeCompilerArgs-since-IntelliJ-IDEA-2024.3).

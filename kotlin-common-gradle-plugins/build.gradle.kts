@@ -7,6 +7,7 @@ dependencies {
 
     implementation("org.jetbrains.kotlinx:kotlinx-benchmark-plugin:${DependencyVersions.kotlinxBenchmark}")
     implementation(kotlin("allopen", DependencyVersions.kotlin))
+    implementation("org.jetbrains.dokka:dokka-gradle-plugin:${DependencyVersions.dokka}")
 
     testImplementation(kotlin("test"))
 }
@@ -95,5 +96,10 @@ gradlePlugin {
                 "Applies the kotlinx-benchmark and `allopen` plugins and adds the koltinx-benchmark dependencies."
             )
         }
+
+        scriptConventionsPlugin(
+            "dokka.dokka-convention",
+            "Dokka convention plugin"
+        )
     }
 }

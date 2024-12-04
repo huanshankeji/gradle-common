@@ -8,7 +8,7 @@ plugins {
 }
 
 repositories {
-    mavenLocal() // TODO comment out when not needed
+    //mavenLocal() // comment out when not needed
     gradlePluginPortal()
 }
 

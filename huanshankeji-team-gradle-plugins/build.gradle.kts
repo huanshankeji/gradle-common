@@ -24,5 +24,11 @@ gradlePlugin {
             "default-github-packages-maven-publish",
             "GitHub Packages Maven publish (to Huanshankeji team's repository) with default conventions"
         )
+
+        scriptConventionsPlugin(
+            "dokka.github-dokka-convention",
+            "Dokka convention plugin for projects on GitHub",
+            "Please apply this plugin after setting the project version."
+        )
     }
 }

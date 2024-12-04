@@ -138,7 +138,7 @@ class CommonDependencies(val versions: CommonVersions = CommonVersions()) {
     // TODO consider refactoring other inner classes to this architecture too
 
     class JetbrainsAndroidx(defaultVersions: CommonVersions.JetbrainsAndroidx) {
-        interface Subgroup : CommonDependencies.SubgroupWithNameInArtifact {
+        interface Subgroup : SubgroupWithNameInArtifact {
             override val groupPrefix: String get() = "org.jetbrains.androidx"
         }
 

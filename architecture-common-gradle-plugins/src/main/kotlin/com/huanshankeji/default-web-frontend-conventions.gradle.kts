@@ -1,7 +1,7 @@
 package com.huanshankeji
 
 plugins {
-    id("com.huanshankeji.kotlin-multiplatform-js-browser-app-conventions")
+    id("com.huanshankeji.kotlin-multiplatform-js-browser-conventions")
     kotlin("plugin.compose")
     id("org.jetbrains.compose")
 }
@@ -11,12 +11,6 @@ interface Extension {
 }
 
 val extension = extensions.create<Extension>("defaultWebFrontendConventions")
-
-repositories {
-    google()
-    mavenCentral()
-    maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
-}
 
 kotlin {
     js {

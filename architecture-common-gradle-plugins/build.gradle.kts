@@ -2,11 +2,6 @@ plugins {
     `aligned-version-plugin-conventions`
 }
 
-repositories {
-    mavenLocal()
-    maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
-}
-
 dependencies {
     implementation(project(":kotlin-common-gradle-plugins"))
     implementation("org.jetbrains.kotlin:compose-compiler-gradle-plugin:${DependencyVersions.kotlin}")
@@ -27,32 +22,6 @@ gradlePlugin {
         val `package` = group as String
         fun scriptConventionsPlugin(idSuffix: String, displayName: String, description: String = displayName) =
             scriptPlugin(`package`, idSuffix, displayName, description)
-
-        scriptConventionsPlugin(
-            "kotlin-jvm-common-app-conventions",
-            "Kotlin/JVM common app conventions"
-        )
-        scriptConventionsPlugin(
-            "kotlin-jvm-application-app-conventions",
-            "Kotlin/JVM application app conventions"
-        )
-        scriptConventionsPlugin(
-            "kotlin-jvm-library-app-conventions",
-            "Kotlin/JVM library app conventions"
-        )
-
-        scriptConventionsPlugin(
-            "kotlin-multiplatform-app-conventions",
-            "Kotlin Multiplatform app conventions"
-        )
-        scriptConventionsPlugin(
-            "kotlin-multiplatform-js-browser-app-conventions",
-            "Kotlin Multiplatform app conventions with the JS browser target"
-        )
-        scriptConventionsPlugin(
-            "kotlin-multiplatform-app-conventions-with-conventional-targets",
-            "Kotlin Multiplatform app conventions with the conventional targets JVM, JS (browser), iOS (`iosX64`, `iosArm64`, and `iosSimulatorArm64`), and Wasm JS"
-        )
 
         scriptConventionsPlugin(
             "default-web-frontend-conventions",
