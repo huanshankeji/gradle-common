@@ -1,6 +1,6 @@
 # "common-gradle-dependencies" change log
 
-## v0.9.0-20241203 / 2024-12-5
+## v0.9.0-20241203 / 2024-12-05
 
 * bump the dependency versions in `CommonVersions` to the latest as of Dec 3, 2024 (including pre-release versions except for Vert.x 5)
 * add a version for kotlinx-io
