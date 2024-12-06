@@ -5,9 +5,9 @@
 
 Huanshankeji's Gradle common code in Kotlin, mainly for common projects in Kotlin
 
-## Examples
+## Project status and guide
 
-There are currently no docs or tutorials on how to use the plugins. [Check out the API documentation here.](https://huanshankeji.github.io/gradle-common/.) See the build scripts in [kotlin-common](https://github.com/huanshankeji/kotlin-common) for examples.
+This library currently mainly serves our use, and the APIs are experimental and subject to change. There are currently no detailed docs or tutorials on how to use the plugins. [Check out the API documentation here.](https://huanshankeji.github.io/gradle-common/.) See the build scripts in [kotlin-common](https://github.com/huanshankeji/kotlin-common) for examples. Browse the plugins in [the `kotlin-common-gradle-plugins` module](kotlin-common-gradle-plugins) and [the `architecture-common-gradle-plugins` module](architecture-common-gradle-plugins) as references. Instead of adding this library to your build dependencies, you can also copy the plugins to your own projects and adapt them to your own needs.
 
 ## Gradle version and Kotlin version
 
