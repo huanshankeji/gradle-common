@@ -15,6 +15,7 @@ class CommonVersions(
     val kotlinxIo: String = "0.6.0",
     val exposed: String = "0.56.0",
     val ktor: String = "3.0.1",
+    val jetBrainsAndroidx: JetbrainsAndroidx = JetbrainsAndroidx(),
     val androidx: Androidx = Androidx(),
 
     val vertx: String = "4.5.11", // "5.0.0.CR2" is available but it's used here yet. See https://vertx.io/docs/guides/vertx-5-migration-guide/.
@@ -30,8 +31,6 @@ class CommonVersions(
         val lifecycle: String = "2.8.4",
         val navigation: String = "2.8.0-alpha10",
     )
-
-    val jetBrainsAndroidx = JetbrainsAndroidx()
 
     val composeMultiplatform get() = jetBrainsAndroidx.composeMultiplatform
 
