@@ -16,7 +16,7 @@ jobs:
     steps:
       - uses: huanshankeji/.github/actions/gradle-test-and-check@v0.1.0
         with:
-          jdk-versions: 8-temurin
+          jdk-versions: 17-temurin
 
   dependency-submission:
 
@@ -27,5 +27,5 @@ jobs:
     steps:
       - uses: huanshankeji/.github/actions/dependency-submission@v0.1.0
         with:
-          java-version: 8
+          java-version: 17
           distribution: temurin
