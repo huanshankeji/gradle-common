@@ -20,7 +20,7 @@ dependencies {
     implementation(kotlin("reflect"))
 }
 
-kotlin.jvmToolchain(8)
+kotlin.jvmToolchain(17)
 
 
 gradlePlugin {
