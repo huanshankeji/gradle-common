@@ -52,7 +52,6 @@ public final class com/huanshankeji/team/dokka/GithubDokkaConventionPlugin : org
 }
 
 public final class com/huanshankeji/team/dokka/Github_dokka_convention_gradle : org/gradle/kotlin/dsl/precompile/v1/PrecompiledProjectScript {
-	public final field $$result Lcom/huanshankeji/team/dokka/Github_dokka_convention_gradle$GithubDokkaConventionExtension;
 	public fun <init> (Lorg/gradle/api/Project;Lorg/gradle/api/Project;)V
 	public final fun get$$result ()Lcom/huanshankeji/team/dokka/Github_dokka_convention_gradle$GithubDokkaConventionExtension;
 	public static final fun main ([Ljava/lang/String;)V

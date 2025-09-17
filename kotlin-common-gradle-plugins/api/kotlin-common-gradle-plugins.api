@@ -283,6 +283,7 @@ public final class com/huanshankeji/SourceSetConfig$Companion {
 public final class com/huanshankeji/SourceSetConfig$Type : java/lang/Enum {
 	public static final field Existing Lcom/huanshankeji/SourceSetConfig$Type;
 	public static final field New Lcom/huanshankeji/SourceSetConfig$Type;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lcom/huanshankeji/SourceSetConfig$Type;
 	public static fun values ()[Lcom/huanshankeji/SourceSetConfig$Type;
 }
@@ -290,6 +291,7 @@ public final class com/huanshankeji/SourceSetConfig$Type : java/lang/Enum {
 public final class com/huanshankeji/SourceSetType : java/lang/Enum {
 	public static final field Main Lcom/huanshankeji/SourceSetType;
 	public static final field RegisterSeparate Lcom/huanshankeji/SourceSetType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lcom/huanshankeji/SourceSetType;
 	public static fun values ()[Lcom/huanshankeji/SourceSetType;
 }
