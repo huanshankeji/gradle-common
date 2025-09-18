@@ -69,11 +69,6 @@ public final class com/huanshankeji/GradleKotlinExtensionsKt {
 	public static final fun main (Lorg/gradle/api/tasks/SourceSetContainer;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/NamedDomainObjectProvider;
 }
 
-public final class com/huanshankeji/GradleKotlinExtensionsKt$inlined$sam$i$org_gradle_api_Action$0 : org/gradle/api/Action {
-	public fun <init> (Lkotlin/jvm/functions/Function1;)V
-	public final synthetic fun execute (Ljava/lang/Object;)V
-}
-
 public abstract interface annotation class com/huanshankeji/InternalApi : java/lang/annotation/Annotation {
 }
 
@@ -143,11 +138,6 @@ public final class com/huanshankeji/Kotlin_jvm_library_maven_publish_conventions
 	public static final fun main ([Ljava/lang/String;)V
 }
 
-public final class com/huanshankeji/Kotlin_jvm_library_maven_publish_conventions_gradle$3$1$inlined$sam$i$org_gradle_api_Action$0 : org/gradle/api/Action {
-	public fun <init> (Lkotlin/jvm/functions/Function1;)V
-	public final synthetic fun execute (Ljava/lang/Object;)V
-}
-
 public final class com/huanshankeji/Kotlin_jvm_library_sonatype_ossrh_publish_conventions_gradle : org/gradle/kotlin/dsl/precompile/v1/PrecompiledProjectScript {
 	public fun <init> (Lorg/gradle/api/Project;Lorg/gradle/api/Project;)V
 	public static final fun main ([Ljava/lang/String;)V
@@ -172,11 +162,6 @@ public final class com/huanshankeji/Kotlin_multiplatform_sonatype_ossrh_publish_
 	public fun <init> (Lorg/gradle/api/Project;Lorg/gradle/api/Project;)V
 	public final fun getJavadocJar ()Lorg/gradle/api/tasks/TaskProvider;
 	public static final fun main ([Ljava/lang/String;)V
-}
-
-public final class com/huanshankeji/Kotlin_multiplatform_sonatype_ossrh_publish_conventions_gradle$2$inlined$sam$i$org_gradle_api_Action$0 : org/gradle/api/Action {
-	public fun <init> (Lkotlin/jvm/functions/Function1;)V
-	public final synthetic fun execute (Ljava/lang/Object;)V
 }
 
 public final class com/huanshankeji/MavenPomKt {
@@ -212,11 +197,6 @@ public final class com/huanshankeji/MavenPublishConventionsPlugin$ArtifactIdConf
 public abstract class com/huanshankeji/MavenPublishConventionsPlugin$Extension {
 	public fun <init> ()V
 	public abstract fun getArtifactIdConfig ()Lorg/gradle/api/provider/Property;
-}
-
-public final class com/huanshankeji/MavenPublishConventionsPlugin$apply$1$1$inlined$sam$i$org_gradle_api_Action$0 : org/gradle/api/Action {
-	public fun <init> (Lkotlin/jvm/functions/Function1;)V
-	public final synthetic fun execute (Ljava/lang/Object;)V
 }
 
 public final class com/huanshankeji/NamingConventionsKt {
