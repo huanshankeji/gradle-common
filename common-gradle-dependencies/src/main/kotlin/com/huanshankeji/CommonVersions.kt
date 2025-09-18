@@ -18,10 +18,10 @@ class CommonVersions(
     val jetBrainsAndroidx: JetbrainsAndroidx = JetbrainsAndroidx(),
     val androidx: Androidx = Androidx(),
 
-    val vertx: String = "5.0.4", // "5.0.0.CR2" is available but it's used here yet. See https://vertx.io/docs/guides/vertx-5-migration-guide/.
+    val vertx: String = "5.0.4", // "5.0.0.CR2" is available but it's used here yet. See https://vertx.io/docs/guides/vertx-5-migration-guide/. // TODO remove this comment if this version works
     val arrow: String = "2.1.2",
     val orgJunit: String = "5.13.4", // JUnit 5 actually
-    val kotest: String = "6.0.3", // v6.0.0.M1 is available already
+    val kotest: String = "6.0.3", // v6.0.0.M1 is available already // TODO remove this comment if this version works
     val postgreSql: String = "42.7.7",
     val slf4j: String = "1.7.36", // TODO: consider replacing with kotlin-logging (https://github.com/oshai/kotlin-logging)
     val testContainers: String = "1.21.3"
