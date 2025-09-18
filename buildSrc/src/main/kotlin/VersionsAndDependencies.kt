@@ -6,18 +6,18 @@ val commonGradleClasspathDependencies = CommonGradleClasspathDependencies(common
 
 
 object DependencyVersions {
-    val kotlin = "2.1.0" // compatible with the compose version below
-    val composeMultiplatform = "1.7.1"
-    val kotlinxBenchmark = "0.4.13"
-    val dokka = "2.0.0"
-    val binaryCompatibilityValidator = "0.16.3"
+    val kotlin = "2.2.20" // compatible with the compose version below
+    val composeMultiplatform = "1.9.0"
+    val kotlinxBenchmark = "0.4.14"
+    val dokka = "2.1.0-Beta"
+    val binaryCompatibilityValidator = "0.18.1"
 }
 
 val alignedPluginVersion = "0.10.0-SNAPSHOT"
 
 // "x.y.z" indicates the version of the way of organizing the code,
 // and the date indicates the version when the dependency versions are updated.
-val commonGradleDependenciesVersion = "0.10.0-20241203-SNAPSHOT"
+val commonGradleDependenciesVersion = "0.10.0-20250918-SNAPSHOT"
 
 // This is the source dependency version. There is another build source dependency in "buildSrc/build.gradle.kts".
 val pluginProjectSourceDependencyStableCommonGradleDependenciesVersion = "0.10.0-20241203-SNAPSHOT".apply {
