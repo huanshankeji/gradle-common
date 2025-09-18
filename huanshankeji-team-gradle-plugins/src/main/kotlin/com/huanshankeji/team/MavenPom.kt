@@ -18,7 +18,7 @@ fun MavenPublication.pomForTeamDefaultOpenSource(
         nameArg, descriptionArg, gitProjectPageUrl, gitUrl, scmConnection, developersBlock
     )
 
-@Deprecated("The name has been updated.", ReplaceWith("this.`Yongshun Ye`"))
+@Deprecated("The name has been updated.", ReplaceWith("this.ShreckYe"))
 fun MavenPomDeveloperSpec.`Shreck Ye`() =
     developer {
         id.set("ShreckYe")
@@ -26,7 +26,7 @@ fun MavenPomDeveloperSpec.`Shreck Ye`() =
         email.set("ShreckYe@gmail.com")
     }
 
-fun MavenPomDeveloperSpec.`Yongshun Ye`() =
+fun MavenPomDeveloperSpec.ShreckYe() =
     developer {
         id.set("ShreckYe")
         name.set("Yongshun Ye")
