@@ -18,7 +18,7 @@ fun MavenPublication.pomForTeamDefaultOpenSource(
         nameArg, descriptionArg, gitProjectPageUrl, gitUrl, scmConnection, developersBlock
     )
 
-@Deprecated("The name has been updated.", ReplaceWith("this.ShreckYe"))
+@Deprecated("The name has been updated.", ReplaceWith("this.ShreckYe()"))
 fun MavenPomDeveloperSpec.`Shreck Ye`() =
     developer {
         id.set("ShreckYe")
