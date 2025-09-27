@@ -8,7 +8,7 @@
 - **Project Type:** Gradle plugin library with multiple modules
 - **Languages:** Kotlin (primary), Gradle Kotlin DSL
 - **Target Runtime:** JVM (JDK 8+, tested with JDK 8 and 11)
-- **Framework:** Gradle 8.11.1, Kotlin 2.1.0
+- **Framework:** Gradle 9.0.0, Kotlin 2.2.20
 - **Size:** Medium-sized multi-module project (~20 plugin modules)
 - **APIs:** Experimental and subject to change
 
@@ -25,7 +25,7 @@
 #### Bootstrap and Dependencies
 ```bash
 # No special bootstrap needed - Gradle wrapper handles dependencies
-./gradlew --version  # Verify Gradle 8.11.1 is used
+./gradlew --version  # Verify Gradle 9.0.0 is used
 ```
 
 #### Build
@@ -72,6 +72,10 @@
 
 **Memory Requirements:**
 - JVM args set to `-Xmx2G` in `gradle.properties` for building architecture-common-gradle-plugins
+
+**Bootstrap Dependencies:**
+- If the build fails with "Could not find com.huanshankeji:common-gradle-dependencies" error, run `./gradlew :common-gradle-dependencies:publishToMavenLocal` first
+- This typically happens after merging changes that update dependency versions
 
 **Note:** The README mentions "./gradlew build needs to run twice to work" but this was not observed during testing.
 
@@ -139,14 +143,14 @@ The repository uses GitHub Actions CI that:
 ### Dependencies and Compatibility
 
 **External Dependencies:**
-- Kotlin Gradle Plugin 2.1.0
-- Compose Multiplatform 1.7.1
-- Dokka 2.0.0
+- Kotlin Gradle Plugin 2.2.20
+- Compose Multiplatform 1.10.0-alpha01
+- Dokka 2.1.0-Beta
 - Gradle Plugin Publish Plugin 1.3.0
-- Kotlin Binary Compatibility Validator 0.16.3
+- Kotlin Binary Compatibility Validator 0.18.1
 
 **Version Compatibility Notes:**
-- Gradle 8.11.1 required (handled by wrapper)
+- Gradle 9.0.0 required (handled by wrapper)
 - Kotlin version conflicts may occur - exclude transitive Kotlin dependencies if needed
 - Compose Multiplatform versions constrain Kotlin version compatibility
 
