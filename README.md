@@ -59,4 +59,3 @@ Please note that this project often has breaking/incompatible changes, and the G
 
 1. IntelliJ IDEA doesn't work well with applying plugins to script plugins in project sources. If a script plugin's code does not resolve, try restarting IntelliJ IDEA.
 1. `./gradlew build` (and tasks depending on it) somehow has to run twice to work. I haven't identified the cause yet.
-1. IntelliJ IDEA 2024.3 doesn't load this project, which is reported at [IDEA-363846](https://youtrack.jetbrains.com/issue/IDEA-363846/Loading-a-Gradle-project-of-Gradle-plugins-changes-a-final-Kotlin-freeCompilerArgs-since-IntelliJ-IDEA-2024.3).
