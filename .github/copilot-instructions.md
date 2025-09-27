@@ -7,7 +7,7 @@
 **High-level Repository Information:**
 - **Project Type:** Gradle plugin library with multiple modules
 - **Languages:** Kotlin (primary), Gradle Kotlin DSL
-- **Target Runtime:** JVM (JDK 8+, tested with JDK 8 and 11)
+- **Target Runtime:** JVM (JDK 17+, tested with JDK 17)
 - **Framework:** Gradle 9.0.0, Kotlin 2.2.20
 - **Size:** Medium-sized multi-module project (~20 plugin modules)
 - **APIs:** Experimental and subject to change
@@ -15,7 +15,7 @@
 ## Build Instructions
 
 ### Prerequisites
-- JDK 8 or higher (JDK 8 is used in CI, JDK 11 is available)
+- JDK 17 or higher (JDK 17 is used in CI)
 - Gradle wrapper handles Gradle version automatically
 
 ### Essential Build Commands
@@ -52,7 +52,7 @@
 
 #### Documentation Generation
 ```bash
-./gradlew :dokkaGeneratePublicationHtml  # Generate API docs with Dokka
+./gradlew dokkaGeneratePublicationHtml  # Generate API docs with Dokka
 ./gradlew dokkaGenerate                  # Alternative Dokka generation command
 ```
 
@@ -67,7 +67,6 @@
 
 **Warning Messages (Safe to Ignore):**
 - "Unsupported Kotlin plugin version" warnings related to Gradle Kotlin DSL compatibility
-- Dokka V2 migration messages
 - Deprecation warnings about `buildDir` usage
 
 **Memory Requirements:**
@@ -106,7 +105,7 @@ gradle-common/
 - `buildSrc/build.gradle.kts` - Build dependencies and Kotlin version
 
 **CI/CD:**
-- `.github/workflows/kotlin-jvm-ci.yml` - Main CI pipeline (Ubuntu, JDK 8)
+- `.github/workflows/kotlin-jvm-ci.yml` - Main CI pipeline (Ubuntu, JDK 17)
 - `.github/workflows/dokka-gh-pages.yml` - Documentation deployment
 - `.github/workflows/copilot-setup-steps.yml` - Setup automation
 
@@ -128,7 +127,7 @@ gradle-common/
 ### Validation Pipeline
 
 The repository uses GitHub Actions CI that:
-1. Runs on JDK 8 with Temurin distribution
+1. Runs on JDK 17 with Temurin distribution
 2. Executes `gradle-test-and-check` action
 3. Performs dependency submission for security scanning
 4. Generates API documentation with Dokka
@@ -146,18 +145,18 @@ The repository uses GitHub Actions CI that:
 - Kotlin Gradle Plugin 2.2.20
 - Compose Multiplatform 1.10.0-alpha01
 - Dokka 2.1.0-Beta
-- Gradle Plugin Publish Plugin 1.3.0
+- Gradle Plugin Publish Plugin 2.0.0
 - Kotlin Binary Compatibility Validator 0.18.1
 
 **Version Compatibility Notes:**
 - Gradle 9.0.0 required (handled by wrapper)
-- Kotlin version conflicts may occur - exclude transitive Kotlin dependencies if needed
+- "Unsupported Kotlin plugin version" warnings are normal when the Kotlin Gradle plugin version is newer than the version bundled in Gradle
 - Compose Multiplatform versions constrain Kotlin version compatibility
 
 ### Development Guidelines
 
 **IDE Setup (IntelliJ IDEA):**
-- Set Project SDK to JDK 8 or higher
+- Set Project SDK to JDK 17 or higher
 - Set Gradle JVM to "Project SDK"
 - Note: IntelliJ IDEA 2024.3 has loading issues (reported as IDEA-363846)
 
