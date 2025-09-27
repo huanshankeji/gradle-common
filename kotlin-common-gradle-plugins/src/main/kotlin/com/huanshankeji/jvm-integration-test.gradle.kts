@@ -20,7 +20,7 @@ val intTestImplementation by configurations.getting {
 
 configurations["intTestRuntimeOnly"].extendsFrom(configurations.runtimeOnly.get())
 
-val integrationTest = task<Test>("integrationTest") {
+val integrationTest = tasks.register<Test>("integrationTest") {
     description = "Runs integration tests."
     group = "verification"
 
