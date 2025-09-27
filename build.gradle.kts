@@ -8,7 +8,7 @@ plugins {
 }
 
 evaluationDependsOnChildren()
-task("publishPluginProjectPlugins") {
+tasks.register("publishPluginProjectPlugins") {
     group = "plugin portal"
 
     val pluginProjects = subprojects.filter { it.name.endsWith("plugins") }
