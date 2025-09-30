@@ -12,7 +12,8 @@ public final class com/huanshankeji/FeatureVariantsKt {
 	public static final fun isValidFeatureVariantName (Ljava/lang/String;)Z
 	public static final fun registerFeatureVariantWithNewSourceSet (Lorg/gradle/api/plugins/JavaPluginExtension;Ljava/lang/String;Ljava/lang/String;)V
 	public static synthetic fun registerFeatureVariantWithNewSourceSet$default (Lorg/gradle/api/plugins/JavaPluginExtension;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)V
-	public static final fun registerFeatureVariantWithSourceSet (Lorg/gradle/api/plugins/JavaPluginExtension;Ljava/lang/String;Lorg/gradle/api/tasks/SourceSet;)V
+	public static final fun registerFeatureVariantWithSourceSet (Lorg/gradle/api/plugins/JavaPluginExtension;Ljava/lang/String;Lorg/gradle/api/tasks/SourceSet;Z)V
+	public static synthetic fun registerFeatureVariantWithSourceSet$default (Lorg/gradle/api/plugins/JavaPluginExtension;Ljava/lang/String;Lorg/gradle/api/tasks/SourceSet;ZILjava/lang/Object;)V
 }
 
 public final class com/huanshankeji/GenerateKotlinSourcesKt {

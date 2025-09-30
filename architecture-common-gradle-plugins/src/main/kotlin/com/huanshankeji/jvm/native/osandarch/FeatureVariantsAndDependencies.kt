@@ -15,8 +15,11 @@ fun JavaPluginExtension.registerDefaultSupportedFeatureVariants(sourceSetType: S
     when (sourceSetType) {
         Main -> {
             val mainSourceSet = sourceSets["main"]
-            for (osAndArch in DefaultSupported.OsAndArchs.all)
-                registerFeatureVariantWithSourceSet(osAndArch.featureVariantName, mainSourceSet)
+            for ((index, osAndArch) in DefaultSupported.OsAndArchs.all.withIndex()) {
+                // Only add javadoc and sources jars for the first feature variant to avoid creating duplicate configurations
+                val withJavadocAndSourcesJars = index == 0
+                registerFeatureVariantWithSourceSet(osAndArch.featureVariantName, mainSourceSet, withJavadocAndSourcesJars)
+            }
         }
 
         RegisterSeparate ->

@@ -19,11 +19,13 @@ fun JavaPluginExtension.registerFeatureVariantWithNewSourceSet(
 }
 
 fun JavaPluginExtension.registerFeatureVariantWithSourceSet(
-    featureVariantName: String, sourceSet: SourceSet
+    featureVariantName: String, sourceSet: SourceSet, withJavadocAndSourcesJars: Boolean = true
 ) = registerFeature(featureVariantName) {
     usingSourceSet(sourceSet)
-    withJavadocJar()
-    withSourcesJar()
+    if (withJavadocAndSourcesJars) {
+        withJavadocJar()
+        withSourcesJar()
+    }
 }
 
 
