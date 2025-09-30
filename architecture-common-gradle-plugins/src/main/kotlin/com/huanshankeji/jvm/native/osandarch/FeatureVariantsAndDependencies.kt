@@ -65,15 +65,11 @@ fun DependencyHandlerScope.addDependenciesToFeatureVariantsWithIdentifiersInName
     targetConfigurationType: String,
     group: String, namePrefix: String, version: String? = null
 ) {
-    for ((osAndArch, dependencyIdentifier) in osAndArchs) {
-        val configuration = osAndArch.featureVariantName camelCaseConcat targetConfigurationType
-        val dependencyNotation = if (version != null) {
-            "$group:$namePrefix-$dependencyIdentifier:$version"
-        } else {
-            "$group:$namePrefix-$dependencyIdentifier"
-        }
-        add(configuration, dependencyNotation)
-    }
+    for ((osAndArch, dependencyIdentifier) in osAndArchs)
+        add(
+            osAndArch.featureVariantName camelCaseConcat targetConfigurationType,
+            "$group:$namePrefix-$dependencyIdentifier".let { if (version != null) "$it:$version" else it })
+
 }
 
 /** @see addDependenciesToFeatureVariantsWithIdentifiersInNameSuffixes */
@@ -132,7 +128,7 @@ private inline fun DependencyHandlerScope.addDependencyWithFeatureVariantCapabil
         "$group:$name"
     }
     add(targetConfiguration(null), baseDependencyNotation)
-    
+
     for (featureVariantName in featureVariantNames) {
         val dep = add(targetConfiguration(featureVariantName), baseDependencyNotation) as ExternalModuleDependency
         dep.capabilities {

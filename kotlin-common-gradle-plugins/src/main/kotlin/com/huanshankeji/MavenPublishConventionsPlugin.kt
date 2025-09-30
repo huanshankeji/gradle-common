@@ -37,10 +37,9 @@ class MavenPublishConventionsPlugin : Plugin<Project> {
         val extension = extensions.create<Extension>("mavenPublishConventions")
 
         afterEvaluate {
-            @Suppress("DEPRECATION")
             when (val artifactIdConfig = extension.artifactIdConfig.get()) {
                 is ArtifactIdConfig.DefaultUnchanged -> Unit
-                is ArtifactIdConfig.SubprojectNameConcatenated ->
+                is @Suppress("DEPRECATION") ArtifactIdConfig.SubprojectNameConcatenated ->
                     publishing.publications.withType<MavenPublication> {
                         artifactId = "$defaultPrefixForPublishing-$artifactId"
                     }
