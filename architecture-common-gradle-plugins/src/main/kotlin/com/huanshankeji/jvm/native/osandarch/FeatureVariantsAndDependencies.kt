@@ -15,8 +15,21 @@ fun JavaPluginExtension.registerDefaultSupportedFeatureVariants(sourceSetType: S
     when (sourceSetType) {
         Main -> {
             val mainSourceSet = sourceSets["main"]
-            for (osAndArch in DefaultSupported.OsAndArchs.all)
-                registerFeatureVariantWithSourceSet(osAndArch.featureVariantName, mainSourceSet)
+            for (osAndArch in DefaultSupported.OsAndArchs.all) {
+                /*
+                Since Gradle 9.0.0,
+                adding the javadoc jar and the sources jar to an existing source set can cause a build to fail
+                because it creates a duplicate configuration.
+
+                An example error message:
+                ```
+                An exception occurred applying plugin request [id: 'com.huanshankeji.jvm.native.osandarch.register-default-supported-feature-variants']
+                > Failed to apply plugin 'com.huanshankeji.jvm.native.osandarch.register-default-supported-feature-variants'.
+                   > Cannot add a configuration with name 'javadocElements' as a configuration with that name already exists.
+                ```
+                */
+                registerFeatureVariantWithSourceSet(osAndArch.featureVariantName, mainSourceSet, false)
+            }
         }
 
         RegisterSeparate ->

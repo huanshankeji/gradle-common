@@ -15,15 +15,18 @@ fun JavaPluginExtension.registerFeatureVariantWithNewSourceSet(
         //runtimeClasspath += mainSourceSet.runtimeClasspath + mainSourceSet.output
     }
 
-    registerFeatureVariantWithSourceSet(featureVariantName, sourceSets[sourceSetName])
+    registerFeatureVariantWithSourceSet(featureVariantName, sourceSets[sourceSetName], true)
 }
 
+// Copilot: "[nitpick] The parameter name 'withJavadocJarAndSourcesJar' is verbose and could be simplified to 'withJars' or 'includeJars' for better readability."
 fun JavaPluginExtension.registerFeatureVariantWithSourceSet(
-    featureVariantName: String, sourceSet: SourceSet
+    featureVariantName: String, sourceSet: SourceSet, withJavadocJarAndSourcesJar: Boolean
 ) = registerFeature(featureVariantName) {
     usingSourceSet(sourceSet)
-    withJavadocJar()
-    withSourcesJar()
+    if (withJavadocJarAndSourcesJar) {
+        withJavadocJar()
+        withSourcesJar()
+    }
 }
 
 
