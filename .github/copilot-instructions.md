@@ -170,7 +170,7 @@ The repository uses GitHub Actions CI that:
 - Snapshot versions used for development
 
 **Code Style:**
-- Follow the [Kotlin code style guide](https://github.com/huanshankeji/.github/blob/main/files/kotlin-code-style.md) for all Kotlin code contributions
+- Follow our <a href="https://github.com/huanshankeji/.github/blob/main/files/kotlin-code-style.md">Kotlin code style guide</a> for all Kotlin code contributions
 
 ### Key Source Files to Examine
 
