@@ -68,8 +68,8 @@ fun DependencyHandlerScope.addDependenciesToFeatureVariantsWithIdentifiersInName
     for ((osAndArch, dependencyIdentifier) in osAndArchs)
         add(
             osAndArch.featureVariantName camelCaseConcat targetConfigurationType,
-            "$group:$namePrefix-$dependencyIdentifier".let { if (version != null) "$it:$version" else it })
-
+            "$group:$namePrefix-$dependencyIdentifier${version?.let { ":$it" } ?: ""}"
+        )
 }
 
 /** @see addDependenciesToFeatureVariantsWithIdentifiersInNameSuffixes */
@@ -93,15 +93,11 @@ fun DependencyHandlerScope.addDependenciesToFeatureVariantsWithIdentifiersInClas
     targetConfigurationType: String,
     group: String, name: String, version: String? = null
 ) {
-    for ((osAndArch, dependencyIdentifier) in configs) {
-        val configuration = osAndArch.featureVariantName camelCaseConcat targetConfigurationType
-        val dependencyNotation = if (version != null) {
-            "$group:$name:$version:$dependencyIdentifier"
-        } else {
-            "$group:$name::$dependencyIdentifier"
-        }
-        add(configuration, dependencyNotation)
-    }
+    for ((osAndArch, dependencyIdentifier) in configs)
+        add(
+            osAndArch.featureVariantName camelCaseConcat targetConfigurationType,
+            "$group:$name:${version ?: ""}:$dependencyIdentifier"
+        )
 }
 
 /** @see addDependenciesToFeatureVariantsWithIdentifiersInClassifiers */
@@ -122,19 +118,14 @@ private inline fun DependencyHandlerScope.addDependencyWithFeatureVariantCapabil
     featureVariantNames: List<String>, targetConfiguration: (featureVariantName: String?) -> String,
     group: String, name: String, version: String? = null
 ) {
-    val baseDependencyNotation = if (version != null) {
-        "$group:$name:$version"
-    } else {
-        "$group:$name"
-    }
-    add(targetConfiguration(null), baseDependencyNotation)
-
-    for (featureVariantName in featureVariantNames) {
-        val dep = add(targetConfiguration(featureVariantName), baseDependencyNotation) as ExternalModuleDependency
-        dep.capabilities {
+    val dependencyNotation = "$group:$name:${version?.let { ":$it" } ?: ""}"
+    add(targetConfiguration(null), dependencyNotation)
+    for (featureVariantName in featureVariantNames)
+        (add(
+            targetConfiguration(featureVariantName), dependencyNotation
+        ) as ExternalModuleDependency).capabilities {
             requireCapability(getCapabilityNotation(group, name, featureVariantName))
         }
-    }
 }
 
 fun DependencyHandlerScope.addDependencyWithFeatureVariantTransitiveCapabilityDependencies(
