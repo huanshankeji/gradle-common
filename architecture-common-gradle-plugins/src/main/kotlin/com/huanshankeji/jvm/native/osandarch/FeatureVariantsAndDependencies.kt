@@ -3,9 +3,9 @@ package com.huanshankeji.jvm.native.osandarch
 import com.huanshankeji.*
 import com.huanshankeji.SourceSetType.Main
 import com.huanshankeji.SourceSetType.RegisterSeparate
+import org.gradle.api.artifacts.ExternalModuleDependency
 import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.kotlin.dsl.DependencyHandlerScope
-import org.gradle.kotlin.dsl.accessors.runtime.addExternalModuleDependencyTo
 import org.gradle.kotlin.dsl.get
 
 val OsAndArch.featureVariantName get() = camelCaseIdentifier
@@ -52,13 +52,15 @@ fun DependencyHandlerScope.addDependenciesToFeatureVariantsWithIdentifiersInName
     targetConfigurationType: String,
     group: String, namePrefix: String, version: String? = null
 ) {
-    for ((osAndArch, dependencyIdentifier) in osAndArchs)
-        addExternalModuleDependencyTo(
-            this,
-            osAndArch.featureVariantName camelCaseConcat targetConfigurationType,
-            group, "$namePrefix-$dependencyIdentifier", version,
-            null, null, null, null
-        )
+    for ((osAndArch, dependencyIdentifier) in osAndArchs) {
+        val configuration = osAndArch.featureVariantName camelCaseConcat targetConfigurationType
+        val dependencyNotation = if (version != null) {
+            "$group:$namePrefix-$dependencyIdentifier:$version"
+        } else {
+            "$group:$namePrefix-$dependencyIdentifier"
+        }
+        add(configuration, dependencyNotation)
+    }
 }
 
 /** @see addDependenciesToFeatureVariantsWithIdentifiersInNameSuffixes */
@@ -82,13 +84,15 @@ fun DependencyHandlerScope.addDependenciesToFeatureVariantsWithIdentifiersInClas
     targetConfigurationType: String,
     group: String, name: String, version: String? = null
 ) {
-    for ((osAndArch, dependencyIdentifier) in configs)
-        addExternalModuleDependencyTo(
-            this,
-            osAndArch.featureVariantName camelCaseConcat targetConfigurationType,
-            group, name, version,
-            null, dependencyIdentifier, null, null
-        )
+    for ((osAndArch, dependencyIdentifier) in configs) {
+        val configuration = osAndArch.featureVariantName camelCaseConcat targetConfigurationType
+        val dependencyNotation = if (version != null) {
+            "$group:$name:$version:$dependencyIdentifier"
+        } else {
+            "$group:$name::$dependencyIdentifier"
+        }
+        add(configuration, dependencyNotation)
+    }
 }
 
 /** @see addDependenciesToFeatureVariantsWithIdentifiersInClassifiers */
@@ -109,18 +113,19 @@ private inline fun DependencyHandlerScope.addDependencyWithFeatureVariantCapabil
     featureVariantNames: List<String>, targetConfiguration: (featureVariantName: String?) -> String,
     group: String, name: String, version: String? = null
 ) {
-    addExternalModuleDependencyTo(this, targetConfiguration(null), group, name, version, null, null, null, null)
-    for (featureVariantName in featureVariantNames)
-        addExternalModuleDependencyTo(
-            this,
-            targetConfiguration(featureVariantName),
-            group, name, version,
-            null, null, null
-        ) {
-            capabilities {
-                requireCapability(getCapabilityNotation(group, name, featureVariantName))
-            }
+    val baseDependencyNotation = if (version != null) {
+        "$group:$name:$version"
+    } else {
+        "$group:$name"
+    }
+    add(targetConfiguration(null), baseDependencyNotation)
+    
+    for (featureVariantName in featureVariantNames) {
+        val dep = add(targetConfiguration(featureVariantName), baseDependencyNotation) as ExternalModuleDependency
+        dep.capabilities {
+            requireCapability(getCapabilityNotation(group, name, featureVariantName))
         }
+    }
 }
 
 fun DependencyHandlerScope.addDependencyWithFeatureVariantTransitiveCapabilityDependencies(
