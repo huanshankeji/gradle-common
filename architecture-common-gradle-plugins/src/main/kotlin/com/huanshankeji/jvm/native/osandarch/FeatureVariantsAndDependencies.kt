@@ -3,9 +3,9 @@ package com.huanshankeji.jvm.native.osandarch
 import com.huanshankeji.*
 import com.huanshankeji.SourceSetType.Main
 import com.huanshankeji.SourceSetType.RegisterSeparate
+import org.gradle.api.artifacts.ExternalModuleDependency
 import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.kotlin.dsl.DependencyHandlerScope
-import org.gradle.kotlin.dsl.accessors.runtime.addExternalModuleDependencyTo
 import org.gradle.kotlin.dsl.get
 
 val OsAndArch.featureVariantName get() = camelCaseIdentifier
@@ -66,11 +66,9 @@ fun DependencyHandlerScope.addDependenciesToFeatureVariantsWithIdentifiersInName
     group: String, namePrefix: String, version: String? = null
 ) {
     for ((osAndArch, dependencyIdentifier) in osAndArchs)
-        addExternalModuleDependencyTo(
-            this,
+        add(
             osAndArch.featureVariantName camelCaseConcat targetConfigurationType,
-            group, "$namePrefix-$dependencyIdentifier", version,
-            null, null, null, null
+            "$group:$namePrefix-$dependencyIdentifier${version?.let { ":$it" } ?: ""}"
         )
 }
 
@@ -96,11 +94,9 @@ fun DependencyHandlerScope.addDependenciesToFeatureVariantsWithIdentifiersInClas
     group: String, name: String, version: String? = null
 ) {
     for ((osAndArch, dependencyIdentifier) in configs)
-        addExternalModuleDependencyTo(
-            this,
+        add(
             osAndArch.featureVariantName camelCaseConcat targetConfigurationType,
-            group, name, version,
-            null, dependencyIdentifier, null, null
+            "$group:$name:${version ?: ""}:$dependencyIdentifier"
         )
 }
 
@@ -122,17 +118,13 @@ private inline fun DependencyHandlerScope.addDependencyWithFeatureVariantCapabil
     featureVariantNames: List<String>, targetConfiguration: (featureVariantName: String?) -> String,
     group: String, name: String, version: String? = null
 ) {
-    addExternalModuleDependencyTo(this, targetConfiguration(null), group, name, version, null, null, null, null)
+    val dependencyNotation = "$group:$name:${version?.let { ":$it" } ?: ""}"
+    add(targetConfiguration(null), dependencyNotation)
     for (featureVariantName in featureVariantNames)
-        addExternalModuleDependencyTo(
-            this,
-            targetConfiguration(featureVariantName),
-            group, name, version,
-            null, null, null
-        ) {
-            capabilities {
-                requireCapability(getCapabilityNotation(group, name, featureVariantName))
-            }
+        (add(
+            targetConfiguration(featureVariantName), dependencyNotation
+        ) as ExternalModuleDependency).capabilities {
+            requireCapability(getCapabilityNotation(group, name, featureVariantName))
         }
 }
 
