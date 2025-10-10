@@ -15,7 +15,7 @@ class GenerateKotlinJsBrowserWebrootForVertxWebPlugin : Plugin<Project> {
 
         afterEvaluate {
             val frontendProject = project(extension.webFrontendProjectPath.get())
-            val jsBrowserDistribution by frontendProject.tasks.getting(Copy::class)
+            val jsBrowserDistribution by frontendProject.tasks.getting(Sync::class)
             /*val jsBrowserWebpack by lazy {
                 tasks.getByPath(
                     extension.webFrontendProjectPath.get() +
