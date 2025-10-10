@@ -8,7 +8,7 @@
 - **Project Type:** Gradle plugin library with multiple modules
 - **Languages:** Kotlin (primary), Gradle Kotlin DSL
 - **Target Runtime:** JVM (JDK 17+, tested with JDK 17)
-- **Framework:** Gradle 9.0.0, Kotlin 2.2.20
+- **Framework:** Gradle 9.0.0, Kotlin 2.2.10
 - **Size:** Medium-sized multi-module project (~20 plugin modules)
 - **APIs:** Experimental and subject to change
 
@@ -142,7 +142,8 @@ The repository uses GitHub Actions CI that:
 ### Dependencies and Compatibility
 
 **External Dependencies:**
-- Kotlin Gradle Plugin 2.2.20
+
+- Kotlin Gradle Plugin 2.2.10
 - Compose Multiplatform 1.10.0-alpha01
 - Dokka 2.1.0-Beta
 - Gradle Plugin Publish Plugin 2.0.0
