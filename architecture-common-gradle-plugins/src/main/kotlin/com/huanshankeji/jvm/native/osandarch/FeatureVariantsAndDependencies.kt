@@ -118,7 +118,7 @@ private inline fun DependencyHandlerScope.addDependencyWithFeatureVariantCapabil
     featureVariantNames: List<String>, targetConfiguration: (featureVariantName: String?) -> String,
     group: String, name: String, version: String? = null
 ) {
-    val dependencyNotation = "$group:$name:${version?.let { ":$it" } ?: ""}"
+    val dependencyNotation = "$group:$name${version?.let { ":$it" } ?: ""}"
     add(targetConfiguration(null), dependencyNotation)
     for (featureVariantName in featureVariantNames)
         (add(
