@@ -6,6 +6,7 @@ import com.huanshankeji.SourceSetType.RegisterSeparate
 import org.gradle.api.artifacts.ExternalModuleDependency
 import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.kotlin.dsl.DependencyHandlerScope
+import org.gradle.kotlin.dsl.accessors.runtime.addDependencyTo
 import org.gradle.kotlin.dsl.get
 
 val OsAndArch.featureVariantName get() = camelCaseIdentifier
@@ -121,10 +122,12 @@ private inline fun DependencyHandlerScope.addDependencyWithFeatureVariantCapabil
     val dependencyNotation = "$group:$name${version?.let { ":$it" } ?: ""}"
     add(targetConfiguration(null), dependencyNotation)
     for (featureVariantName in featureVariantNames)
-        (add(
-            targetConfiguration(featureVariantName), dependencyNotation
-        ) as ExternalModuleDependency).capabilities {
-            requireCapability(getCapabilityNotation(group, name, featureVariantName))
+        addDependencyTo<ExternalModuleDependency>(
+            this, targetConfiguration(featureVariantName), dependencyNotation
+        ) {
+            capabilities {
+                requireCapability(getCapabilityNotation(group, name, featureVariantName))
+            }
         }
 }
 
