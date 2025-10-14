@@ -13,6 +13,8 @@ This library currently mainly serves our use, and the APIs are experimental and 
 
 See [gradle/wrapper/gradle-wrapper.properties](gradle/wrapper/gradle-wrapper.properties) for the current dependency Gradle version and [buildSrc/build.gradle.kts](buildSrc/build.gradle.kts) for the current dependency Kotlin version. These versions are tested against and used by us. There might be compatibility issues when you use other versions of Gradle or Kotlin, especially versions with different [MAJOR](https://semver.org/) versions.
 
+This library is currently based on **Gradle 9**. There might be compatibility issues with lower versions of Gradle.
+
 ### About the version of the Kotlin Gradle plugins
 
 The projects and plugins depend on a certain version of the Kotlin Gradle plugins. Sometimes it's needed to specify your own version of the Kotlin Gradle plugins when using the plugins in your project. For example, a version of [Compose Multiplatform](https://www.jetbrains.com/lp/compose-mpp/) currently supports only a certain version of the Kotlin Gradle plugins. Especially, if your desired Kotlin version is lower than this project's dependency Kotlin version, you need to exclude the transitive Kotlin dependencies.
