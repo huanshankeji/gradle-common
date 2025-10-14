@@ -17,6 +17,7 @@ val alignedPluginVersion = "0.10.0-SNAPSHOT"
 
 // "x.y.z" indicates the version of the way of organizing the code,
 // and the date indicates the version when the dependency versions are updated.
+// TODO increase the date
 val commonGradleDependenciesVersion = "0.10.0-20250918-SNAPSHOT"
 
 // This is the source dependency version. There is another build source dependency in "buildSrc/build.gradle.kts".
