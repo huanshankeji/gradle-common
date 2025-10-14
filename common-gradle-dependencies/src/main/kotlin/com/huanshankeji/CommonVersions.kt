@@ -13,7 +13,7 @@ class CommonVersions(
     val kotlinxDatetime: String = "0.7.1",
     val kotlinxBenchmark: String = GeneratedVersions.kotlinxBenchmark,
     val kotlinxIo: String = "0.8.0",
-    val exposed: String = "1.0.0-rc-1",
+    val exposed: String = "1.0.0-rc-2",
     val ktor: String = "3.3.0",
     val jetBrainsAndroidx: JetbrainsAndroidx = JetbrainsAndroidx(),
     val androidx: Androidx = Androidx(),
