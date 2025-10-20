@@ -145,7 +145,7 @@ The repository uses GitHub Actions CI that:
 
 - Kotlin Gradle Plugin 2.2.10
 - Compose Multiplatform 1.10.0-alpha01
-- Dokka 2.1.0-Beta
+- Dokka 2.1.0
 - Gradle Plugin Publish Plugin 2.0.0
 - Kotlin Binary Compatibility Validator 0.18.1
 

@@ -9,7 +9,7 @@ object DependencyVersions {
     val kotlin = "2.2.10" // compatible with the compose version below
     val composeMultiplatform = "1.9.0"
     val kotlinxBenchmark = "0.4.14"
-    val dokka = "2.1.0-Beta"
+    val dokka = "2.1.0"
     val binaryCompatibilityValidator = "0.18.1"
 }
 
