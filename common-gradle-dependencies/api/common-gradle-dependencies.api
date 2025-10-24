@@ -12,7 +12,7 @@ public final class com/huanshankeji/CommonDependencies {
 	public final fun getKtor ()Lcom/huanshankeji/CommonDependencies$Ktor;
 	public final fun getOrgJunit ()Lcom/huanshankeji/CommonDependencies$OrgJunit;
 	public final fun getSlf4j ()Lcom/huanshankeji/CommonDependencies$Slf4j;
-	public final fun getTestContainers ()Lcom/huanshankeji/CommonDependencies$TestContainers;
+	public final fun getTestContainers ()Lcom/huanshankeji/CommonDependencies$Testcontainers;
 	public final fun getVersions ()Lcom/huanshankeji/CommonVersions;
 	public final fun getVertx ()Lcom/huanshankeji/CommonDependencies$Vertx;
 	public final fun postgreSql (Ljava/lang/String;)Ljava/lang/String;
@@ -250,16 +250,16 @@ public abstract interface class com/huanshankeji/CommonDependencies$SubgroupWith
 	public static synthetic fun module$default (Lcom/huanshankeji/CommonDependencies$SubgroupWithNameInArtifact;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/String;
 }
 
-public final class com/huanshankeji/CommonDependencies$TestContainers {
+public final class com/huanshankeji/CommonDependencies$Testcontainers {
 	public final fun getDefaultVersion ()Ljava/lang/String;
-	public final fun getJunitJupiter ()Ljava/lang/String;
-	public final fun getPostgreSql ()Ljava/lang/String;
-	public final fun getTestContainers ()Ljava/lang/String;
+	public final fun getTestcontainers ()Ljava/lang/String;
+	public final fun getTestcontainersJunitJupiter ()Ljava/lang/String;
+	public final fun getTestcontainersPostgresql ()Ljava/lang/String;
 	public final fun moduleWithVersion (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
-	public static synthetic fun moduleWithVersion$default (Lcom/huanshankeji/CommonDependencies$TestContainers;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/String;
+	public static synthetic fun moduleWithVersion$default (Lcom/huanshankeji/CommonDependencies$Testcontainers;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/String;
 	public final fun moduleWithoutVersion (Ljava/lang/String;)Ljava/lang/String;
 	public final fun platformBom (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;)Lorg/gradle/api/artifacts/Dependency;
-	public static synthetic fun platformBom$default (Lcom/huanshankeji/CommonDependencies$TestContainers;Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;ILjava/lang/Object;)Lorg/gradle/api/artifacts/Dependency;
+	public static synthetic fun platformBom$default (Lcom/huanshankeji/CommonDependencies$Testcontainers;Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;ILjava/lang/Object;)Lorg/gradle/api/artifacts/Dependency;
 }
 
 public final class com/huanshankeji/CommonDependencies$Vertx {
