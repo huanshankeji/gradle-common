@@ -37,7 +37,8 @@ class CommonVersions(
     // https://jdbc.postgresql.org/changelogs/, https://github.com/pgjdbc/pgjdbc/releases
     val postgreSql: String = "42.7.8",
     // https://github.com/qos-ch/slf4j/tags
-    val slf4j: String = "1.7.36", // TODO: consider replacing with kotlin-logging (https://github.com/oshai/kotlin-logging)
+    val slf4j: String = "2.0.17",
+    // TODO add kotlin-logging (https://github.com/oshai/kotlin-logging)
     // https://github.com/testcontainers/testcontainers-java/releases
     val testcontainers: String = "2.0.1"
 ) {
