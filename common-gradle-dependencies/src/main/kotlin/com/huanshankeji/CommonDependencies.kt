@@ -308,7 +308,7 @@ class CommonDependencies(val versions: CommonVersions = CommonVersions()) {
     val slf4j = Slf4j()
 
     inner class Testcontainers internal constructor() {
-        val defaultVersion = versions.testContainers
+        val defaultVersion = versions.testcontainers
         fun moduleWithoutVersion(module: String) =
             "org.testcontainers:$module"
 

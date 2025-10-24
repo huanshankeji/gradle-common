@@ -352,7 +352,7 @@ public final class com/huanshankeji/CommonVersions {
 	public final fun getOrgJunit ()Ljava/lang/String;
 	public final fun getPostgreSql ()Ljava/lang/String;
 	public final fun getSlf4j ()Ljava/lang/String;
-	public final fun getTestContainers ()Ljava/lang/String;
+	public final fun getTestcontainers ()Ljava/lang/String;
 	public final fun getVertx ()Ljava/lang/String;
 }
 
