@@ -7,7 +7,7 @@ val commonGradleClasspathDependencies = CommonGradleClasspathDependencies(common
 
 object DependencyVersions {
     // https://kotlinlang.org/docs/releases.html#release-details
-    val kotlin = "2.2.10" // compatible with the compose version below
+    val kotlin = "2.2.21" // compatible with the compose version below
     // https://github.com/JetBrains/compose-multiplatform/releases
     val composeMultiplatform = "1.9.1"
     // https://github.com/Kotlin/kotlinx-benchmark/releases
