@@ -323,5 +323,5 @@ class CommonDependencies(val versions: CommonVersions = CommonVersions()) {
         val testcontainersPostgresql = moduleWithoutVersion("testcontainers-postgresql")
     }
 
-    val testContainers = Testcontainers()
+    val testcontainers = Testcontainers()
 }

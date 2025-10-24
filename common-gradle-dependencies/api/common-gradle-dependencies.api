@@ -12,7 +12,7 @@ public final class com/huanshankeji/CommonDependencies {
 	public final fun getKtor ()Lcom/huanshankeji/CommonDependencies$Ktor;
 	public final fun getOrgJunit ()Lcom/huanshankeji/CommonDependencies$OrgJunit;
 	public final fun getSlf4j ()Lcom/huanshankeji/CommonDependencies$Slf4j;
-	public final fun getTestContainers ()Lcom/huanshankeji/CommonDependencies$Testcontainers;
+	public final fun getTestcontainers ()Lcom/huanshankeji/CommonDependencies$Testcontainers;
 	public final fun getVersions ()Lcom/huanshankeji/CommonVersions;
 	public final fun getVertx ()Lcom/huanshankeji/CommonDependencies$Vertx;
 	public final fun postgreSql (Ljava/lang/String;)Ljava/lang/String;
