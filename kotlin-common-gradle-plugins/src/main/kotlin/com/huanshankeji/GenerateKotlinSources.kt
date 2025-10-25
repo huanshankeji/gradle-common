@@ -17,11 +17,20 @@ fun Project.generateKotlinSources(
     val generatedSourcesDir = layout.buildDirectory.dir("gen/$sourceDirectoryName/kotlin").get().asFile
 
     val task = tasks.register(taskName) {
-        generatedSourcesDir.mkdirs()
+        // Declare inputs based on source file content to trigger re-generation when content changes
+        val sourceFilesMap = sourceFiles.associate { it.filePath to it.content }
+        inputs.property("sourceFiles", sourceFilesMap)
+        
+        // Declare outputs so Gradle can check if files exist and are up-to-date
+        outputs.dir(generatedSourcesDir)
+        
+        doLast {
+            generatedSourcesDir.mkdirs()
 
-        for (sourceFile in sourceFiles) {
-            val generatedVersionsSourceFile = generatedSourcesDir.resolve(sourceFile.filePath)
-            generatedVersionsSourceFile.writeText(sourceFile.content)
+            for (sourceFile in sourceFiles) {
+                val generatedVersionsSourceFile = generatedSourcesDir.resolve(sourceFile.filePath)
+                generatedVersionsSourceFile.writeText(sourceFile.content)
+            }
         }
     }
 
