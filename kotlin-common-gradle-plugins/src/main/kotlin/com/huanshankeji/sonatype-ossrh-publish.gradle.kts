@@ -24,17 +24,29 @@ afterEvaluate {
     */
 
     publishing.repositories.maven {
-        name = "SonatypeOssrh"
-        // Using OSSRH Staging API endpoints
-        // After publishing, releases require manual staging and release via https://s01.oss.sonatype.org/
-        // or can be automated with the Nexus Staging Maven plugin
-        // See: https://central.sonatype.org/publish/publish-portal-ossrh-staging-api/
-        val releasesRepoUrl = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+        name = "CentralPortal"
+        // Using Maven Central Portal Publishing API
+        // Replaces deprecated OSSRH endpoints (https://central.sonatype.org/pages/ossrh-eol/)
+        // For releases: automatically publishes to Maven Central
+        // For snapshots: still uses OSSRH snapshot repository
+        // See: https://central.sonatype.org/publish/publish-portal-api/
+        val releasesRepoUrl = "https://central.sonatype.com/api/v1/publisher/upload?publishingType=AUTOMATIC"
         val snapshotsRepoUrl = "https://s01.oss.sonatype.org/content/repositories/snapshots/"
         url = uri(if (isSnapshotVersion) snapshotsRepoUrl else releasesRepoUrl)
         credentials {
-            project.findProperty("ossrhUsername")?.let { username = it as String }
-            project.findProperty("ossrhPassword")?.let { password = it as String }
+            if (isSnapshotVersion) {
+                // Snapshots still use OSSRH credentials
+                project.findProperty("ossrhUsername")?.let { username = it as String }
+                project.findProperty("ossrhPassword")?.let { password = it as String }
+            } else {
+                // Releases use Central Portal token authentication
+                // Generate token at https://central.sonatype.com/account
+                // Set both username and password to the token value
+                project.findProperty("centralToken")?.let { 
+                    username = it as String
+                    password = it as String
+                }
+            }
         }
     }
 }
