@@ -25,7 +25,7 @@
 #### Bootstrap and Dependencies
 ```bash
 # No special bootstrap needed - Gradle wrapper handles dependencies
-./gradlew --version  # Verify Gradle 9.1.0 is used
+./gradlew --version  # Check Gradle version (should be 9.1.0)
 ```
 
 #### Build
