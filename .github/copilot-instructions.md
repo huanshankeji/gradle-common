@@ -150,7 +150,7 @@ The repository uses GitHub Actions CI that:
 - Kotlin Binary Compatibility Validator 0.18.1
 
 **Version Compatibility Notes:**
-- Gradle 9.0.0 required (handled by wrapper)
+- Gradle 9.1.0 required (handled by wrapper)
 - "Unsupported Kotlin plugin version" warnings are normal when the Kotlin Gradle plugin version is newer than the version bundled in Gradle
 - Compose Multiplatform versions constrain Kotlin version compatibility
 
