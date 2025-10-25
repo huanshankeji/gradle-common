@@ -14,7 +14,7 @@ class SourceFile(val filePath: String, val content: String)
 fun Project.generateKotlinSources(
     taskName: String = "generateSources", sourceDirectoryName: String = "main", sourceFiles: List<SourceFile>
 ) {
-    val generatedSourcesDir = buildDir.resolve("gen/$sourceDirectoryName/kotlin")
+    val generatedSourcesDir = layout.buildDirectory.dir("gen/$sourceDirectoryName/kotlin").get().asFile
 
     val task = tasks.register(taskName) {
         generatedSourcesDir.mkdirs()

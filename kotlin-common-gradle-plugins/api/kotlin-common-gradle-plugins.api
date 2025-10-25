@@ -12,7 +12,7 @@ public final class com/huanshankeji/FeatureVariantsKt {
 	public static final fun isValidFeatureVariantName (Ljava/lang/String;)Z
 	public static final fun registerFeatureVariantWithNewSourceSet (Lorg/gradle/api/plugins/JavaPluginExtension;Ljava/lang/String;Ljava/lang/String;)V
 	public static synthetic fun registerFeatureVariantWithNewSourceSet$default (Lorg/gradle/api/plugins/JavaPluginExtension;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)V
-	public static final fun registerFeatureVariantWithSourceSet (Lorg/gradle/api/plugins/JavaPluginExtension;Ljava/lang/String;Lorg/gradle/api/tasks/SourceSet;)V
+	public static final fun registerFeatureVariantWithSourceSet (Lorg/gradle/api/plugins/JavaPluginExtension;Ljava/lang/String;Lorg/gradle/api/tasks/SourceSet;Z)V
 }
 
 public final class com/huanshankeji/GenerateKotlinSourcesKt {
@@ -69,11 +69,6 @@ public final class com/huanshankeji/GradleKotlinExtensionsKt {
 	public static final fun main (Lorg/gradle/api/tasks/SourceSetContainer;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/NamedDomainObjectProvider;
 }
 
-public final class com/huanshankeji/GradleKotlinExtensionsKt$inlined$sam$i$org_gradle_api_Action$0 : org/gradle/api/Action {
-	public fun <init> (Lkotlin/jvm/functions/Function1;)V
-	public final synthetic fun execute (Ljava/lang/Object;)V
-}
-
 public abstract interface annotation class com/huanshankeji/InternalApi : java/lang/annotation/Annotation {
 }
 
@@ -92,7 +87,8 @@ public final class com/huanshankeji/JvmTestCommonFeatureVariantPlugin : org/grad
 public final class com/huanshankeji/Jvm_integration_test_gradle : org/gradle/kotlin/dsl/precompile/v1/PrecompiledProjectScript {
 	public fun <init> (Lorg/gradle/api/Project;Lorg/gradle/api/Project;)V
 	public final fun getIntTestImplementation ()Lorg/gradle/api/artifacts/Configuration;
-	public final fun getIntegrationTest ()Lorg/gradle/api/tasks/testing/Test;
+	public final fun getIntTestRuntimeOnly ()Lorg/gradle/api/artifacts/Configuration;
+	public final fun getIntegrationTest ()Lorg/gradle/api/tasks/TaskProvider;
 	public static final fun main ([Ljava/lang/String;)V
 }
 
@@ -143,11 +139,6 @@ public final class com/huanshankeji/Kotlin_jvm_library_maven_publish_conventions
 	public static final fun main ([Ljava/lang/String;)V
 }
 
-public final class com/huanshankeji/Kotlin_jvm_library_maven_publish_conventions_gradle$3$1$inlined$sam$i$org_gradle_api_Action$0 : org/gradle/api/Action {
-	public fun <init> (Lkotlin/jvm/functions/Function1;)V
-	public final synthetic fun execute (Ljava/lang/Object;)V
-}
-
 public final class com/huanshankeji/Kotlin_jvm_library_sonatype_ossrh_publish_conventions_gradle : org/gradle/kotlin/dsl/precompile/v1/PrecompiledProjectScript {
 	public fun <init> (Lorg/gradle/api/Project;Lorg/gradle/api/Project;)V
 	public static final fun main ([Ljava/lang/String;)V
@@ -172,11 +163,6 @@ public final class com/huanshankeji/Kotlin_multiplatform_sonatype_ossrh_publish_
 	public fun <init> (Lorg/gradle/api/Project;Lorg/gradle/api/Project;)V
 	public final fun getJavadocJar ()Lorg/gradle/api/tasks/TaskProvider;
 	public static final fun main ([Ljava/lang/String;)V
-}
-
-public final class com/huanshankeji/Kotlin_multiplatform_sonatype_ossrh_publish_conventions_gradle$2$inlined$sam$i$org_gradle_api_Action$0 : org/gradle/api/Action {
-	public fun <init> (Lkotlin/jvm/functions/Function1;)V
-	public final synthetic fun execute (Ljava/lang/Object;)V
 }
 
 public final class com/huanshankeji/MavenPomKt {
@@ -212,11 +198,6 @@ public final class com/huanshankeji/MavenPublishConventionsPlugin$ArtifactIdConf
 public abstract class com/huanshankeji/MavenPublishConventionsPlugin$Extension {
 	public fun <init> ()V
 	public abstract fun getArtifactIdConfig ()Lorg/gradle/api/provider/Property;
-}
-
-public final class com/huanshankeji/MavenPublishConventionsPlugin$apply$1$1$inlined$sam$i$org_gradle_api_Action$0 : org/gradle/api/Action {
-	public fun <init> (Lkotlin/jvm/functions/Function1;)V
-	public final synthetic fun execute (Ljava/lang/Object;)V
 }
 
 public final class com/huanshankeji/NamingConventionsKt {
@@ -271,7 +252,7 @@ public final class com/huanshankeji/SourceFile {
 public final class com/huanshankeji/SourceSetConfig {
 	public static final field Companion Lcom/huanshankeji/SourceSetConfig$Companion;
 	public fun <init> (Lcom/huanshankeji/SourceSetConfig$Type;Ljava/lang/String;Ljava/util/List;)V
-	public final fun getDependents ()Ljava/util/List;
+	public final fun getDependencies ()Ljava/util/List;
 	public final fun getName ()Ljava/lang/String;
 	public final fun getType ()Lcom/huanshankeji/SourceSetConfig$Type;
 }
@@ -283,6 +264,7 @@ public final class com/huanshankeji/SourceSetConfig$Companion {
 public final class com/huanshankeji/SourceSetConfig$Type : java/lang/Enum {
 	public static final field Existing Lcom/huanshankeji/SourceSetConfig$Type;
 	public static final field New Lcom/huanshankeji/SourceSetConfig$Type;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lcom/huanshankeji/SourceSetConfig$Type;
 	public static fun values ()[Lcom/huanshankeji/SourceSetConfig$Type;
 }
@@ -290,6 +272,7 @@ public final class com/huanshankeji/SourceSetConfig$Type : java/lang/Enum {
 public final class com/huanshankeji/SourceSetType : java/lang/Enum {
 	public static final field Main Lcom/huanshankeji/SourceSetType;
 	public static final field RegisterSeparate Lcom/huanshankeji/SourceSetType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lcom/huanshankeji/SourceSetType;
 	public static fun values ()[Lcom/huanshankeji/SourceSetType;
 }

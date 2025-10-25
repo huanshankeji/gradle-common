@@ -16,8 +16,8 @@ object DefaultSupported {
         val allFeatureVariantNames = all.map { it.featureVariantName }
 
         // TODO use `entries` when the language version is bumped to 1.9
-        val futureAll = Os.values().flatMap { os ->
-            CpuArchitecture.values().map { arch ->
+        val futureAll = Os.entries.flatMap { os ->
+            CpuArchitecture.entries.map { arch ->
                 OsAndArch(os, arch)
             }
         }

@@ -3,9 +3,10 @@ package com.huanshankeji.jvm.native.osandarch
 import com.huanshankeji.*
 import com.huanshankeji.SourceSetType.Main
 import com.huanshankeji.SourceSetType.RegisterSeparate
+import org.gradle.api.artifacts.ExternalModuleDependency
 import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.kotlin.dsl.DependencyHandlerScope
-import org.gradle.kotlin.dsl.accessors.runtime.addExternalModuleDependencyTo
+import org.gradle.kotlin.dsl.accessors.runtime.addDependencyTo
 import org.gradle.kotlin.dsl.get
 
 val OsAndArch.featureVariantName get() = camelCaseIdentifier
@@ -15,8 +16,21 @@ fun JavaPluginExtension.registerDefaultSupportedFeatureVariants(sourceSetType: S
     when (sourceSetType) {
         Main -> {
             val mainSourceSet = sourceSets["main"]
-            for (osAndArch in DefaultSupported.OsAndArchs.all)
-                registerFeatureVariantWithSourceSet(osAndArch.featureVariantName, mainSourceSet)
+            for (osAndArch in DefaultSupported.OsAndArchs.all) {
+                /*
+                Since Gradle 9.0.0,
+                adding the javadoc jar and the sources jar to an existing source set can cause a build to fail
+                because it creates a duplicate configuration.
+
+                An example error message:
+                ```
+                An exception occurred applying plugin request [id: 'com.huanshankeji.jvm.native.osandarch.register-default-supported-feature-variants']
+                > Failed to apply plugin 'com.huanshankeji.jvm.native.osandarch.register-default-supported-feature-variants'.
+                   > Cannot add a configuration with name 'javadocElements' as a configuration with that name already exists.
+                ```
+                */
+                registerFeatureVariantWithSourceSet(osAndArch.featureVariantName, mainSourceSet, false)
+            }
         }
 
         RegisterSeparate ->
@@ -53,11 +67,9 @@ fun DependencyHandlerScope.addDependenciesToFeatureVariantsWithIdentifiersInName
     group: String, namePrefix: String, version: String? = null
 ) {
     for ((osAndArch, dependencyIdentifier) in osAndArchs)
-        addExternalModuleDependencyTo(
-            this,
+        add(
             osAndArch.featureVariantName camelCaseConcat targetConfigurationType,
-            group, "$namePrefix-$dependencyIdentifier", version,
-            null, null, null, null
+            "$group:$namePrefix-$dependencyIdentifier${version?.let { ":$it" } ?: ""}"
         )
 }
 
@@ -83,11 +95,9 @@ fun DependencyHandlerScope.addDependenciesToFeatureVariantsWithIdentifiersInClas
     group: String, name: String, version: String? = null
 ) {
     for ((osAndArch, dependencyIdentifier) in configs)
-        addExternalModuleDependencyTo(
-            this,
+        add(
             osAndArch.featureVariantName camelCaseConcat targetConfigurationType,
-            group, name, version,
-            null, dependencyIdentifier, null, null
+            "$group:$name:${version ?: ""}:$dependencyIdentifier"
         )
 }
 
@@ -109,13 +119,11 @@ private inline fun DependencyHandlerScope.addDependencyWithFeatureVariantCapabil
     featureVariantNames: List<String>, targetConfiguration: (featureVariantName: String?) -> String,
     group: String, name: String, version: String? = null
 ) {
-    addExternalModuleDependencyTo(this, targetConfiguration(null), group, name, version, null, null, null, null)
+    val dependencyNotation = "$group:$name${version?.let { ":$it" } ?: ""}"
+    add(targetConfiguration(null), dependencyNotation)
     for (featureVariantName in featureVariantNames)
-        addExternalModuleDependencyTo(
-            this,
-            targetConfiguration(featureVariantName),
-            group, name, version,
-            null, null, null
+        addDependencyTo<ExternalModuleDependency>(
+            this, targetConfiguration(featureVariantName), dependencyNotation
         ) {
             capabilities {
                 requireCapability(getCapabilityNotation(group, name, featureVariantName))

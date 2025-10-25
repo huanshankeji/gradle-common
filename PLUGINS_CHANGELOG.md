@@ -1,5 +1,11 @@
 # "Gradle plugins" change log
 
+## v0.9.0 / 2024-12-05
+
+There are no functional changes in this release.
+
+* bump the dependency common-gradle-dependencies to v0.9.0-20241203
+
 ## v0.8.0 / 2024-12-03
 
 * bump Kotlin to 2.1.0, Gradle to v8.1.11, kotlinx-benchmark to v0.4.13, and Compose Multiplatform to v1.7.1
