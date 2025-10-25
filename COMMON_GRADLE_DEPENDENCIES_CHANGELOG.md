@@ -2,7 +2,7 @@
 
 ## v0.10.0-20251024 / 2025-10-25
 
-* update and Gradle to 9.1.0 and migrate to Gradle 9, fixing some incompatibilities
+* update Gradle to 9.1.0 and migrate to Gradle 9, fixing some incompatibilities
 * Update the Java version to 17
 
 ## v0.9.0-20241203 / 2024-12-05
