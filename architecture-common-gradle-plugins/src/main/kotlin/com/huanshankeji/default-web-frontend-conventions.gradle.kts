@@ -39,7 +39,7 @@ kotlin {
 }
 
 
-val generatedResourcesFile = buildDir.resolve("generatedResources")
+val generatedResourcesFile = layout.buildDirectory.dir("generatedResources").get().asFile
 
 tasks.named("jsProcessResources") {
     val htmlGenerationRun = tasks.getByPath(

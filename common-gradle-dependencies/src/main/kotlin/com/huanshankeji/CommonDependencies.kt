@@ -307,8 +307,8 @@ class CommonDependencies(val versions: CommonVersions = CommonVersions()) {
 
     val slf4j = Slf4j()
 
-    inner class TestContainers internal constructor() {
-        val defaultVersion = versions.testContainers
+    inner class Testcontainers internal constructor() {
+        val defaultVersion = versions.testcontainers
         fun moduleWithoutVersion(module: String) =
             "org.testcontainers:$module"
 
@@ -318,10 +318,10 @@ class CommonDependencies(val versions: CommonVersions = CommonVersions()) {
         fun DependencyHandler.platformBom(version: String = defaultVersion) =
             platform(moduleWithVersion("testcontainers-bom", version))
 
-        val testContainers = moduleWithoutVersion("testcontainers")
-        val junitJupiter = moduleWithoutVersion("junit-jupiter")
-        val postgreSql = moduleWithoutVersion("postgresql")
+        val testcontainers = moduleWithoutVersion("testcontainers")
+        val testcontainersJunitJupiter = moduleWithoutVersion("testcontainers-junit-jupiter")
+        val testcontainersPostgresql = moduleWithoutVersion("testcontainers-postgresql")
     }
 
-    val testContainers = TestContainers()
+    val testcontainers = Testcontainers()
 }
