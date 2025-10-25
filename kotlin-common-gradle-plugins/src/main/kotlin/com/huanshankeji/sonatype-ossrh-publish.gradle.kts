@@ -25,6 +25,10 @@ afterEvaluate {
 
     publishing.repositories.maven {
         name = "SonatypeOssrh"
+        // Using OSSRH Staging API endpoints
+        // After publishing, releases require manual staging and release via https://s01.oss.sonatype.org/
+        // or can be automated with the Nexus Staging Maven plugin
+        // See: https://central.sonatype.org/publish/publish-portal-ossrh-staging-api/
         val releasesRepoUrl = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
         val snapshotsRepoUrl = "https://s01.oss.sonatype.org/content/repositories/snapshots/"
         url = uri(if (isSnapshotVersion) snapshotsRepoUrl else releasesRepoUrl)
