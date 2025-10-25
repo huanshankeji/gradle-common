@@ -1,17 +1,19 @@
 # Huanshankeji Gradle Common (in and for Kotlin)
 
-[![Gradle Plugin Portal (gradle-plugins)](https://img.shields.io/gradle-plugin-portal/v/com.huanshankeji.kotlin-jvm-common-conventions?label=plugin%20portal%20%28gradle-plugins%29)](https://plugins.gradle.org/search?term=com.huanshankeji)
+[![Gradle Plugin Portal (gradle-plugins)](https://img.shields.io/gradle-plugin-portal/v/com.huanshankeji.kotlin-multiplatform-conventional-targets?label=plugin%20portal%20%28gradle-plugins%29)](https://plugins.gradle.org/search?term=com.huanshankeji)
 [![Gradle Plugin Portal (common-gradle-dependencies)](https://img.shields.io/gradle-plugin-portal/v/com.huanshankeji.common-gradle-dependencies-dummy-plugin?label=plugin%20portal%20%28common-gradle-dependencies%29)](https://plugins.gradle.org/plugin/com.huanshankeji.common-gradle-dependencies-dummy-plugin)
 
 Huanshankeji's Gradle common code in Kotlin, mainly for common projects in Kotlin
 
-## Examples
+## Project status and guide
 
-There are currently no docs or tutorials on how to use the plugins. [Check out the API documentation here.](https://huanshankeji.github.io/gradle-common/.) See the build scripts in [kotlin-common](https://github.com/huanshankeji/kotlin-common) for examples.
+This library currently mainly serves our use, and the APIs are experimental and subject to change. There are currently no detailed docs or tutorials on how to use the plugins. [Check out the API documentation here.](https://huanshankeji.github.io/gradle-common/.) See the build scripts in [kotlin-common](https://github.com/huanshankeji/kotlin-common) for examples. Browse the plugins in [the `kotlin-common-gradle-plugins` module](kotlin-common-gradle-plugins) and [the `architecture-common-gradle-plugins` module](architecture-common-gradle-plugins) as references. Instead of adding this library to your build dependencies, you can also copy the plugins to your own projects and adapt them to your own needs.
 
 ## Gradle version and Kotlin version
 
 See [gradle/wrapper/gradle-wrapper.properties](gradle/wrapper/gradle-wrapper.properties) for the current dependency Gradle version and [buildSrc/build.gradle.kts](buildSrc/build.gradle.kts) for the current dependency Kotlin version. These versions are tested against and used by us. There might be compatibility issues when you use other versions of Gradle or Kotlin, especially versions with different [MAJOR](https://semver.org/) versions.
+
+This library is currently based on **Gradle 9**. There might be compatibility issues with lower versions of Gradle.
 
 ### About the version of the Kotlin Gradle plugins
 
@@ -59,4 +61,7 @@ Please note that this project often has breaking/incompatible changes, and the G
 
 1. IntelliJ IDEA doesn't work well with applying plugins to script plugins in project sources. If a script plugin's code does not resolve, try restarting IntelliJ IDEA.
 1. `./gradlew build` (and tasks depending on it) somehow has to run twice to work. I haven't identified the cause yet.
-1. IntelliJ IDEA 2024.3 doesn't load this project, which is reported at [IDEA-363846](https://youtrack.jetbrains.com/issue/IDEA-363846/Loading-a-Gradle-project-of-Gradle-plugins-changes-a-final-Kotlin-freeCompilerArgs-since-IntelliJ-IDEA-2024.3).
+
+### For branches other than `main` only
+
+1. If the build fails with "Could not find com.huanshankeji:common-gradle-dependencies" error with snapshot bootstrapping dependencies of `common-gradle-dependencies`, run `./gradlew :common-gradle-dependencies:publishToMavenLocal` first.

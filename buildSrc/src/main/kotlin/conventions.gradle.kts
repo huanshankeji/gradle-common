@@ -2,13 +2,12 @@ plugins {
     id("org.gradle.kotlin.kotlin-dsl")
     id("com.huanshankeji.team.with-group")
 
-    id("com.huanshankeji.java-1-8-compatibility-publish-conventions")
     id("com.gradle.plugin-publish")
     id("com.huanshankeji.team.default-github-packages-maven-publish")
 }
 
 repositories {
-    //mavenLocal() // comment out when not needed
+    mavenLocal() // comment out when not needed
     gradlePluginPortal()
 }
 
@@ -20,7 +19,7 @@ dependencies {
     implementation(kotlin("reflect"))
 }
 
-kotlin.jvmToolchain(8)
+kotlin.jvmToolchain(17)
 
 
 gradlePlugin {

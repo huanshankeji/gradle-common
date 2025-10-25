@@ -38,11 +38,6 @@ public abstract interface class com/huanshankeji/GenerateKotlinJsBrowserWebrootF
 	public abstract fun getWebRoot ()Lorg/gradle/api/provider/Property;
 }
 
-public final class com/huanshankeji/GenerateKotlinJsBrowserWebrootForVertxWebPlugin$apply$1$1$inlined$sam$i$org_gradle_api_Action$0 : org/gradle/api/Action {
-	public fun <init> (Lkotlin/jvm/functions/Function1;)V
-	public final synthetic fun execute (Ljava/lang/Object;)V
-}
-
 public final class com/huanshankeji/OptInsKt {
 	public static final fun defaultOptIns (Lorg/jetbrains/kotlin/gradle/plugin/LanguageSettingsBuilder;)V
 }
@@ -50,6 +45,7 @@ public final class com/huanshankeji/OptInsKt {
 public final class com/huanshankeji/jvm/native/osandarch/CpuArchitecture : java/lang/Enum {
 	public static final field Aarch64 Lcom/huanshankeji/jvm/native/osandarch/CpuArchitecture;
 	public static final field X8664 Lcom/huanshankeji/jvm/native/osandarch/CpuArchitecture;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public final fun getIdentifier ()Ljava/lang/String;
 	public static fun valueOf (Ljava/lang/String;)Lcom/huanshankeji/jvm/native/osandarch/CpuArchitecture;
 	public static fun values ()[Lcom/huanshankeji/jvm/native/osandarch/CpuArchitecture;
@@ -112,6 +108,7 @@ public final class com/huanshankeji/jvm/native/osandarch/Os : java/lang/Enum {
 	public static final field Linux Lcom/huanshankeji/jvm/native/osandarch/Os;
 	public static final field Macos Lcom/huanshankeji/jvm/native/osandarch/Os;
 	public static final field Windows Lcom/huanshankeji/jvm/native/osandarch/Os;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public final fun getIdentifier ()Ljava/lang/String;
 	public static fun valueOf (Ljava/lang/String;)Lcom/huanshankeji/jvm/native/osandarch/Os;
 	public static fun values ()[Lcom/huanshankeji/jvm/native/osandarch/Os;

@@ -1,12 +1,13 @@
 plugins {
     `kotlin-dsl`
-    // Gradle 8.10's embedded Kotlin version is 1.9.24.
-    //kotlin("jvm") version "2.0.10"
+    //kotlin("jvm") version "x.x.x"
 }
 
 repositories {
     mavenLocal()
     gradlePluginPortal()
+    // commented out as it may slow down the build, especially when the GitHub token is incorrect and authentication fails
+    /*
     maven {
         url = uri("https://maven.pkg.github.com/huanshankeji/gradle-common")
         credentials {
@@ -14,6 +15,7 @@ repositories {
             password = project.findProperty("gpr.key") as String? ?: System.getenv("TOKEN")
         }
     }
+    */
 }
 
 dependencies {
@@ -24,11 +26,13 @@ dependencies {
         implementation("org.jetbrains.kotlin:kotlin-sam-with-receiver:1.8.0")
     }
     */
-    // for `KotlinCompilationTask` and the version is compatible with Compose 1.6.11
-    implementation(kotlin("gradle-plugin", "2.1.0"))
-    implementation("org.gradle.kotlin:gradle-kotlin-dsl-plugins:5.1.1") // This version has to be used for Gradle 8.11.1.
+    // for `KotlinCompilationTask` and the version is compatible with Compose 1.9.1
+    // https://kotlinlang.org/docs/releases.html#release-details
+    implementation(kotlin("gradle-plugin", "2.2.21"))
+    implementation("org.gradle.kotlin:gradle-kotlin-dsl-plugins:6.2.0") // This version has to be used for Gradle 9.0.0 and 9.1.0.
 
-    implementation("com.gradle.publish:plugin-publish-plugin:1.3.0")
+    //https://plugins.gradle.org/plugin/com.gradle.plugin-publish
+    implementation("com.gradle.publish:plugin-publish-plugin:2.0.0")
 
     // This is a bootstrapping dependency (cross-version self-dependency). Try not to update its version unless necessary.
     implementation("com.huanshankeji.team:gradle-plugins:0.3.0") { exclude("org.jetbrains.kotlin") }
@@ -38,5 +42,6 @@ dependencies {
     implementation("com.huanshankeji:common-gradle-dependencies:0.7.1-20240314-boostrap") { exclude("org.jetbrains.kotlin") }
     */
 
-    implementation("org.jetbrains.dokka:dokka-gradle-plugin:2.0.0-Beta")
+    // https://github.com/Kotlin/dokka/releases
+    implementation("org.jetbrains.dokka:dokka-gradle-plugin:2.1.0")
 }
