@@ -8,12 +8,15 @@ fun MavenPom.setUpForDefaultOpenSourceWithApacheLicense20OnGitHub(
     nameArg: String, descriptionArg: String,
     gitProjectPageUrl: String,
     gitUrl: String = "$gitProjectPageUrl.git", scmConnection: String = "scm:git:$gitUrl",
+    inceptionYear: String? = null,
     developersBlock: MavenPomDeveloperSpec.() -> Unit
 ) {
     name.set(nameArg)
     description.set(descriptionArg)
 
     url.set(gitProjectPageUrl)
+    if (inceptionYear != null)
+        this.inceptionYear.set(inceptionYear)
 
     licenses {
         license {
@@ -33,10 +36,11 @@ fun MavenPublication.pomForDefaultOpenSourceWithApacheLicense20OnGitHub(
     nameArg: String, descriptionArg: String,
     gitProjectPageUrl: String,
     gitUrl: String = "$gitProjectPageUrl.git", scmConnection: String = "scm:git:$gitUrl",
+    inceptionYear: String? = null,
     developersBlock: MavenPomDeveloperSpec.() -> Unit
 ) =
     pom {
         setUpForDefaultOpenSourceWithApacheLicense20OnGitHub(
-            nameArg, descriptionArg, gitProjectPageUrl, gitUrl, scmConnection, developersBlock
+            nameArg, descriptionArg, gitProjectPageUrl, gitUrl, scmConnection, inceptionYear, developersBlock
         )
     }

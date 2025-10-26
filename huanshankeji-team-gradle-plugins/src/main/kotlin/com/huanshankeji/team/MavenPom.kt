@@ -13,10 +13,11 @@ fun MavenPom.setUpPomForTeamDefaultOpenSource(
     nameArg: String, descriptionArg: String,
     gitProjectPageUrl: String = project.defaultRootProjectGithubRepositoryUrl(),
     gitUrl: String = "$gitProjectPageUrl.git", scmConnection: String = "scm:git:$gitUrl",
+    inceptionYear: String? = null,
     developersBlock: MavenPomDeveloperSpec.() -> Unit
 ) =
     setUpForDefaultOpenSourceWithApacheLicense20OnGitHub(
-        nameArg, descriptionArg, gitProjectPageUrl, gitUrl, scmConnection, developersBlock
+        nameArg, descriptionArg, gitProjectPageUrl, gitUrl, scmConnection, inceptionYear, developersBlock
     )
 
 // TODO: use context receivers when it's stable
@@ -25,10 +26,11 @@ fun MavenPublication.pomForTeamDefaultOpenSource(
     nameArg: String, descriptionArg: String,
     gitProjectPageUrl: String = project.defaultRootProjectGithubRepositoryUrl(),
     gitUrl: String = "$gitProjectPageUrl.git", scmConnection: String = "scm:git:$gitUrl",
+    inceptionYear: String? = null,
     developersBlock: MavenPomDeveloperSpec.() -> Unit
 ) =
     pomForDefaultOpenSourceWithApacheLicense20OnGitHub(
-        nameArg, descriptionArg, gitProjectPageUrl, gitUrl, scmConnection, developersBlock
+        nameArg, descriptionArg, gitProjectPageUrl, gitUrl, scmConnection, inceptionYear, developersBlock
     )
 
 @Deprecated("The name has been updated.", ReplaceWith("this.ShreckYe()"))
