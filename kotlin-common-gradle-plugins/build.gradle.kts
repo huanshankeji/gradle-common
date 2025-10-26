@@ -66,11 +66,13 @@ gradlePlugin {
             description = "Publishes to a GitLab project-level Maven endpoint."
         }
 
+        /*
         // TODO
         scriptConventionsPlugin(
             "nexus-staging",
             "Not implemented yet"
         )
+        */
 
         scriptConventionsPlugin(
             "jvm-integration-test",
