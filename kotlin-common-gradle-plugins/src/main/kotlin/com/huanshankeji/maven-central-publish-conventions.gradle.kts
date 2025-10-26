@@ -7,5 +7,6 @@ plugins {
 mavenPublishing {
     publishToMavenCentral()
 
-    signAllPublications()
+    if (!isSnapshotVersion())
+        signAllPublications()
 }
