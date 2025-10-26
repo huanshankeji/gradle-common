@@ -1,9 +1,17 @@
 package com.huanshankeji
 
+// deprecated
+
 plugins {
     `maven-publish`
     signing
 }
+
+logger.warn(
+    "The `com.huanshankeji.*sonatype-ossrh-publish*` plugins are deprecated. " +
+            "Please migrate to `com.vanniktech.maven.publish` or `com.huanshankeji.maven-central-publish-conventions`. " +
+            "Also see <https://central.sonatype.org/pages/ossrh-eol/>."
+)
 
 val isSnapshotVersion = isSnapshotVersion()
 

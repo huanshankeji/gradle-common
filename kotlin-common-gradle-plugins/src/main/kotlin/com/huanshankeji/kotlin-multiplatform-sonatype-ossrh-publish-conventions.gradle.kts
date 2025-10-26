@@ -1,5 +1,7 @@
 package com.huanshankeji
 
+// deprecated
+
 plugins {
     id("com.huanshankeji.kotlin-multiplatform-maven-publish-conventions")
     id("com.huanshankeji.sonatype-ossrh-publish")

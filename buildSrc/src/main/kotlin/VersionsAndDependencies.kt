@@ -20,6 +20,9 @@ object DependencyVersions {
 
     // https://github.com/Kotlin/binary-compatibility-validator/releases
     val binaryCompatibilityValidator = "0.18.1"
+
+    // https://github.com/vanniktech/gradle-maven-publish-plugin/releases
+    val vanniktechMavenPublish = "0.34.0"
 }
 
 val alignedPluginVersion = "0.11.0-SNAPSHOT"
