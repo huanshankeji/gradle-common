@@ -1,5 +1,7 @@
 package com.huanshankeji
 
+import org.gradle.internal.deprecation.DeprecationLogger
+
 // deprecated
 
 plugins {
@@ -7,7 +9,7 @@ plugins {
     signing
 }
 
-logger.warn(
+DeprecationLogger.deprecatePlugin(
     "The `com.huanshankeji.*sonatype-ossrh-publish*` plugins are deprecated. " +
             "Please migrate to `com.vanniktech.maven.publish` or `com.huanshankeji.maven-central-publish-conventions`. " +
             "Also see <https://central.sonatype.org/pages/ossrh-eol/>."
