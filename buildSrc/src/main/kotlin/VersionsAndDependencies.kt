@@ -22,7 +22,7 @@ object DependencyVersions {
     val binaryCompatibilityValidator = "0.18.1"
 }
 
-val alignedPluginVersion = "0.11.0-SNAPSHOT"
+val alignedPluginVersion = "0.10.1-SNAPSHOT"
 
 // "x.y.z" indicates the version of the way of organizing the code,
 // and the date indicates the version when the dependency versions are updated.
