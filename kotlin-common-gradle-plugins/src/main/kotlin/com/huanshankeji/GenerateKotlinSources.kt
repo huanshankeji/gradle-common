@@ -17,15 +17,29 @@ fun Project.generateKotlinSources(
     val generatedSourcesDir = layout.buildDirectory.dir("gen/$sourceDirectoryName/kotlin").get().asFile
 
     val task = tasks.register(taskName) {
-        generatedSourcesDir.mkdirs()
+        // Declare inputs based on source file content to trigger re-generation when content changes
+        inputs.property("sourceFiles") { sourceFiles.associate { it.filePath to it.content } }
 
-        for (sourceFile in sourceFiles) {
-            val generatedVersionsSourceFile = generatedSourcesDir.resolve(sourceFile.filePath)
-            generatedVersionsSourceFile.writeText(sourceFile.content)
+        // Declare outputs so Gradle can check if files exist and are up-to-date
+        outputs.dir(generatedSourcesDir)
+
+        doLast {
+            generatedSourcesDir.mkdirs()
+
+            for (sourceFile in sourceFiles) {
+                val generatedVersionsSourceFile = generatedSourcesDir.resolve(sourceFile.filePath)
+                generatedVersionsSourceFile.writeText(sourceFile.content)
+            }
         }
     }
 
     tasks.compileKotlin {
+        dependsOn(task)
+    }
+
+    // Ensure tasks that access source sets have explicit dependency on the generation task
+    //tasks.named("sourcesJar") { // This seems to configure eagerly and doesn't work.
+    tasks.named { it == "sourcesJar" }.configureEach {
         dependsOn(task)
     }
 

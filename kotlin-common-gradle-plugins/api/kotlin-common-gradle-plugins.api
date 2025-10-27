@@ -165,11 +165,17 @@ public final class com/huanshankeji/Kotlin_multiplatform_sonatype_ossrh_publish_
 	public static final fun main ([Ljava/lang/String;)V
 }
 
+public final class com/huanshankeji/MavenCentralPublishConventionsPlugin : org/gradle/api/Plugin {
+	public fun <init> ()V
+	public synthetic fun apply (Ljava/lang/Object;)V
+	public fun apply (Lorg/gradle/api/Project;)V
+}
+
 public final class com/huanshankeji/MavenPomKt {
-	public static final fun pomForDefaultOpenSourceWithApacheLicense20OnGitHub (Lorg/gradle/api/publish/maven/MavenPublication;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
-	public static synthetic fun pomForDefaultOpenSourceWithApacheLicense20OnGitHub$default (Lorg/gradle/api/publish/maven/MavenPublication;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
-	public static final fun setUpForDefaultOpenSourceWithApacheLicense20OnGitHub (Lorg/gradle/api/publish/maven/MavenPom;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
-	public static synthetic fun setUpForDefaultOpenSourceWithApacheLicense20OnGitHub$default (Lorg/gradle/api/publish/maven/MavenPom;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static final fun pomForDefaultOpenSourceWithApacheLicense20OnGitHub (Lorg/gradle/api/publish/maven/MavenPublication;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun pomForDefaultOpenSourceWithApacheLicense20OnGitHub$default (Lorg/gradle/api/publish/maven/MavenPublication;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static final fun setUpForDefaultOpenSourceWithApacheLicense20OnGitHub (Lorg/gradle/api/publish/maven/MavenPom;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun setUpForDefaultOpenSourceWithApacheLicense20OnGitHub$default (Lorg/gradle/api/publish/maven/MavenPom;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 }
 
 public final class com/huanshankeji/MavenPublishConventionsPlugin : org/gradle/api/Plugin {
@@ -198,6 +204,11 @@ public final class com/huanshankeji/MavenPublishConventionsPlugin$ArtifactIdConf
 public abstract class com/huanshankeji/MavenPublishConventionsPlugin$Extension {
 	public fun <init> ()V
 	public abstract fun getArtifactIdConfig ()Lorg/gradle/api/provider/Property;
+}
+
+public final class com/huanshankeji/Maven_central_publish_conventions_gradle : org/gradle/kotlin/dsl/precompile/v1/PrecompiledProjectScript {
+	public fun <init> (Lorg/gradle/api/Project;Lorg/gradle/api/Project;)V
+	public static final fun main ([Ljava/lang/String;)V
 }
 
 public final class com/huanshankeji/NamingConventionsKt {
