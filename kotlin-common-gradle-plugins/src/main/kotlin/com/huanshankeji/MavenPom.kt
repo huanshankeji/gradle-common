@@ -6,13 +6,14 @@ import org.gradle.api.publish.maven.MavenPublication
 
 fun MavenPom.setUpForDefaultOpenSourceWithApacheLicense20OnGitHub(
     nameArg: String, descriptionArg: String,
+    inceptionYear: String? = null,
     gitProjectPageUrl: String,
     gitUrl: String = "$gitProjectPageUrl.git", scmConnection: String = "scm:git:$gitUrl",
-    inceptionYear: String? = null,
     developersBlock: MavenPomDeveloperSpec.() -> Unit
 ) {
     name.set(nameArg)
     description.set(descriptionArg)
+
     if (inceptionYear != null)
         this.inceptionYear.set(inceptionYear)
 
@@ -34,13 +35,13 @@ fun MavenPom.setUpForDefaultOpenSourceWithApacheLicense20OnGitHub(
 
 fun MavenPublication.pomForDefaultOpenSourceWithApacheLicense20OnGitHub(
     nameArg: String, descriptionArg: String,
+    inceptionYear: String? = null,
     gitProjectPageUrl: String,
     gitUrl: String = "$gitProjectPageUrl.git", scmConnection: String = "scm:git:$gitUrl",
-    inceptionYear: String? = null,
     developersBlock: MavenPomDeveloperSpec.() -> Unit
 ) =
     pom {
         setUpForDefaultOpenSourceWithApacheLicense20OnGitHub(
-            nameArg, descriptionArg, gitProjectPageUrl, gitUrl, scmConnection, inceptionYear, developersBlock
+            nameArg, descriptionArg, inceptionYear, gitProjectPageUrl, gitUrl, scmConnection, developersBlock
         )
     }
