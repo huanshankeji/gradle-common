@@ -18,8 +18,7 @@ fun Project.generateKotlinSources(
 
     val task = tasks.register(taskName) {
         // Declare inputs based on source file content to trigger re-generation when content changes
-        val sourceFilesMap = sourceFiles.associate { it.filePath to it.content }
-        inputs.property("sourceFiles", sourceFilesMap)
+        inputs.property("sourceFiles") { sourceFiles.associate { it.filePath to it.content } }
         
         // Declare outputs so Gradle can check if files exist and are up-to-date
         outputs.dir(generatedSourcesDir)
