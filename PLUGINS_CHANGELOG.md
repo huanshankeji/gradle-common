@@ -1,5 +1,12 @@
 # "Gradle plugins" change log
 
+## v0.11.0 / 2025-10-28
+
+* add the `maven-central-publish-conventions` plugin based on `com.vanniktech.maven.publish` and deprecate our old OSSRH publish plugins
+    * add a `MavenPom.setUpPomForTeamDefaultOpenSource` function to help configure this plugin
+* fix an issue that `GeneratedVersions` are not generated when running `publishToMavenLocal` from a clean state (#38)
+* add an `inceptionYear` parameter to Maven POM configuration functions (#41)
+
 ## v0.10.0 / 2025-10-25
 
 * update Gradle to 9.1.0 and migrate to Gradle 9, fixing some incompatibilities
