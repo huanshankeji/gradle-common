@@ -10,25 +10,25 @@ import org.gradle.api.publish.maven.MavenPublication
 
 fun MavenPom.setUpPomForTeamDefaultOpenSource(
     project: Project,
-    nameArg: String, descriptionArg: String,
+    name: String, description: String,
     gitProjectPageUrl: String = project.defaultRootProjectGithubRepositoryUrl(),
     gitUrl: String = "$gitProjectPageUrl.git", scmConnection: String = "scm:git:$gitUrl",
     developersBlock: MavenPomDeveloperSpec.() -> Unit
 ) =
     setUpForDefaultOpenSourceWithApacheLicense20OnGitHub(
-        nameArg, descriptionArg, gitProjectPageUrl, gitUrl, scmConnection, developersBlock
+        name, description, gitProjectPageUrl, gitUrl, scmConnection, developersBlock
     )
 
 // TODO: use context receivers when it's stable
 fun MavenPublication.pomForTeamDefaultOpenSource(
     project: Project,
-    nameArg: String, descriptionArg: String,
+    name: String, description: String,
     gitProjectPageUrl: String = project.defaultRootProjectGithubRepositoryUrl(),
     gitUrl: String = "$gitProjectPageUrl.git", scmConnection: String = "scm:git:$gitUrl",
     developersBlock: MavenPomDeveloperSpec.() -> Unit
 ) =
     pomForDefaultOpenSourceWithApacheLicense20OnGitHub(
-        nameArg, descriptionArg, gitProjectPageUrl, gitUrl, scmConnection, developersBlock
+        name, description, gitProjectPageUrl, gitUrl, scmConnection, developersBlock
     )
 
 @Deprecated("The name has been updated.", ReplaceWith("this.ShreckYe()"))
