@@ -172,10 +172,10 @@ public final class com/huanshankeji/MavenCentralPublishConventionsPlugin : org/g
 }
 
 public final class com/huanshankeji/MavenPomKt {
-	public static final fun pomForDefaultOpenSourceWithApacheLicense20OnGitHub (Lorg/gradle/api/publish/maven/MavenPublication;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
-	public static synthetic fun pomForDefaultOpenSourceWithApacheLicense20OnGitHub$default (Lorg/gradle/api/publish/maven/MavenPublication;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
-	public static final fun setUpForDefaultOpenSourceWithApacheLicense20OnGitHub (Lorg/gradle/api/publish/maven/MavenPom;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
-	public static synthetic fun setUpForDefaultOpenSourceWithApacheLicense20OnGitHub$default (Lorg/gradle/api/publish/maven/MavenPom;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static final fun pomForDefaultOpenSourceWithApacheLicense20OnGitHub (Lorg/gradle/api/publish/maven/MavenPublication;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun pomForDefaultOpenSourceWithApacheLicense20OnGitHub$default (Lorg/gradle/api/publish/maven/MavenPublication;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static final fun setUpForDefaultOpenSourceWithApacheLicense20OnGitHub (Lorg/gradle/api/publish/maven/MavenPom;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun setUpForDefaultOpenSourceWithApacheLicense20OnGitHub$default (Lorg/gradle/api/publish/maven/MavenPom;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 }
 
 public final class com/huanshankeji/MavenPublishConventionsPlugin : org/gradle/api/Plugin {
