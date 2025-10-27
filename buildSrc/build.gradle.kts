@@ -35,7 +35,7 @@ dependencies {
     implementation("com.gradle.publish:plugin-publish-plugin:2.0.0")
 
     // This is a bootstrapping dependency (cross-version self-dependency). Try not to update its version unless necessary.
-    // TODO test with 0.11.0-fix-generateKotlinSources-SNAPSHOT and bump a stable version later
+    // TODO test with 0.11.0-fix-generateKotlinSources-SNAPSHOT and bump to a stable version later
     implementation("com.huanshankeji.team:gradle-plugins:0.3.0") { exclude("org.jetbrains.kotlin") }
     // This approach complicates the project is temporarily given up and commented out. Maybe readopt this when `common-gradle-dependencies` is moved to a separate project.
     /*
