@@ -11,6 +11,7 @@ import org.gradle.api.publish.maven.MavenPublication
 fun MavenPom.setUpPomForTeamDefaultOpenSource(
     project: Project,
     name: String, description: String,
+    // required in our team plugins per our team conventions
     inceptionYear: String,
     gitProjectPageUrl: String = project.defaultRootProjectGithubRepositoryUrl(),
     gitUrl: String = "$gitProjectPageUrl.git", scmConnection: String = "scm:git:$gitUrl",
@@ -24,6 +25,7 @@ fun MavenPom.setUpPomForTeamDefaultOpenSource(
 fun MavenPublication.pomForTeamDefaultOpenSource(
     project: Project,
     name: String, description: String,
+    // required in our team plugins per our team conventions
     inceptionYear: String,
     gitProjectPageUrl: String = project.defaultRootProjectGithubRepositoryUrl(),
     gitUrl: String = "$gitProjectPageUrl.git", scmConnection: String = "scm:git:$gitUrl",
