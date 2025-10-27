@@ -36,6 +36,11 @@ fun Project.generateKotlinSources(
     tasks.compileKotlin {
         dependsOn(task)
     }
+    
+    // Ensure tasks that access source sets have explicit dependency on the generation task
+    tasks.matching { it.name == "sourcesJar" }.configureEach {
+        dependsOn(task)
+    }
 
     kotlin.sourceSets["main"].kotlin.srcDir(generatedSourcesDir)
 }
