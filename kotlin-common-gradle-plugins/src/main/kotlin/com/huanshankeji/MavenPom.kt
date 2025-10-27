@@ -13,10 +13,10 @@ fun MavenPom.setUpForDefaultOpenSourceWithApacheLicense20OnGitHub(
 ) {
     name.set(nameArg)
     description.set(descriptionArg)
-
-    url.set(gitProjectPageUrl)
     if (inceptionYear != null)
         this.inceptionYear.set(inceptionYear)
+
+    url.set(gitProjectPageUrl)
 
     licenses {
         license {
