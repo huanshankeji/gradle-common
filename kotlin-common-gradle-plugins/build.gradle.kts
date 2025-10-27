@@ -3,8 +3,6 @@ plugins {
 }
 
 dependencies {
-    //implementation("io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.30.0")
-
     implementation("org.jetbrains.kotlinx:kotlinx-benchmark-plugin:${DependencyVersions.kotlinxBenchmark}")
     implementation(kotlin("allopen", DependencyVersions.kotlin))
     implementation("org.jetbrains.dokka:dokka-gradle-plugin:${DependencyVersions.dokka}")
@@ -78,14 +76,6 @@ gradlePlugin {
             displayName = "GitLab project-level Maven endpoint publish"
             description = "Publishes to a GitLab project-level Maven endpoint."
         }
-
-        /*
-        // TODO
-        scriptConventionsPlugin(
-            "nexus-staging",
-            "Not implemented yet"
-        )
-        */
 
         scriptConventionsPlugin(
             "jvm-integration-test",
