@@ -9,6 +9,7 @@ import org.gradle.api.publish.maven.MavenPublication
 import org.gradle.kotlin.dsl.create
 import org.gradle.kotlin.dsl.withType
 
+// TODO consider deprecating this plugin and the depending plugins too
 // TODO refactor into a script plugin
 class MavenPublishConventionsPlugin : Plugin<Project> {
     sealed class ArtifactIdConfig {
@@ -16,7 +17,7 @@ class MavenPublishConventionsPlugin : Plugin<Project> {
         object DefaultUnchanged : ArtifactIdConfig()
 
         // Use a name created by concatenating the subproject names.
-        @Deprecated("Adopting this config may cause potential bugs in Kotlin Multiplatform projects. See \"https://youtrack.jetbrains.com/issue/KT-54182\".")
+        @Deprecated("Adopting this config may cause potential bugs in Kotlin Multiplatform projects. See \"https://youtrack.jetbrains.com/issue/KT-54182\".") // This seems fixed.
         object SubprojectNameConcatenated : ArtifactIdConfig()
 
         class Custom(val artifactId: String) : ArtifactIdConfig()

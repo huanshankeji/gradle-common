@@ -8,6 +8,8 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-benchmark-plugin:${DependencyVersions.kotlinxBenchmark}")
     implementation(kotlin("allopen", DependencyVersions.kotlin))
     implementation("org.jetbrains.dokka:dokka-gradle-plugin:${DependencyVersions.dokka}")
+    // made `api` to expose the plugin extension class (https://github.com/vanniktech/gradle-maven-publish-plugin/blob/main/plugin/src/main/kotlin/com/vanniktech/maven/publish/MavenPublishBaseExtension.kt)
+    api("com.vanniktech.maven.publish:com.vanniktech.maven.publish.gradle.plugin:${DependencyVersions.vanniktechMavenPublish}")
 
     testImplementation(kotlin("test"))
 }
@@ -41,17 +43,28 @@ gradlePlugin {
             "kotlin-multiplatform-maven-publish-conventions",
             "Kotlin Multiplatform conventions with Maven publish"
         )
+        val ossrhPublishPluginDeprecatedMessage =
+            "The `com.huanshankeji.*sonatype-ossrh-publish*` plugins are deprecated. " +
+                    "Please migrate to `com.vanniktech.maven.publish` or `com.huanshankeji.maven-central-publish-conventions`. " +
+                    "Also see <https://central.sonatype.org/pages/ossrh-eol/>."
         scriptConventionsPlugin(
             "sonatype-ossrh-publish",
-            "Sonatype OSSRH Maven Central publish"
+            "Sonatype OSSRH Maven Central publish",
+            ossrhPublishPluginDeprecatedMessage
         )
         scriptConventionsPlugin(
             "kotlin-jvm-library-sonatype-ossrh-publish-conventions",
-            "Kotlin/JVM library conventions with Sonatype OSSRH Maven Central publish"
+            "Kotlin/JVM library conventions with Sonatype OSSRH Maven Central publish",
+            ossrhPublishPluginDeprecatedMessage
         )
         scriptConventionsPlugin(
             "kotlin-multiplatform-sonatype-ossrh-publish-conventions",
-            "Kotlin Multiplatform conventions with Sonatype OSSRH Maven Central publish"
+            "Kotlin Multiplatform conventions with Sonatype OSSRH Maven Central publish",
+            ossrhPublishPluginDeprecatedMessage
+        )
+        scriptConventionsPlugin(
+            "maven-central-publish-conventions",
+            "Maven Central publish conventions based on the `com.vanniktech.maven.publish` plugin."
         )
         create("github-packages-maven-publish") {
             id = "$`package`.$name"
@@ -66,11 +79,13 @@ gradlePlugin {
             description = "Publishes to a GitLab project-level Maven endpoint."
         }
 
+        /*
         // TODO
         scriptConventionsPlugin(
             "nexus-staging",
             "Not implemented yet"
         )
+        */
 
         scriptConventionsPlugin(
             "jvm-integration-test",

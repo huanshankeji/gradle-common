@@ -1,5 +1,11 @@
 # "Gradle plugins" change log
 
+## v0.10.0 / 2025-10-25
+
+* update Gradle to 9.1.0 and migrate to Gradle 9, fixing some incompatibilities
+* update the Java version to 17
+* bump dependencies to the latest
+
 ## v0.9.0 / 2024-12-05
 
 There are no functional changes in this release.
