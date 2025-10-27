@@ -34,7 +34,7 @@ fun MavenPom.setUpForDefaultOpenSourceWithApacheLicense20OnGitHub(
 }
 
 fun MavenPublication.pomForDefaultOpenSourceWithApacheLicense20OnGitHub(
-    nameArg: String, descriptionArg: String,
+    name: String, description: String,
     inceptionYear: String? = null,
     gitProjectPageUrl: String,
     gitUrl: String = "$gitProjectPageUrl.git", scmConnection: String = "scm:git:$gitUrl",
@@ -42,6 +42,6 @@ fun MavenPublication.pomForDefaultOpenSourceWithApacheLicense20OnGitHub(
 ) =
     pom {
         setUpForDefaultOpenSourceWithApacheLicense20OnGitHub(
-            nameArg, descriptionArg, inceptionYear, gitProjectPageUrl, gitUrl, scmConnection, developersBlock
+            name, description, inceptionYear, gitProjectPageUrl, gitUrl, scmConnection, developersBlock
         )
     }
