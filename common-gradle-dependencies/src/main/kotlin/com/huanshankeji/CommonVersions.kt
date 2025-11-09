@@ -20,7 +20,7 @@ class CommonVersions(
     // https://github.com/Kotlin/kotlinx-io/releases
     val kotlinxIo: String = "0.8.0",
     // https://github.com/JetBrains/Exposed/releases
-    val exposed: String = "1.0.0-rc-2",
+    val exposed: String = "1.0.0-rc-3",
     // https://github.com/ktorio/ktor/releases
     val ktor: String = "3.3.1",
     val jetBrainsAndroidx: JetbrainsAndroidx = JetbrainsAndroidx(),
