@@ -285,6 +285,8 @@ class CommonDependencies(val versions: CommonVersions = CommonVersions()) {
 
         fun property(version: String = defaultVersion) =
             module("property", version)
+
+        // TODO add the Gradle plugin (https://plugins.gradle.org/plugin/io.kotest), `kotest-framework-engine`, and `io.kotest:kotest-extensions-testcontainers`
     }
 
     val kotest = Kotest()
