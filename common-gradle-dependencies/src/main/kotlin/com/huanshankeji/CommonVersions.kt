@@ -40,7 +40,7 @@ class CommonVersions(
     val slf4j: String = "2.0.17",
     // TODO add kotlin-logging (https://github.com/oshai/kotlin-logging)
     // https://github.com/testcontainers/testcontainers-java/releases
-    val testcontainers: String = "2.0.1"
+    val testcontainers: String = "2.0.3"
 ) {
     class JetbrainsAndroidx(
         val composeMultiplatform: String = GeneratedVersions.composeMultiplatform, // this is usually only used in classpath dependencies
