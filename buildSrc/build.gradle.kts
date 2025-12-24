@@ -28,7 +28,7 @@ dependencies {
     */
     // for `KotlinCompilationTask` and the version is compatible with Compose 1.9.1
     // https://kotlinlang.org/docs/releases.html#release-details
-    implementation(kotlin("gradle-plugin", "2.2.21"))
+    implementation(kotlin("gradle-plugin", "2.3.0"))
     implementation("org.gradle.kotlin:gradle-kotlin-dsl-plugins:6.2.0") // This version has to be used for Gradle 9.0.0 and 9.1.0.
 
     //https://plugins.gradle.org/plugin/com.gradle.plugin-publish
