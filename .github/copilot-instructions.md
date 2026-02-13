@@ -8,7 +8,7 @@
 - **Project Type:** Gradle plugin library with multiple modules
 - **Languages:** Kotlin (primary), Gradle Kotlin DSL
 - **Target Runtime:** JVM (JDK 17+, tested with JDK 17)
-- **Framework:** Gradle 9.0.0, Kotlin 2.3.0
+- **Framework:** Gradle 9.3.1, Kotlin 2.3.0
 - **Size:** Medium-sized multi-module project (~20 plugin modules)
 - **APIs:** Experimental and subject to change
 
@@ -150,7 +150,7 @@ The repository uses GitHub Actions CI that:
 - Kotlin Binary Compatibility Validator 0.18.1
 
 **Version Compatibility Notes:**
-- Gradle 9.1.0 required (handled by wrapper)
+- Gradle 9.3.1 required (handled by wrapper)
 - "Unsupported Kotlin plugin version" warnings are normal when the Kotlin Gradle plugin version is newer than the version bundled in Gradle
 - Compose Multiplatform versions constrain Kotlin version compatibility
 
