@@ -63,6 +63,9 @@
 ./gradlew validatePlugins  # Validate plugin parameter annotations
 ```
 
+> **Do NOT run `apiDump` automatically** — even if `check` fails due to API changes (i.e. `apiCheck` fails). Leave `apiDump` for the human developer to run after they have reviewed the API changes. Running `apiDump` automatically generates unnecessary Git-tracked churn before the developer has had a chance to review the API surface.
+> Only run `apiDump` if you are **very confident** you have completely and correctly finished all the task goals and no further API edits from the developer will be needed.
+
 ### Known Build Issues and Workarounds
 
 **Warning Messages (Safe to Ignore):**
@@ -139,6 +142,13 @@ The repository uses GitHub Actions CI that:
 ./gradlew apiCheck                 # Verify API compatibility
 ```
 
+If `check` fails solely due to `apiCheck` failures (because public APIs have changed), do **not** run `apiDump` automatically. Instead, validate using:
+```bash
+./gradlew test
+./gradlew publishToMavenLocal
+```
+Then leave the `apiDump` step to the human developer to perform after reviewing API changes.
+
 ### Dependencies and Compatibility
 
 **External Dependencies:**
@@ -164,6 +174,7 @@ The repository uses GitHub Actions CI that:
 **Plugin Development:**
 - Script plugins in project sources may require IntelliJ restart for proper resolution
 - Use `publishToMavenLocal` to test changes in consuming projects
+- **Do NOT run `apiDump` automatically** after making changes. If `./gradlew check` fails solely due to `apiCheck` failures, run `./gradlew test` and `./gradlew publishToMavenLocal` to verify logic correctness and build/publishing. Leave `apiDump` for the human developer to run after reviewing the API surface changes.
 
 **Version Management:**
 - Plugin versions aligned via `alignedPluginVersion` in VersionsAndDependencies.kt
