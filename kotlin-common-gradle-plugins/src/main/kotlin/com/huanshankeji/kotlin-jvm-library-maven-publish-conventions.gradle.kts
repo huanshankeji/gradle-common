@@ -3,8 +3,8 @@ package com.huanshankeji
 plugins {
     kotlin("jvm")
     `java-library`
+    id("com.huanshankeji.maven-publish-conventions")
 }
-apply<MavenPublishConventionsPlugin>()
 
 java {
     withJavadocJar()

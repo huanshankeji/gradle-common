@@ -27,12 +27,10 @@ gradlePlugin {
             "Kotlin Multiplatform conventions with the conventional targets JVM, JS (browser), iOS (`iosX64`, `iosArm64`, and `iosSimulatorArm64`), and Wasm JS"
         )
 
-        create("maven-publish-conventions") {
-            id = "$`package`.$name"
-            implementationClass = "$`package`.MavenPublishConventionsPlugin"
-            displayName = "Maven publish conventions"
-            description = displayName
-        }
+        scriptConventionsPlugin(
+            "maven-publish-conventions",
+            "Maven publish conventions"
+        )
         scriptConventionsPlugin(
             "kotlin-jvm-library-maven-publish-conventions",
             "Kotlin/JVM library conventions with Maven publish"
@@ -64,18 +62,16 @@ gradlePlugin {
             "maven-central-publish-conventions",
             "Maven Central publish conventions based on the `com.vanniktech.maven.publish` plugin."
         )
-        create("github-packages-maven-publish") {
-            id = "$`package`.$name"
-            implementationClass = "$`package`.GithubPackagesMavenPublishPlugin"
-            displayName = "GitHub Packages publish"
-            description = "Publishes to a Maven registry of GitHub Packages."
-        }
-        create("gitlab-project-level-maven-endpoint-publish") {
-            id = "$`package`.$name"
-            implementationClass = "$`package`.GitlabProjectLevelMavenEndpointPublishPlugin"
-            displayName = "GitLab project-level Maven endpoint publish"
-            description = "Publishes to a GitLab project-level Maven endpoint."
-        }
+        scriptConventionsPlugin(
+            "github-packages-maven-publish",
+            "GitHub Packages publish",
+            "Publishes to a Maven registry of GitHub Packages."
+        )
+        scriptConventionsPlugin(
+            "gitlab-project-level-maven-endpoint-publish",
+            "GitLab project-level Maven endpoint publish",
+            "Publishes to a GitLab project-level Maven endpoint."
+        )
 
         scriptConventionsPlugin(
             "jvm-integration-test",

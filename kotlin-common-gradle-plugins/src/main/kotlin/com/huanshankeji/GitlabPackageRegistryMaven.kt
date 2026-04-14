@@ -1,10 +1,8 @@
 package com.huanshankeji
 
-import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.artifacts.dsl.RepositoryHandler
 import org.gradle.api.credentials.HttpHeaderCredentials
-import org.gradle.api.provider.Property
 import org.gradle.authentication.http.HttpHeaderAuthentication
 import org.gradle.kotlin.dsl.create
 import org.gradle.kotlin.dsl.credentials
@@ -55,26 +53,3 @@ fun Project.gitlabInstanceLevelMavenRepository(
     gitlabMavenRepository(repositoryHandler, name, "https://$host/api/v4/packages/maven")
 
 
-class GitlabProjectLevelMavenEndpointPublishPlugin : Plugin<Project> {
-    interface Extension {
-        val host: Property<String>
-        val projectId: Property<String>
-    }
-
-    override fun apply(project: Project) = project.run {
-        pluginManager.apply("maven-publish")
-
-        val extension = extensions.create<Extension>("gitlabPackagesPublish")
-
-        afterEvaluate {
-            publishing {
-                repositories {
-                    gitlabProjectLevelMavenRepository(
-                        this,
-                        host = extension.host.getOrElse(GITLAB_HOST), projectIdOrProjectPath = extension.projectId.get()
-                    )
-                }
-            }
-        }
-    }
-}
