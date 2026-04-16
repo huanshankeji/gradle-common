@@ -1,7 +1,7 @@
 package com.huanshankeji
 
 plugins {
-    `maven-publish`
+    id("com.vanniktech.maven.publish")
 }
 
 interface Extension {
