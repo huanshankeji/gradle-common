@@ -15,7 +15,7 @@ afterEvaluate {
     publishing {
         repositories {
             gitlabProjectLevelMavenRepository(
-                this@repositories,
+                this,
                 host = extension.host.getOrElse(GITLAB_HOST), projectIdOrProjectPath = extension.projectId.get()
             )
         }
