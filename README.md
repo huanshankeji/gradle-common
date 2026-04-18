@@ -60,7 +60,6 @@ Please note that this project often has breaking/incompatible changes, and the G
 ## Developer notices
 
 1. IntelliJ IDEA doesn't work well with applying plugins to script plugins in project sources. If a script plugin's code does not resolve, try restarting IntelliJ IDEA.
-1. `./gradlew build` (and tasks depending on it) somehow has to run twice to work. I haven't identified the cause yet.
 
 ### For branches other than `main` only
 
