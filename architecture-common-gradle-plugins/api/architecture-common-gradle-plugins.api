@@ -32,7 +32,13 @@ public final class com/huanshankeji/GenerateKotlinJsBrowserWebrootForVertxWebPlu
 	public fun apply (Lorg/gradle/api/Project;)V
 }
 
-public abstract interface class com/huanshankeji/GenerateKotlinJsBrowserWebrootForVertxWebPlugin$Extension {
+public final class com/huanshankeji/Generate_kotlin_js_browser_webroot_for_vertx_web_gradle : org/gradle/kotlin/dsl/precompile/v1/PrecompiledProjectScript {
+	public fun <init> (Lorg/gradle/api/Project;Lorg/gradle/api/Project;)V
+	public final fun getExtension ()Lcom/huanshankeji/Generate_kotlin_js_browser_webroot_for_vertx_web_gradle$Extension;
+	public static final fun main ([Ljava/lang/String;)V
+}
+
+public abstract interface class com/huanshankeji/Generate_kotlin_js_browser_webroot_for_vertx_web_gradle$Extension {
 	public abstract fun getIncludes ()Lorg/gradle/api/provider/ListProperty;
 	public abstract fun getWebFrontendProjectPath ()Lorg/gradle/api/provider/Property;
 	public abstract fun getWebRoot ()Lorg/gradle/api/provider/Property;
