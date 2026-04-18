@@ -7,22 +7,22 @@ val commonGradleClasspathDependencies = CommonGradleClasspathDependencies(common
 
 object DependencyVersions {
     // https://kotlinlang.org/docs/releases.html#release-details
-    val kotlin = "2.3.0" // compatible with the compose version below
+    val kotlin = "2.3.20" // compatible with the compose version below
 
     // https://github.com/JetBrains/compose-multiplatform/releases
-    val composeMultiplatform = "1.9.1"
+    val composeMultiplatform = "1.10.3"
 
     // https://github.com/Kotlin/kotlinx-benchmark/releases
-    val kotlinxBenchmark = "0.4.14"
+    val kotlinxBenchmark = "0.4.16"
 
     // https://github.com/Kotlin/dokka/releases
-    val dokka = "2.1.0"
+    val dokka = "2.2.0"
 
     // https://github.com/Kotlin/binary-compatibility-validator/releases
     val binaryCompatibilityValidator = "0.18.1"
 
     // https://github.com/vanniktech/gradle-maven-publish-plugin/releases
-    val vanniktechMavenPublish = "0.34.0"
+    val vanniktechMavenPublish = "0.36.0"
 }
 
 val alignedPluginVersion = "0.11.0-SNAPSHOT"
