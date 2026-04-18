@@ -26,10 +26,10 @@ dependencies {
         implementation("org.jetbrains.kotlin:kotlin-sam-with-receiver:1.8.0")
     }
     */
-    // for `KotlinCompilationTask` and the version is compatible with Compose 1.9.1
+    // for `KotlinCompilationTask` and the version is compatible with Compose 1.10.3
     // https://kotlinlang.org/docs/releases.html#release-details
-    implementation(kotlin("gradle-plugin", "2.3.0"))
-    implementation("org.gradle.kotlin:gradle-kotlin-dsl-plugins:6.4.2") // This version has to be used for Gradle 9.3.1.
+    implementation(kotlin("gradle-plugin", "2.3.20"))
+    implementation("org.gradle.kotlin:gradle-kotlin-dsl-plugins:6.5.2") // This version has to be used for Gradle 9.4.1.
 
     //https://plugins.gradle.org/plugin/com.gradle.plugin-publish
     implementation("com.gradle.publish:plugin-publish-plugin:2.0.0")
@@ -43,5 +43,5 @@ dependencies {
     */
 
     // https://github.com/Kotlin/dokka/releases
-    implementation("org.jetbrains.dokka:dokka-gradle-plugin:2.1.0")
+    implementation("org.jetbrains.dokka:dokka-gradle-plugin:2.2.0")
 }
