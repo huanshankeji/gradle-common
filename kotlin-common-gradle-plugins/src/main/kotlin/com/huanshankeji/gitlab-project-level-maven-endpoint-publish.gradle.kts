@@ -1,7 +1,8 @@
 package com.huanshankeji
 
 plugins {
-    `maven-publish`
+    // Not tested yet since migrated to this plugin instead of `maven-publish`.
+    id("com.vanniktech.maven.publish")
 }
 
 interface Extension {
