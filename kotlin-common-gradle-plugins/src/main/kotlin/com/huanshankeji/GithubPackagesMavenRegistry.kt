@@ -1,12 +1,9 @@
 package com.huanshankeji
 
 import org.gradle.api.Action
-import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.artifacts.repositories.MavenArtifactRepository
-import org.gradle.api.provider.Property
 import org.gradle.api.publish.PublishingExtension
-import org.gradle.kotlin.dsl.create
 import org.gradle.kotlin.dsl.repositories
 
 // TODO: use context receivers when it's stable.
@@ -49,22 +46,4 @@ fun Project.publishingRepositoriesAddGithubPackagesMavenRepository(
 fun Project.publishing(configure: Action<PublishingExtension>): Unit =
     extensions.configure("publishing", configure)
 
-class GithubPackagesMavenPublishPlugin : Plugin<Project> {
-    interface Extension {
-        val owner: Property<String>
-        val repository: Property<String>
-    }
 
-    override fun apply(project: Project) = project.run {
-        pluginManager.apply("maven-publish")
-
-        val extension = extensions.create<Extension>("githubPackagesPublish")
-
-        afterEvaluate {
-            publishingRepositoriesAddGithubPackagesMavenRepository(
-                owner = extension.owner.get(),
-                repository = extension.repository.get()
-            )
-        }
-    }
-}

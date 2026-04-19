@@ -28,17 +28,23 @@ public final class com/huanshankeji/GithubPackagesMavenPublishPlugin : org/gradl
 	public fun apply (Lorg/gradle/api/Project;)V
 }
 
-public abstract interface class com/huanshankeji/GithubPackagesMavenPublishPlugin$Extension {
-	public abstract fun getOwner ()Lorg/gradle/api/provider/Property;
-	public abstract fun getRepository ()Lorg/gradle/api/provider/Property;
-}
-
 public final class com/huanshankeji/GithubPackagesMavenRegistryKt {
 	public static final fun githubPackagesMavenRegistrySetUrlAndCredentials (Lorg/gradle/api/Project;Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;Ljava/lang/String;Ljava/lang/String;)V
 	public static final fun publishing (Lorg/gradle/api/Project;Lorg/gradle/api/Action;)V
 	public static final fun publishingRepositoriesAddGithubPackagesMavenRepository (Lorg/gradle/api/Project;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
 	public static synthetic fun publishingRepositoriesAddGithubPackagesMavenRepository$default (Lorg/gradle/api/Project;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)V
 	public static final fun repositoriesAddGithubPackagesMavenRegistry (Lorg/gradle/api/Project;Ljava/lang/String;Ljava/lang/String;)V
+}
+
+public final class com/huanshankeji/Github_packages_maven_publish_gradle : org/gradle/kotlin/dsl/precompile/v1/PrecompiledProjectScript {
+	public fun <init> (Lorg/gradle/api/Project;Lorg/gradle/api/Project;)V
+	public final fun getExtension ()Lcom/huanshankeji/Github_packages_maven_publish_gradle$Extension;
+	public static final fun main ([Ljava/lang/String;)V
+}
+
+public abstract interface class com/huanshankeji/Github_packages_maven_publish_gradle$Extension {
+	public abstract fun getOwner ()Lorg/gradle/api/provider/Property;
+	public abstract fun getRepository ()Lorg/gradle/api/provider/Property;
 }
 
 public final class com/huanshankeji/GitlabPackageRegistryMavenKt {
@@ -59,7 +65,13 @@ public final class com/huanshankeji/GitlabProjectLevelMavenEndpointPublishPlugin
 	public fun apply (Lorg/gradle/api/Project;)V
 }
 
-public abstract interface class com/huanshankeji/GitlabProjectLevelMavenEndpointPublishPlugin$Extension {
+public final class com/huanshankeji/Gitlab_project_level_maven_endpoint_publish_gradle : org/gradle/kotlin/dsl/precompile/v1/PrecompiledProjectScript {
+	public fun <init> (Lorg/gradle/api/Project;Lorg/gradle/api/Project;)V
+	public final fun getExtension ()Lcom/huanshankeji/Gitlab_project_level_maven_endpoint_publish_gradle$Extension;
+	public static final fun main ([Ljava/lang/String;)V
+}
+
+public abstract interface class com/huanshankeji/Gitlab_project_level_maven_endpoint_publish_gradle$Extension {
 	public abstract fun getHost ()Lorg/gradle/api/provider/Property;
 	public abstract fun getProjectId ()Lorg/gradle/api/provider/Property;
 }
@@ -98,18 +110,6 @@ public final class com/huanshankeji/Jvm_test_common_feature_variant_gradle : org
 	public static final fun main ([Ljava/lang/String;)V
 }
 
-public final class com/huanshankeji/KotlinJvmLibraryMavenPublishConventionsPlugin : org/gradle/api/Plugin {
-	public fun <init> ()V
-	public synthetic fun apply (Ljava/lang/Object;)V
-	public fun apply (Lorg/gradle/api/Project;)V
-}
-
-public final class com/huanshankeji/KotlinJvmLibrarySonatypeOssrhPublishConventionsPlugin : org/gradle/api/Plugin {
-	public fun <init> ()V
-	public synthetic fun apply (Ljava/lang/Object;)V
-	public fun apply (Lorg/gradle/api/Project;)V
-}
-
 public final class com/huanshankeji/KotlinMultiplatformConventionalTargetsPlugin : org/gradle/api/Plugin {
 	public fun <init> ()V
 	public synthetic fun apply (Ljava/lang/Object;)V
@@ -122,28 +122,6 @@ public final class com/huanshankeji/KotlinMultiplatformJsBrowserConventionsPlugi
 	public fun apply (Lorg/gradle/api/Project;)V
 }
 
-public final class com/huanshankeji/KotlinMultiplatformMavenPublishConventionsPlugin : org/gradle/api/Plugin {
-	public fun <init> ()V
-	public synthetic fun apply (Ljava/lang/Object;)V
-	public fun apply (Lorg/gradle/api/Project;)V
-}
-
-public final class com/huanshankeji/KotlinMultiplatformSonatypeOssrhPublishConventionsPlugin : org/gradle/api/Plugin {
-	public fun <init> ()V
-	public synthetic fun apply (Ljava/lang/Object;)V
-	public fun apply (Lorg/gradle/api/Project;)V
-}
-
-public final class com/huanshankeji/Kotlin_jvm_library_maven_publish_conventions_gradle : org/gradle/kotlin/dsl/precompile/v1/PrecompiledProjectScript {
-	public fun <init> (Lorg/gradle/api/Project;Lorg/gradle/api/Project;)V
-	public static final fun main ([Ljava/lang/String;)V
-}
-
-public final class com/huanshankeji/Kotlin_jvm_library_sonatype_ossrh_publish_conventions_gradle : org/gradle/kotlin/dsl/precompile/v1/PrecompiledProjectScript {
-	public fun <init> (Lorg/gradle/api/Project;Lorg/gradle/api/Project;)V
-	public static final fun main ([Ljava/lang/String;)V
-}
-
 public final class com/huanshankeji/Kotlin_multiplatform_conventional_targets_gradle : org/gradle/kotlin/dsl/precompile/v1/PrecompiledProjectScript {
 	public fun <init> (Lorg/gradle/api/Project;Lorg/gradle/api/Project;)V
 	public static final fun main ([Ljava/lang/String;)V
@@ -151,17 +129,6 @@ public final class com/huanshankeji/Kotlin_multiplatform_conventional_targets_gr
 
 public final class com/huanshankeji/Kotlin_multiplatform_js_browser_conventions_gradle : org/gradle/kotlin/dsl/precompile/v1/PrecompiledProjectScript {
 	public fun <init> (Lorg/gradle/api/Project;Lorg/gradle/api/Project;)V
-	public static final fun main ([Ljava/lang/String;)V
-}
-
-public final class com/huanshankeji/Kotlin_multiplatform_maven_publish_conventions_gradle : org/gradle/kotlin/dsl/precompile/v1/PrecompiledProjectScript {
-	public fun <init> (Lorg/gradle/api/Project;Lorg/gradle/api/Project;)V
-	public static final fun main ([Ljava/lang/String;)V
-}
-
-public final class com/huanshankeji/Kotlin_multiplatform_sonatype_ossrh_publish_conventions_gradle : org/gradle/kotlin/dsl/precompile/v1/PrecompiledProjectScript {
-	public fun <init> (Lorg/gradle/api/Project;Lorg/gradle/api/Project;)V
-	public final fun getJavadocJar ()Lorg/gradle/api/tasks/TaskProvider;
 	public static final fun main ([Ljava/lang/String;)V
 }
 
@@ -176,34 +143,6 @@ public final class com/huanshankeji/MavenPomKt {
 	public static synthetic fun pomForDefaultOpenSourceWithApacheLicense20OnGitHub$default (Lorg/gradle/api/publish/maven/MavenPublication;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun setUpForDefaultOpenSourceWithApacheLicense20OnGitHub (Lorg/gradle/api/publish/maven/MavenPom;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun setUpForDefaultOpenSourceWithApacheLicense20OnGitHub$default (Lorg/gradle/api/publish/maven/MavenPom;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
-}
-
-public final class com/huanshankeji/MavenPublishConventionsPlugin : org/gradle/api/Plugin {
-	public fun <init> ()V
-	public synthetic fun apply (Ljava/lang/Object;)V
-	public fun apply (Lorg/gradle/api/Project;)V
-	public final fun getPublishing (Lorg/gradle/api/Project;)Lorg/gradle/api/publish/PublishingExtension;
-}
-
-public abstract class com/huanshankeji/MavenPublishConventionsPlugin$ArtifactIdConfig {
-}
-
-public final class com/huanshankeji/MavenPublishConventionsPlugin$ArtifactIdConfig$Custom : com/huanshankeji/MavenPublishConventionsPlugin$ArtifactIdConfig {
-	public fun <init> (Ljava/lang/String;)V
-	public final fun getArtifactId ()Ljava/lang/String;
-}
-
-public final class com/huanshankeji/MavenPublishConventionsPlugin$ArtifactIdConfig$DefaultUnchanged : com/huanshankeji/MavenPublishConventionsPlugin$ArtifactIdConfig {
-	public static final field INSTANCE Lcom/huanshankeji/MavenPublishConventionsPlugin$ArtifactIdConfig$DefaultUnchanged;
-}
-
-public final class com/huanshankeji/MavenPublishConventionsPlugin$ArtifactIdConfig$SubprojectNameConcatenated : com/huanshankeji/MavenPublishConventionsPlugin$ArtifactIdConfig {
-	public static final field INSTANCE Lcom/huanshankeji/MavenPublishConventionsPlugin$ArtifactIdConfig$SubprojectNameConcatenated;
-}
-
-public abstract class com/huanshankeji/MavenPublishConventionsPlugin$Extension {
-	public fun <init> ()V
-	public abstract fun getArtifactIdConfig ()Lorg/gradle/api/provider/Property;
 }
 
 public final class com/huanshankeji/Maven_central_publish_conventions_gradle : org/gradle/kotlin/dsl/precompile/v1/PrecompiledProjectScript {
@@ -229,18 +168,6 @@ public final class com/huanshankeji/ProjectNamesKt {
 
 public final class com/huanshankeji/SnapshotAndReleaseVersionsKt {
 	public static final fun isSnapshotVersion (Lorg/gradle/api/Project;)Z
-}
-
-public final class com/huanshankeji/SonatypeOssrhPublishPlugin : org/gradle/api/Plugin {
-	public fun <init> ()V
-	public synthetic fun apply (Ljava/lang/Object;)V
-	public fun apply (Lorg/gradle/api/Project;)V
-}
-
-public final class com/huanshankeji/Sonatype_ossrh_publish_gradle : org/gradle/kotlin/dsl/precompile/v1/PrecompiledProjectScript {
-	public fun <init> (Lorg/gradle/api/Project;Lorg/gradle/api/Project;)V
-	public final fun isSnapshotVersion ()Z
-	public static final fun main ([Ljava/lang/String;)V
 }
 
 public final class com/huanshankeji/SourceFile {

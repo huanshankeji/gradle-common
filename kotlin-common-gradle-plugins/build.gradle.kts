@@ -27,55 +27,20 @@ gradlePlugin {
             "Kotlin Multiplatform conventions with the conventional targets JVM, JS (browser), iOS (`iosX64`, `iosArm64`, and `iosSimulatorArm64`), and Wasm JS"
         )
 
-        create("maven-publish-conventions") {
-            id = "$`package`.$name"
-            implementationClass = "$`package`.MavenPublishConventionsPlugin"
-            displayName = "Maven publish conventions"
-            description = displayName
-        }
-        scriptConventionsPlugin(
-            "kotlin-jvm-library-maven-publish-conventions",
-            "Kotlin/JVM library conventions with Maven publish"
-        )
-        scriptConventionsPlugin(
-            "kotlin-multiplatform-maven-publish-conventions",
-            "Kotlin Multiplatform conventions with Maven publish"
-        )
-        val ossrhPublishPluginDeprecatedMessage =
-            "The `com.huanshankeji.*sonatype-ossrh-publish*` plugins are deprecated. " +
-                    "Please migrate to `com.vanniktech.maven.publish` or `com.huanshankeji.maven-central-publish-conventions`. " +
-                    "Also see <https://central.sonatype.org/pages/ossrh-eol/>."
-        scriptConventionsPlugin(
-            "sonatype-ossrh-publish",
-            "Sonatype OSSRH Maven Central publish",
-            ossrhPublishPluginDeprecatedMessage
-        )
-        scriptConventionsPlugin(
-            "kotlin-jvm-library-sonatype-ossrh-publish-conventions",
-            "Kotlin/JVM library conventions with Sonatype OSSRH Maven Central publish",
-            ossrhPublishPluginDeprecatedMessage
-        )
-        scriptConventionsPlugin(
-            "kotlin-multiplatform-sonatype-ossrh-publish-conventions",
-            "Kotlin Multiplatform conventions with Sonatype OSSRH Maven Central publish",
-            ossrhPublishPluginDeprecatedMessage
-        )
         scriptConventionsPlugin(
             "maven-central-publish-conventions",
             "Maven Central publish conventions based on the `com.vanniktech.maven.publish` plugin."
         )
-        create("github-packages-maven-publish") {
-            id = "$`package`.$name"
-            implementationClass = "$`package`.GithubPackagesMavenPublishPlugin"
-            displayName = "GitHub Packages publish"
-            description = "Publishes to a Maven registry of GitHub Packages."
-        }
-        create("gitlab-project-level-maven-endpoint-publish") {
-            id = "$`package`.$name"
-            implementationClass = "$`package`.GitlabProjectLevelMavenEndpointPublishPlugin"
-            displayName = "GitLab project-level Maven endpoint publish"
-            description = "Publishes to a GitLab project-level Maven endpoint."
-        }
+        scriptConventionsPlugin(
+            "github-packages-maven-publish",
+            "GitHub Packages publish",
+            "Publishes to a Maven registry of GitHub Packages."
+        )
+        scriptConventionsPlugin(
+            "gitlab-project-level-maven-endpoint-publish",
+            "GitLab project-level Maven endpoint publish",
+            "Publishes to a GitLab project-level Maven endpoint."
+        )
 
         scriptConventionsPlugin(
             "jvm-integration-test",
