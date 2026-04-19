@@ -1,7 +1,6 @@
 package com.huanshankeji
 
 plugins {
-    // Not tested yet since migrated to this plugin instead of `maven-publish`.
     id("com.vanniktech.maven.publish")
 }
 
