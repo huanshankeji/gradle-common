@@ -40,5 +40,11 @@ afterEvaluate {
         dependsOn(syncJsBrowserDistributionToResourcesWebroot)
     }
 
+    tasks.configureEach {
+        if (name == "sourcesJar") {
+            dependsOn(syncJsBrowserDistributionToResourcesWebroot)
+        }
+    }
+
     sourceSets.main { resources.srcDir(browserDistributionResourcesDirectory) }
 }
