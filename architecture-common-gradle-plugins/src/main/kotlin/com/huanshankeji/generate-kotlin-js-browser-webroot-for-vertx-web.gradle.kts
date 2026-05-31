@@ -36,9 +36,7 @@ afterEvaluate {
         into(browserDistributionResourcesDirectory.dir(extension.webRoot.getOrElse("webroot")))
     }
 
-    tasks.named<Copy>("processResources") {
-        dependsOn(syncJsBrowserDistributionToResourcesWebroot)
+    sourceSets.main {
+        resources.srcDir(files(browserDistributionResourcesDirectory).builtBy(syncJsBrowserDistributionToResourcesWebroot))
     }
-
-    sourceSets.main { resources.srcDir(browserDistributionResourcesDirectory) }
 }
