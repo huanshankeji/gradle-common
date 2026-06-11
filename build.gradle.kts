@@ -4,7 +4,7 @@ tasks.wrapper {
 
 plugins {
     id("org.jetbrains.dokka")
-    id("org.jetbrains.kotlinx.binary-compatibility-validator") version DependencyVersions.binaryCompatibilityValidator
+    id("com.github.ben-manes.versions") version "0.54.0"
 }
 
 evaluationDependsOnChildren()

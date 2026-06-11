@@ -5,9 +5,9 @@ plugins {
 }
 
 mavenPublishing {
-    publishToMavenCentral()
+    publishToMavenCentral(automaticRelease = true)
 
-    if (!isSnapshotVersion())
+    if (!isSnapshotVersion() && !isDirtyDevCommitVersion() && !isDevCommitVersion())
         signAllPublications()
 }
 

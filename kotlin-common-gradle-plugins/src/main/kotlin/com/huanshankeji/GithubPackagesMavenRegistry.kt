@@ -6,44 +6,43 @@ import org.gradle.api.artifacts.repositories.MavenArtifactRepository
 import org.gradle.api.publish.PublishingExtension
 import org.gradle.kotlin.dsl.repositories
 
-// TODO: use context receivers when it's stable.
-fun Project.githubPackagesMavenRegistrySetUrlAndCredentials(
-    mavenArtifactRepository: MavenArtifactRepository, owner: String, repository: String
-) =
-    mavenArtifactRepository.run {
-        url = uri("https://maven.pkg.github.com/$owner/$repository")
-        credentials {
-            username = project.findProperty("gpr.user") as String? ?: System.getenv("USERNAME")
-            password = project.findProperty("gpr.key") as String? ?: System.getenv("TOKEN")
-        }
+context(project: Project)
+fun MavenArtifactRepository.githubPackagesMavenRegistrySetUrlAndCredentials(owner: String, repository: String) {
+    url = project.uri("https://maven.pkg.github.com/$owner/$repository")
+    credentials {
+        username = githubMavenUsername { project.findProperty(it) as String? }
+        password = githubMavenPassword { project.findProperty(it) as String? }
     }
+}
 
-// TODO: use context receivers when it's stable.
+@Deprecated(
+    "Use repositories { maven { with(project) { githubPackagesMavenRegistrySetUrlAndCredentials(owner, repository) } } } instead",
+    ReplaceWith("repositories { maven { with(project) { githubPackagesMavenRegistrySetUrlAndCredentials(owner, repository) } } }")
+)
 fun Project.repositoriesAddGithubPackagesMavenRegistry(owner: String, repository: String) =
     repositories {
         maven {
-            githubPackagesMavenRegistrySetUrlAndCredentials(this@maven, owner, repository)
-        }
-    }
-
-
-fun Project.publishingRepositoriesAddGithubPackagesMavenRepository(
-    nameArg: String = "GitHubPackages",
-    owner: String,
-    repository: String
-) =
-    // Copied and adapted from https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-gradle-registry.
-    publishing {
-        repositories {
-            maven {
-                name = nameArg
-                githubPackagesMavenRegistrySetUrlAndCredentials(this@maven, owner, repository)
+            with(this@repositoriesAddGithubPackagesMavenRegistry) {
+                githubPackagesMavenRegistrySetUrlAndCredentials(owner, repository)
             }
         }
     }
 
-// copied and adapted from generated code
+fun Project.publishingRepositoriesAddGithubPackagesMavenRepository(
+    nameArg: String = "GitHubPackages",
+    owner: String,
+    repository: String,
+) =
+    publishing {
+        repositories {
+            maven {
+                name = nameArg
+                with(this@publishingRepositoriesAddGithubPackagesMavenRepository) {
+                    githubPackagesMavenRegistrySetUrlAndCredentials(owner, repository)
+                }
+            }
+        }
+    }
+
 fun Project.publishing(configure: Action<PublishingExtension>): Unit =
     extensions.configure("publishing", configure)
-
-

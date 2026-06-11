@@ -4,6 +4,7 @@ plugins {
     id("conventions")
     id("aligned-version-plugin-version")
     id("dokka-convention")
+    id("kotlin-abi-validation")
 }
 
 dependencies {
@@ -11,5 +12,12 @@ dependencies {
 }
 
 tasks.named<KotlinCompilationTask<*>>("compileKotlin").configure {
-    compilerOptions.freeCompilerArgs.add("-opt-in=com.huanshankeji.InternalApi")
+    compilerOptions {
+        languageVersion.set(org.jetbrains.kotlin.gradle.dsl.KotlinVersion.KOTLIN_2_4)
+        freeCompilerArgs.addAll(
+            "-opt-in=com.huanshankeji.InternalApi",
+            "-opt-in=org.jetbrains.kotlin.gradle.dsl.abi.ExperimentalAbiValidation",
+            "-Xcontext-parameters",
+        )
+    }
 }

@@ -2,8 +2,10 @@
 
 package com.huanshankeji.team.dokka
 
+import com.huanshankeji.gitCommitHash
 import com.huanshankeji.team.github.defaultRepositoryName
 import com.huanshankeji.team.github.githubRepositoryUrl
+import org.gradle.api.provider.Property
 
 plugins {
     id("com.huanshankeji.dokka.dokka-convention")
@@ -16,7 +18,7 @@ interface GithubDokkaConventionExtension {
 
 extensions.create<GithubDokkaConventionExtension>("githubDokkaConvention").apply {
     repositoryName.convention(defaultRepositoryName())
-    commitOrTag.convention("v${version}")
+    commitOrTag.set(gitCommitHash())
 
     val sourceLinkRemoteUrlRoot = repositoryName.flatMap { repositoryName ->
         val repositoryUrl = githubRepositoryUrl(repositoryName)
