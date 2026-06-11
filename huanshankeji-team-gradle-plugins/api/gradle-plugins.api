@@ -6,12 +6,8 @@ public final class PublicOpenSourceDependencyRepositoriesPlugin : org/gradle/api
 
 public final class Public_open_source_dependency_repositories_settings_gradle : org/gradle/kotlin/dsl/precompile/v1/PrecompiledSettingsScript {
 	public fun <init> (Lorg/gradle/api/initialization/Settings;Lorg/gradle/api/initialization/Settings;)V
-	public final fun getExtension ()LPublic_open_source_dependency_repositories_settings_gradle$PublicOpenSourceDependencyRepositoriesExtension;
+	public final fun getExtension ()Lcom/huanshankeji/team/maven/PublicOpenSourceDependencyRepositoriesExtension;
 	public static final fun main ([Ljava/lang/String;)V
-}
-
-public abstract interface class Public_open_source_dependency_repositories_settings_gradle$PublicOpenSourceDependencyRepositoriesExtension {
-	public abstract fun getGithubPackageRepositoryNames ()Lorg/gradle/api/provider/ListProperty;
 }
 
 public final class com/huanshankeji/team/ConstantsKt {
@@ -104,5 +100,16 @@ public final class com/huanshankeji/team/maven/HuanshankejiPublicMavenRepositori
 	public static final fun configurePublicHuanshankejiArtifactRepositories (Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Lorg/gradle/api/initialization/Settings;Ljava/util/List;Ljava/lang/String;)V
 	public static synthetic fun configurePublicHuanshankejiArtifactRepositories$default (Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Lkotlin/jvm/functions/Function1;Ljava/util/List;Ljava/lang/String;ILjava/lang/Object;)V
 	public static synthetic fun configurePublicHuanshankejiArtifactRepositories$default (Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Lorg/gradle/api/initialization/Settings;Ljava/util/List;Ljava/lang/String;ILjava/lang/Object;)V
+}
+
+public class com/huanshankeji/team/maven/PublicOpenSourceDependencyRepositoriesExtension {
+	public fun <init> ()V
+	public final fun githubPackages ([Ljava/lang/String;Ljava/lang/String;)V
+	public static synthetic fun githubPackages$default (Lcom/huanshankeji/team/maven/PublicOpenSourceDependencyRepositoriesExtension;[Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)V
+	public final fun google ()V
+	public final fun huanshankejiMavenLocal ()V
+	public final fun mavenCentral (Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun mavenCentral$default (Lcom/huanshankeji/team/maven/PublicOpenSourceDependencyRepositoriesExtension;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public final fun mavenCentralExcludingHuanshankejiNonStable ()V
 }
 

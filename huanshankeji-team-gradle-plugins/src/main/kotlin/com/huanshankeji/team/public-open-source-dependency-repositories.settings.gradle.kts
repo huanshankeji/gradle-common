@@ -1,25 +1,14 @@
-import com.huanshankeji.team.maven.configureMavenCentralExcludeHuanshankejiNonStable
-import com.huanshankeji.team.maven.configurePublicHuanshankejiArtifactRepositories
-import org.gradle.api.provider.ListProperty
+import com.huanshankeji.team.maven.PublicOpenSourceDependencyRepositoriesExtension
 
-interface PublicOpenSourceDependencyRepositoriesExtension {
-    val githubPackageRepositoryNames: ListProperty<String>
-}
-
-val extension = extensions.create<PublicOpenSourceDependencyRepositoriesExtension>(
-    "publicOpenSourceDependencyRepositories"
+val extension = extensions.create(
+    "publicOpenSourceDependencyRepositories",
+    PublicOpenSourceDependencyRepositoriesExtension::class.java,
 )
-extension.githubPackageRepositoryNames.convention(listOf(rootProject.name))
 
 @Suppress("UnstableApiUsage")
 dependencyResolutionManagement {
     repositories {
-        configurePublicHuanshankejiArtifactRepositories(
-            settings,
-            githubPackageRepositoryNames = extension.githubPackageRepositoryNames.get(),
-        )
-        mavenCentral {
-            configureMavenCentralExcludeHuanshankejiNonStable()
-        }
+        extension.repositories = this
+        extension.settings = settings
     }
 }
