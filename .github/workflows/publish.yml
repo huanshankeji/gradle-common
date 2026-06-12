@@ -7,7 +7,7 @@ on:
 
 jobs:
   publish-dev-commit:
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch'
     uses: huanshankeji/.github/.github/workflows/gradle-maven-publish.yml@improve-cross-repo-dependency
     with:
       jdk-versions: 17-temurin
