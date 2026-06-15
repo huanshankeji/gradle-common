@@ -36,4 +36,10 @@ jobs:
           echo "=== CI Debug: Gradle properties ==="
           ./gradlew properties "${GRADLE_ARGS[@]}"
 
-          ./gradlew publishAllPublicationsToGitHubPackagesRepository --parallel "${GRADLE_ARGS[@]}"
+          if [ "${{ github.ref }}" = "refs/heads/plugins-release" ]; then
+            ./gradlew publishPluginProjectPlugins "${GRADLE_ARGS[@]}"
+          elif [ "${{ github.ref }}" = "refs/heads/common-gradle-dependencies-release" ]; then
+            ./gradlew :common-gradle-dependencies:publishPlugins "${GRADLE_ARGS[@]}"
+          else
+            ./gradlew publishAllPublicationsToGitHubPackagesRepository --parallel "${GRADLE_ARGS[@]}"
+          fi
