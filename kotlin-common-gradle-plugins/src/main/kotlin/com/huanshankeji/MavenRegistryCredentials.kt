@@ -10,12 +10,10 @@ fun Settings.findStringGradleProperty(propertyName: String): String? =
     providers.gradleProperty(propertyName).orNull
 
 fun Project.githubPackagesMavenUsername(): String? =
-    findStringProperty("gpr.user") ?: findStringProperty("gprUser")
-        ?: System.getenv("USERNAME")
+    findStringProperty("gpr.user") ?: findStringProperty("gprUser") //?: System.getenv("USERNAME")
 
 fun Project.githubPackagesMavenPassword(): String? =
-    findStringProperty("gpr.key") ?: findStringProperty("gprKey")
-        ?: System.getenv("TOKEN")
+    findStringProperty("gpr.key") ?: findStringProperty("gprKey") //?: System.getenv("TOKEN")
 
 fun Settings.githubPackagesMavenUsername(): String? =
     findStringGradleProperty("gpr.user") ?: findStringGradleProperty("gprUser")

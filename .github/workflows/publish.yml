@@ -15,8 +15,6 @@ jobs:
     env:
       ORG_GRADLE_PROJECT_gprUser: ${{ secrets.GPR_USER }}
       ORG_GRADLE_PROJECT_gprKey: ${{ secrets.GPR_KEY }}
-      USERNAME: ${{ secrets.GPR_USER }}
-      TOKEN: ${{ secrets.GPR_KEY }}
     steps:
       - uses: actions/checkout@v6
 
