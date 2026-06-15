@@ -3,4 +3,5 @@
 
 import com.huanshankeji.projectVersionFromGitProvider
 
+// TODO Should use the provider direcctly. It seems it's hold back by the bootstraping 'dokka-convention' plugin failing with this.
 version = projectVersionFromGitProvider(alignedPluginBaseVersion, "plugins-release").get()
