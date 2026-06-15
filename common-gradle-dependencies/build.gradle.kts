@@ -7,7 +7,7 @@ plugins {
     conventions
 }
 
-// TODO Should use the provider direcctly. It seems it's hold back by the bootstraping 'dokka-convention' plugin failing with this.
+// TODO Should use the provider direcctly. It seems it's held back by the bootstraping 'dokka-convention' plugin failing with this.
 version = projectVersionFromGitProvider(
     commonGradleDependenciesBaseVersion, "common-gradle-dependencies-release",
 ).get()
