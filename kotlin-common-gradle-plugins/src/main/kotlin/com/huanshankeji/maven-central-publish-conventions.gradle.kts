@@ -6,9 +6,11 @@ plugins {
 
 mavenPublishing {
     publishToMavenCentral(automaticRelease = true)
+}
 
+afterEvaluate {
     if (!isSnapshotVersion() && !isDirtyDevCommitVersion() && !isDevCommitVersion())
-        signAllPublications()
+        mavenPublishing.signAllPublications()
 }
 
 // should probably require the Java toolchain version to be set too when using this plugin
