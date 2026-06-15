@@ -38,5 +38,5 @@ jobs:
           elif [ "${{ github.ref }}" = "refs/heads/common-gradle-dependencies-release" ]; then
             ./gradlew :common-gradle-dependencies:publishPlugins "${gpr_args[@]}"
           else
-            ./gradlew publishAllPublicationsToGitHubPackagesRepository --parallel "${gpr_args[@]}"
+            ./gradlew publishAllPublicationsToGitHubPackagesRepository --parallel --no-configuration-cache "${gpr_args[@]}"
           fi
