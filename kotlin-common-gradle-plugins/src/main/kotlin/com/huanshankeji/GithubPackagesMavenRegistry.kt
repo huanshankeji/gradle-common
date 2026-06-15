@@ -10,18 +10,8 @@ context(project: Project)
 fun MavenArtifactRepository.githubPackagesMavenRegistrySetUrlAndCredentials(owner: String, repository: String) {
     url = project.uri("https://maven.pkg.github.com/$owner/$repository")
     credentials {
-        username = project.findProperty("gprUser") as String?
-            ?: project.findProperty("gpr.user") as String?
-            ?: project.findProperty("${name}Username") as String?
-            ?: System.getenv("ORG_GRADLE_PROJECT_gprUser")
-            ?: System.getenv("USERNAME")
-            ?: "local-only"
-        password = project.findProperty("gprKey") as String?
-            ?: project.findProperty("gpr.key") as String?
-            ?: project.findProperty("${name}Password") as String?
-            ?: System.getenv("ORG_GRADLE_PROJECT_gprKey")
-            ?: System.getenv("TOKEN")
-            ?: "local-only"
+        username = project.githubPackagesMavenUsername()
+        password = project.githubPackagesMavenPassword()
     }
 }
 

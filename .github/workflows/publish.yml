@@ -13,12 +13,10 @@ jobs:
       contents: read
       packages: write
     env:
-      GPR_USER: ${{ secrets.GPR_USER || secrets.GH_ACTOR }}
-      GPR_KEY: ${{ secrets.GPR_KEY || secrets.GH_TOKEN }}
-      USERNAME: ${{ secrets.GPR_USER || secrets.GH_ACTOR }}
-      TOKEN: ${{ secrets.GPR_KEY || secrets.GH_TOKEN }}
-      ORG_GRADLE_PROJECT_gprUser: ${{ secrets.GPR_USER || secrets.GH_ACTOR }}
-      ORG_GRADLE_PROJECT_gprKey: ${{ secrets.GPR_KEY || secrets.GH_TOKEN }}
+      ORG_GRADLE_PROJECT_gprUser: ${{ secrets.GPR_USER }}
+      ORG_GRADLE_PROJECT_gprKey: ${{ secrets.GPR_KEY }}
+      USERNAME: ${{ secrets.GPR_USER }}
+      TOKEN: ${{ secrets.GPR_KEY }}
     steps:
       - uses: actions/checkout@v6
 
@@ -30,25 +28,13 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v6
 
-      - name: Verify GPR credentials are configured
-        shell: bash
-        env:
-          GPR_USER: ${{ secrets.GPR_USER || secrets.GH_ACTOR }}
-          GPR_KEY: ${{ secrets.GPR_KEY || secrets.GH_TOKEN }}
-        run: |
-          if [ -z "$GPR_USER" ] || [ -z "$GPR_KEY" ]; then
-            echo "::error::Set organization or repository secrets GPR_USER/GPR_KEY (or GH_ACTOR/GH_TOKEN)."
-            exit 1
-          fi
-
       - name: Publish with Gradle Wrapper
         shell: bash
         run: |
-          gpr_args=(-PgprUser="$GPR_USER" -PgprKey="$GPR_KEY" -PGitHubPackagesUsername="$GPR_USER" -PGitHubPackagesPassword="$GPR_KEY")
           if [ "${{ github.ref }}" = "refs/heads/plugins-release" ]; then
-            ./gradlew publishPluginProjectPlugins "${gpr_args[@]}"
+            ./gradlew publishPluginProjectPlugins
           elif [ "${{ github.ref }}" = "refs/heads/common-gradle-dependencies-release" ]; then
-            ./gradlew :common-gradle-dependencies:publishPlugins "${gpr_args[@]}"
+            ./gradlew :common-gradle-dependencies:publishPlugins
           else
-            ./gradlew publishAllPublicationsToGitHubPackagesRepository --parallel --no-configuration-cache "${gpr_args[@]}"
+            ./gradlew publishAllPublicationsToGitHubPackagesRepository --parallel
           fi

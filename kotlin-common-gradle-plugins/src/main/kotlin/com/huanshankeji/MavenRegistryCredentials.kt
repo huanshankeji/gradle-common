@@ -11,11 +11,11 @@ fun Settings.findStringGradleProperty(propertyName: String): String? =
 
 fun Project.githubPackagesMavenUsername(): String? =
     findStringProperty("gpr.user") ?: findStringProperty("gprUser")
-        ?: System.getenv("ORG_GRADLE_PROJECT_gprUser")
+        ?: System.getenv("USERNAME")
 
 fun Project.githubPackagesMavenPassword(): String? =
     findStringProperty("gpr.key") ?: findStringProperty("gprKey")
-        ?: System.getenv("ORG_GRADLE_PROJECT_gprKey")
+        ?: System.getenv("TOKEN")
 
 fun Settings.githubPackagesMavenUsername(): String? =
     findStringGradleProperty("gpr.user") ?: findStringGradleProperty("gprUser")
