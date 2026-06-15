@@ -26,11 +26,22 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v6
 
+      - name: Verify GPR credentials are configured
+        shell: bash
+        env:
+          GPR_USER: ${{ secrets.GPR_USER || secrets.GH_ACTOR }}
+          GPR_KEY: ${{ secrets.GPR_KEY || secrets.GH_TOKEN }}
+        run: |
+          if [ -z "$GPR_USER" ] || [ -z "$GPR_KEY" ]; then
+            echo "::error::Set organization or repository secrets GPR_USER/GPR_KEY (or GH_ACTOR/GH_TOKEN)."
+            exit 1
+          fi
+
       - name: Publish with Gradle Wrapper
         shell: bash
         env:
-          GPR_USER: ${{ secrets.GPR_USER }}
-          GPR_KEY: ${{ secrets.GPR_KEY }}
+          GPR_USER: ${{ secrets.GPR_USER || secrets.GH_ACTOR }}
+          GPR_KEY: ${{ secrets.GPR_KEY || secrets.GH_TOKEN }}
         run: |
           gpr_args=(-PgprUser="$GPR_USER" -PgprKey="$GPR_KEY")
           if [ "${{ github.ref }}" = "refs/heads/plugins-release" ]; then
