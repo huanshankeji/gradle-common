@@ -28,18 +28,10 @@ jobs:
           ORG_GRADLE_PROJECT_gprUser: ${{ secrets.GPR_USER }}
           ORG_GRADLE_PROJECT_gprKey: ${{ secrets.GPR_KEY }}
         run: |
-          GRADLE_ARGS=(--console=plain --info)
-
-          echo "=== CI Debug: environment variables ==="
-          env | sort
-
-          echo "=== CI Debug: Gradle properties ==="
-          ./gradlew properties "${GRADLE_ARGS[@]}"
-
           if [ "${{ github.ref }}" = "refs/heads/plugins-release" ]; then
-            ./gradlew publishPluginProjectPlugins "${GRADLE_ARGS[@]}"
+            ./gradlew publishPluginProjectPlugins
           elif [ "${{ github.ref }}" = "refs/heads/common-gradle-dependencies-release" ]; then
-            ./gradlew :common-gradle-dependencies:publishPlugins "${GRADLE_ARGS[@]}"
+            ./gradlew :common-gradle-dependencies:publishPlugins
           else
-            ./gradlew publishAllPublicationsToGitHubPackagesRepository --parallel "${GRADLE_ARGS[@]}"
+            ./gradlew publishAllPublicationsToGitHubPackagesRepository --parallel
           fi
