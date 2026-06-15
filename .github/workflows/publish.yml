@@ -28,11 +28,15 @@ jobs:
 
       - name: Publish with Gradle Wrapper
         shell: bash
+        env:
+          GPR_USER: ${{ secrets.GPR_USER }}
+          GPR_KEY: ${{ secrets.GPR_KEY }}
         run: |
+          gpr_args=(-PgprUser="$GPR_USER" -PgprKey="$GPR_KEY")
           if [ "${{ github.ref }}" = "refs/heads/plugins-release" ]; then
-            ./gradlew publishPluginProjectPlugins
+            ./gradlew publishPluginProjectPlugins "${gpr_args[@]}"
           elif [ "${{ github.ref }}" = "refs/heads/common-gradle-dependencies-release" ]; then
-            ./gradlew :common-gradle-dependencies:publishPlugins
+            ./gradlew :common-gradle-dependencies:publishPlugins "${gpr_args[@]}"
           else
-            ./gradlew publishAllPublicationsToGitHubPackagesRepository --parallel
+            ./gradlew publishAllPublicationsToGitHubPackagesRepository --parallel "${gpr_args[@]}"
           fi
