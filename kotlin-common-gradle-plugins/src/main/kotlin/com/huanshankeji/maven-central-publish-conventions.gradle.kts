@@ -10,7 +10,7 @@ mavenPublishing {
 
 /*
 Currently added to wait for the version to resolve.
-TODO AAddvoid `afterEvaluate` and put this back into `mavenPublishing` above by refactoring related plugins to use `Provider` APIs.
+TODO Avoid `afterEvaluate` and put this back into `mavenPublishing` above by refactoring related plugins to use `Provider` APIs.
  */
 afterEvaluate {
     if (!isSnapshotVersion() && !isDirtyDevCommitVersion() && !isDevCommitVersion())
