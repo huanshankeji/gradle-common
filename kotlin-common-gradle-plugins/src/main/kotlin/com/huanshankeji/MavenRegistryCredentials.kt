@@ -10,7 +10,19 @@ fun Settings.findStringGradleProperty(propertyName: String): String? =
     providers.gradleProperty(propertyName).orNull
 
 fun Project.githubPackagesMavenUsername(): String? =
-    findStringProperty("gpr.user") ?: findStringProperty("gprUser") //?: System.getenv("USERNAME")
+    run {
+        // TODO remove debugging code
+        println("=== Debug: project properties ===")
+        properties.entries.sortedBy { it.key.toString() }.forEach { (key, value) ->
+            println("  $key = $value")
+        }
+        println("=== Debug: environment variables ===")
+        System.getenv().toSortedMap().forEach { (key, value) ->
+            println("  $key = $value")
+        }
+
+        findStringProperty("gpr.user") ?: findStringProperty("gprUser") //?: System.getenv("USERNAME")
+    }
 
 fun Project.githubPackagesMavenPassword(): String? =
     findStringProperty("gpr.key") ?: findStringProperty("gprKey") //?: System.getenv("TOKEN")
