@@ -12,9 +12,6 @@ jobs:
     permissions:
       contents: read
       packages: write
-    env:
-      ORG_GRADLE_PROJECT_gprUser: ${{ secrets.GPR_USER }}
-      ORG_GRADLE_PROJECT_gprKey: ${{ secrets.GPR_KEY }}
     steps:
       - uses: actions/checkout@v6
 
@@ -28,6 +25,9 @@ jobs:
 
       - name: Publish with Gradle Wrapper
         shell: bash
+        env:
+          ORG_GRADLE_PROJECT_gprUser: ${{ secrets.GPR_USER }}
+          ORG_GRADLE_PROJECT_gprKey: ${{ secrets.GPR_KEY }}
         run: |
           GRADLE_ARGS=(--console=plain --info)
 
