@@ -43,7 +43,7 @@ jobs:
           GPR_USER: ${{ secrets.GPR_USER || secrets.GH_ACTOR }}
           GPR_KEY: ${{ secrets.GPR_KEY || secrets.GH_TOKEN }}
         run: |
-          gpr_args=(-PgprUser="$GPR_USER" -PgprKey="$GPR_KEY")
+          gpr_args=(-PgprUser="$GPR_USER" -PgprKey="$GPR_KEY" -PGitHubPackagesUsername="$GPR_USER" -PGitHubPackagesPassword="$GPR_KEY")
           if [ "${{ github.ref }}" = "refs/heads/plugins-release" ]; then
             ./gradlew publishPluginProjectPlugins "${gpr_args[@]}"
           elif [ "${{ github.ref }}" = "refs/heads/common-gradle-dependencies-release" ]; then
