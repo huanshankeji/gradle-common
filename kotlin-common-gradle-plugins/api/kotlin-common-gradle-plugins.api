@@ -76,31 +76,32 @@ public abstract interface class com/huanshankeji/Github_packages_maven_publish_g
 }
 
 public final class com/huanshankeji/GitlabPackageRegistryMavenKt {
-	public static final field GITLAB_HOST Ljava/lang/String;
-	public static final fun gitlabGroupLevelMavenRepository (Lorg/gradle/api/Project;Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;
-	public static synthetic fun gitlabGroupLevelMavenRepository$default (Lorg/gradle/api/Project;Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;
-	public static final fun gitlabInstanceLevelMavenRepository (Lorg/gradle/api/Project;Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Ljava/lang/String;Ljava/lang/String;)Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;
-	public static synthetic fun gitlabInstanceLevelMavenRepository$default (Lorg/gradle/api/Project;Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;
+	public static final field GITLAB_COM_HOST Ljava/lang/String;
+	public static final field GITLAB_PACKAGE_REGISTRY_REPOSITORY_NAME Ljava/lang/String;
 	public static final fun gitlabMavenRepository (Lorg/gradle/api/Project;Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Ljava/lang/String;Ljava/lang/String;)Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;
 	public static synthetic fun gitlabMavenRepository$default (Lorg/gradle/api/Project;Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;
-	public static final fun gitlabMavenRepositorySetUrlAndCredentials (Lorg/gradle/api/Project;Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;Ljava/lang/String;Ljava/lang/String;)V
-	public static final fun gitlabProjectLevelMavenRepository (Lorg/gradle/api/Project;Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;
-	public static synthetic fun gitlabProjectLevelMavenRepository$default (Lorg/gradle/api/Project;Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;
+	public static final fun gitlabPackageRegistryGroupLevelMavenRepository (Lorg/gradle/api/Project;Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;
+	public static synthetic fun gitlabPackageRegistryGroupLevelMavenRepository$default (Lorg/gradle/api/Project;Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;
+	public static final fun gitlabPackageRegistryInstanceLevelMavenRepository (Lorg/gradle/api/Project;Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Ljava/lang/String;Ljava/lang/String;)Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;
+	public static synthetic fun gitlabPackageRegistryInstanceLevelMavenRepository$default (Lorg/gradle/api/Project;Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;
+	public static final fun gitlabPackageRegistryMavenRepositorySetUrlAndCredentials (Lorg/gradle/api/Project;Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;Ljava/lang/String;Ljava/lang/String;)V
+	public static final fun gitlabPackageRegistryProjectLevelMavenRepository (Lorg/gradle/api/Project;Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;
+	public static synthetic fun gitlabPackageRegistryProjectLevelMavenRepository$default (Lorg/gradle/api/Project;Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;
 }
 
-public final class com/huanshankeji/GitlabProjectLevelMavenEndpointPublishPlugin : org/gradle/api/Plugin {
+public final class com/huanshankeji/GitlabPackageRegistryProjectLevelMavenEndpointPublishPlugin : org/gradle/api/Plugin {
 	public fun <init> ()V
 	public synthetic fun apply (Ljava/lang/Object;)V
 	public fun apply (Lorg/gradle/api/Project;)V
 }
 
-public final class com/huanshankeji/Gitlab_project_level_maven_endpoint_publish_gradle : org/gradle/kotlin/dsl/precompile/v1/PrecompiledProjectScript {
+public final class com/huanshankeji/Gitlab_package_registry_project_level_maven_endpoint_publish_gradle : org/gradle/kotlin/dsl/precompile/v1/PrecompiledProjectScript {
 	public fun <init> (Lorg/gradle/api/Project;Lorg/gradle/api/Project;)V
-	public final fun getExtension ()Lcom/huanshankeji/Gitlab_project_level_maven_endpoint_publish_gradle$Extension;
+	public final fun getExtension ()Lcom/huanshankeji/Gitlab_package_registry_project_level_maven_endpoint_publish_gradle$Extension;
 	public static final fun main ([Ljava/lang/String;)V
 }
 
-public abstract interface class com/huanshankeji/Gitlab_project_level_maven_endpoint_publish_gradle$Extension {
+public abstract interface class com/huanshankeji/Gitlab_package_registry_project_level_maven_endpoint_publish_gradle$Extension {
 	public abstract fun getHost ()Lorg/gradle/api/provider/Property;
 	public abstract fun getProjectId ()Lorg/gradle/api/provider/Property;
 }
@@ -186,9 +187,13 @@ public final class com/huanshankeji/MavenPomKt {
 }
 
 public final class com/huanshankeji/MavenRegistryCredentialsKt {
-	public static final fun githubMavenPassword (Lkotlin/jvm/functions/Function1;)Ljava/lang/String;
-	public static final fun githubMavenUsername (Lkotlin/jvm/functions/Function1;)Ljava/lang/String;
-	public static final fun gitlabMavenPrivateToken (Lkotlin/jvm/functions/Function1;)Ljava/lang/String;
+	public static final fun findStringProperty (Lorg/gradle/api/Project;Ljava/lang/String;)Ljava/lang/String;
+	public static final fun findStringGradleProperty (Lorg/gradle/api/initialization/Settings;Ljava/lang/String;)Ljava/lang/String;
+	public static final fun githubPackagesMavenPassword (Lorg/gradle/api/Project;)Ljava/lang/String;
+	public static final fun githubPackagesMavenPassword (Lorg/gradle/api/initialization/Settings;)Ljava/lang/String;
+	public static final fun githubPackagesMavenUsername (Lorg/gradle/api/Project;)Ljava/lang/String;
+	public static final fun githubPackagesMavenUsername (Lorg/gradle/api/initialization/Settings;)Ljava/lang/String;
+	public static final fun gitlabPackageRegistryPrivateToken (Lorg/gradle/api/Project;)Ljava/lang/String;
 }
 
 public final class com/huanshankeji/MavenRepositoryContentFilteringKt {

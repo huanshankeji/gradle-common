@@ -21,9 +21,9 @@ fun Project.gitCurrentBranch(): Provider<String> =
         commandLine("git", "rev-parse", "--abbrev-ref", "HEAD")
     }.standardOutput.asText.map { it.trim() }
 
-fun Project.isReleaseBranch(): Provider<Boolean> =
+fun Project.isReleaseBranch(releaseBranch: String = "release"): Provider<Boolean> =
     gitCurrentBranch().map { branch ->
-        branch == "release" || branch == "refs/heads/release"
+        branch == releaseBranch || branch == "refs/heads/$releaseBranch"
     }
 
 fun devCommitVersionString(baseVersion: String, commitHash: String, dirty: Boolean): String =
@@ -35,13 +35,20 @@ fun Project.devCommitVersionProvider(baseVersion: String): Provider<String> =
         devCommitVersionString(baseVersion, hash, dirty)
     }
 
-fun Project.projectVersionFromGitProvider(baseVersion: String): Provider<String> {
-    val forceRelease = providers.gradleProperty("huanshankeji.forceReleaseVersion")
+/**
+ * Returns [baseVersion] on [releaseBranch]; otherwise a dev-commit version from Git.
+ * Override with the Gradle property `com.huanshankeji.forceReleaseVersion=true` when needed.
+ */
+fun Project.projectVersionFromGitProvider(
+    baseVersion: String,
+    releaseBranch: String = "release",
+): Provider<String> {
+    val forceRelease = providers.gradleProperty("com.huanshankeji.forceReleaseVersion")
         .map { it.toBoolean() }
         .orElse(false)
     return forceRelease.flatMap { forced ->
         if (forced) providers.provider { baseVersion }
-        else isReleaseBranch().flatMap { release ->
+        else isReleaseBranch(releaseBranch).flatMap { release ->
             if (release) providers.provider { baseVersion }
             else devCommitVersionProvider(baseVersion)
         }

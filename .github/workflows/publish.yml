@@ -1,29 +1,38 @@
+# gradle-common: Plugin Portal on *-release branches; GitHub Packages on all other branches.
 name: Publish
 
 on:
   workflow_dispatch:
   push:
-    branches: [main, release]
+    branches: ["**"]
 
 jobs:
-  publish-dev-commit:
-    if: github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch'
-    uses: huanshankeji/.github/.github/workflows/gradle-maven-publish.yml@improve-cross-repo-dependency
-    with:
-      jdk-versions: 17-temurin
-    secrets:
-      GH_ACTOR: ${{ secrets.GH_ACTOR }}
-      GH_TOKEN: ${{ secrets.GH_TOKEN }}
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    env:
+      ORG_GRADLE_PROJECT_gprUser: ${{ secrets.GPR_USER }}
+      ORG_GRADLE_PROJECT_gprKey: ${{ secrets.GPR_KEY }}
+    steps:
+      - uses: actions/checkout@v6
 
-  publish-release:
-    if: github.ref == 'refs/heads/release'
-    uses: huanshankeji/.github/.github/workflows/gradle-maven-publish.yml@improve-cross-repo-dependency
-    with:
-      jdk-versions: 17-temurin
-    secrets:
-      GH_ACTOR: ${{ secrets.GH_ACTOR }}
-      GH_TOKEN: ${{ secrets.GH_TOKEN }}
-      ORG_GRADLE_PROJECT_mavenCentralUsername: ${{ secrets.ORG_GRADLE_PROJECT_mavenCentralUsername }}
-      ORG_GRADLE_PROJECT_mavenCentralPassword: ${{ secrets.ORG_GRADLE_PROJECT_mavenCentralPassword }}
-      ORG_GRADLE_PROJECT_signingInMemoryKey: ${{ secrets.ORG_GRADLE_PROJECT_signingInMemoryKey }}
-      ORG_GRADLE_PROJECT_signingInMemoryKeyPassword: ${{ secrets.ORG_GRADLE_PROJECT_signingInMemoryKeyPassword }}
+      - name: Set up JDKs
+        uses: huanshankeji/.github/actions/setup-javas@v0.3.0
+        with:
+          jdk-versions: 17-temurin
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v6
+
+      - name: Publish with Gradle Wrapper
+        shell: bash
+        run: |
+          if [ "${{ github.ref }}" = "refs/heads/plugins-release" ]; then
+            ./gradlew publishPluginProjectPlugins
+          elif [ "${{ github.ref }}" = "refs/heads/common-gradle-dependencies-release" ]; then
+            ./gradlew :common-gradle-dependencies:publishPlugins
+          else
+            ./gradlew publishAllPublicationsToGitHubPackagesRepository --parallel
+          fi

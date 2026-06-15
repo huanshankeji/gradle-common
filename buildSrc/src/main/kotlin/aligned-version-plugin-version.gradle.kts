@@ -3,4 +3,4 @@
 
 import com.huanshankeji.projectVersionFromGitProvider
 
-version = projectVersionFromGitProvider(alignedPluginBaseVersion).get()
+version = projectVersionFromGitProvider(alignedPluginBaseVersion, "plugins-release").get()

@@ -1,12 +1,15 @@
 import com.huanshankeji.SourceFile
 import com.huanshankeji.generateKotlinSources
+import com.huanshankeji.projectVersionFromGitProvider
 import kotlin.reflect.full.memberProperties
 
 plugins {
     conventions
 }
 
-version = commonGradleDependenciesVersion
+version = projectVersionFromGitProvider(
+    commonGradleDependenciesBaseVersion, "common-gradle-dependencies-release",
+).get()
 
 generateKotlinSources(
     sourceFiles = listOf(

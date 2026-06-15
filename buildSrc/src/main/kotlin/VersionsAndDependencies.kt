@@ -28,11 +28,11 @@ object DependencyVersions {
     val benManesVersions = "0.54.0"
 }
 
-val alignedPluginBaseVersion = "0.13.0"
+val alignedPluginBaseVersion = "0.12.0"
 
-// "x.y.z" indicates the version of the way of organizing the code,
-// and the date indicates the version when the dependency versions are updated.
-val commonGradleDependenciesVersion = "0.10.0-20251224-SNAPSHOT"
+// "x.y.z-yyyyMMdd" — semantic org version and date when dependency versions were updated.
+// Dev-commit suffixes are applied in :common-gradle-dependencies (see its build.gradle.kts).
+val commonGradleDependenciesBaseVersion = "0.10.0-20251224"
 
 // This is the source dependency version. There is another build source dependency in "buildSrc/build.gradle.kts".
 val pluginProjectSourceDependencyStableCommonGradleDependenciesVersion = "0.10.0-20251024".apply {

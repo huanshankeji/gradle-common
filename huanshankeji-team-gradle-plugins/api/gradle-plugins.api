@@ -96,10 +96,8 @@ public final class com/huanshankeji/team/github/GithubKt {
 
 public final class com/huanshankeji/team/maven/HuanshankejiPublicMavenRepositoriesKt {
 	public static final fun configureMavenCentralExcludeHuanshankejiNonStable (Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;)V
-	public static final fun configurePublicHuanshankejiArtifactRepositories (Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Lkotlin/jvm/functions/Function1;Ljava/util/List;Ljava/lang/String;)V
-	public static final fun configurePublicHuanshankejiArtifactRepositories (Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Lorg/gradle/api/initialization/Settings;Ljava/util/List;Ljava/lang/String;)V
-	public static synthetic fun configurePublicHuanshankejiArtifactRepositories$default (Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Lkotlin/jvm/functions/Function1;Ljava/util/List;Ljava/lang/String;ILjava/lang/Object;)V
-	public static synthetic fun configurePublicHuanshankejiArtifactRepositories$default (Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Lorg/gradle/api/initialization/Settings;Ljava/util/List;Ljava/lang/String;ILjava/lang/Object;)V
+	public static final fun configurePublicHuanshankejiArtifactRepositories (Lorg/gradle/api/Project;Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Ljava/util/List;Ljava/lang/String;)V
+	public static synthetic fun configurePublicHuanshankejiArtifactRepositories$default (Lorg/gradle/api/Project;Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Ljava/util/List;Ljava/lang/String;ILjava/lang/Object;)V
 }
 
 public class com/huanshankeji/team/maven/PublicOpenSourceDependencyRepositoriesExtension {

@@ -37,9 +37,9 @@ gradlePlugin {
             "Publishes to a Maven registry of GitHub Packages."
         )
         scriptConventionsPlugin(
-            "gitlab-project-level-maven-endpoint-publish",
-            "GitLab project-level Maven endpoint publish",
-            "Publishes to a GitLab project-level Maven endpoint."
+            "gitlab-package-registry-project-level-maven-endpoint-publish",
+            "GitLab Package Registry project-level Maven endpoint publish",
+            "Publishes to a GitLab Package Registry project-level Maven endpoint."
         )
 
         scriptConventionsPlugin(

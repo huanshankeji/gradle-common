@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask
-
 plugins {
     id("conventions")
     id("aligned-version-plugin-version")
@@ -11,13 +9,12 @@ dependencies {
     implementation("com.huanshankeji:common-gradle-dependencies:$pluginProjectSourceDependencyStableCommonGradleDependenciesVersion")
 }
 
-tasks.named<KotlinCompilationTask<*>>("compileKotlin").configure {
+kotlin {
     compilerOptions {
-        languageVersion.set(org.jetbrains.kotlin.gradle.dsl.KotlinVersion.KOTLIN_2_4)
-        freeCompilerArgs.addAll(
-            "-opt-in=com.huanshankeji.InternalApi",
-            "-opt-in=org.jetbrains.kotlin.gradle.dsl.abi.ExperimentalAbiValidation",
-            "-Xcontext-parameters",
+        optIn.addAll(
+            "com.huanshankeji.InternalApi",
+            "org.jetbrains.kotlin.gradle.dsl.abi.ExperimentalAbiValidation",
         )
+        freeCompilerArgs.add("-Xcontext-parameters")
     }
 }

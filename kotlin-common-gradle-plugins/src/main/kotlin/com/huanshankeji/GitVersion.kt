@@ -34,10 +34,10 @@ fun Project.devCommitVersionProvider(baseVersion: String): Provider<String> =
 
 /**
  * Returns [baseVersion] on the `release` branch; otherwise a dev-commit version from Git.
- * Override with the Gradle property `huanshankeji.forceReleaseVersion=true` when needed.
+ * Override with the Gradle property `com.huanshankeji.forceReleaseVersion=true` when needed.
  */
 fun Project.projectVersionFromGitProvider(baseVersion: String): Provider<String> {
-    val forceRelease = providers.gradleProperty("huanshankeji.forceReleaseVersion")
+    val forceRelease = providers.gradleProperty("com.huanshankeji.forceReleaseVersion")
         .map { it.toBoolean() }
         .orElse(false)
     return forceRelease.flatMap { forced ->

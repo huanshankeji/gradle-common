@@ -10,14 +10,13 @@ context(project: Project)
 fun MavenArtifactRepository.githubPackagesMavenRegistrySetUrlAndCredentials(owner: String, repository: String) {
     url = project.uri("https://maven.pkg.github.com/$owner/$repository")
     credentials {
-        username = githubMavenUsername { project.findProperty(it) as String? }
-        password = githubMavenPassword { project.findProperty(it) as String? }
+        username = project.githubPackagesMavenUsername()
+        password = project.githubPackagesMavenPassword()
     }
 }
 
 @Deprecated(
-    "Use repositories { maven { with(project) { githubPackagesMavenRegistrySetUrlAndCredentials(owner, repository) } } } instead",
-    ReplaceWith("repositories { maven { with(project) { githubPackagesMavenRegistrySetUrlAndCredentials(owner, repository) } } }")
+    "Use the context parameter version instead.", // TODO
 )
 fun Project.repositoriesAddGithubPackagesMavenRegistry(owner: String, repository: String) =
     repositories {
