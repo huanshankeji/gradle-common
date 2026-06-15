@@ -29,10 +29,18 @@ jobs:
       - name: Publish with Gradle Wrapper
         shell: bash
         run: |
+          GRADLE_ARGS=(--console=plain --info)
+
+          echo "=== CI Debug: environment variables ==="
+          env | sort
+
+          echo "=== CI Debug: Gradle properties ==="
+          ./gradlew properties "${GRADLE_ARGS[@]}"
+
           if [ "${{ github.ref }}" = "refs/heads/plugins-release" ]; then
-            ./gradlew publishPluginProjectPlugins
+            ./gradlew publishPluginProjectPlugins "${GRADLE_ARGS[@]}"
           elif [ "${{ github.ref }}" = "refs/heads/common-gradle-dependencies-release" ]; then
-            ./gradlew :common-gradle-dependencies:publishPlugins
+            ./gradlew :common-gradle-dependencies:publishPlugins "${GRADLE_ARGS[@]}"
           else
-            ./gradlew publishAllPublicationsToGitHubPackagesRepository --parallel
+            ./gradlew publishAllPublicationsToGitHubPackagesRepository --parallel "${GRADLE_ARGS[@]}"
           fi
