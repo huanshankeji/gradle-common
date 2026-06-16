@@ -8,7 +8,7 @@ This repository publishes Kotlin Gradle convention plugins and a shared dependen
 
 The APIs are experimental and may change. There are no end-user tutorials here; see [README.md](README.md) for status, version notes, and links to [API docs](https://huanshankeji.github.io/gradle-common/) and the [kotlin-common](https://github.com/huanshankeji/kotlin-common) example builds.
 
-**Toolchain:** Gradle **9.4.1** (see [gradle/wrapper/gradle-wrapper.properties](gradle/wrapper/gradle-wrapper.properties)), Kotlin **2.3.20**, **JDK 17** (toolchain). CI uses Temurin 17 (see [.github/workflows/kotlin-jvm-ci.yml](.github/workflows/kotlin-jvm-ci.yml)).
+**Toolchain:** JDK **17** (toolchain; CI uses Temurin 17 — see [.github/workflows/kotlin-jvm-ci.yml](.github/workflows/kotlin-jvm-ci.yml)). Gradle version: [gradle/wrapper/gradle-wrapper.properties](gradle/wrapper/gradle-wrapper.properties). Kotlin and dependency versions: [buildSrc/build.gradle.kts](buildSrc/build.gradle.kts) and [VersionsAndDependencies.kt](buildSrc/src/main/kotlin/VersionsAndDependencies.kt).
 
 ## Repository layout
 
@@ -65,7 +65,8 @@ Configuration cache is enabled ([gradle.properties](gradle.properties)). Expect 
 
 - `buildSrc` bootstraps from `com.huanshankeji.team:gradle-plugins` (see [buildSrc/build.gradle.kts](buildSrc/build.gradle.kts)). Local changes to team plugins may require `publishToMavenLocal` before other modules see them.
 
-- `mavenLocal()` is enabled in several build scripts for local iteration; do not commit credentials or tokens.
+- `mavenLocal()` is enabled in several build scripts for local iteration.
+- Do not commit credentials or tokens.
 
 ## Code conventions
 
@@ -73,7 +74,7 @@ Configuration cache is enabled ([gradle.properties](gradle.properties)). Expect 
 - **Language:** Kotlin for plugin logic and helpers; Gradle Kotlin DSL for build scripts.
 - **Package:** `com.huanshankeji` for published plugins; `com.huanshankeji.team` for team-only plugins.
 - **Plugin IDs:** `com.huanshankeji.<kebab-case-suffix>` or `com.huanshankeji.team.<suffix>`, registered in each module's `gradlePlugin` block.
-- **Naming:** kebab-case for plugin id suffixes and script file names; camelCase for Kotlin APIs. See [NamingConventions.kt](kotlin-common-gradle-plugins/src/main/kotlin/com/huanshankeji/NamingConventions.kt).
+- **Naming:** kebab-case for plugin id suffixes and script file names; camelCase for Kotlin APIs. Match patterns in existing plugins and helpers in the same module.
 - **Internal API:** APIs meant for in-repo use are marked `@InternalApi` ([Internal.kt](kotlin-common-gradle-plugins/src/main/kotlin/com/huanshankeji/Internal.kt)); plugin modules compile with `-opt-in=com.huanshankeji.InternalApi`.
 - **Public ABI:** Binary compatibility is tracked via `api/*.api` files and `apiCheck` / `checkKotlinAbi`. Do not change public signatures casually; update dumps only when the ABI change is deliberate.
 - **Scope:** Keep changes minimal and localized. Match existing patterns in the module you touch. Do not add unrelated refactors, comments, or tests unless they support the task.
@@ -92,8 +93,6 @@ When bumping dependency versions, update `DependencyVersions` / `CommonVersions`
 
 IntelliJ IDEA is the recommended IDE ([CONTRIBUTING.md](CONTRIBUTING.md)). Set Project SDK and Gradle JVM to JDK 17.
 
-Script plugins in project sources sometimes fail to resolve in the IDE until a restart—this is a known limitation mentioned in [README.md](README.md).
-
 ## Pull requests and commits
 
 Follow [CONTRIBUTING.md](CONTRIBUTING.md): discuss larger changes via issues or Discussions when appropriate.
@@ -111,3 +110,7 @@ Before opening or updating a PR:
 - Do not publish to remote registries (Maven Central, GitHub Packages, Plugin Portal) unless explicitly asked.
 - Do not upgrade Gradle, Kotlin, or major plugin dependencies without a clear reason; version pins are tested together and documented in README.
 - Prefer copying/adapting plugin patterns from this repo or [kotlin-common](https://github.com/huanshankeji/kotlin-common) over inventing new conventions.
+
+## Organization standards
+
+Organization-wide standards and open-source library map: [@huanshankeji/.github general agent instructions](https://github.com/huanshankeji/.github/blob/main/docs/general-agent-instructions.md).
