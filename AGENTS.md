@@ -25,7 +25,7 @@ Root [settings.gradle.kts](settings.gradle.kts) includes all modules. Version co
 ### Adding or changing a plugin
 
 1. Add or edit a `*.gradle.kts` script under the target module's `src/main/kotlin/com/huanshankeji/...`.
-2. Register it in that module's [build.gradle.kts](kotlin-common-gradle-plugins/build.gradle.kts) via `gradlePlugin { plugins { scriptConventionsPlugin(...) } }`.
+2. Register it in that module's `build.gradle.kts` (e.g., [kotlin-common-gradle-plugins/build.gradle.kts](kotlin-common-gradle-plugins/build.gradle.kts)) via `gradlePlugin { plugins { scriptConventionsPlugin(...) } }`.
 3. Reuse helpers from existing Kotlin sources in the same module; prefer extending conventions rather than duplicating logic.
 4. If the change affects public ABI, update the corresponding `api/*.api` dump (see below).
 
@@ -57,7 +57,7 @@ Configuration cache is enabled ([gradle.properties](gradle.properties)). Expect 
 
 ### Bootstrap / dependency resolution
 
-- Plugin modules depend on a published `com.huanshankeji:common-gradle-dependencies` artifact (version in `VersionsAndDependencies.kt`). On branches where that artifact is unavailable, publish it locally first:
+- Plugin modules depend on a published `com.huanshankeji:common-gradle-dependencies` artifact (version in [VersionsAndDependencies.kt](buildSrc/src/main/kotlin/VersionsAndDependencies.kt)). On branches where that artifact is unavailable, publish it locally first:
 
   ```bash
   ./gradlew :common-gradle-dependencies:publishToMavenLocal
@@ -80,7 +80,7 @@ Configuration cache is enabled ([gradle.properties](gradle.properties)). Expect 
 
 ## Version and changelog policy
 
-- Plugin release version: `alignedPluginVersion` in `VersionsAndDependencies.kt`.
+- Plugin release version: `alignedPluginVersion` in [VersionsAndDependencies.kt](buildSrc/src/main/kotlin/VersionsAndDependencies.kt).
 - `common-gradle-dependencies` version: `commonGradleDependenciesVersion` (separate release cadence).
 - User-facing plugin changes: [PLUGINS_CHANGELOG.md](PLUGINS_CHANGELOG.md).
 - Dependency-catalog changes: [COMMON_GRADLE_DEPENDENCIES_CHANGELOG.md](COMMON_GRADLE_DEPENDENCIES_CHANGELOG.md).
