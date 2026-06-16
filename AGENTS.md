@@ -2,6 +2,10 @@
 
 Instructions for AI coding agents working in **Huanshankeji Gradle Common** (`gradle-common`).
 
+## Organization standards
+
+Read first: organization-wide standards and open-source library map in [@huanshankeji/.github general agent instructions](https://github.com/huanshankeji/.github/blob/main/docs/general-agent-instructions.md). The sections below are project-specific instructions for this repository.
+
 ## Project overview
 
 This repository publishes Kotlin Gradle convention plugins and a shared dependency catalog for Huanshankeji Kotlin projects. Plugins are implemented as precompiled script plugins (`.gradle.kts` files under each module's `src/main/kotlin/`) plus supporting Kotlin helpers.
@@ -110,7 +114,3 @@ Before opening or updating a PR:
 - Do not publish to remote registries (Maven Central, GitHub Packages, Plugin Portal) unless explicitly asked.
 - Do not upgrade Gradle, Kotlin, or major plugin dependencies without a clear reason; version pins are tested together and documented in README.
 - Prefer copying/adapting plugin patterns from this repo or [kotlin-common](https://github.com/huanshankeji/kotlin-common) over inventing new conventions.
-
-## Organization standards
-
-Organization-wide standards and open-source library map: [@huanshankeji/.github general agent instructions](https://github.com/huanshankeji/.github/blob/main/docs/general-agent-instructions.md).
