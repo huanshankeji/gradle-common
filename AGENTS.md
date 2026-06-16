@@ -69,6 +69,7 @@ Configuration cache is enabled ([gradle.properties](gradle.properties)). Expect 
 
 ## Code conventions
 
+- **Kotlin style:** Follow [our Kotlin code style guide](https://github.com/huanshankeji/.github/blob/main/docs/kotlin-code-style.md) for Kotlin source in this repository.
 - **Language:** Kotlin for plugin logic and helpers; Gradle Kotlin DSL for build scripts.
 - **Package:** `com.huanshankeji` for published plugins; `com.huanshankeji.team` for team-only plugins.
 - **Plugin IDs:** `com.huanshankeji.<kebab-case-suffix>` or `com.huanshankeji.team.<suffix>`, registered in each module's `gradlePlugin` block.
@@ -110,3 +111,7 @@ Before opening or updating a PR:
 - Do not publish to remote registries (Maven Central, GitHub Packages, Plugin Portal) unless explicitly asked.
 - Do not upgrade Gradle, Kotlin, or major plugin dependencies without a clear reason; version pins are tested together and documented in README.
 - Prefer copying/adapting plugin patterns from this repo or [kotlin-common](https://github.com/huanshankeji/kotlin-common) over inventing new conventions.
+
+## Organization standards
+
+Organization-wide standards and open-source library map: [@huanshankeji/.github general agent instructions](https://github.com/huanshankeji/.github/blob/main/docs/general-agent-instructions.md).
