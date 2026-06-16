@@ -111,7 +111,3 @@ Before opening or updating a PR:
 - Do not publish to remote registries (Maven Central, GitHub Packages, Plugin Portal) unless explicitly asked.
 - Do not upgrade Gradle, Kotlin, or major plugin dependencies without a clear reason; version pins are tested together and documented in README.
 - Prefer copying/adapting plugin patterns from this repo or [kotlin-common](https://github.com/huanshankeji/kotlin-common) over inventing new conventions.
-
-## Organization standards
-
-Organization-wide standards and open-source library map: [@huanshankeji/.github general agent instructions](https://github.com/huanshankeji/.github/blob/main/docs/general-agent-instructions.md).
