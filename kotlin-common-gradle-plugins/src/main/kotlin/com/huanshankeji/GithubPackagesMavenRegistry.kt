@@ -9,10 +9,7 @@ import org.gradle.kotlin.dsl.repositories
 context(project: Project)
 fun MavenArtifactRepository.githubPackagesMavenRegistrySetUrlAndCredentials(owner: String, repository: String) {
     url = project.uri("https://maven.pkg.github.com/$owner/$repository")
-    credentials {
-        username = project.githubPackagesMavenUsername()
-        password = project.githubPackagesMavenPassword()
-    }
+    configureGithubPackagesMavenCredentials()
 }
 
 @Deprecated(

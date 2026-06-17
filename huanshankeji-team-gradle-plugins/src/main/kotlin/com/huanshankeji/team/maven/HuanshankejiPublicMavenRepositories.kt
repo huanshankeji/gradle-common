@@ -5,8 +5,7 @@ import com.huanshankeji.DIRTY_DEV_COMMIT_VERSION_REGEX
 import com.huanshankeji.HUANSHANKEJI_MAVEN_GROUP
 import com.huanshankeji.LEGACY_SNAPSHOT_VERSION_REGEX
 import com.huanshankeji.contentExcludeHuanshankejiNonStableVersions
-import com.huanshankeji.githubPackagesMavenPassword
-import com.huanshankeji.githubPackagesMavenUsername
+import com.huanshankeji.configureGithubPackagesMavenCredentials
 import com.huanshankeji.team.HUANSHANKEJI_IN_LOWERCASE
 import org.gradle.api.Project
 import org.gradle.api.artifacts.dsl.RepositoryHandler
@@ -36,10 +35,7 @@ fun RepositoryHandler.configurePublicHuanshankejiArtifactRepositories(
         maven {
             name = "GitHubPackages-$repositoryName"
             url = URI("https://maven.pkg.github.com/$owner/$repositoryName")
-            credentials {
-                username = project.githubPackagesMavenUsername()
-                password = project.githubPackagesMavenPassword()
-            }
+            configureGithubPackagesMavenCredentials()
             content {
                 includeVersionByRegex(HUANSHANKEJI_MAVEN_GROUP, ".*", DEV_COMMIT_VERSION_REGEX)
             }
