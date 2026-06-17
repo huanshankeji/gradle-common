@@ -26,6 +26,12 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v6
 
+      - name: Debug credential presence
+        shell: bash
+        run: |
+          echo "gprUser length: ${#ORG_GRADLE_PROJECT_gprUser}"
+          echo "gprKey length: ${#ORG_GRADLE_PROJECT_gprKey}"
+
       - name: Publish with Gradle Wrapper
         shell: bash
         run: |
