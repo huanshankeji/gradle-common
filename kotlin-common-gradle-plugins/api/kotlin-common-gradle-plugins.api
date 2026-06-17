@@ -187,8 +187,8 @@ public final class com/huanshankeji/MavenPomKt {
 }
 
 public final class com/huanshankeji/MavenRegistryCredentialsKt {
-	public static final fun findStringProperty (Lorg/gradle/api/Project;Ljava/lang/String;)Ljava/lang/String;
 	public static final fun findStringGradleProperty (Lorg/gradle/api/initialization/Settings;Ljava/lang/String;)Ljava/lang/String;
+	public static final fun findStringProperty (Lorg/gradle/api/Project;Ljava/lang/String;)Ljava/lang/String;
 	public static final fun githubPackagesMavenPassword (Lorg/gradle/api/Project;)Ljava/lang/String;
 	public static final fun githubPackagesMavenPassword (Lorg/gradle/api/initialization/Settings;)Ljava/lang/String;
 	public static final fun githubPackagesMavenUsername (Lorg/gradle/api/Project;)Ljava/lang/String;
