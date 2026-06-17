@@ -12,9 +12,6 @@ jobs:
     permissions:
       contents: read
       packages: write
-    env:
-      ORG_GRADLE_PROJECT_gprUser: ${{ secrets.GPR_USER }}
-      ORG_GRADLE_PROJECT_gprKey: ${{ secrets.GPR_KEY }}
     steps:
       - uses: actions/checkout@v6
 
@@ -28,11 +25,25 @@ jobs:
 
       - name: Publish with Gradle Wrapper
         shell: bash
+        env:
+          GPR_USER: ${{ secrets.GPR_USER || github.actor }}
+          GPR_KEY: ${{ secrets.GPR_KEY || github.token }}
+          # buildSrc still bootstraps gradle-plugins:0.11.0, which reads gpr.user/gpr.key or USERNAME/TOKEN.
+          USERNAME: ${{ secrets.GPR_USER || github.actor }}
+          TOKEN: ${{ secrets.GPR_KEY || github.token }}
+          ORG_GRADLE_PROJECT_gprUser: ${{ secrets.GPR_USER || github.actor }}
+          ORG_GRADLE_PROJECT_gprKey: ${{ secrets.GPR_KEY || github.token }}
         run: |
+          gpr_args=(
+            -Pgpr.user="$GPR_USER"
+            -Pgpr.key="$GPR_KEY"
+            -PgprUser="$GPR_USER"
+            -PgprKey="$GPR_KEY"
+          )
           if [ "${{ github.ref }}" = "refs/heads/plugins-release" ]; then
-            ./gradlew publishPluginProjectPlugins
+            ./gradlew publishPluginProjectPlugins "${gpr_args[@]}"
           elif [ "${{ github.ref }}" = "refs/heads/common-gradle-dependencies-release" ]; then
-            ./gradlew :common-gradle-dependencies:publishPlugins
+            ./gradlew :common-gradle-dependencies:publishPlugins "${gpr_args[@]}"
           else
-            ./gradlew publishAllPublicationsToGitHubPackagesRepository --parallel
+            ./gradlew publishAllPublicationsToGitHubPackagesRepository --parallel "${gpr_args[@]}"
           fi
