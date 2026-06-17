@@ -6,6 +6,36 @@ plugins {
     id("com.huanshankeji.team.default-github-packages-maven-publish")
 }
 
+import org.gradle.api.credentials.PasswordCredentials
+import org.gradle.api.publish.PublishingExtension
+import org.gradle.kotlin.dsl.configure
+import org.gradle.kotlin.dsl.credentials
+
+// Bootstrap 0.11.0 still configures publishing credentials eagerly; override with lazy providers
+// until buildSrc depends on a released gradle-plugins version from this repo.
+afterEvaluate {
+    extensions.configure<PublishingExtension>("publishing") {
+        repositories {
+            matching { it.name == "GitHubPackages" }.configureEach {
+                credentials(PasswordCredentials::class) {
+                    username.set(
+                        providers.gradleProperty("gpr.user")
+                            .orElse(providers.gradleProperty("gprUser"))
+                            .orElse(providers.environmentVariable("GPR_USER"))
+                            .orElse(providers.environmentVariable("GITHUB_ACTOR")),
+                    )
+                    password.set(
+                        providers.gradleProperty("gpr.key")
+                            .orElse(providers.gradleProperty("gprKey"))
+                            .orElse(providers.environmentVariable("GPR_KEY"))
+                            .orElse(providers.environmentVariable("GITHUB_TOKEN")),
+                    )
+                }
+            }
+        }
+    }
+}
+
 repositories {
     mavenLocal() // comment out when not needed
     gradlePluginPortal()

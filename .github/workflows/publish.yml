@@ -13,8 +13,12 @@ jobs:
       contents: read
       packages: write
     env:
+      ORG_GRADLE_PROJECT_gpr_user: ${{ secrets.GPR_USER }}
+      ORG_GRADLE_PROJECT_gpr_key: ${{ secrets.GPR_KEY }}
       ORG_GRADLE_PROJECT_gprUser: ${{ secrets.GPR_USER }}
       ORG_GRADLE_PROJECT_gprKey: ${{ secrets.GPR_KEY }}
+      GPR_USER: ${{ secrets.GPR_USER }}
+      GPR_KEY: ${{ secrets.GPR_KEY }}
     steps:
       - uses: actions/checkout@v6
 
