@@ -3,11 +3,9 @@ plugins {
 }
 
 dependencies {
-    implementation("org.jetbrains.kotlinx:kotlinx-benchmark-plugin:${DependencyVersions.kotlinxBenchmark}")
-    implementation(kotlin("allopen", DependencyVersions.kotlin))
-    implementation("org.jetbrains.dokka:dokka-gradle-plugin:${DependencyVersions.dokka}")
+    implementation(libs.bundles.kotlinCommonGradlePluginsImplementation)
     // made `api` to expose the plugin extension class (https://github.com/vanniktech/gradle-maven-publish-plugin/blob/main/plugin/src/main/kotlin/com/vanniktech/maven/publish/MavenPublishBaseExtension.kt)
-    api("com.vanniktech.maven.publish:com.vanniktech.maven.publish.gradle.plugin:${DependencyVersions.vanniktechMavenPublish}")
+    api(libs.vanniktech.mavenPublish.gradlePlugin)
 
     testImplementation(kotlin("test"))
 }

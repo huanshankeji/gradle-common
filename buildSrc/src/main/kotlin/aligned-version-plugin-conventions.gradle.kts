@@ -7,7 +7,9 @@ plugins {
 }
 
 dependencies {
-    implementation("com.huanshankeji:common-gradle-dependencies:$pluginProjectSourceDependencyStableCommonGradleDependenciesVersion")
+    // Depend on the local project directly (developed and released together) instead of a
+    // stale released version, removing the cross-version self-dependency (#54).
+    implementation(project(":common-gradle-dependencies"))
 }
 
 tasks.named<KotlinCompilationTask<*>>("compileKotlin").configure {

@@ -1,9 +1,10 @@
+import com.huanshankeji.publishingRepositoriesAddGithubPackagesMavenRepository
+
 plugins {
     id("org.gradle.kotlin.kotlin-dsl")
-    id("com.huanshankeji.team.with-group")
 
     id("com.gradle.plugin-publish")
-    id("com.huanshankeji.team.default-github-packages-maven-publish")
+    id("com.vanniktech.maven.publish")
 }
 
 repositories {
@@ -20,6 +21,16 @@ dependencies {
 }
 
 kotlin.jvmToolchain(17)
+
+// Replaces the team `with-group` plugin.
+group = "com.huanshankeji"
+
+// Publishes this repository's own artifacts to the team's GitHub Packages registry.
+// Configured directly via the shared helper from `kotlin-common-gradle-plugins` (source-linked
+// into `buildSrc`) instead of applying `com.huanshankeji.team.default-github-packages-maven-publish`,
+// because the team precompiled script plugins consume cross-module extension accessors that cannot
+// be generated when compiled in the same `buildSrc` compilation unit (see #54).
+publishingRepositoriesAddGithubPackagesMavenRepository(owner = "huanshankeji", repository = rootProject.name)
 
 
 gradlePlugin {

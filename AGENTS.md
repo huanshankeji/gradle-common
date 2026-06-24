@@ -61,13 +61,10 @@ Configuration cache is enabled ([gradle.properties](gradle.properties)). Expect 
 
 ### Bootstrap / dependency resolution
 
-- Plugin modules depend on a published `com.huanshankeji:common-gradle-dependencies` artifact (version in [VersionsAndDependencies.kt](buildSrc/src/main/kotlin/VersionsAndDependencies.kt)). On branches where that artifact is unavailable, publish it locally first:
-
-  ```bash
-  ./gradlew :common-gradle-dependencies:publishToMavenLocal
-  ```
-
-- `buildSrc` bootstraps from `com.huanshankeji.team:gradle-plugins` (see [buildSrc/build.gradle.kts](buildSrc/build.gradle.kts)). Local changes to team plugins may require `publishToMavenLocal` before other modules see them.
+- There are no longer cross-version bootstrapping dependencies on released artifacts of this repository (#54):
+    - `buildSrc` source-links the `common-gradle-dependencies` and `kotlin-common-gradle-plugins` sources (see [buildSrc/build.gradle.kts](buildSrc/build.gradle.kts)) instead of depending on a stale released `com.huanshankeji.team:gradle-plugins`. The `huanshankeji-team-gradle-plugins` sources are intentionally not source-linked, because their precompiled script plugins consume cross-module extension accessors (e.g. `githubPackagesPublish`, `dokkaConvention`) that cannot be generated in a single `buildSrc` compilation; `buildSrc`'s `conventions` plugin instead configures this repository's own GitHub Packages publishing via the shared helper functions.
+    - The plugin modules depend on the `common-gradle-dependencies` **project** directly (see [aligned-version-plugin-conventions.gradle.kts](buildSrc/src/main/kotlin/aligned-version-plugin-conventions.gradle.kts)), so nothing needs to be published to Maven local before building.
+- Dependency versions/coordinates used by the build scripts are centralized in the shared version catalog [gradle/libs.versions.toml](gradle/libs.versions.toml), consumed by both the root build and `buildSrc` (registered in [buildSrc/settings.gradle.kts](buildSrc/settings.gradle.kts)). Keep the overlapping versions in sync with `com.huanshankeji.CommonVersions` until #9 unifies them.
 
 - `mavenLocal()` is enabled in several build scripts for local iteration.
 - Do not commit credentials or tokens.

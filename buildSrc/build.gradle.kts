@@ -1,47 +1,59 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask
+
 plugins {
-    `kotlin-dsl`
-    //kotlin("jvm") version "x.x.x"
+    `embedded-kotlin`
+    // Applied imperatively at the end of this script (see below).
+    `kotlin-dsl` apply false
 }
 
 repositories {
-    mavenLocal()
+    mavenCentral()
     gradlePluginPortal()
-    // commented out as it may slow down the build, especially when the GitHub token is incorrect and authentication fails
-    /*
-    maven {
-        url = uri("https://maven.pkg.github.com/huanshankeji/gradle-common")
-        credentials {
-            username = project.findProperty("gpr.user") as String? ?: System.getenv("USERNAME")
-            password = project.findProperty("gpr.key") as String? ?: System.getenv("TOKEN")
-        }
-    }
-    */
 }
 
 dependencies {
-    /*
-    // see https://kotlinlang.org/docs/whatsnew18.html#resolution-of-kotlin-gradle-plugins-transitive-dependencies
-    // This workaround somehow doesn't work. Maybe wait for https://youtrack.jetbrains.com/issue/KT-54691/Kotlin-Gradle-Plugin-libraries-alignment-platform to be fixed.
-    constraints {
-        implementation("org.jetbrains.kotlin:kotlin-sam-with-receiver:1.8.0")
-    }
-    */
-    // for `KotlinCompilationTask` and the version is compatible with Compose 1.10.3
+    // for `KotlinCompilationTask` and the version is compatible with the Compose version in the catalog
     // https://kotlinlang.org/docs/releases.html#release-details
-    implementation(kotlin("gradle-plugin", "2.3.20"))
-    implementation("org.gradle.kotlin:gradle-kotlin-dsl-plugins:6.5.2") // This version has to be used for Gradle 9.4.1.
+    implementation(libs.kotlin.gradlePlugin)
+    implementation(libs.gradleKotlinDsl.plugins)
 
     //https://plugins.gradle.org/plugin/com.gradle.plugin-publish
-    implementation("com.gradle.publish:plugin-publish-plugin:2.0.0")
+    implementation(libs.gradle.pluginPublish)
 
-    // This is a bootstrapping dependency (cross-version self-dependency). Try not to update its version unless necessary.
-    implementation("com.huanshankeji.team:gradle-plugins:0.11.0") { exclude("org.jetbrains.kotlin") }
-    // This approach complicates the project is temporarily given up and commented out. Maybe readopt this when `common-gradle-dependencies` is moved to a separate project.
-    /*
-    // This is also a bootstrapping dependency.
-    implementation("com.huanshankeji:common-gradle-dependencies:0.7.1-20240314-boostrap") { exclude("org.jetbrains.kotlin") }
-    */
+    // The dependencies needed to compile the source-linked plugin modules below.
+    implementation(libs.vanniktech.mavenPublish.gradlePlugin)
+    implementation(libs.bundles.kotlinCommonGradlePluginsImplementation)
+}
 
-    // https://github.com/Kotlin/dokka/releases
-    implementation("org.jetbrains.dokka:dokka-gradle-plugin:2.2.0")
+// Source-link the shareable plugin module sources so `buildSrc` compiles them from
+// the current source instead of depending on a stale released version of these plugins
+// (the previous cross-version self-dependency, see #54).
+//
+// Only `common-gradle-dependencies` and `kotlin-common-gradle-plugins` are linked:
+// - `architecture-common-gradle-plugins` only contributes product plugins (Compose/web)
+//   that are never applied to build this repository.
+// - `huanshankeji-team-gradle-plugins` is intentionally NOT linked: its precompiled
+//   script plugins consume type-safe accessors for extensions defined by
+//   `kotlin-common-gradle-plugins` plugins (e.g. `githubPackagesPublish`, `dokkaConvention`).
+//   Those accessors are only generated across a project/binary boundary, so the team
+//   plugins cannot be compiled in the same `buildSrc` compilation unit. Instead,
+//   `conventions.gradle.kts` configures this repository's own GitHub Packages publishing
+//   directly via the shared helper functions from `kotlin-common-gradle-plugins`.
+//
+// IMPORTANT: these source directories must be added BEFORE the `kotlin-dsl` plugin is
+// applied, because it reads the precompiled-script-plugin source directories eagerly at
+// apply time (https://github.com/gradle/gradle/issues/21052). Hence `kotlin-dsl` is
+// declared with `apply false` above and applied imperatively after this block.
+sourceSets.main {
+    kotlin.srcDirs(
+        "../common-gradle-dependencies/src/main/kotlin",
+        "../kotlin-common-gradle-plugins/src/main/kotlin",
+    )
+}
+
+apply(plugin = "org.gradle.kotlin.kotlin-dsl")
+
+tasks.named<KotlinCompilationTask<*>>("compileKotlin").configure {
+    // The source-linked sources use `@InternalApi`, matching `aligned-version-plugin-conventions`.
+    compilerOptions.freeCompilerArgs.add("-opt-in=com.huanshankeji.InternalApi")
 }

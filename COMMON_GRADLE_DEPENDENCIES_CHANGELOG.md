@@ -1,5 +1,9 @@
 # "common-gradle-dependencies" change log
 
+## Unreleased
+
+* stop generating `GeneratedVersions` from `buildSrc`'s `DependencyVersions`; the versions are now declared directly in `CommonVersions` and kept in sync by hand with the shared version catalog `gradle/libs.versions.toml` (#54, to be unified by #9)
+
 ## v0.10.0-20251024 / 2025-10-25
 
 * update Gradle to 9.1.0 and migrate to Gradle 9, fixing some incompatibilities
