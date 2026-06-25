@@ -12,6 +12,8 @@ dependencies {
     implementation(project(":common-gradle-dependencies"))
 }
 
-tasks.named<KotlinCompilationTask<*>>("compileKotlin").configure {
-    compilerOptions.freeCompilerArgs.add("-opt-in=com.huanshankeji.InternalApi")
+kotlin {
+    compilerOptions {
+        optIn.add("com.huanshankeji.InternalApi")
+    }
 }
