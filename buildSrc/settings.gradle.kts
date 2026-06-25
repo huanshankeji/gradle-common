@@ -5,8 +5,8 @@
 // project/binary boundaries that the precompiled script plugins' type-safe accessors rely on.
 
 dependencyResolutionManagement {
+    @Suppress("UnstableApiUsage")
     repositories {
-        mavenCentral()
         gradlePluginPortal()
     }
     // Register the root build's shared version catalog so the `buildSrc` build scripts can
