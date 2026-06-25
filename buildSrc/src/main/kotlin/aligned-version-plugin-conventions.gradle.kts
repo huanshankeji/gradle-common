@@ -10,6 +10,8 @@ dependencies {
     implementation("com.huanshankeji:common-gradle-dependencies:$pluginProjectSourceDependencyStableCommonGradleDependenciesVersion")
 }
 
-tasks.named<KotlinCompilationTask<*>>("compileKotlin").configure {
-    compilerOptions.freeCompilerArgs.add("-opt-in=com.huanshankeji.InternalApi")
+kotlin {
+    compilerOptions {
+        optIn.add("com.huanshankeji.InternalApi")
+    }
 }
