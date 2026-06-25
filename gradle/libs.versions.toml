@@ -18,7 +18,7 @@ dokka = "2.2.0"
 binaryCompatibilityValidator = "0.18.1"
 vanniktechMavenPublish = "0.36.0"
 # Gradle build-logic tooling
-gradleKotlinDslPlugins = "6.5.2" # This version has to be used for Gradle 9.4.1.
+gradleKotlinDslPlugins = "6.6.4" # This version has to be used for Gradle 9.6.0.
 gradlePluginPublish = "2.0.0"
 
 [libraries]
