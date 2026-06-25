@@ -1,5 +1,10 @@
 # "Gradle plugins" change log
 
+## v0.12.0-SNAPSHOT
+
+* migrate module-wide opt-ins to the `compilerOptions.optIn` DSL
+    * `defaultOptIns()` now extends `KotlinCommonCompilerOptions` instead of `LanguageSettingsBuilder`; call it from `kotlin { compilerOptions { ... } }` instead of `languageSettings { ... }`
+
 ## v0.11.0 / 2025-10-28
 
 * add the `maven-central-publish-conventions` plugin based on `com.vanniktech.maven.publish` and deprecate our old OSSRH publish plugins

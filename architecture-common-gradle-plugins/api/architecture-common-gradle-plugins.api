@@ -45,7 +45,7 @@ public abstract interface class com/huanshankeji/Generate_kotlin_js_browser_webr
 }
 
 public final class com/huanshankeji/OptInsKt {
-	public static final fun defaultOptIns (Lorg/jetbrains/kotlin/gradle/plugin/LanguageSettingsBuilder;)V
+	public static final fun defaultOptIns (Lorg/jetbrains/kotlin/gradle/dsl/KotlinCommonCompilerOptions;)V
 }
 
 public final class com/huanshankeji/jvm/native/osandarch/CpuArchitecture : java/lang/Enum {
