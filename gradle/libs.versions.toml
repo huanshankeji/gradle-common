@@ -11,14 +11,14 @@
 # them (#9).
 
 [versions]
-kotlin = "2.3.20"
+kotlin = "2.4.0"
 composeMultiplatform = "1.10.3"
 kotlinxBenchmark = "0.4.16"
 dokka = "2.2.0"
 binaryCompatibilityValidator = "0.18.1"
 vanniktechMavenPublish = "0.36.0"
 # Gradle build-logic tooling
-gradleKotlinDslPlugins = "6.6.4" # This version has to be used for Gradle 9.6.0.
+gradleKotlinDslPlugins = "6.7.3" # for Kotlin 2.4.0 (6.6.4 for Gradle 9.6.0 but superceded)
 gradlePluginPublish = "2.0.0"
 
 [libraries]

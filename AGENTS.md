@@ -85,11 +85,11 @@ Configuration cache is enabled ([gradle.properties](gradle.properties)). Expect 
 ## Version and changelog policy
 
 - Plugin release version: `alignedPluginVersion` in [VersionsAndDependencies.kt](buildSrc/src/main/kotlin/VersionsAndDependencies.kt).
-- `common-gradle-dependencies` version: `commonGradleDependenciesVersion` (separate release cadence).
-- User-facing plugin changes: [PLUGINS_CHANGELOG.md](PLUGINS_CHANGELOG.md).
-- Dependency-catalog changes: [COMMON_GRADLE_DEPENDENCIES_CHANGELOG.md](COMMON_GRADLE_DEPENDENCIES_CHANGELOG.md).
+- `common-gradle-dependencies` version: `commonGradleDependenciesVersion` (separate version; releases are coordinated but version numbers remain independent).
+- Coordinated unreleased notes across artifacts: [CHANGELOG.md](CHANGELOG.md).
+- Per-artifact change logs: [PLUGINS_CHANGELOG.md](PLUGINS_CHANGELOG.md), [COMMON_GRADLE_DEPENDENCIES_CHANGELOG.md](COMMON_GRADLE_DEPENDENCIES_CHANGELOG.md).
 
-When bumping dependency versions, update `DependencyVersions` / `CommonVersions` as appropriate and note the change in the relevant changelog if the release is user-visible.
+When bumping dependency versions, update `CommonVersions` (and `gradle/libs.versions.toml` where applicable) and note the change in the relevant changelog(s) if the release is user-visible.
 
 ## IDE notes
 
