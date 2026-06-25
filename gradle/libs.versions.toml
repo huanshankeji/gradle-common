@@ -22,15 +22,16 @@ gradle-kotlinDslPlugins = "6.7.3" # for Kotlin 2.4.0 (6.6.4 for Gradle 9.6.0 but
 gradle-pluginPublishPlugin = "2.0.0"
 
 [libraries]
-kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
-kotlin-allopen = { module = "org.jetbrains.kotlin:kotlin-allopen", version.ref = "kotlin" }
+# `org.jetbrains.kotlin` plugin JARs: no version — aligned by the Kotlin Gradle plugin BOM once subprojects apply `kotlin("jvm")`.
+kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin" }
+kotlin-allopen = { module = "org.jetbrains.kotlin:kotlin-allopen" }
 gradle-kotlinDslPlugins = { module = "org.gradle.kotlin:gradle-kotlin-dsl-plugins", version.ref = "gradle-kotlinDslPlugins" }
 gradle-pluginPublishPlugin = { module = "com.gradle.publish:plugin-publish-plugin", version.ref = "gradle-pluginPublishPlugin" }
 dokka-gradlePlugin = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "dokka" }
 vanniktech-mavenPublishGradlePlugin = { module = "com.vanniktech.maven.publish:com.vanniktech.maven.publish.gradle.plugin", version.ref = "vanniktech-mavenPublish" }
 kotlinx-benchmark-plugin = { module = "org.jetbrains.kotlinx:kotlinx-benchmark-plugin", version.ref = "kotlinx-benchmark" }
 compose-gradlePlugin = { module = "org.jetbrains.compose:compose-gradle-plugin", version.ref = "composeMultiplatform" }
-kotlin-composeCompilerGradlePlugin = { module = "org.jetbrains.kotlin:compose-compiler-gradle-plugin", version.ref = "kotlin" }
+kotlin-composeCompilerGradlePlugin = { module = "org.jetbrains.kotlin:compose-compiler-gradle-plugin" }
 
 [bundles]
 # Dependencies needed to compile the `kotlin-common-gradle-plugins` precompiled script plugins.
@@ -40,3 +41,4 @@ architectureCommonGradlePlugins-implementation = ["kotlin-composeCompilerGradleP
 
 [plugins]
 binaryCompatibilityValidator = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "binaryCompatibilityValidator" }
+kotlin-jvmWithExplicitVersion = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
