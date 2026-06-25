@@ -1,11 +1,11 @@
 package com.huanshankeji
 
-import org.jetbrains.kotlin.gradle.plugin.LanguageSettingsBuilder
+import org.jetbrains.kotlin.gradle.dsl.KotlinCommonCompilerOptions
 
-fun LanguageSettingsBuilder.defaultOptIns() {
-    optIn("kotlin.RequiresOptIn")
+fun KotlinCommonCompilerOptions.defaultOptIns() {
+    optIn.add("kotlin.RequiresOptIn")
 
-    optIn("kotlin.ExperimentalStdlibApi")
-    optIn("kotlin.ExperimentalUnsignedTypes")
-    optIn("kotlinx.serialization.ExperimentalSerializationApi")
+    optIn.add("kotlin.ExperimentalStdlibApi")
+    optIn.add("kotlin.ExperimentalUnsignedTypes")
+    optIn.add("kotlinx.serialization.ExperimentalSerializationApi")
 }

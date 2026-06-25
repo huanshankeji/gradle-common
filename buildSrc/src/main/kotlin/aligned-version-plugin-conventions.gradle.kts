@@ -11,5 +11,5 @@ dependencies {
 }
 
 tasks.named<KotlinCompilationTask<*>>("compileKotlin").configure {
-    compilerOptions.freeCompilerArgs.add("-opt-in=com.huanshankeji.InternalApi")
+    compilerOptions.optIn.add("com.huanshankeji.InternalApi")
 }
