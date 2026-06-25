@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask
-
 plugins {
     // Provides `sourceSets`/`kotlin {}` so the source directory can be configured before `kotlin-dsl`.
     // Applied without a version because the Kotlin plugin is already on the shared `buildSrc` classpath.
@@ -9,11 +7,11 @@ plugins {
 }
 
 dependencies {
-    implementation(libs.gradleKotlinDsl.plugins)
+    implementation(libs.gradle.kotlinDslPlugins)
     implementation(libs.kotlin.gradlePlugin)
-    implementation(libs.bundles.kotlinCommonGradlePluginsImplementation)
+    implementation(libs.bundles.kotlinCommonGradlePlugins.implementation)
     // made `api` to expose the plugin extension class, matching the root module
-    api(libs.vanniktech.mavenPublish.gradlePlugin)
+    api(libs.vanniktech.mavenPublishGradlePlugin)
 
     implementation(project(":common-gradle-dependencies"))
 }

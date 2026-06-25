@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask
-
 plugins {
     // Provides `sourceSets`/`kotlin {}` so the source directory can be configured before `kotlin-dsl`.
     // Applied without a version because the Kotlin plugin is already on the shared `buildSrc` classpath.
@@ -9,7 +7,7 @@ plugins {
 }
 
 dependencies {
-    implementation(libs.gradleKotlinDsl.plugins)
+    implementation(libs.gradle.kotlinDslPlugins)
     // `api`, matching the root module; provides the `com.huanshankeji.*` plugins whose extensions
     // the team plugins configure via type-safe accessors (compiled across this project boundary).
     api(project(":kotlin-common-gradle-plugins"))

@@ -7,7 +7,7 @@ plugins {
 }
 
 dependencies {
-    implementation(libs.gradleKotlinDsl.plugins)
+    implementation(libs.gradle.kotlinDslPlugins)
 }
 
 // Source-link the `common-gradle-dependencies` sources so the build logic is compiled from

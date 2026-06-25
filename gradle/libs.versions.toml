@@ -13,30 +13,30 @@
 [versions]
 kotlin = "2.4.0"
 composeMultiplatform = "1.10.3"
-kotlinxBenchmark = "0.4.16"
+kotlinx-benchmark = "0.4.16"
 dokka = "2.2.0"
 binaryCompatibilityValidator = "0.18.1"
-vanniktechMavenPublish = "0.36.0"
+vanniktech-mavenPublish = "0.36.0"
 # Gradle build-logic tooling
-gradleKotlinDslPlugins = "6.7.3" # for Kotlin 2.4.0 (6.6.4 for Gradle 9.6.0 but superceded)
-gradlePluginPublish = "2.0.0"
+gradle-kotlinDslPlugins = "6.7.3" # for Kotlin 2.4.0 (6.6.4 for Gradle 9.6.0 but superceded)
+gradle-pluginPublishPlugin = "2.0.0"
 
 [libraries]
 kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 kotlin-allopen = { module = "org.jetbrains.kotlin:kotlin-allopen", version.ref = "kotlin" }
-gradleKotlinDsl-plugins = { module = "org.gradle.kotlin:gradle-kotlin-dsl-plugins", version.ref = "gradleKotlinDslPlugins" }
-gradle-pluginPublish = { module = "com.gradle.publish:plugin-publish-plugin", version.ref = "gradlePluginPublish" }
+gradle-kotlinDslPlugins = { module = "org.gradle.kotlin:gradle-kotlin-dsl-plugins", version.ref = "gradle-kotlinDslPlugins" }
+gradle-pluginPublishPlugin = { module = "com.gradle.publish:plugin-publish-plugin", version.ref = "gradle-pluginPublishPlugin" }
 dokka-gradlePlugin = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "dokka" }
-vanniktech-mavenPublish-gradlePlugin = { module = "com.vanniktech.maven.publish:com.vanniktech.maven.publish.gradle.plugin", version.ref = "vanniktechMavenPublish" }
-kotlinxBenchmark-gradlePlugin = { module = "org.jetbrains.kotlinx:kotlinx-benchmark-plugin", version.ref = "kotlinxBenchmark" }
+vanniktech-mavenPublishGradlePlugin = { module = "com.vanniktech.maven.publish:com.vanniktech.maven.publish.gradle.plugin", version.ref = "vanniktech-mavenPublish" }
+kotlinx-benchmark-plugin = { module = "org.jetbrains.kotlinx:kotlinx-benchmark-plugin", version.ref = "kotlinx-benchmark" }
 compose-gradlePlugin = { module = "org.jetbrains.compose:compose-gradle-plugin", version.ref = "composeMultiplatform" }
-compose-compilerGradlePlugin = { module = "org.jetbrains.kotlin:compose-compiler-gradle-plugin", version.ref = "kotlin" }
+kotlin-composeCompilerGradlePlugin = { module = "org.jetbrains.kotlin:compose-compiler-gradle-plugin", version.ref = "kotlin" }
 
 [bundles]
 # Dependencies needed to compile the `kotlin-common-gradle-plugins` precompiled script plugins.
-kotlinCommonGradlePluginsImplementation = ["kotlinxBenchmark-gradlePlugin", "kotlin-allopen", "dokka-gradlePlugin"]
+kotlinCommonGradlePlugins-implementation = ["kotlinx-benchmark-plugin", "kotlin-allopen", "dokka-gradlePlugin"]
 # Dependencies needed to compile the `architecture-common-gradle-plugins` precompiled script plugins.
-architectureCommonGradlePluginsImplementation = ["compose-compilerGradlePlugin", "compose-gradlePlugin"]
+architectureCommonGradlePlugins-implementation = ["kotlin-composeCompilerGradlePlugin", "compose-gradlePlugin"]
 
 [plugins]
 binaryCompatibilityValidator = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "binaryCompatibilityValidator" }

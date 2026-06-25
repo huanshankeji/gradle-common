@@ -4,7 +4,7 @@ plugins {
 
 dependencies {
     implementation(project(":kotlin-common-gradle-plugins"))
-    implementation(libs.bundles.architectureCommonGradlePluginsImplementation)
+    implementation(libs.bundles.architectureCommonGradlePlugins.implementation)
 
     //api(project(":common-gradle-dependencies"))
     //implementation(project(":common-gradle-dependencies"))

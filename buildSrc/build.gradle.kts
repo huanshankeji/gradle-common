@@ -6,10 +6,10 @@ dependencies {
     // for `KotlinCompilationTask` and the version is compatible with the Compose version in the catalog
     // https://kotlinlang.org/docs/releases.html#release-details
     implementation(libs.kotlin.gradlePlugin)
-    implementation(libs.gradleKotlinDsl.plugins)
+    implementation(libs.gradle.kotlinDslPlugins)
 
     //https://plugins.gradle.org/plugin/com.gradle.plugin-publish
-    implementation(libs.gradle.pluginPublish)
+    implementation(libs.gradle.pluginPublishPlugin)
 
     // https://github.com/Kotlin/dokka/releases
     implementation(libs.dokka.gradlePlugin)
