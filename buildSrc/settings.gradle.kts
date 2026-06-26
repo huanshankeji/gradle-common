@@ -7,11 +7,15 @@
 // The Kotlin Gradle plugin version for build-logic subprojects is registered in
 // `buildSrc/build.gradle.kts` (`alias(libs.plugins.kotlin.jvmWithExplicitVersion) apply false`).
 //
-// `pluginManagement { plugins { … } }` here is not sufficient on its own: it only constrains plugin
-// id resolution for the `plugins {}` DSL, while versionless `org.jetbrains.kotlin:*` catalog
-// library dependencies still follow the `kotlin-dsl` embedded Kotlin BOM (2.3.21 on Gradle 9.6)
-// until subprojects apply `kotlin("jvm")` against a plugin classpath that includes Kotlin 2.4.0.
-// The commented block below was an earlier attempt.
+// `pluginManagement { plugins { … } }` here is not sufficient on its own. It constrains plugin-id
+// resolution for the `plugins {}` DSL (so `--info` logs show `org.jetbrains.kotlin.jvm` at 2.4.0),
+// but versionless `org.jetbrains.kotlin:*` `implementation` dependencies (from the catalog) are
+// aligned by the `kotlin-gradle-plugins-bom` platform, not by `pluginManagement`. With only
+// `pluginManagement`, `kotlin-dsl`'s embedded Kotlin BOM (2.3.21 on Gradle 9.6) still wins, so
+// `kotlin-compiler-embeddable` and `kotlin-gradle-plugin` stay on 2.3.21. Registering the plugin
+// with `apply false` in the root `buildSrc` build script adds `kotlin-gradle-plugins-bom:2.4.0`
+// to the build classpath and aligns those library dependencies. The block below was an earlier
+// attempt; keep it commented out so the BOM is not pinned twice.
 /*
 pluginManagement {
     repositories {
