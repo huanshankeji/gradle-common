@@ -3,9 +3,9 @@ plugins {
 }
 
 dependencies {
+    implementation(kotlin("gradle-plugin"))
     implementation(libs.bundles.kotlinCommonGradlePlugins.implementation)
-    // made `api` to expose the plugin extension class (https://github.com/vanniktech/gradle-maven-publish-plugin/blob/main/plugin/src/main/kotlin/com/vanniktech/maven/publish/MavenPublishBaseExtension.kt)
-    api(libs.vanniktech.mavenPublishGradlePlugin)
+    api(libs.bundles.kotlinCommonGradlePlugins.api)
 
     testImplementation(kotlin("test"))
 }

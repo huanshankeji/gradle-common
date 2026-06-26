@@ -7,11 +7,10 @@ plugins {
 }
 
 dependencies {
-    implementation(libs.gradle.kotlinDslPlugins)
+    implementation(kotlin("gradle-plugin"))
     implementation(libs.kotlin.gradlePlugin)
     implementation(libs.bundles.kotlinCommonGradlePlugins.implementation)
-    // made `api` to expose the plugin extension class, matching the root module
-    api(libs.vanniktech.mavenPublishGradlePlugin)
+    api(libs.bundles.kotlinCommonGradlePlugins.api)
 
     implementation(project(":common-gradle-dependencies"))
 }

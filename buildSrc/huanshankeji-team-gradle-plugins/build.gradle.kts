@@ -7,7 +7,7 @@ plugins {
 }
 
 dependencies {
-    implementation(libs.gradle.kotlinDslPlugins)
+    implementation(kotlin("gradle-plugin"))
     // `api`, matching the root module; provides the `com.huanshankeji.*` plugins whose extensions
     // the team plugins configure via type-safe accessors (compiled across this project boundary).
     api(project(":kotlin-common-gradle-plugins"))

@@ -37,6 +37,8 @@ kotlin-composeCompilerGradlePlugin = { module = "org.jetbrains.kotlin:compose-co
 [bundles]
 # Dependencies needed to compile the `kotlin-common-gradle-plugins` precompiled script plugins.
 kotlinCommonGradlePlugins-implementation = ["kotlinx-benchmark-plugin", "kotlin-allopen", "dokka-gradlePlugin"]
+# made `api` to expose the plugin extension class (https://github.com/vanniktech/gradle-maven-publish-plugin/blob/main/plugin/src/main/kotlin/com/vanniktech/maven/publish/MavenPublishBaseExtension.kt)
+kotlinCommonGradlePlugins-api = ["vanniktech-mavenPublishGradlePlugin"]
 # Dependencies needed to compile the `architecture-common-gradle-plugins` precompiled script plugins.
 architectureCommonGradlePlugins-implementation = ["kotlin-composeCompilerGradlePlugin", "compose-gradlePlugin"]
 
