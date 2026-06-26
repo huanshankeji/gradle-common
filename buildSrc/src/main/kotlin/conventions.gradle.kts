@@ -6,11 +6,6 @@ plugins {
     id("com.huanshankeji.team.default-github-packages-maven-publish")
 }
 
-repositories {
-    mavenLocal() // comment out when not needed
-    gradlePluginPortal()
-}
-
 kotlin.jvmToolchain(17)
 
 
