@@ -12,7 +12,7 @@ This repository publishes Kotlin Gradle convention plugins and a shared dependen
 
 The APIs are experimental and may change. There are no end-user tutorials here; see [README.md](README.md) for status, version notes, and links to [API docs](https://huanshankeji.github.io/gradle-common/) and the [kotlin-common](https://github.com/huanshankeji/kotlin-common) example builds.
 
-**Toolchain:** JDK **17** (toolchain; CI uses Temurin 17 — see [.github/workflows/kotlin-jvm-ci.yml](.github/workflows/kotlin-jvm-ci.yml)). Gradle version: [gradle/wrapper/gradle-wrapper.properties](gradle/wrapper/gradle-wrapper.properties). Build-logic Kotlin version: [buildSrc/settings.gradle.kts](buildSrc/settings.gradle.kts) (`plugins { kotlin("jvm") … apply false }`); keep in sync with [CommonVersions.kt](common-gradle-dependencies/src/main/kotlin/com/huanshankeji/CommonVersions.kt) — see [README.md](README.md) ("Build-logic Kotlin vs Gradle's embedded Kotlin"). Release version constants for this repository's build (`alignedPluginVersion`, `commonGradleDependenciesVersion`, …): [VersionsAndDependencies.kt](buildSrc/src/main/kotlin/VersionsAndDependencies.kt) in `buildSrc` (build logic on the classpath when evaluating root build scripts; not published). Dependency versions published for downstream projects: [CommonVersions.kt](common-gradle-dependencies/src/main/kotlin/com/huanshankeji/CommonVersions.kt) in `common-gradle-dependencies`.
+**Toolchain:** JDK **17** (toolchain; CI uses Temurin 17 — see [.github/workflows/kotlin-jvm-ci.yml](.github/workflows/kotlin-jvm-ci.yml)). Gradle version: [gradle/wrapper/gradle-wrapper.properties](gradle/wrapper/gradle-wrapper.properties). Build-logic Kotlin version: [buildSrc/settings.gradle.kts](buildSrc/settings.gradle.kts) (`plugins { kotlin("jvm") … apply false }`); keep in sync with [CommonVersions.kt](common-gradle-dependencies/src/main/kotlin/com/huanshankeji/CommonVersions.kt) — see [README.md](README.md) ("Build-logic Kotlin vs Gradle's embedded Kotlin"). Release version constants for this repository's build (`alignedPluginBaseVersion`, `commonGradleDependenciesBaseVersion`, …): [VersionsAndDependencies.kt](buildSrc/src/main/kotlin/VersionsAndDependencies.kt) in `buildSrc` (build logic on the classpath when evaluating root build scripts; not published). Git-commit suffixes are applied via the `com.huanshankeji.git-version` plugin on non-release branches. Dependency versions published for downstream projects: [CommonVersions.kt](common-gradle-dependencies/src/main/kotlin/com/huanshankeji/CommonVersions.kt) in `common-gradle-dependencies`.
 
 ## Repository layout
 
@@ -85,8 +85,8 @@ Configuration cache is enabled ([gradle.properties](gradle.properties)). Expect 
 
 ## Version and changelog policy
 
-- Plugin release version: `alignedPluginVersion` in [VersionsAndDependencies.kt](buildSrc/src/main/kotlin/VersionsAndDependencies.kt).
-- `common-gradle-dependencies` version: `commonGradleDependenciesVersion` (separate version; releases are coordinated but version numbers remain independent).
+- Plugin release version: `alignedPluginBaseVersion` in [VersionsAndDependencies.kt](buildSrc/src/main/kotlin/VersionsAndDependencies.kt), with dev-commit suffixes on non-`plugins-release` branches.
+- `common-gradle-dependencies` version: `commonGradleDependenciesBaseVersion` (separate version; releases are coordinated but version numbers remain independent), with dev-commit suffixes on non-`common-gradle-dependencies-release` branches.
 - Release notes: [CHANGELOG.md](CHANGELOG.md) (single change log for all published artifacts going forward).
 - Outdated per-artifact change logs (historical releases only): [PLUGINS_CHANGELOG.md](PLUGINS_CHANGELOG.md), [COMMON_GRADLE_DEPENDENCIES_CHANGELOG.md](COMMON_GRADLE_DEPENDENCIES_CHANGELOG.md).
 

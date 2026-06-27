@@ -20,6 +20,7 @@ kotlinx-benchmark = "0.4.16"
 dokka = "2.2.0"
 binaryCompatibilityValidator = "0.18.1"
 vanniktech-mavenPublish = "0.36.0"
+ben-manes-versions = "0.54.0"
 # Gradle build-logic tooling
 # Intentionally above Gradle 9.6.0's expected 6.6.4 for Kotlin 2.4.0; Gradle may warn — see README.
 gradle-kotlinDslPlugins = "6.7.3"
@@ -37,6 +38,7 @@ vanniktech-mavenPublishGradlePlugin = { module = "com.vanniktech.maven.publish:c
 kotlinx-benchmark-plugin = { module = "org.jetbrains.kotlinx:kotlinx-benchmark-plugin", version.ref = "kotlinx-benchmark" }
 compose-gradlePlugin = { module = "org.jetbrains.compose:compose-gradle-plugin", version.ref = "composeMultiplatform" }
 kotlin-composeCompilerGradlePlugin = { module = "org.jetbrains.kotlin:compose-compiler-gradle-plugin" }
+ben-manes-versionsPlugin = { module = "com.github.ben-manes:gradle-versions-plugin", version.ref = "ben-manes-versions" }
 
 [bundles]
 # Dependencies needed to compile the `kotlin-common-gradle-plugins` precompiled script plugins.

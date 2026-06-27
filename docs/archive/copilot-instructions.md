@@ -177,9 +177,9 @@ Then leave the `apiDump` step to the human developer to perform after reviewing 
 - **Do NOT run `apiDump` automatically** after making changes. If `./gradlew check` fails solely due to `apiCheck` failures, run `./gradlew test` and `./gradlew publishToMavenLocal` to verify logic correctness and build/publishing. Leave `apiDump` for the human developer to run after reviewing the API surface changes.
 
 **Version Management:**
-- Plugin versions aligned via `alignedPluginVersion` in VersionsAndDependencies.kt
-- Common dependency versions in `commonGradleDependenciesVersion`
-- Snapshot versions used for development
+- Plugin versions: `alignedPluginBaseVersion` with dev-commit suffixes on non-`plugins-release` branches
+- Common dependency versions: `commonGradleDependenciesBaseVersion` (`x.y.z-yyyyMMdd`) with dev-commit suffixes on non-`common-gradle-dependencies-release` branches
+- Release branches: `plugins-release` (`publishPluginProjectPlugins`), `common-gradle-dependencies-release` (`:common-gradle-dependencies:publishPlugins`); all other branches publish to GitHub Packages (`publishAllPublicationsToGitHubPackagesRepository`)
 
 **Code Style:**
 - Follow [our Kotlin code style guide](https://github.com/huanshankeji/.github/blob/main/docs/kotlin-code-style.md) for all Kotlin code contributions

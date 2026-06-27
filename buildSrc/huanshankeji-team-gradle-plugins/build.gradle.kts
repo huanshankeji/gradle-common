@@ -10,6 +10,7 @@ dependencies {
     // `api`, matching the root module; provides the `com.huanshankeji.*` plugins whose extensions
     // the team plugins configure via type-safe accessors (compiled across this project boundary).
     api(project(":kotlin-common-gradle-plugins"))
+    implementation(libs.ben.manes.versionsPlugin)
 }
 
 // Source-link the `huanshankeji-team-gradle-plugins` sources (#54).
@@ -25,5 +26,6 @@ apply(plugin = "org.gradle.kotlin.kotlin-dsl")
 kotlin {
     compilerOptions {
         optIn.add("com.huanshankeji.InternalApi")
+        freeCompilerArgs.add("-Xcontext-parameters")
     }
 }

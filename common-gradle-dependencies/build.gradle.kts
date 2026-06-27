@@ -1,8 +1,13 @@
+import com.huanshankeji.projectVersionFromGitProvider
+
 plugins {
     conventions
 }
 
-version = commonGradleDependenciesVersion
+// TODO Should use the provider directly. It seems it's held back by the bootstrapping 'dokka-convention' plugin failing with this.
+version = projectVersionFromGitProvider(
+    commonGradleDependenciesBaseVersion, "common-gradle-dependencies-release",
+).get()
 
 gradlePlugin {
     plugins {

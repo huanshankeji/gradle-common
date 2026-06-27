@@ -2,54 +2,62 @@ package com.huanshankeji
 
 import org.gradle.api.Project
 import org.gradle.api.artifacts.dsl.RepositoryHandler
+import org.gradle.api.artifacts.repositories.MavenArtifactRepository
 import org.gradle.api.credentials.HttpHeaderCredentials
 import org.gradle.authentication.http.HttpHeaderAuthentication
 import org.gradle.kotlin.dsl.create
 import org.gradle.kotlin.dsl.credentials
 
-// TODO: use context receivers when it's stable.
+const val GITLAB_COM_HOST = "gitlab.com"
 
-const val GITLAB_HOST = "gitlab.com"
+const val GITLAB_PACKAGE_REGISTRY_REPOSITORY_NAME = "GitLabPackageRegistry"
 
+context(project: Project)
+fun MavenArtifactRepository.gitlabPackageRegistryMavenRepositorySetUrlAndCredentials(nameArg: String, urlArg: String) {
+    url = project.uri(urlArg)
+    name = nameArg
+    credentials(HttpHeaderCredentials::class) {
+        name = "Private-Token"
+        value = project.gitlabPackageRegistryPrivateToken()
+    }
+    authentication {
+        create("header", HttpHeaderAuthentication::class)
+    }
+}
+
+@Deprecated(
+    "Use the context parameter version instead.", // TODO
+)
 fun Project.gitlabMavenRepository(repositoryHandler: RepositoryHandler, nameArg: String = "GitLab", urlArg: String) =
-    // adapted from https://docs.gitlab.com/ee/user/packages/maven_repository/#authenticate-with-a-personal-access-token-in-gradle
     repositoryHandler.maven {
-        url = uri(urlArg)
-        name = nameArg
-        credentials(HttpHeaderCredentials::class) {
-            name = "Private-Token"
-            value = findProperty("gitLabPrivateToken") as String?
-        }
-        authentication {
-            create("header", HttpHeaderAuthentication::class)
+        with(this@gitlabMavenRepository) {
+            gitlabPackageRegistryMavenRepositorySetUrlAndCredentials(nameArg, urlArg)
         }
     }
 
-
-// see: https://docs.gitlab.com/ee/user/packages/maven_repository/#project-level-maven-endpoint
-// only the project’s ID can be used for publishing.
-fun Project.gitlabProjectLevelMavenRepository(
+fun Project.gitlabPackageRegistryProjectLevelMavenRepository(
     repositoryHandler: RepositoryHandler,
-    name: String = "GitLab", host: String = GITLAB_HOST, projectIdOrProjectPath: String
-) =
+    name: String = GITLAB_PACKAGE_REGISTRY_REPOSITORY_NAME,
+    host: String = GITLAB_COM_HOST,
+    projectIdOrProjectPath: String,
+): MavenArtifactRepository =
     gitlabMavenRepository(
         repositoryHandler,
         name,
-        "https://$host/api/v4/projects/$projectIdOrProjectPath/packages/maven"
+        "https://$host/api/v4/projects/$projectIdOrProjectPath/packages/maven",
     )
 
-// see: https://docs.gitlab.com/ee/user/packages/maven_repository/#group-level-maven-endpoint
-fun Project.gitlabGroupLevelMavenRepository(
+fun Project.gitlabPackageRegistryGroupLevelMavenRepository(
     repositoryHandler: RepositoryHandler,
-    name: String = "GitLab", host: String = GITLAB_HOST, groupId: String
-) =
+    name: String = GITLAB_PACKAGE_REGISTRY_REPOSITORY_NAME,
+    host: String = GITLAB_COM_HOST,
+    groupId: String,
+): MavenArtifactRepository =
     gitlabMavenRepository(repositoryHandler, name, "https://$host/api/v4/groups/$groupId/-/packages/maven")
 
-// see: https://docs.gitlab.com/ee/user/packages/maven_repository/#group-level-maven-endpoint
-fun Project.gitlabInstanceLevelMavenRepository(
+fun Project.gitlabPackageRegistryInstanceLevelMavenRepository(
     repositoryHandler: RepositoryHandler,
-    name: String = "GitLab", host: String
-) =
+    name: String = GITLAB_PACKAGE_REGISTRY_REPOSITORY_NAME,
+    host: String,
+): MavenArtifactRepository =
     gitlabMavenRepository(repositoryHandler, name, "https://$host/api/v4/packages/maven")
-
-

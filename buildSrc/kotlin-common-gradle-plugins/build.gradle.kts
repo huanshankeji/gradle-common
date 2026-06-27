@@ -25,6 +25,10 @@ apply(plugin = "org.gradle.kotlin.kotlin-dsl")
 
 kotlin {
     compilerOptions {
-        optIn.add("com.huanshankeji.InternalApi")
+        optIn.addAll(
+            "com.huanshankeji.InternalApi",
+            "org.jetbrains.kotlin.gradle.dsl.abi.ExperimentalAbiValidation",
+        )
+        freeCompilerArgs.add("-Xcontext-parameters")
     }
 }

@@ -15,14 +15,15 @@ interface Extension {
     val projectId: Property<String>
 }
 
-val extension = extensions.create<Extension>("gitlabPackagesPublish")
+val extension = extensions.create<Extension>("gitlabPackageRegistryProjectLevelMavenEndpointPublish")
 
 afterEvaluate {
     publishing {
         repositories {
-            gitlabProjectLevelMavenRepository(
+            gitlabPackageRegistryProjectLevelMavenRepository(
                 this,
-                host = extension.host.getOrElse(GITLAB_HOST), projectIdOrProjectPath = extension.projectId.get()
+                host = extension.host.getOrElse(GITLAB_COM_HOST),
+                projectIdOrProjectPath = extension.projectId.get(),
             )
         }
     }

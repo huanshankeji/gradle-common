@@ -1,0 +1,37 @@
+# gradle-common: Plugin Portal on *-release branches; GitHub Packages on all other branches.
+name: Publish
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ["**"]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Set up JDKs
+        uses: huanshankeji/.github/actions/setup-javas@v0.3.0
+        with:
+          jdk-versions: 17-temurin
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v6
+
+      - name: Publish with Gradle Wrapper
+        env:
+          ORG_GRADLE_PROJECT_gprUser: ${{ secrets.GPR_USER }}
+          ORG_GRADLE_PROJECT_gprKey: ${{ secrets.GPR_KEY }}
+        run: |
+          if [ "${{ github.ref }}" = "refs/heads/plugins-release" ]; then
+            ./gradlew publishPluginProjectPlugins
+          elif [ "${{ github.ref }}" = "refs/heads/common-gradle-dependencies-release" ]; then
+            ./gradlew :common-gradle-dependencies:publishPlugins
+          else
+            ./gradlew publishAllPublicationsToGitHubPackagesRepository --parallel
+          fi
