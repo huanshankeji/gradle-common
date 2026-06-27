@@ -11,6 +11,6 @@ dependencyResolutionManagement {
     repositories {
         //mavenLocal() // no longer needed since no bootstrapping dependencies
         gradlePluginPortal()
-        //mavenCentral() // origininall added for Dokka no longer needed as tested
+        //mavenCentral() // originally added for Dokka but no longer needed as tested
     }
 }

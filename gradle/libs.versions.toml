@@ -11,15 +11,18 @@
 # them (#9).
 
 [versions]
+# https://kotlinlang.org/docs/releases.html#release-details
 kotlin = "2.4.0"
 composeMultiplatform = "1.10.3"
 kotlinx-benchmark = "0.4.16"
+# https://github.com/Kotlin/dokka/releases
 dokka = "2.2.0"
 binaryCompatibilityValidator = "0.18.1"
 vanniktech-mavenPublish = "0.36.0"
 # Gradle build-logic tooling
 # Intentionally above Gradle 9.6.0's expected 6.6.4 for Kotlin 2.4.0; Gradle may warn — see README.
 gradle-kotlinDslPlugins = "6.7.3"
+# https://plugins.gradle.org/plugin/com.gradle.plugin-publish
 gradle-pluginPublishPlugin = "2.0.0"
 
 [libraries]
