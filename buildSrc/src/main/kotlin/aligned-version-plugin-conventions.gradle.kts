@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask
-
 plugins {
     id("conventions")
     id("aligned-version-plugin-version")
@@ -7,7 +5,9 @@ plugins {
 }
 
 dependencies {
-    implementation("com.huanshankeji:common-gradle-dependencies:$pluginProjectSourceDependencyStableCommonGradleDependenciesVersion")
+    implementation(kotlin("gradle-plugin"))
+
+    implementation(project(":common-gradle-dependencies"))
 }
 
 kotlin {

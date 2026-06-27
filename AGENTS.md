@@ -12,7 +12,7 @@ This repository publishes Kotlin Gradle convention plugins and a shared dependen
 
 The APIs are experimental and may change. There are no end-user tutorials here; see [README.md](README.md) for status, version notes, and links to [API docs](https://huanshankeji.github.io/gradle-common/) and the [kotlin-common](https://github.com/huanshankeji/kotlin-common) example builds.
 
-**Toolchain:** JDK **17** (toolchain; CI uses Temurin 17 — see [.github/workflows/kotlin-jvm-ci.yml](.github/workflows/kotlin-jvm-ci.yml)). Gradle version: [gradle/wrapper/gradle-wrapper.properties](gradle/wrapper/gradle-wrapper.properties). Kotlin and dependency versions: [buildSrc/build.gradle.kts](buildSrc/build.gradle.kts) and [VersionsAndDependencies.kt](buildSrc/src/main/kotlin/VersionsAndDependencies.kt).
+**Toolchain:** JDK **17** (toolchain; CI uses Temurin 17 — see [.github/workflows/kotlin-jvm-ci.yml](.github/workflows/kotlin-jvm-ci.yml)). Gradle version: [gradle/wrapper/gradle-wrapper.properties](gradle/wrapper/gradle-wrapper.properties). Build-logic Kotlin version: [buildSrc/settings.gradle.kts](buildSrc/settings.gradle.kts) (`plugins { kotlin("jvm") … apply false }`); keep in sync with [CommonVersions.kt](common-gradle-dependencies/src/main/kotlin/com/huanshankeji/CommonVersions.kt) — see [README.md](README.md) ("Build-logic Kotlin vs Gradle's embedded Kotlin"). Release version constants for this repository's build (`alignedPluginVersion`, `commonGradleDependenciesVersion`, …): [VersionsAndDependencies.kt](buildSrc/src/main/kotlin/VersionsAndDependencies.kt) in `buildSrc` (build logic on the classpath when evaluating root build scripts; not published). Dependency versions published for downstream projects: [CommonVersions.kt](common-gradle-dependencies/src/main/kotlin/com/huanshankeji/CommonVersions.kt) in `common-gradle-dependencies`.
 
 ## Repository layout
 
@@ -21,7 +21,7 @@ The APIs are experimental and may change. There are no end-user tutorials here; 
 | `buildSrc/` | — | Shared build logic: versions, conventions, plugin registration helpers |
 | `kotlin-common-gradle-plugins/` | `:kotlin-common-gradle-plugins` | General Kotlin/KMP, publishing, Dokka, benchmark, and JVM test plugins (`com.huanshankeji.*`) |
 | `architecture-common-gradle-plugins/` | `:architecture-common-gradle-plugins` | Compose/web, Vert.x, and JVM feature-variant plugins |
-| `common-gradle-dependencies/` | `:common-gradle-dependencies` | Centralized dependency versions and helpers; published separately with its own changelog |
+| `common-gradle-dependencies/` | `:common-gradle-dependencies` | Centralized dependency versions and helpers; published separately |
 | `huanshankeji-team-gradle-plugins/` | `:gradle-plugins` | Team-internal plugins (`com.huanshankeji.team.*`); used by `buildSrc` bootstrapping |
 
 Root [settings.gradle.kts](settings.gradle.kts) includes all modules. Version constants live in [buildSrc/src/main/kotlin/VersionsAndDependencies.kt](buildSrc/src/main/kotlin/VersionsAndDependencies.kt).
@@ -61,13 +61,12 @@ Configuration cache is enabled ([gradle.properties](gradle.properties)). Expect 
 
 ### Bootstrap / dependency resolution
 
-- Plugin modules depend on a published `com.huanshankeji:common-gradle-dependencies` artifact (version in [VersionsAndDependencies.kt](buildSrc/src/main/kotlin/VersionsAndDependencies.kt)). On branches where that artifact is unavailable, publish it locally first:
-
-  ```bash
-  ./gradlew :common-gradle-dependencies:publishToMavenLocal
-  ```
-
-- `buildSrc` bootstraps from `com.huanshankeji.team:gradle-plugins` (see [buildSrc/build.gradle.kts](buildSrc/build.gradle.kts)). Local changes to team plugins may require `publishToMavenLocal` before other modules see them.
+- There are no longer cross-version bootstrapping dependencies on released artifacts of this repository (#54):
+    - `buildSrc` is a **multi-project build** whose subprojects ([buildSrc/settings.gradle.kts](buildSrc/settings.gradle.kts)) source-link the corresponding root modules' sources (`common-gradle-dependencies`, `kotlin-common-gradle-plugins`, `huanshankeji-team-gradle-plugins`), compiling the build logic from the current source instead of depending on a stale released `com.huanshankeji.team:gradle-plugins`. The subproject structure mirrors the root modules (with the same inter-project dependencies) so the precompiled script plugins' cross-module type-safe accessors (e.g. `githubPackagesPublish`, `dokkaConvention`) still resolve across the project boundaries. The `buildSrc` root project depends on the `huanshankeji-team-gradle-plugins` subproject so its `conventions` plugin can dogfood the team plugins by id.
+    - Each source-linking subproject applies the Kotlin plugin via `kotlin("jvm")` (no version; registered in [buildSrc/settings.gradle.kts](buildSrc/settings.gradle.kts) with `kotlin("jvm") version … apply false`) and configures its source directory before applying `kotlin-dsl` imperatively, working around [gradle/gradle#21052](https://github.com/gradle/gradle/issues/21052).
+    - Build-logic Kotlin is pinned in `buildSrc/settings.gradle.kts`, not by repeating `version.ref = "kotlin"` on `org.jetbrains.kotlin:*` [libraries] entries in the catalog (those omit a version and align via the Kotlin Gradle plugin BOM once the settings `plugins {}` block registers it). Do not rely on `pluginManagement { plugins { … } }` in `buildSrc/settings.gradle.kts` alone — see [README.md](README.md).
+    - The plugin modules depend on the `common-gradle-dependencies` **project** directly (see [aligned-version-plugin-conventions.gradle.kts](buildSrc/src/main/kotlin/aligned-version-plugin-conventions.gradle.kts)), so nothing needs to be published to Maven local before building.
+- Dependency versions/coordinates used by the build scripts are centralized in the shared version catalog [gradle/libs.versions.toml](gradle/libs.versions.toml), consumed by both the root build and `buildSrc` (registered in [buildSrc/settings.gradle.kts](buildSrc/settings.gradle.kts)). Keep the overlapping versions in sync with `com.huanshankeji.CommonVersions` until #9 unifies them.
 
 - `mavenLocal()` is enabled in several build scripts for local iteration.
 - Do not commit credentials or tokens.
@@ -87,11 +86,11 @@ Configuration cache is enabled ([gradle.properties](gradle.properties)). Expect 
 ## Version and changelog policy
 
 - Plugin release version: `alignedPluginVersion` in [VersionsAndDependencies.kt](buildSrc/src/main/kotlin/VersionsAndDependencies.kt).
-- `common-gradle-dependencies` version: `commonGradleDependenciesVersion` (separate release cadence).
-- User-facing plugin changes: [PLUGINS_CHANGELOG.md](PLUGINS_CHANGELOG.md).
-- Dependency-catalog changes: [COMMON_GRADLE_DEPENDENCIES_CHANGELOG.md](COMMON_GRADLE_DEPENDENCIES_CHANGELOG.md).
+- `common-gradle-dependencies` version: `commonGradleDependenciesVersion` (separate version; releases are coordinated but version numbers remain independent).
+- Release notes: [CHANGELOG.md](CHANGELOG.md) (single change log for all published artifacts going forward).
+- Outdated per-artifact change logs (historical releases only): [PLUGINS_CHANGELOG.md](PLUGINS_CHANGELOG.md), [COMMON_GRADLE_DEPENDENCIES_CHANGELOG.md](COMMON_GRADLE_DEPENDENCIES_CHANGELOG.md).
 
-When bumping dependency versions, update `DependencyVersions` / `CommonVersions` as appropriate and note the change in the relevant changelog if the release is user-visible.
+When bumping dependency versions, update `CommonVersions` (and `gradle/libs.versions.toml` where applicable) and note the change in [CHANGELOG.md](CHANGELOG.md) if the release is user-visible.
 
 ## IDE notes
 

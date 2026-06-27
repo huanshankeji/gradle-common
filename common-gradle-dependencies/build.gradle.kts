@@ -1,30 +1,8 @@
-import com.huanshankeji.SourceFile
-import com.huanshankeji.generateKotlinSources
-import kotlin.reflect.full.memberProperties
-
 plugins {
     conventions
 }
 
 version = commonGradleDependenciesVersion
-
-generateKotlinSources(
-    sourceFiles = listOf(
-        SourceFile(
-            "GeneratedKotlinVersion.kt",
-            """
-internal object GeneratedVersions {
-${
-                DependencyVersions::class.memberProperties.joinToString("\n") {
-                    "    internal const val ${it.name} = \"${it(DependencyVersions)}\""
-                }
-            }
-}
-""".drop(1)
-        )
-    )
-)
-
 
 gradlePlugin {
     plugins {

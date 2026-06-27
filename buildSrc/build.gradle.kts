@@ -1,47 +1,17 @@
 plugins {
     `kotlin-dsl`
-    //kotlin("jvm") version "x.x.x"
-}
-
-repositories {
-    mavenLocal()
-    gradlePluginPortal()
-    // commented out as it may slow down the build, especially when the GitHub token is incorrect and authentication fails
-    /*
-    maven {
-        url = uri("https://maven.pkg.github.com/huanshankeji/gradle-common")
-        credentials {
-            username = project.findProperty("gpr.user") as String? ?: System.getenv("USERNAME")
-            password = project.findProperty("gpr.key") as String? ?: System.getenv("TOKEN")
-        }
-    }
-    */
+    // replaced by the new approach in `settings.gradle.kts`
+    //alias(libs.plugins.kotlin.jvmWithExplicitVersion) apply false
 }
 
 dependencies {
-    /*
-    // see https://kotlinlang.org/docs/whatsnew18.html#resolution-of-kotlin-gradle-plugins-transitive-dependencies
-    // This workaround somehow doesn't work. Maybe wait for https://youtrack.jetbrains.com/issue/KT-54691/Kotlin-Gradle-Plugin-libraries-alignment-platform to be fixed.
-    constraints {
-        implementation("org.jetbrains.kotlin:kotlin-sam-with-receiver:1.8.0")
-    }
-    */
-    // for `KotlinCompilationTask` and the version is compatible with Compose 1.10.3
-    // https://kotlinlang.org/docs/releases.html#release-details
-    implementation(kotlin("gradle-plugin", "2.3.20"))
-    implementation("org.gradle.kotlin:gradle-kotlin-dsl-plugins:6.5.2") // This version has to be used for Gradle 9.4.1.
+    implementation(kotlin("gradle-plugin"))
+    implementation(libs.gradle.kotlinDslPlugins)
 
-    //https://plugins.gradle.org/plugin/com.gradle.plugin-publish
-    implementation("com.gradle.publish:plugin-publish-plugin:2.0.0")
+    implementation(libs.gradle.pluginPublishPlugin)
 
-    // This is a bootstrapping dependency (cross-version self-dependency). Try not to update its version unless necessary.
-    implementation("com.huanshankeji.team:gradle-plugins:0.11.0") { exclude("org.jetbrains.kotlin") }
-    // This approach complicates the project is temporarily given up and commented out. Maybe readopt this when `common-gradle-dependencies` is moved to a separate project.
-    /*
-    // This is also a bootstrapping dependency.
-    implementation("com.huanshankeji:common-gradle-dependencies:0.7.1-20240314-boostrap") { exclude("org.jetbrains.kotlin") }
-    */
+    implementation(libs.dokka.gradlePlugin)
 
-    // https://github.com/Kotlin/dokka/releases
-    implementation("org.jetbrains.dokka:dokka-gradle-plugin:2.2.0")
+    // The source-linked team plugins, replacing the previous stale `com.huanshankeji.team:gradle-plugins` bootstrapping dependency (#54, #60).
+    implementation(project(":huanshankeji-team-gradle-plugins"))
 }

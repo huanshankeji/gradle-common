@@ -1,0 +1,52 @@
+# Single shared version catalog for build-script dependencies.
+#
+# It is consumed by both the root build (automatically) and `buildSrc`
+# (registered in `buildSrc/settings.gradle.kts`), so that the dependency
+# versions/coordinates needed to compile the plugin sources are declared
+# exactly once. See #54.
+#
+# The version values that overlap with `com.huanshankeji.CommonVersions`
+# (in `common-gradle-dependencies`) are currently kept in sync by hand
+# (see the comments there); a future single version catalog will unify
+# them (#9).
+
+[versions]
+# https://kotlinlang.org/docs/releases.html
+# Build-logic Kotlin is pinned in `buildSrc/settings.gradle.kts` now.
+#kotlin = "2.4.0"
+composeMultiplatform = "1.10.3"
+kotlinx-benchmark = "0.4.16"
+# https://github.com/Kotlin/dokka/releases
+dokka = "2.2.0"
+binaryCompatibilityValidator = "0.18.1"
+vanniktech-mavenPublish = "0.36.0"
+# Gradle build-logic tooling
+# Intentionally above Gradle 9.6.0's expected 6.6.4 for Kotlin 2.4.0; Gradle may warn — see README.
+gradle-kotlinDslPlugins = "6.7.3"
+# https://plugins.gradle.org/plugin/com.gradle.plugin-publish
+gradle-pluginPublishPlugin = "2.0.0"
+
+[libraries]
+# `org.jetbrains.kotlin` plugin JARs: no version — aligned by the Kotlin Gradle plugin BOM.
+#kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin" }
+kotlin-allopen = { module = "org.jetbrains.kotlin:kotlin-allopen" }
+gradle-kotlinDslPlugins = { module = "org.gradle.kotlin:gradle-kotlin-dsl-plugins", version.ref = "gradle-kotlinDslPlugins" }
+gradle-pluginPublishPlugin = { module = "com.gradle.publish:plugin-publish-plugin", version.ref = "gradle-pluginPublishPlugin" }
+dokka-gradlePlugin = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "dokka" }
+vanniktech-mavenPublishGradlePlugin = { module = "com.vanniktech.maven.publish:com.vanniktech.maven.publish.gradle.plugin", version.ref = "vanniktech-mavenPublish" }
+kotlinx-benchmark-plugin = { module = "org.jetbrains.kotlinx:kotlinx-benchmark-plugin", version.ref = "kotlinx-benchmark" }
+compose-gradlePlugin = { module = "org.jetbrains.compose:compose-gradle-plugin", version.ref = "composeMultiplatform" }
+kotlin-composeCompilerGradlePlugin = { module = "org.jetbrains.kotlin:compose-compiler-gradle-plugin" }
+
+[bundles]
+# Dependencies needed to compile the `kotlin-common-gradle-plugins` precompiled script plugins.
+kotlinCommonGradlePlugins-implementation = ["kotlinx-benchmark-plugin", "kotlin-allopen", "dokka-gradlePlugin"]
+# made `api` to expose the plugin extension class (https://github.com/vanniktech/gradle-maven-publish-plugin/blob/main/plugin/src/main/kotlin/com/vanniktech/maven/publish/MavenPublishBaseExtension.kt)
+kotlinCommonGradlePlugins-api = ["vanniktech-mavenPublishGradlePlugin"]
+# Dependencies needed to compile the `architecture-common-gradle-plugins` precompiled script plugins.
+architectureCommonGradlePlugins-implementation = ["kotlin-composeCompilerGradlePlugin", "compose-gradlePlugin"]
+
+[plugins]
+binaryCompatibilityValidator = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "binaryCompatibilityValidator" }
+# for `alias(…) apply false` in `buildSrc/build.gradle.kts`
+#kotlin-jvmWithExplicitVersion = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }

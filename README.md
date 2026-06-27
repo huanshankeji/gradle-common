@@ -11,9 +11,23 @@ This library currently mainly serves our use, and the APIs are experimental and 
 
 ## Gradle version and Kotlin version
 
-See [gradle/wrapper/gradle-wrapper.properties](gradle/wrapper/gradle-wrapper.properties) for the current dependency Gradle version and [buildSrc/build.gradle.kts](buildSrc/build.gradle.kts) for the current dependency Kotlin version. These versions are tested against and used by us. There might be compatibility issues when you use other versions of Gradle or Kotlin, especially versions with different [MAJOR](https://semver.org/) versions.
+See [gradle/wrapper/gradle-wrapper.properties](gradle/wrapper/gradle-wrapper.properties) for the Gradle wrapper version and [buildSrc/settings.gradle.kts](buildSrc/settings.gradle.kts) (Kotlin Gradle plugin `apply false` registration) for the Kotlin version used to compile build logic and plugin sources — keep it in sync with [CommonVersions.kt](common-gradle-dependencies/src/main/kotlin/com/huanshankeji/CommonVersions.kt). These versions are tested against and used by us (`./gradlew check`). There might be compatibility issues when you use other versions of Gradle or Kotlin, especially versions with different [MAJOR](https://semver.org/) versions.
 
 This library is currently based on **Gradle 9**. There might be compatibility issues with lower versions of Gradle.
+
+### Build-logic Kotlin vs Gradle's embedded Kotlin
+
+Gradle's `kotlin-dsl` plugin (used in `buildSrc`) ships with an **embedded Kotlin** version (Kotlin **2.3.21** on Gradle **9.6.0**). We intentionally compile build logic and precompiled script plugins with a **newer and possibly latest Kotlin Gradle plugin** (currently **2.4.0**, pinned in `buildSrc/settings.gradle.kts`) instead of relying on that embedded version.
+
+Gradle warns that mixing `kotlin-dsl` with a different Kotlin Gradle plugin version is unsupported. We accept that warning; `./gradlew check` passes with it. Example (safe to ignore):
+
+```
+WARNING: Unsupported Kotlin plugin version.
+The `embedded-kotlin` and `kotlin-dsl` plugins rely on features of Kotlin `2.3.21` that might work differently than in the requested version `2.4.0`.
+Using the `kotlin-dsl` plugin together with a different Kotlin version (for example, by using the Kotlin Gradle plugin (`kotlin(jvm)`)) in the same project is not recommended.
+```
+
+See also [Gradle: Kotlin DSL plugin](https://docs.gradle.org/current/userguide/kotlin_dsl.html#sec:kotlin-dsl_plugin).
 
 ### About the version of the Kotlin Gradle plugins
 
@@ -60,7 +74,3 @@ Please note that this project often has breaking/incompatible changes, and the G
 ## Developer notices
 
 1. IntelliJ IDEA doesn't work well with applying plugins to script plugins in project sources. If a script plugin's code does not resolve, try restarting IntelliJ IDEA.
-
-### For branches other than `main` only
-
-1. If the build fails with "Could not find com.huanshankeji:common-gradle-dependencies" error with snapshot bootstrapping dependencies of `common-gradle-dependencies`, run `./gradlew :common-gradle-dependencies:publishToMavenLocal` first.
