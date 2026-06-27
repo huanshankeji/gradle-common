@@ -1,11 +1,7 @@
 plugins {
     `kotlin-dsl`
-    /*
-    Not applied to this project; registers the Kotlin JVM plugin version (from the catalog) for
-    all `buildSrc` subprojects. See `buildSrc/settings.gradle.kts` for why `pluginManagement`
-    alone is not enough.
-     */
-    alias(libs.plugins.kotlin.jvmWithExplicitVersion) apply false
+    // replaced by the new approach in `settings.gradle.kts`
+    //alias(libs.plugins.kotlin.jvmWithExplicitVersion) apply false
 }
 
 dependencies {

@@ -1,6 +1,5 @@
 plugins {
     // Provides `sourceSets`/`kotlin {}` so the source directory can be configured before `kotlin-dsl`.
-    // Applied without a version; version comes from `alias(libs.plugins.kotlin.jvmWithExplicitVersion) apply false` in the `buildSrc` root build script.
     kotlin("jvm")
     // Applied imperatively at the end (see below).
     `kotlin-dsl` apply false

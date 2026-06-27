@@ -6,20 +6,33 @@ module structure (rather than merging everything into one compilation) preserves
 project/binary boundaries that the precompiled script plugins' type-safe accessors rely on.
 */
 
+plugins {
+    /*
+    Keep in sync with `com.huanshankeji.CommonVersions.kotlin` (and `[versions] kotlin` in
+    `gradle/libs.versions.toml` when that entry is uncommented).
+    */
+    // https://kotlinlang.org/docs/releases.html
+    kotlin("jvm") version "2.4.0" apply false
+}
+
+// alternative approach
+/*
+buildscript {
+    repositories {
+        gradlePluginPortal()
+    }
+    dependencies {
+        classpath(kotlin("gradle-plugin", "2.4.0"))
+    }
+}
+*/
+
 // The explanation below was written by Cursor and is not verified to be absolutely correct.
 /*
-The Kotlin Gradle plugin version for build-logic subprojects is registered in
-`buildSrc/build.gradle.kts` (`alias(libs.plugins.kotlin.jvmWithExplicitVersion) apply false`).
-
-`pluginManagement { plugins { … } }` here is not sufficient on its own. It constrains plugin-id
-resolution for the `plugins {}` DSL (so `--info` logs show `org.jetbrains.kotlin.jvm` at 2.4.0),
-but versionless `org.jetbrains.kotlin:*` `implementation` dependencies (from the catalog) are
-aligned by the `kotlin-gradle-plugins-bom` platform, not by `pluginManagement`. With only
-`pluginManagement`, `kotlin-dsl`'s embedded Kotlin BOM (2.3.21 on Gradle 9.6) still wins, so
-`kotlin-compiler-embeddable` and `kotlin-gradle-plugin` stay on 2.3.21. Registering the plugin
-with `apply false` in the root `buildSrc` build script adds `kotlin-gradle-plugins-bom:2.4.0`
-to the build classpath and aligns those library dependencies. The block below was an earlier
-attempt; keep it commented out so the BOM is not pinned twice.
+`pluginManagement { plugins { kotlin("jvm") version … } }` alone is not sufficient: it constrains
+plugin-id resolution for the `plugins {}` DSL but does not add `kotlin-gradle-plugins-bom` to the
+build classpath, so versionless `org.jetbrains.kotlin:*` implementation dependencies still resolve
+to `kotlin-dsl`'s embedded BOM.
 */
 /*
 pluginManagement {

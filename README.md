@@ -11,13 +11,13 @@ This library currently mainly serves our use, and the APIs are experimental and 
 
 ## Gradle version and Kotlin version
 
-See [gradle/wrapper/gradle-wrapper.properties](gradle/wrapper/gradle-wrapper.properties) for the Gradle wrapper version and [gradle/libs.versions.toml](gradle/libs.versions.toml) (`[versions] kotlin`) for the Kotlin version used to compile build logic and plugin sources. These versions are tested against and used by us (`./gradlew check`). There might be compatibility issues when you use other versions of Gradle or Kotlin, especially versions with different [MAJOR](https://semver.org/) versions.
+See [gradle/wrapper/gradle-wrapper.properties](gradle/wrapper/gradle-wrapper.properties) for the Gradle wrapper version and [buildSrc/settings.gradle.kts](buildSrc/settings.gradle.kts) (Kotlin Gradle plugin `apply false` registration) for the Kotlin version used to compile build logic and plugin sources — keep it in sync with [CommonVersions.kt](common-gradle-dependencies/src/main/kotlin/com/huanshankeji/CommonVersions.kt). These versions are tested against and used by us (`./gradlew check`). There might be compatibility issues when you use other versions of Gradle or Kotlin, especially versions with different [MAJOR](https://semver.org/) versions.
 
 This library is currently based on **Gradle 9**. There might be compatibility issues with lower versions of Gradle.
 
 ### Build-logic Kotlin vs Gradle's embedded Kotlin
 
-Gradle's `kotlin-dsl` plugin (used in `buildSrc`) ships with an **embedded Kotlin** version (Kotlin **2.3.21** on Gradle **9.6.0**). We intentionally compile build logic and precompiled script plugins with a **newer and possibly latest Kotlin Gradle plugin** (currently **2.4.0** from the version catalog) instead of relying on that embedded version.
+Gradle's `kotlin-dsl` plugin (used in `buildSrc`) ships with an **embedded Kotlin** version (Kotlin **2.3.21** on Gradle **9.6.0**). We intentionally compile build logic and precompiled script plugins with a **newer and possibly latest Kotlin Gradle plugin** (currently **2.4.0**, pinned in `buildSrc/settings.gradle.kts`) instead of relying on that embedded version.
 
 Gradle warns that mixing `kotlin-dsl` with a different Kotlin Gradle plugin version is unsupported. We accept that warning; `./gradlew check` passes with it. Example (safe to ignore):
 

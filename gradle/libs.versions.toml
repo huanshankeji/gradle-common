@@ -11,8 +11,9 @@
 # them (#9).
 
 [versions]
-# https://kotlinlang.org/docs/releases.html#release-details
-kotlin = "2.4.0"
+# https://kotlinlang.org/docs/releases.html
+# Build-logic Kotlin is pinned in `buildSrc/settings.gradle.kts` now.
+#kotlin = "2.4.0"
 composeMultiplatform = "1.10.3"
 kotlinx-benchmark = "0.4.16"
 # https://github.com/Kotlin/dokka/releases
@@ -47,4 +48,5 @@ architectureCommonGradlePlugins-implementation = ["kotlin-composeCompilerGradleP
 
 [plugins]
 binaryCompatibilityValidator = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "binaryCompatibilityValidator" }
-kotlin-jvmWithExplicitVersion = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+# for `alias(…) apply false` in `buildSrc/build.gradle.kts`
+#kotlin-jvmWithExplicitVersion = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
