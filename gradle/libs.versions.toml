@@ -27,8 +27,8 @@ gradle-kotlinDslPlugins = "6.7.3"
 gradle-pluginPublishPlugin = "2.0.0"
 
 [libraries]
-# `org.jetbrains.kotlin` plugin JARs: no version — aligned by the Kotlin Gradle plugin BOM once subprojects apply `kotlin("jvm")`.
-kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin" }
+# `org.jetbrains.kotlin` plugin JARs: no version — aligned by the Kotlin Gradle plugin BOM.
+#kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin" }
 kotlin-allopen = { module = "org.jetbrains.kotlin:kotlin-allopen" }
 gradle-kotlinDslPlugins = { module = "org.gradle.kotlin:gradle-kotlin-dsl-plugins", version.ref = "gradle-kotlinDslPlugins" }
 gradle-pluginPublishPlugin = { module = "com.gradle.publish:plugin-publish-plugin", version.ref = "gradle-pluginPublishPlugin" }

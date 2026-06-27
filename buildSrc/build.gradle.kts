@@ -5,7 +5,7 @@ plugins {
 }
 
 dependencies {
-    implementation(libs.kotlin.gradlePlugin)
+    implementation(kotlin("gradle-plugin"))
     implementation(libs.gradle.kotlinDslPlugins)
 
     implementation(libs.gradle.pluginPublishPlugin)
