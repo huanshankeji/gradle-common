@@ -74,4 +74,3 @@ Please note that this project often has breaking/incompatible changes, and the G
 ## Developer notices
 
 1. IntelliJ IDEA doesn't work well with applying plugins to script plugins in project sources. If a script plugin's code does not resolve, try restarting IntelliJ IDEA.
-2. `buildSrc` is a multi-project build whose subprojects source-link the corresponding root modules' sources (see `buildSrc/settings.gradle.kts`), and the plugin modules depend on the `common-gradle-dependencies` project directly, so there are no longer cross-version bootstrapping dependencies on released artifacts of this repository, and there is no need to publish anything to Maven local before building.

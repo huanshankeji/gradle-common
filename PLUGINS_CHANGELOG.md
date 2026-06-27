@@ -1,12 +1,5 @@
 # "Gradle plugins" change log
 
-## Unreleased
-
-* remove the cross-version bootstrapping self-dependencies (#54)
-    * `buildSrc` is now a multi-project build whose subprojects source-link the corresponding root modules' sources (`common-gradle-dependencies`, `kotlin-common-gradle-plugins`, `huanshankeji-team-gradle-plugins`) instead of depending on a stale released `com.huanshankeji.team:gradle-plugins`
-    * the plugin modules now depend on the `common-gradle-dependencies` project directly instead of a stale released version
-    * dependency versions/coordinates used by the build scripts are centralized in a single shared version catalog `gradle/libs.versions.toml`, shared by both the root build and `buildSrc`
-
 ## v0.11.0 / 2025-10-28
 
 * add the `maven-central-publish-conventions` plugin based on `com.vanniktech.maven.publish` and deprecate our old OSSRH publish plugins
