@@ -1,5 +1,7 @@
 # "Gradle plugins" change log
 
+> **Deprecated.** New releases are documented in [CHANGELOG.md](CHANGELOG.md). This file is kept for historical release notes only.
+
 ## v0.11.0 / 2025-10-28
 
 * add the `maven-central-publish-conventions` plugin based on `com.vanniktech.maven.publish` and deprecate our old OSSRH publish plugins

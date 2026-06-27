@@ -10,9 +10,9 @@
 * update Gradle to 9.6.0
 * bump Kotlin to 2.4.0, including `CommonVersions` and `gradle-kotlin-dsl-plugins` 6.7.3 for build logic
 
-## Historical change logs
+## Outdated historical per-artifact change logs
 
-Releases are coordinated, but each published artifact keeps its own version and change log:
+Releases before the merged change log are documented separately by artifact:
 
-* [Gradle plugins](PLUGINS_CHANGELOG.md)
-* [common-gradle-dependencies](COMMON_GRADLE_DEPENDENCIES_CHANGELOG.md)
+* [Gradle plugins](PLUGINS_CHANGELOG.md) (deprecated)
+* [common-gradle-dependencies](COMMON_GRADLE_DEPENDENCIES_CHANGELOG.md) (deprecated)

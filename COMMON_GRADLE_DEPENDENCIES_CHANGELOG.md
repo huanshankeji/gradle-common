@@ -1,5 +1,7 @@
 # "common-gradle-dependencies" change log
 
+> **Deprecated.** New releases are documented in [CHANGELOG.md](CHANGELOG.md). This file is kept for historical release notes only.
+
 ## v0.10.0-20251024 / 2025-10-25
 
 * update Gradle to 9.1.0 and migrate to Gradle 9, fixing some incompatibilities

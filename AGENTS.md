@@ -21,7 +21,7 @@ The APIs are experimental and may change. There are no end-user tutorials here; 
 | `buildSrc/` | — | Shared build logic: versions, conventions, plugin registration helpers |
 | `kotlin-common-gradle-plugins/` | `:kotlin-common-gradle-plugins` | General Kotlin/KMP, publishing, Dokka, benchmark, and JVM test plugins (`com.huanshankeji.*`) |
 | `architecture-common-gradle-plugins/` | `:architecture-common-gradle-plugins` | Compose/web, Vert.x, and JVM feature-variant plugins |
-| `common-gradle-dependencies/` | `:common-gradle-dependencies` | Centralized dependency versions and helpers; published separately with its own changelog |
+| `common-gradle-dependencies/` | `:common-gradle-dependencies` | Centralized dependency versions and helpers; published separately |
 | `huanshankeji-team-gradle-plugins/` | `:gradle-plugins` | Team-internal plugins (`com.huanshankeji.team.*`); used by `buildSrc` bootstrapping |
 
 Root [settings.gradle.kts](settings.gradle.kts) includes all modules. Version constants live in [buildSrc/src/main/kotlin/VersionsAndDependencies.kt](buildSrc/src/main/kotlin/VersionsAndDependencies.kt).
@@ -87,10 +87,10 @@ Configuration cache is enabled ([gradle.properties](gradle.properties)). Expect 
 
 - Plugin release version: `alignedPluginVersion` in [VersionsAndDependencies.kt](buildSrc/src/main/kotlin/VersionsAndDependencies.kt).
 - `common-gradle-dependencies` version: `commonGradleDependenciesVersion` (separate version; releases are coordinated but version numbers remain independent).
-- Coordinated unreleased notes across artifacts: [CHANGELOG.md](CHANGELOG.md).
-- Per-artifact change logs: [PLUGINS_CHANGELOG.md](PLUGINS_CHANGELOG.md), [COMMON_GRADLE_DEPENDENCIES_CHANGELOG.md](COMMON_GRADLE_DEPENDENCIES_CHANGELOG.md).
+- Release notes: [CHANGELOG.md](CHANGELOG.md) (single change log for all published artifacts going forward).
+- Outdated per-artifact change logs (historical releases only): [PLUGINS_CHANGELOG.md](PLUGINS_CHANGELOG.md), [COMMON_GRADLE_DEPENDENCIES_CHANGELOG.md](COMMON_GRADLE_DEPENDENCIES_CHANGELOG.md).
 
-When bumping dependency versions, update `CommonVersions` (and `gradle/libs.versions.toml` where applicable) and note the change in the relevant changelog(s) if the release is user-visible.
+When bumping dependency versions, update `CommonVersions` (and `gradle/libs.versions.toml` where applicable) and note the change in [CHANGELOG.md](CHANGELOG.md) if the release is user-visible.
 
 ## IDE notes
 
