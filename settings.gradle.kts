@@ -6,10 +6,11 @@ project(":huanshankeji-team-gradle-plugins").name = "gradle-plugins"
 include("architecture-common-gradle-plugins")
 include("common-gradle-dependencies")
 
-// for Dokka
-@Suppress("UnstableApiUsage")
 dependencyResolutionManagement {
+    @Suppress("UnstableApiUsage")
     repositories {
-        mavenCentral()
+        //mavenLocal() // no longer needed since no bootstrapping dependencies
+        gradlePluginPortal()
+        //mavenCentral() // originally added for Dokka but no longer needed as tested
     }
 }

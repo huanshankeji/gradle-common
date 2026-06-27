@@ -6,7 +6,9 @@ plugins {
 }
 
 dependencies {
-    implementation("com.huanshankeji:common-gradle-dependencies:$pluginProjectSourceDependencyStableCommonGradleDependenciesVersion")
+    implementation(kotlin("gradle-plugin"))
+
+    implementation(project(":common-gradle-dependencies"))
 }
 
 kotlin {

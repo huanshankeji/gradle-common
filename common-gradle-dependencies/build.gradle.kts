@@ -1,34 +1,13 @@
-import com.huanshankeji.SourceFile
-import com.huanshankeji.generateKotlinSources
 import com.huanshankeji.projectVersionFromGitProvider
-import kotlin.reflect.full.memberProperties
 
 plugins {
     conventions
 }
 
-// TODO Should use the provider direcctly. It seems it's held back by the bootstraping 'dokka-convention' plugin failing with this.
+// TODO Should use the provider directly. It seems it's held back by the bootstrapping 'dokka-convention' plugin failing with this.
 version = projectVersionFromGitProvider(
     commonGradleDependenciesBaseVersion, "common-gradle-dependencies-release",
 ).get()
-
-generateKotlinSources(
-    sourceFiles = listOf(
-        SourceFile(
-            "GeneratedKotlinVersion.kt",
-            """
-internal object GeneratedVersions {
-${
-                DependencyVersions::class.memberProperties.joinToString("\n") {
-                    "    internal const val ${it.name} = \"${it(DependencyVersions)}\""
-                }
-            }
-}
-""".drop(1)
-        )
-    )
-)
-
 
 gradlePlugin {
     plugins {
