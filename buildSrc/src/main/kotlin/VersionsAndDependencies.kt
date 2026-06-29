@@ -25,7 +25,7 @@ object DependencyVersions {
     val vanniktechMavenPublish = "0.36.0"
 
     // https://github.com/ben-manes/gradle-versions-plugin/releases
-    val benManesVersions = "0.54.0"
+    val benManesGradleVersionsPlugin = "0.54.0"
 }
 
 val alignedPluginBaseVersion = "0.12.0"

@@ -5,7 +5,6 @@ tasks.wrapper {
 plugins {
     id("org.jetbrains.dokka")
     id("com.github.ben-manes.versions")
-    alias(libs.plugins.binaryCompatibilityValidator)
 }
 
 evaluationDependsOnChildren()

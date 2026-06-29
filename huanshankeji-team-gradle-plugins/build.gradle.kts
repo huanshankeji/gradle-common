@@ -7,7 +7,7 @@ group = "com.huanshankeji.team"
 dependencies {
     // `api` is needed for the team `github-packages-maven-publish` plugin to configure the base plugin's extension
     api(project(":kotlin-common-gradle-plugins"))
-    implementation("com.github.ben-manes:gradle-versions-plugin:${DependencyVersions.benManesVersions}")
+    implementation("com.github.ben-manes:gradle-versions-plugin:${DependencyVersions.benManesGradleVersionsPlugin}")
 }
 
 gradlePlugin {
