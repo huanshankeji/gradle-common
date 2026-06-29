@@ -28,8 +28,8 @@ object DependencyVersions {
     val benManesGradleVersionsPlugin = "0.54.0"
 }
 
-val alignedPluginBaseVersion = "0.12.0"
+val alignedPluginBaseVersion = "0.99.0-portal-ci-test"
 
 // "x.y.z-yyyyMMdd" — semantic org version and date when dependency versions were updated.
 // Dev-commit suffixes are applied in :common-gradle-dependencies (see its build.gradle.kts).
-val commonGradleDependenciesBaseVersion = "0.10.0-20251224"
+val commonGradleDependenciesBaseVersion = "0.99.0-portal-ci-test"
