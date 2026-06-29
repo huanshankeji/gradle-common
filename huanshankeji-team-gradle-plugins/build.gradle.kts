@@ -38,3 +38,8 @@ gradlePlugin {
         )
     }
 }
+
+// Team plugins are internal; they publish to GitHub Packages only, not the Gradle Plugin Portal.
+tasks.named("publishPlugins") {
+    enabled = false
+}
