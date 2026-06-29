@@ -1,8 +1,8 @@
 plugins {
     id("conventions")
     id("aligned-version-plugin-version")
-    id("dokka-convention")
-    id("kotlin-abi-validation")
+    id("com.huanshankeji.team.dokka.github-dokka-convention")
+    id("com.huanshankeji.kotlin-abi-validation-conventions")
 }
 
 dependencies {

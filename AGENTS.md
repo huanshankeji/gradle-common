@@ -85,8 +85,9 @@ Configuration cache is enabled ([gradle.properties](gradle.properties)). Expect 
 
 ## Version and changelog policy
 
-- Plugin release version: `alignedPluginBaseVersion` in [VersionsAndDependencies.kt](buildSrc/src/main/kotlin/VersionsAndDependencies.kt), with dev-commit suffixes on non-`plugins-release` branches.
-- `common-gradle-dependencies` version: `commonGradleDependenciesBaseVersion` (separate version; releases are coordinated but version numbers remain independent), with dev-commit suffixes on non-`common-gradle-dependencies-release` branches.
+- Plugin release version: `alignedPluginBaseVersion` in [VersionsAndDependencies.kt](buildSrc/src/main/kotlin/VersionsAndDependencies.kt), with dev-commit suffixes off the `release` branch.
+- `common-gradle-dependencies` version: `commonGradleDependenciesBaseVersion` (separate version; releases are coordinated but version numbers remain independent), with dev-commit suffixes off the `release` branch.
+- Release branch: `release` publishes to the Gradle Plugin Portal (`publishPluginProjectPlugins` and `:common-gradle-dependencies:publishPlugins`); all other branches publish to GitHub Packages.
 - Release notes: [CHANGELOG.md](CHANGELOG.md) (single change log for all published artifacts going forward).
 - Outdated per-artifact change logs (historical releases only): [PLUGINS_CHANGELOG.md](PLUGINS_CHANGELOG.md), [COMMON_GRADLE_DEPENDENCIES_CHANGELOG.md](COMMON_GRADLE_DEPENDENCIES_CHANGELOG.md).
 

@@ -33,8 +33,3 @@ val alignedPluginBaseVersion = "0.12.0"
 // "x.y.z-yyyyMMdd" — semantic org version and date when dependency versions were updated.
 // Dev-commit suffixes are applied in :common-gradle-dependencies (see its build.gradle.kts).
 val commonGradleDependenciesBaseVersion = "0.10.0-20251224"
-
-// This is the source dependency version. There is another build source dependency in "buildSrc/build.gradle.kts".
-val pluginProjectSourceDependencyStableCommonGradleDependenciesVersion = "0.10.0-20251024".apply {
-    require(!endsWith("SNAPSHOT")) // comment this out when debugging and testing snapshots
-}
