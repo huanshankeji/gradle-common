@@ -24,8 +24,8 @@ fun Project.isReleaseBranch(): Provider<Boolean> =
     }
 
 fun devCommitVersionString(baseVersion: String, commitHash: String, dirty: Boolean): String =
-    if (dirty) "$baseVersion-dev-commit-$commitHash-dirty-SNAPSHOT"
-    else "$baseVersion-dev-commit-$commitHash"
+    if (dirty) "$baseVersion-dev-commit-${commitHash.take(7)}-dirty-SNAPSHOT"
+    else "$baseVersion-dev-commit-${commitHash.take(7)}"
 
 fun Project.devCommitVersionProvider(baseVersion: String): Provider<String> =
     gitCommitHash().zip(isGitWorkingTreeDirty()) { hash, dirty ->
