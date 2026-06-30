@@ -70,11 +70,6 @@ gradlePlugin {
             "Dokka convention plugin"
         )
         scriptConventionsPlugin(
-            "git-version",
-            "Git commit-hash project version",
-            "Sets the project version from Git: release branch uses the base version; otherwise `-dev-commit-<hash>` or `-dirty-SNAPSHOT`."
-        )
-        scriptConventionsPlugin(
             "kotlin-abi-validation-conventions",
             "Kotlin ABI validation conventions",
             "Enables Kotlin Gradle plugin ABI validation on JVM and Multiplatform projects."

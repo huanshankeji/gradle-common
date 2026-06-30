@@ -1,7 +1,3 @@
-plugins {
-    id("com.huanshankeji.git-version")
-}
+import com.huanshankeji.projectVersionFromGitProvider
 
-gitVersion {
-    baseVersion.set(alignedPluginBaseVersion)
-}
+version = projectVersionFromGitProvider(alignedPluginBaseVersion)
