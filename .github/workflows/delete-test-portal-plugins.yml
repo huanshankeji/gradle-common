@@ -2,8 +2,6 @@
 name: Delete Test Gradle Plugin Portal Publishes
 
 on:
-  push:
-    branches: [cursor/test-gradle-plugin-portal-b4ac]
   workflow_dispatch:
 
 jobs:

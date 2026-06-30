@@ -35,7 +35,7 @@ for plugin_id in "${PLUGINS[@]}"; do
     echo "${plugin_id}: (not found)"
     continue
   fi
-  mapfile -t versions < <(echo "$metadata" | rg -o "<version>${TEST_VERSION_PREFIX}[^<]*</version>" | sed 's/<[^>]*>//g' | sort -u)
+  mapfile -t versions < <(echo "$metadata" | grep -oE "<version>${TEST_VERSION_PREFIX}[^<]*</version>" | sed 's/<[^>]*>//g' | sort -u)
   if ((${#versions[@]} == 0)); then
     echo "${plugin_id}: (no test versions)"
     continue
