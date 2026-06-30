@@ -1,5 +1,9 @@
 package com.huanshankeji
 
+import org.gradle.api.credentials.PasswordCredentials
+import org.gradle.api.provider.Property
+import org.gradle.kotlin.dsl.credentials
+
 plugins {
     /*
     This plugin has special fast-path / custom behavior only for Maven Central,
@@ -17,9 +21,17 @@ interface Extension {
 
 val extension = extensions.create<Extension>("githubPackagesPublish")
 
-afterEvaluate {
-    publishingRepositoriesAddGithubPackagesMavenRepository(
-        owner = extension.owner.get(),
-        repository = extension.repository.get()
-    )
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = extension.owner.zip(extension.repository) { owner, repository ->
+                uri("https://maven.pkg.github.com/$owner/$repository")
+            }
+            credentials(PasswordCredentials::class) {
+                username = githubPackagesMavenUsername()
+                password = githubPackagesMavenPassword()
+            }
+        }
+    }
 }

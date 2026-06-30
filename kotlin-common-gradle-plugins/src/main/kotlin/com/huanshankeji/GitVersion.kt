@@ -1,6 +1,7 @@
 package com.huanshankeji
 
 import org.gradle.api.Project
+import org.gradle.api.provider.Property
 import org.gradle.api.provider.Provider
 
 fun Project.gitCommitHash(): Provider<String> =
@@ -36,6 +37,16 @@ fun Project.devCommitVersionProvider(baseVersion: String): Provider<String> =
  * Returns [baseVersion] on [releaseBranch]; otherwise a dev-commit version from Git.
  * Override with the Gradle property `com.huanshankeji.forceReleaseVersion=true` when needed.
  */
+interface GitVersionExtension {
+    val baseVersion: Property<String>
+}
+
+fun Project.projectVersionFromGitProvider(
+    baseVersion: Provider<String>,
+    releaseBranch: String = "release",
+): Provider<String> =
+    baseVersion.flatMap { projectVersionFromGitProvider(it, releaseBranch) }
+
 fun Project.projectVersionFromGitProvider(
     baseVersion: String,
     releaseBranch: String = "release",
@@ -50,6 +61,16 @@ fun Project.projectVersionFromGitProvider(
             else devCommitVersionProvider(baseVersion)
         }
     }
+}
+
+/**
+ * A [Project.version] value that resolves lazily via [Provider.get] when Gradle calls [toString].
+ *
+ * See [Gradle issue #15088](https://github.com/gradle/gradle/issues/15088) and
+ * [Avoid afterEvaluate](https://docs.gradle.org/current/userguide/best_practices_general.html#avoid_afterevaluate).
+ */
+fun Provider<String>.asLazyProjectVersion(): Any = object {
+    override fun toString(): String = this@asLazyProjectVersion.get()
 }
 
 fun Project.isDirtyDevCommitVersion(): Boolean =

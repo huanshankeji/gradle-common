@@ -1,5 +1,7 @@
 package com.huanshankeji
 
+import org.gradle.api.provider.Provider
+
 plugins {
     id("com.vanniktech.maven.publish")
 }
@@ -8,13 +10,20 @@ mavenPublishing {
     publishToMavenCentral()
 }
 
-/*
-Currently added to wait for the version to resolve.
-TODO Avoid `afterEvaluate` and put this back into `mavenPublishing` above by refactoring related plugins to use `Provider` APIs.
- */
-afterEvaluate {
-    if (!isSnapshotVersion() && !isDirtyDevCommitVersion() && !isDevCommitVersion())
-        mavenPublishing.signAllPublications()
+fun wireMavenCentralSigning(versionProvider: Provider<String>) {
+    version = versionProvider.map { version ->
+        if (isMavenCentralSigningVersion(version)) mavenPublishing.signAllPublications()
+        version
+    }.asLazyProjectVersion()
+}
+
+pluginManager.withPlugin("com.huanshankeji.git-version") {
+    wireMavenCentralSigning(
+        projectVersionFromGitProvider(extensions.getByType<GitVersionExtension>().baseVersion),
+    )
+}
+if (!plugins.hasPlugin("com.huanshankeji.git-version")) {
+    wireMavenCentralSigning(providers.provider { version.toString() })
 }
 
 // should probably require the Java toolchain version to be set too when using this plugin
