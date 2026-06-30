@@ -1,3 +1,3 @@
-import com.huanshankeji.projectVersionFromGitProvider
+import com.huanshankeji.setProjectVersionFromGit
 
-version = projectVersionFromGitProvider(alignedPluginBaseVersion)
+setProjectVersionFromGit(alignedPluginBaseVersion)

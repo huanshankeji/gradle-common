@@ -57,3 +57,11 @@ fun Project.isDirtyDevCommitVersion(): Boolean =
 
 fun Project.isDevCommitVersion(): Boolean =
     version.toString().contains("-dev-commit-")
+
+/** Sets [Project.version] from Git using [projectVersionFromGitProvider]. */
+fun Project.setProjectVersionFromGit(
+    baseVersion: String,
+    releaseBranch: String = "release",
+) {
+    version = projectVersionFromGitProvider(baseVersion, releaseBranch).get()
+}

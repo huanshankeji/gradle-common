@@ -34,6 +34,8 @@ public final class com/huanshankeji/GitVersionKt {
 	public static synthetic fun isReleaseBranch$default (Lorg/gradle/api/Project;Ljava/lang/String;ILjava/lang/Object;)Lorg/gradle/api/provider/Provider;
 	public static final fun projectVersionFromGitProvider (Lorg/gradle/api/Project;Ljava/lang/String;Ljava/lang/String;)Lorg/gradle/api/provider/Provider;
 	public static synthetic fun projectVersionFromGitProvider$default (Lorg/gradle/api/Project;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/gradle/api/provider/Provider;
+	public static final fun setProjectVersionFromGit (Lorg/gradle/api/Project;Ljava/lang/String;Ljava/lang/String;)V
+	public static synthetic fun setProjectVersionFromGit$default (Lorg/gradle/api/Project;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)V
 }
 
 public final class com/huanshankeji/GithubPackagesMavenPublishPlugin : org/gradle/api/Plugin {

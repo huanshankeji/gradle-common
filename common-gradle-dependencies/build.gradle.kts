@@ -1,10 +1,10 @@
-import com.huanshankeji.projectVersionFromGitProvider
+import com.huanshankeji.setProjectVersionFromGit
 
 plugins {
     conventions
 }
 
-version = projectVersionFromGitProvider(commonGradleDependenciesBaseVersion)
+setProjectVersionFromGit(commonGradleDependenciesBaseVersion)
 
 gradlePlugin {
     plugins {
