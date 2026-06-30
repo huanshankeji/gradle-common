@@ -5,7 +5,7 @@ plugins {
 }
 
 mavenPublishing {
-    publishToMavenCentral(automaticRelease = true)
+    publishToMavenCentral()
 }
 
 /*
