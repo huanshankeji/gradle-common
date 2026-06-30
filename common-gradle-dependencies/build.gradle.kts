@@ -1,11 +1,8 @@
 plugins {
     conventions
-    id("com.huanshankeji.git-version")
 }
 
-gitVersion {
-    baseVersion.set(commonGradleDependenciesBaseVersion)
-}
+version = commonGradleDependenciesBaseVersion
 
 gradlePlugin {
     plugins {

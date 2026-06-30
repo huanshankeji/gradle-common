@@ -1,10 +1,9 @@
 # Temporary: verify Gradle Plugin Portal publishing from GitHub Actions.
-# Branch: cursor/test-gradle-plugin-portal-b4ac
 name: Test Gradle Plugin Portal Publish
 
 on:
   push:
-    branches: [cursor/test-gradle-plugin-portal-b4ac]
+    branches: [test-gradle-plugin-portal-manually]
   workflow_dispatch:
 
 jobs:
@@ -40,4 +39,4 @@ jobs:
         env:
           GRADLE_PUBLISH_KEY: ${{ secrets.GRADLE_PUBLISH_KEY }}
           GRADLE_PUBLISH_SECRET: ${{ secrets.GRADLE_PUBLISH_SECRET }}
-        run: ./gradlew publishPlugins --no-daemon --stacktrace -Pcom.huanshankeji.forceReleaseVersion=true
+        run: ./gradlew common-gradle-dependencies:publishPlugins --no-daemon --stacktrace -Pcom.huanshankeji.forceReleaseVersion=true
