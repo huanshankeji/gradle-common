@@ -1,6 +1,6 @@
 package com.huanshankeji
 
-import org.gradle.api.credentials.PasswordCredentials
+import org.gradle.api.artifacts.repositories.PasswordCredentials
 import org.gradle.api.provider.Property
 import org.gradle.kotlin.dsl.credentials
 
@@ -25,9 +25,11 @@ publishing {
     repositories {
         maven {
             name = "GitHubPackages"
-            url = extension.owner.zip(extension.repository) { owner, repository ->
-                uri("https://maven.pkg.github.com/$owner/$repository")
-            }
+            setUrl(
+                extension.owner.zip(extension.repository) { owner, repository ->
+                    uri("https://maven.pkg.github.com/$owner/$repository")
+                },
+            )
             credentials(PasswordCredentials::class) {
                 username = githubPackagesMavenUsername()
                 password = githubPackagesMavenPassword()

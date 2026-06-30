@@ -18,9 +18,8 @@ fun wireMavenCentralSigning(versionProvider: Provider<String>) {
 }
 
 pluginManager.withPlugin("com.huanshankeji.git-version") {
-    wireMavenCentralSigning(
-        projectVersionFromGitProvider(extensions.getByType<GitVersionExtension>().baseVersion),
-    )
+    val gitVersion = extensions.getByName("gitVersion") as GitVersionExtension
+    wireMavenCentralSigning(projectVersionFromGitProvider(gitVersion.baseVersion))
 }
 if (!plugins.hasPlugin("com.huanshankeji.git-version")) {
     wireMavenCentralSigning(providers.provider { version.toString() })

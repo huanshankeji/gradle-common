@@ -28,9 +28,11 @@ publishing {
         maven {
             name = GITLAB_PACKAGE_REGISTRY_REPOSITORY_NAME
             val host = extension.host.orElse(GITLAB_COM_HOST)
-            url = host.zip(extension.projectId) { resolvedHost, projectId ->
-                uri("https://$resolvedHost/api/v4/projects/$projectId/packages/maven")
-            }
+            setUrl(
+                host.zip(extension.projectId) { resolvedHost, projectId ->
+                    uri("https://$resolvedHost/api/v4/projects/$projectId/packages/maven")
+                },
+            )
             credentials(HttpHeaderCredentials::class) {
                 name = "Private-Token"
                 value = gitlabPackageRegistryPrivateToken()

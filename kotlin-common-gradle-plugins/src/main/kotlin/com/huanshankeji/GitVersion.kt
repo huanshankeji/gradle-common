@@ -66,11 +66,19 @@ fun Project.projectVersionFromGitProvider(
 /**
  * A [Project.version] value that resolves lazily via [Provider.get] when Gradle calls [toString].
  *
+ * If the provider has no value yet (for example [GitVersionExtension.baseVersion] is configured
+ * later in the build script), returns `"unspecified"` so plugin application order stays flexible.
+ *
  * See [Gradle issue #15088](https://github.com/gradle/gradle/issues/15088) and
  * [Avoid afterEvaluate](https://docs.gradle.org/current/userguide/best_practices_general.html#avoid_afterevaluate).
  */
 fun Provider<String>.asLazyProjectVersion(): Any = object {
-    override fun toString(): String = this@asLazyProjectVersion.get()
+    override fun toString(): String = runCatching { get() }.getOrElse { "unspecified" }
+}
+
+fun Project.wireGitVersionToProjectVersion() {
+    val extension = extensions.getByName("gitVersion") as GitVersionExtension
+    version = projectVersionFromGitProvider(extension.baseVersion).asLazyProjectVersion()
 }
 
 fun Project.isDirtyDevCommitVersion(): Boolean =
