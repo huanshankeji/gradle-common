@@ -30,8 +30,10 @@ public final class com/huanshankeji/GitVersionKt {
 	public static final fun isDevCommitVersion (Lorg/gradle/api/Project;)Z
 	public static final fun isDirtyDevCommitVersion (Lorg/gradle/api/Project;)Z
 	public static final fun isGitWorkingTreeDirty (Lorg/gradle/api/Project;)Lorg/gradle/api/provider/Provider;
-	public static final fun isReleaseBranch (Lorg/gradle/api/Project;)Lorg/gradle/api/provider/Provider;
-	public static final fun projectVersionFromGitProvider (Lorg/gradle/api/Project;Ljava/lang/String;)Lorg/gradle/api/provider/Provider;
+	public static final fun isReleaseBranch (Lorg/gradle/api/Project;Ljava/lang/String;)Lorg/gradle/api/provider/Provider;
+	public static synthetic fun isReleaseBranch$default (Lorg/gradle/api/Project;Ljava/lang/String;ILjava/lang/Object;)Lorg/gradle/api/provider/Provider;
+	public static final fun projectVersionFromGitProvider (Lorg/gradle/api/Project;Ljava/lang/String;Ljava/lang/String;)Lorg/gradle/api/provider/Provider;
+	public static synthetic fun projectVersionFromGitProvider$default (Lorg/gradle/api/Project;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/gradle/api/provider/Provider;
 }
 
 public final class com/huanshankeji/GitVersionPlugin : org/gradle/api/Plugin {
