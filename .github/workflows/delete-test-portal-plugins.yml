@@ -1,0 +1,28 @@
+# One-off: probe deletion of accidental 0.99.0-test* portal publishes and list manual links.
+name: Delete Test Gradle Plugin Portal Publishes
+
+on:
+  workflow_dispatch:
+
+jobs:
+  delete-test-publishes:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Install probe dependencies
+        run: pip install requests requests-oauthlib
+
+      - name: List test publishes and probe delete API
+        env:
+          GRADLE_PUBLISH_KEY: ${{ secrets.GRADLE_PUBLISH_KEY }}
+          GRADLE_PUBLISH_SECRET: ${{ secrets.GRADLE_PUBLISH_SECRET }}
+        run: bash .github/scripts/delete-portal-test-plugins.sh
+        continue-on-error: true
