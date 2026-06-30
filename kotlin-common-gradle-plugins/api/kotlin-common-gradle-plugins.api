@@ -22,7 +22,12 @@ public final class com/huanshankeji/GenerateKotlinSourcesKt {
 	public static final fun generateRootProjectName (Lorg/gradle/api/Project;)V
 }
 
+public abstract interface class com/huanshankeji/GitVersionExtension {
+	public abstract fun getBaseVersion ()Lorg/gradle/api/provider/Property;
+}
+
 public final class com/huanshankeji/GitVersionKt {
+	public static final fun asLazyProjectVersion (Lorg/gradle/api/provider/Provider;)Ljava/lang/Object;
 	public static final fun devCommitVersionProvider (Lorg/gradle/api/Project;Ljava/lang/String;)Lorg/gradle/api/provider/Provider;
 	public static final fun devCommitVersionString (Ljava/lang/String;Ljava/lang/String;Z)Ljava/lang/String;
 	public static final fun gitCommitHash (Lorg/gradle/api/Project;)Lorg/gradle/api/provider/Provider;
@@ -33,7 +38,10 @@ public final class com/huanshankeji/GitVersionKt {
 	public static final fun isReleaseBranch (Lorg/gradle/api/Project;Ljava/lang/String;)Lorg/gradle/api/provider/Provider;
 	public static synthetic fun isReleaseBranch$default (Lorg/gradle/api/Project;Ljava/lang/String;ILjava/lang/Object;)Lorg/gradle/api/provider/Provider;
 	public static final fun projectVersionFromGitProvider (Lorg/gradle/api/Project;Ljava/lang/String;Ljava/lang/String;)Lorg/gradle/api/provider/Provider;
+	public static final fun projectVersionFromGitProvider (Lorg/gradle/api/Project;Lorg/gradle/api/provider/Provider;Ljava/lang/String;)Lorg/gradle/api/provider/Provider;
 	public static synthetic fun projectVersionFromGitProvider$default (Lorg/gradle/api/Project;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/gradle/api/provider/Provider;
+	public static synthetic fun projectVersionFromGitProvider$default (Lorg/gradle/api/Project;Lorg/gradle/api/provider/Provider;Ljava/lang/String;ILjava/lang/Object;)Lorg/gradle/api/provider/Provider;
+	public static final fun wireGitVersionToProjectVersion (Lorg/gradle/api/Project;)V
 }
 
 public final class com/huanshankeji/GitVersionPlugin : org/gradle/api/Plugin {
@@ -44,12 +52,7 @@ public final class com/huanshankeji/GitVersionPlugin : org/gradle/api/Plugin {
 
 public final class com/huanshankeji/Git_version_gradle : org/gradle/kotlin/dsl/precompile/v1/PrecompiledProjectScript {
 	public fun <init> (Lorg/gradle/api/Project;Lorg/gradle/api/Project;)V
-	public final fun getExtension ()Lcom/huanshankeji/Git_version_gradle$GitVersionExtension;
 	public static final fun main ([Ljava/lang/String;)V
-}
-
-public abstract interface class com/huanshankeji/Git_version_gradle$GitVersionExtension {
-	public abstract fun getBaseVersion ()Lorg/gradle/api/provider/Property;
 }
 
 public final class com/huanshankeji/GithubPackagesMavenPublishPlugin : org/gradle/api/Plugin {
@@ -218,6 +221,7 @@ public final class com/huanshankeji/MavenRepositoryVersionsKt {
 public final class com/huanshankeji/Maven_central_publish_conventions_gradle : org/gradle/kotlin/dsl/precompile/v1/PrecompiledProjectScript {
 	public fun <init> (Lorg/gradle/api/Project;Lorg/gradle/api/Project;)V
 	public static final fun main ([Ljava/lang/String;)V
+	public final fun wireMavenCentralSigning (Lorg/gradle/api/provider/Provider;)V
 }
 
 public final class com/huanshankeji/NamingConventionsKt {
@@ -237,6 +241,7 @@ public final class com/huanshankeji/ProjectNamesKt {
 }
 
 public final class com/huanshankeji/SnapshotAndReleaseVersionsKt {
+	public static final fun isMavenCentralSigningVersion (Ljava/lang/String;)Z
 	public static final fun isSnapshotVersion (Lorg/gradle/api/Project;)Z
 }
 
