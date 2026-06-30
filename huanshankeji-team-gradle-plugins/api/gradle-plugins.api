@@ -26,7 +26,7 @@ public final class com/huanshankeji/team/Default_github_packages_maven_publish_g
 }
 
 public final class com/huanshankeji/team/GithubPackagesMavenKt {
-	public static final fun repositoriesAddTeamGithubPackagesMavenRegistry (Lorg/gradle/api/Project;Ljava/lang/String;)V
+	public static final fun mavenTeamGithubPackagesRepository (Lorg/gradle/api/Project;Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Ljava/lang/String;)Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;
 }
 
 public final class com/huanshankeji/team/GithubPackagesMavenPublishPlugin : org/gradle/api/Plugin {
