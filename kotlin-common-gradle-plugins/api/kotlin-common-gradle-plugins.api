@@ -36,22 +36,6 @@ public final class com/huanshankeji/GitVersionKt {
 	public static synthetic fun projectVersionFromGitProvider$default (Lorg/gradle/api/Project;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/gradle/api/provider/Provider;
 }
 
-public final class com/huanshankeji/GitVersionPlugin : org/gradle/api/Plugin {
-	public fun <init> ()V
-	public synthetic fun apply (Ljava/lang/Object;)V
-	public fun apply (Lorg/gradle/api/Project;)V
-}
-
-public final class com/huanshankeji/Git_version_gradle : org/gradle/kotlin/dsl/precompile/v1/PrecompiledProjectScript {
-	public fun <init> (Lorg/gradle/api/Project;Lorg/gradle/api/Project;)V
-	public final fun getExtension ()Lcom/huanshankeji/Git_version_gradle$GitVersionExtension;
-	public static final fun main ([Ljava/lang/String;)V
-}
-
-public abstract interface class com/huanshankeji/Git_version_gradle$GitVersionExtension {
-	public abstract fun getBaseVersion ()Lorg/gradle/api/provider/Property;
-}
-
 public final class com/huanshankeji/GithubPackagesMavenPublishPlugin : org/gradle/api/Plugin {
 	public fun <init> ()V
 	public synthetic fun apply (Ljava/lang/Object;)V
