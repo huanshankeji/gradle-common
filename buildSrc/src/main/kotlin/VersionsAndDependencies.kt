@@ -32,4 +32,4 @@ val alignedPluginBaseVersion = "0.99.0-test2"
 
 // "x.y.z-yyyyMMdd" — semantic org version and date when dependency versions were updated.
 // Dev-commit suffixes are applied in :common-gradle-dependencies (see its build.gradle.kts).
-val commonGradleDependenciesBaseVersion = "0.12.0-test-manually-github-actions-2"
+val commonGradleDependenciesBaseVersion = "0.12.0-test-manually-github-actions-3"
