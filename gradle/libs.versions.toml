@@ -25,6 +25,7 @@ benManes-gradleVersionsPlugin = "0.54.0"
 gradle-kotlinDslPlugins = "6.7.3"
 # https://plugins.gradle.org/plugin/com.gradle.plugin-publish
 gradle-pluginPublishPlugin = "2.0.0"
+foojay-resolver-convention = "1.0.0"
 
 [libraries]
 # `org.jetbrains.kotlin` plugin JARs: no version — aligned by the Kotlin Gradle plugin BOM.
@@ -38,6 +39,7 @@ kotlinx-benchmark-plugin = { module = "org.jetbrains.kotlinx:kotlinx-benchmark-p
 compose-gradlePlugin = { module = "org.jetbrains.compose:compose-gradle-plugin", version.ref = "composeMultiplatform" }
 kotlin-composeCompilerGradlePlugin = { module = "org.jetbrains.kotlin:compose-compiler-gradle-plugin" }
 benManes-gradleVersionsPlugin = { module = "com.github.ben-manes:gradle-versions-plugin", version.ref = "benManes-gradleVersionsPlugin" }
+foojay-resolver-convention = { module = "org.gradle.toolchains.foojay-resolver-convention:org.gradle.toolchains.foojay-resolver-convention.gradle.plugin", version.ref = "foojay-resolver-convention" }
 
 [bundles]
 # Dependencies needed to compile the `kotlin-common-gradle-plugins` precompiled script plugins.

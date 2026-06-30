@@ -13,6 +13,8 @@
     * stop generating `GeneratedVersions` from `buildSrc`'s `DependencyVersions`; the versions are now declared directly in `CommonVersions` and kept in sync by hand with the shared version catalog (to be unified by #9)
 * update Gradle to 9.6.0
 * bump Kotlin to 2.4.0, including `CommonVersions` and `gradle-kotlin-dsl-plugins` 6.7.3 for build logic
+* add `com.huanshankeji.base-settings-conventions` settings plugin (Foojay toolchain resolver convention)
+* extract `setProjectConcatenatedNames` settings helpers alongside existing concatenated project name path APIs
 
 ## Outdated historical per-artifact change logs
 

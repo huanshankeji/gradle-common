@@ -6,6 +6,7 @@ dependencies {
     implementation(kotlin("gradle-plugin"))
     implementation(libs.bundles.kotlinCommonGradlePlugins.implementation)
     api(libs.bundles.kotlinCommonGradlePlugins.api)
+    implementation(libs.foojay.resolver.convention)
 
     testImplementation(kotlin("test"))
 }
@@ -78,6 +79,11 @@ gradlePlugin {
             "kotlin-abi-validation-conventions",
             "Kotlin ABI validation conventions",
             "Enables Kotlin Gradle plugin ABI validation on JVM and Multiplatform projects."
+        )
+        scriptConventionsPlugin(
+            "base-settings-conventions",
+            "Base settings conventions",
+            "Applies common settings plugins such as the Foojay toolchain resolver convention."
         )
     }
 }
