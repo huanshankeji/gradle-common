@@ -1,3 +1,5 @@
+package com.huanshankeji.team
+
 import com.huanshankeji.team.maven.PublicOpenSourceDependencyRepositoriesExtension
 
 val extension = extensions.create(

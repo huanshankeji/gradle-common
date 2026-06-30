@@ -30,12 +30,12 @@ gradlePlugin {
             "Maven Central publish conventions based on the `com.vanniktech.maven.publish` plugin."
         )
         scriptConventionsPlugin(
-            "github-packages-maven-publish",
+            "github.packages.github-packages-maven-publish",
             "GitHub Packages publish",
             "Publishes to a Maven registry of GitHub Packages."
         )
         scriptConventionsPlugin(
-            "gitlab-package-registry-project-level-maven-endpoint-publish",
+            "gitlab.packageregistry.gitlab-package-registry-project-level-maven-endpoint-publish",
             "GitLab Package Registry project-level Maven endpoint publish",
             "Publishes to a GitLab Package Registry project-level Maven endpoint."
         )
@@ -70,7 +70,7 @@ gradlePlugin {
             "Dokka convention plugin"
         )
         scriptConventionsPlugin(
-            "git-version",
+            "gitversion.git-version",
             "Git commit-hash project version",
             "Sets the project version from Git: release branch uses the base version; otherwise `-dev-commit-<hash>` or `-dirty-SNAPSHOT`."
         )

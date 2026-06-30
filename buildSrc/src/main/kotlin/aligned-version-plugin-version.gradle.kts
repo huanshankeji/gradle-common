@@ -1,5 +1,5 @@
 plugins {
-    id("com.huanshankeji.git-version")
+    id("com.huanshankeji.gitversion.git-version")
 }
 
 gitVersion {

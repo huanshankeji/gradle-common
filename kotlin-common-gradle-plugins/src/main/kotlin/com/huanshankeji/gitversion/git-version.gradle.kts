@@ -1,6 +1,4 @@
-package com.huanshankeji
-
-import org.gradle.api.provider.Property
+package com.huanshankeji.gitversion
 
 interface GitVersionExtension {
     val baseVersion: Property<String>

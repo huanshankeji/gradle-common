@@ -2,7 +2,11 @@
 
 ## Unreleased
 
-* unify release publishing on the `release` branch (replacing `plugins-release` and `common-gradle-dependencies-release`)
+* reorganize plugin helper packages and modules
+    * move universal Git versioning, GitHub Packages, and GitLab Package Registry helpers into `com.huanshankeji.gitversion`, `com.huanshankeji.github.packages`, and `com.huanshankeji.gitlab.packageregistry` in `kotlin-common-gradle-plugins`
+    * move Huanshankeji-specific Maven repository content filtering to `huanshankeji-team-gradle-plugins`
+    * rename plugin ids: `com.huanshankeji.gitversion.git-version`, `com.huanshankeji.github.packages.github-packages-maven-publish`, and `com.huanshankeji.gitlab.packageregistry.gitlab-package-registry-project-level-maven-endpoint-publish`
+    * register `com.huanshankeji.team.public-open-source-dependency-repositories` settings plugin
 * remove duplicated build logic now that `buildSrc` source-links the plugin module sources (#54, #60)
     * drop the inlined `GitVersion.kt`, `kotlin-abi-validation`, and `dokka-convention` copies from `buildSrc`
     * dogfood `com.huanshankeji.git-version`, `com.huanshankeji.kotlin-abi-validation-conventions`, and `com.huanshankeji.team.dokka.github-dokka-convention` instead

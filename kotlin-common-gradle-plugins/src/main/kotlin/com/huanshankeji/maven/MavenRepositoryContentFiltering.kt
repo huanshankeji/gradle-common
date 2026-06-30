@@ -1,4 +1,4 @@
-package com.huanshankeji
+package com.huanshankeji.maven
 
 import org.gradle.api.artifacts.repositories.MavenArtifactRepository
 
@@ -38,19 +38,4 @@ fun MavenArtifactRepository.contentExcludeModuleVersions(
     content {
         excludeVersionByRegex(groupRegex, moduleRegex, versionRegex)
     }
-}
-
-fun MavenArtifactRepository.contentIncludeHuanshankejiDirtyAndLegacySnapshots() {
-    contentIncludeGroupVersions(HUANSHANKEJI_MAVEN_GROUP, DIRTY_DEV_COMMIT_VERSION_REGEX)
-    contentIncludeGroupVersions(HUANSHANKEJI_MAVEN_GROUP, LEGACY_SNAPSHOT_VERSION_REGEX)
-}
-
-fun MavenArtifactRepository.contentIncludeHuanshankejiDevCommitVersions() {
-    contentIncludeGroupVersions(HUANSHANKEJI_MAVEN_GROUP, DEV_COMMIT_VERSION_REGEX)
-}
-
-fun MavenArtifactRepository.contentExcludeHuanshankejiNonStableVersions() {
-    contentExcludeGroupVersions(HUANSHANKEJI_MAVEN_GROUP, DEV_COMMIT_VERSION_REGEX)
-    contentExcludeGroupVersions(HUANSHANKEJI_MAVEN_GROUP, DIRTY_DEV_COMMIT_VERSION_REGEX)
-    contentExcludeGroupVersions(HUANSHANKEJI_MAVEN_GROUP, LEGACY_SNAPSHOT_VERSION_REGEX)
 }

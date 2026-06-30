@@ -1,5 +1,9 @@
 package com.huanshankeji
 
+import com.huanshankeji.gitversion.isDevCommitVersion
+import com.huanshankeji.gitversion.isDirtyDevCommitVersion
+import com.huanshankeji.gitversion.isSnapshotVersion
+
 plugins {
     id("com.vanniktech.maven.publish")
 }

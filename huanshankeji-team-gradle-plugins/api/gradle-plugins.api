@@ -1,15 +1,3 @@
-public final class PublicOpenSourceDependencyRepositoriesPlugin : org/gradle/api/Plugin {
-	public fun <init> ()V
-	public synthetic fun apply (Ljava/lang/Object;)V
-	public fun apply (Lorg/gradle/api/initialization/Settings;)V
-}
-
-public final class Public_open_source_dependency_repositories_settings_gradle : org/gradle/kotlin/dsl/precompile/v1/PrecompiledSettingsScript {
-	public fun <init> (Lorg/gradle/api/initialization/Settings;Lorg/gradle/api/initialization/Settings;)V
-	public final fun getExtension ()Lcom/huanshankeji/team/maven/PublicOpenSourceDependencyRepositoriesExtension;
-	public static final fun main ([Ljava/lang/String;)V
-}
-
 public final class com/huanshankeji/team/ConstantsKt {
 	public static final field HUANSHANKEJI_IN_LOWERCASE Ljava/lang/String;
 }
@@ -47,6 +35,18 @@ public final class com/huanshankeji/team/MavenPomKt {
 	public static synthetic fun pomForTeamDefaultOpenSource$default (Lorg/gradle/api/publish/maven/MavenPublication;Lorg/gradle/api/Project;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun setUpPomForTeamDefaultOpenSource (Lorg/gradle/api/publish/maven/MavenPom;Lorg/gradle/api/Project;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun setUpPomForTeamDefaultOpenSource$default (Lorg/gradle/api/publish/maven/MavenPom;Lorg/gradle/api/Project;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+}
+
+public final class com/huanshankeji/team/PublicOpenSourceDependencyRepositoriesPlugin : org/gradle/api/Plugin {
+	public fun <init> ()V
+	public synthetic fun apply (Ljava/lang/Object;)V
+	public fun apply (Lorg/gradle/api/initialization/Settings;)V
+}
+
+public final class com/huanshankeji/team/Public_open_source_dependency_repositories_settings_gradle : org/gradle/kotlin/dsl/precompile/v1/PrecompiledSettingsScript {
+	public fun <init> (Lorg/gradle/api/initialization/Settings;Lorg/gradle/api/initialization/Settings;)V
+	public final fun getExtension ()Lcom/huanshankeji/team/maven/PublicOpenSourceDependencyRepositoriesExtension;
+	public static final fun main ([Ljava/lang/String;)V
 }
 
 public final class com/huanshankeji/team/RootProjectConventionsPlugin : org/gradle/api/Plugin {
@@ -92,6 +92,13 @@ public final class com/huanshankeji/team/github/GithubKt {
 	public static final fun defaultRepositoryName (Lorg/gradle/api/Project;)Ljava/lang/String;
 	public static final fun defaultRootProjectGithubRepositoryUrl (Lorg/gradle/api/Project;)Ljava/lang/String;
 	public static final fun githubRepositoryUrl (Ljava/lang/String;)Ljava/lang/String;
+}
+
+public final class com/huanshankeji/team/maven/HuanshankejiMavenRepositoryContentFilteringKt {
+	public static final field HUANSHANKEJI_MAVEN_GROUP Ljava/lang/String;
+	public static final fun contentExcludeHuanshankejiNonStableVersions (Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;)V
+	public static final fun contentIncludeHuanshankejiDevCommitVersions (Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;)V
+	public static final fun contentIncludeHuanshankejiDirtyAndLegacySnapshots (Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;)V
 }
 
 public final class com/huanshankeji/team/maven/HuanshankejiPublicMavenRepositoriesKt {

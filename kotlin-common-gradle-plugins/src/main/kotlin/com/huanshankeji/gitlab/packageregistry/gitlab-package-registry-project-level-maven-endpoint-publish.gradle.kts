@@ -1,4 +1,6 @@
-package com.huanshankeji
+package com.huanshankeji.gitlab.packageregistry
+
+import com.huanshankeji.maven.publishing
 
 plugins {
     /*

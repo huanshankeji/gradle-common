@@ -36,5 +36,10 @@ gradlePlugin {
             "Root project conventions",
             "Applies team-wide root project plugins such as the Gradle versions plugin."
         )
+        scriptConventionsPlugin(
+            "public-open-source-dependency-repositories",
+            "Public open-source dependency repositories",
+            "Composable settings DSL for Maven repositories used by public Huanshankeji OSS repos."
+        )
     }
 }

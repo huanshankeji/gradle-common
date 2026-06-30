@@ -1,4 +1,4 @@
-package com.huanshankeji
+package com.huanshankeji.gitlab.packageregistry
 
 import org.gradle.api.Project
 import org.gradle.api.artifacts.dsl.RepositoryHandler
@@ -26,7 +26,7 @@ fun MavenArtifactRepository.gitlabPackageRegistryMavenRepositorySetUrlAndCredent
 }
 
 @Deprecated(
-    "Use the context parameter version instead.", // TODO
+    "Use the context parameter version instead.",
 )
 fun Project.gitlabMavenRepository(repositoryHandler: RepositoryHandler, nameArg: String = "GitLab", urlArg: String) =
     repositoryHandler.maven {

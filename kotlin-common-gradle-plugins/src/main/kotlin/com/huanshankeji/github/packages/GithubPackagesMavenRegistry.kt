@@ -1,10 +1,11 @@
-package com.huanshankeji
+package com.huanshankeji.github.packages
 
-import org.gradle.api.Action
+import com.huanshankeji.maven.publishing
 import org.gradle.api.Project
 import org.gradle.api.artifacts.repositories.MavenArtifactRepository
-import org.gradle.api.publish.PublishingExtension
+import org.gradle.api.initialization.Settings
 import org.gradle.kotlin.dsl.repositories
+import java.net.URI
 
 context(project: Project)
 fun MavenArtifactRepository.githubPackagesMavenRegistrySetUrlAndCredentials(owner: String, repository: String) {
@@ -15,8 +16,17 @@ fun MavenArtifactRepository.githubPackagesMavenRegistrySetUrlAndCredentials(owne
     }
 }
 
+context(settings: Settings)
+fun MavenArtifactRepository.githubPackagesMavenRegistrySetUrlAndCredentials(owner: String, repository: String) {
+    url = URI("https://maven.pkg.github.com/$owner/$repository")
+    credentials {
+        username = settings.githubPackagesMavenUsername()
+        password = settings.githubPackagesMavenPassword()
+    }
+}
+
 @Deprecated(
-    "Use the context parameter version instead.", // TODO
+    "Use the context parameter version instead.",
 )
 fun Project.repositoriesAddGithubPackagesMavenRegistry(owner: String, repository: String) =
     repositories {
@@ -42,6 +52,3 @@ fun Project.publishingRepositoriesAddGithubPackagesMavenRepository(
             }
         }
     }
-
-fun Project.publishing(configure: Action<PublishingExtension>): Unit =
-    extensions.configure("publishing", configure)

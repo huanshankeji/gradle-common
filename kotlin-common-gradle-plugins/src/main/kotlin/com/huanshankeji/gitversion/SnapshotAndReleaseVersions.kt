@@ -1,4 +1,4 @@
-package com.huanshankeji
+package com.huanshankeji.gitversion
 
 import org.gradle.api.Project
 
