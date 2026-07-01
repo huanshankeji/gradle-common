@@ -1,7 +1,8 @@
 plugins {
     id("conventions")
     id("aligned-version-plugin-version")
-    id("dokka-convention")
+    id("com.huanshankeji.team.dokka.github-dokka-convention")
+    id("com.huanshankeji.kotlin-abi-validation-conventions")
 }
 
 dependencies {
@@ -12,6 +13,11 @@ dependencies {
 
 kotlin {
     compilerOptions {
-        optIn.add("com.huanshankeji.InternalApi")
+        optIn.addAll(
+            "com.huanshankeji.GradleCommonInternalApi",
+            "com.huanshankeji.GradleCommonExperimentalApi",
+            "org.jetbrains.kotlin.gradle.dsl.abi.ExperimentalAbiValidation",
+        )
+        freeCompilerArgs.add("-Xcontext-parameters")
     }
 }

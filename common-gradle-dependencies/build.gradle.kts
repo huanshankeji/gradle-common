@@ -1,8 +1,13 @@
+import com.huanshankeji.gitversioning.projectVersionFromGitProvider
+
 plugins {
     conventions
 }
 
-version = commonGradleDependenciesVersion
+// TODO don't use `afterEvaluate`
+afterEvaluate {
+    version = projectVersionFromGitProvider(commonGradleDependenciesBaseVersion).get()
+}
 
 gradlePlugin {
     plugins {

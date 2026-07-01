@@ -2,6 +2,7 @@
 
 package com.huanshankeji.team.dokka
 
+import com.huanshankeji.git.gitCommitHash
 import com.huanshankeji.team.github.defaultRepositoryName
 import com.huanshankeji.team.github.githubRepositoryUrl
 
@@ -16,7 +17,7 @@ interface GithubDokkaConventionExtension {
 
 extensions.create<GithubDokkaConventionExtension>("githubDokkaConvention").apply {
     repositoryName.convention(defaultRepositoryName())
-    commitOrTag.convention("v${version}")
+    commitOrTag.set(gitCommitHash())
 
     val sourceLinkRemoteUrlRoot = repositoryName.flatMap { repositoryName ->
         val repositoryUrl = githubRepositoryUrl(repositoryName)

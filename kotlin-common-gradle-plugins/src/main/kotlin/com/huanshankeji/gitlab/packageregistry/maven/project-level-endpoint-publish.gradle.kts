@@ -1,8 +1,6 @@
-package com.huanshankeji
+package com.huanshankeji.gitlab.packageregistry.maven
 
 import com.huanshankeji.publish.publishing
-
-// This plugin is deprecated and can be removed directly in the future.
 
 plugins {
     /*
@@ -14,25 +12,18 @@ plugins {
     id("com.vanniktech.maven.publish")
 }
 
-logger.warn(
-    "WARNING: 'com.huanshankeji.gitlab-project-level-maven-endpoint-publish' is deprecated and will be removed in a future release. " +
-            "Please migrate to 'com.huanshankeji.gitlab.packageregistry.maven.project-level-endpoint-publish' instead."
-)
-
 interface Extension {
     val host: Property<String>
     val projectId: Property<String>
 }
 
-val extension = extensions.create<Extension>("gitlabPackageRegistryProjectLevelMavenEndpointPublish")
+val extension = extensions.create<Extension>("gitlabPackageRegistryProjectLevelEndpointMavenPublish")
 
 afterEvaluate {
     publishing {
         repositories {
-            @Suppress("DEPRECATION")
-            gitlabProjectLevelMavenRepository(
-                this,
-                host = extension.host.getOrElse(GITLAB_HOST),
+            gitlabPackageRegistryProjectLevelEndpointMavenRepository(
+                host = extension.host.getOrElse(GITLAB_COM_HOST),
                 projectIdOrProjectPath = extension.projectId.get(),
             )
         }

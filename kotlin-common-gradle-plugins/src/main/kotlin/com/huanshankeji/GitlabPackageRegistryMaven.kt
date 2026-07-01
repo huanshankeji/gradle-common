@@ -1,55 +1,48 @@
+@file:Suppress("DEPRECATION")
+
 package com.huanshankeji
 
+import com.huanshankeji.gitlab.packageregistry.maven.gitlabPackageRegistryGroupLevelEndpointMavenRepository
+import com.huanshankeji.gitlab.packageregistry.maven.gitlabPackageRegistryInstanceLevelEndpointMavenRepository
+import com.huanshankeji.gitlab.packageregistry.maven.gitlabPackageRegistryMavenRepository
+import com.huanshankeji.gitlab.packageregistry.maven.gitlabPackageRegistryProjectLevelEndpointMavenRepository
 import org.gradle.api.Project
 import org.gradle.api.artifacts.dsl.RepositoryHandler
-import org.gradle.api.credentials.HttpHeaderCredentials
-import org.gradle.authentication.http.HttpHeaderAuthentication
-import org.gradle.kotlin.dsl.create
-import org.gradle.kotlin.dsl.credentials
 
-// TODO: use context receivers when it's stable.
+// All APIs in this file are deprecated and this file can be removed directly in the future.
 
+private const val GITLAB_PACKAGE_REGISTRY_MAVEN_REGISTRY_OLD_APIS_DEPRECATION_MESSAGE =
+    "Use the new APIs in `com.huanshankeji.gitlab.packageregistry.maven` instead."
+
+@Deprecated(GITLAB_PACKAGE_REGISTRY_MAVEN_REGISTRY_OLD_APIS_DEPRECATION_MESSAGE)
+fun Project.gitlabMavenRepository(repositoryHandler: RepositoryHandler, nameArg: String = "GitLab", urlArg: String) =
+    repositoryHandler.gitlabPackageRegistryMavenRepository(nameArg, urlArg)
+
+@Deprecated(GITLAB_PACKAGE_REGISTRY_MAVEN_REGISTRY_OLD_APIS_DEPRECATION_MESSAGE)
 const val GITLAB_HOST = "gitlab.com"
 
-fun Project.gitlabMavenRepository(repositoryHandler: RepositoryHandler, nameArg: String = "GitLab", urlArg: String) =
-    // adapted from https://docs.gitlab.com/ee/user/packages/maven_repository/#authenticate-with-a-personal-access-token-in-gradle
-    repositoryHandler.maven {
-        url = uri(urlArg)
-        name = nameArg
-        credentials(HttpHeaderCredentials::class) {
-            name = "Private-Token"
-            value = findProperty("gitLabPrivateToken") as String?
-        }
-        authentication {
-            create("header", HttpHeaderAuthentication::class)
-        }
-    }
-
-
-// see: https://docs.gitlab.com/ee/user/packages/maven_repository/#project-level-maven-endpoint
-// only the project’s ID can be used for publishing.
+@Deprecated(GITLAB_PACKAGE_REGISTRY_MAVEN_REGISTRY_OLD_APIS_DEPRECATION_MESSAGE)
 fun Project.gitlabProjectLevelMavenRepository(
     repositoryHandler: RepositoryHandler,
-    name: String = "GitLab", host: String = GITLAB_HOST, projectIdOrProjectPath: String
+    name: String = "GitLab",
+    host: String = GITLAB_HOST,
+    projectIdOrProjectPath: String,
 ) =
-    gitlabMavenRepository(
-        repositoryHandler,
-        name,
-        "https://$host/api/v4/projects/$projectIdOrProjectPath/packages/maven"
-    )
+    repositoryHandler.gitlabPackageRegistryProjectLevelEndpointMavenRepository(name, host, projectIdOrProjectPath)
 
-// see: https://docs.gitlab.com/ee/user/packages/maven_repository/#group-level-maven-endpoint
+@Deprecated(GITLAB_PACKAGE_REGISTRY_MAVEN_REGISTRY_OLD_APIS_DEPRECATION_MESSAGE)
 fun Project.gitlabGroupLevelMavenRepository(
     repositoryHandler: RepositoryHandler,
-    name: String = "GitLab", host: String = GITLAB_HOST, groupId: String
+    name: String = "GitLab",
+    host: String = GITLAB_HOST,
+    groupId: String,
 ) =
-    gitlabMavenRepository(repositoryHandler, name, "https://$host/api/v4/groups/$groupId/-/packages/maven")
+    repositoryHandler.gitlabPackageRegistryGroupLevelEndpointMavenRepository(name, host, groupId)
 
-// see: https://docs.gitlab.com/ee/user/packages/maven_repository/#group-level-maven-endpoint
+@Deprecated(GITLAB_PACKAGE_REGISTRY_MAVEN_REGISTRY_OLD_APIS_DEPRECATION_MESSAGE)
 fun Project.gitlabInstanceLevelMavenRepository(
     repositoryHandler: RepositoryHandler,
-    name: String = "GitLab", host: String
+    name: String = "GitLab",
+    host: String,
 ) =
-    gitlabMavenRepository(repositoryHandler, name, "https://$host/api/v4/packages/maven")
-
-
+    repositoryHandler.gitlabPackageRegistryInstanceLevelEndpointMavenRepository(name, host)

@@ -4,17 +4,10 @@ tasks.wrapper {
 
 plugins {
     id("org.jetbrains.dokka")
-    alias(libs.plugins.binaryCompatibilityValidator)
+    id("com.github.ben-manes.versions")
 }
 
 evaluationDependsOnChildren()
-tasks.register("publishPluginProjectPlugins") {
-    group = "plugin portal"
-
-    val pluginProjects = subprojects.filter { it.name.endsWith("plugins") }
-    pluginProjects.forEach { dependsOn(it.tasks.named("publishPlugins")) }
-}
-
 
 dependencies {
     /*

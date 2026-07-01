@@ -1,3 +1,6 @@
-// extracted into a separate script so the version can be set before `dokka-convention`
+import com.huanshankeji.gitversioning.projectVersionFromGitProvider
 
-version = alignedPluginVersion
+// TODO don't use `afterEvaluate`
+afterEvaluate {
+    version = projectVersionFromGitProvider(alignedPluginBaseVersion).get()
+}

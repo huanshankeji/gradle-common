@@ -1,0 +1,43 @@
+# gradle-common: Plugin Portal on release branch; GitHub Packages on all other branches.
+name: Publish
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ["**"]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    # packages: write is required only when authenticating with GITHUB_TOKEN (repo-scoped);
+    # GPR_* PAT below carries its own scopes. See https://github.com/huanshankeji/gradle-common/pull/65
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Set up JDKs
+        uses: huanshankeji/.github/actions/setup-javas@v0.3.0
+        with:
+          jdk-versions: 17-temurin
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v6
+
+      - name: Publish with Gradle Wrapper
+        env:
+          # Org PAT (GPR_*) for GitHub Packages publish. GITHUB_TOKEN works for same-repo publish
+          # only; cross-repo Gradle/Maven resolution in CI still needs GPR_* — see
+          # huanshankeji/.github/.github/workflows/gradle-ci.yml and
+          # https://github.com/huanshankeji/gradle-common/pull/65
+          ORG_GRADLE_PROJECT_gprUser: ${{ secrets.GPR_USER }}
+          ORG_GRADLE_PROJECT_gprKey: ${{ secrets.GPR_KEY }}
+          GRADLE_PUBLISH_KEY: ${{ secrets.GRADLE_PUBLISH_KEY }}
+          GRADLE_PUBLISH_SECRET: ${{ secrets.GRADLE_PUBLISH_SECRET }}
+        run: |
+          if [ "${{ github.ref }}" = "refs/heads/release" ]; then
+            ./gradlew publishPlugins
+          else
+            ./gradlew publishAllPublicationsToGitHubPackagesRepository --parallel
+          fi

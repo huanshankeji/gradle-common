@@ -10,6 +10,7 @@ dependencies {
     // `api`, matching the root module; provides the `com.huanshankeji.*` plugins whose extensions
     // the team plugins configure via type-safe accessors (compiled across this project boundary).
     api(project(":kotlin-common-gradle-plugins"))
+    implementation(libs.benManes.gradleVersionsPlugin)
 }
 
 // Source-link the `huanshankeji-team-gradle-plugins` sources (#54).
@@ -22,8 +23,14 @@ sourceSets.main {
 
 apply(plugin = "org.gradle.kotlin.kotlin-dsl")
 
+
+// copied from `aligned-version-plugin-conventions.gradle.kts`
+
 kotlin {
     compilerOptions {
-        optIn.add("com.huanshankeji.InternalApi")
+        optIn.addAll(
+            "com.huanshankeji.GradleCommonExperimentalApi"
+        )
+        freeCompilerArgs.add("-Xcontext-parameters")
     }
 }
