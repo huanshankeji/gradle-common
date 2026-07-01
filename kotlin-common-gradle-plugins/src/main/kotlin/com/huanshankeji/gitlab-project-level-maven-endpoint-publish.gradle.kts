@@ -3,7 +3,6 @@ package com.huanshankeji
 import com.huanshankeji.publish.publishing
 
 // This plugin is deprecated and can be removed directly in the future.
-// TODO deprecation warnings
 
 plugins {
     /*
@@ -14,6 +13,11 @@ plugins {
      */
     id("com.vanniktech.maven.publish")
 }
+
+logger.warn(
+    "WARNING: 'com.huanshankeji.gitlab-project-level-maven-endpoint-publish' is deprecated and will be removed in a future release. " +
+            "Please migrate to 'com.huanshankeji.gitlab.packageregistry.maven.project-level-endpoint-publish' instead."
+)
 
 interface Extension {
     val host: Property<String>

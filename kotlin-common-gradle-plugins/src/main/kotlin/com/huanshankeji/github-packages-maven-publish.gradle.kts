@@ -1,7 +1,6 @@
 package com.huanshankeji
 
 // This plugin is deprecated and can be removed directly in the future.
-// TODO deprecation warnings
 
 plugins {
     /*
@@ -12,6 +11,11 @@ plugins {
      */
     id("com.vanniktech.maven.publish")
 }
+
+logger.warn(
+    "WARNING: 'com.huanshankeji.github-packages-maven-publish' is deprecated and will be removed in a future release. " +
+            "Please migrate to 'com.huanshankeji.github.packages.maven.publish' instead."
+)
 
 interface Extension {
     val owner: Property<String>
