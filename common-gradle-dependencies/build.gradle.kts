@@ -1,10 +1,12 @@
+import com.huanshankeji.gitversion.projectVersionFromGitProvider
+
 plugins {
     conventions
-    id("com.huanshankeji.git-version")
 }
 
-gitVersion {
-    baseVersion.set(commonGradleDependenciesBaseVersion)
+// TODO don't use `afterEvaluate`
+afterEvaluate {
+    version = projectVersionFromGitProvider(commonGradleDependenciesBaseVersion).get()
 }
 
 gradlePlugin {

@@ -78,7 +78,9 @@ Configuration cache is enabled ([gradle.properties](gradle.properties)). Expect 
 - **Package:** `com.huanshankeji` for published plugins; `com.huanshankeji.team` for team-only plugins.
 - **Plugin IDs:** `com.huanshankeji.<kebab-case-suffix>` or `com.huanshankeji.team.<suffix>`, registered in each module's `gradlePlugin` block.
 - **Naming:** kebab-case for plugin id suffixes and script file names; camelCase for Kotlin APIs. Match patterns in existing plugins and helpers in the same module.
-- **Internal API:** APIs meant for in-repo use are marked `@InternalApi` ([Internal.kt](kotlin-common-gradle-plugins/src/main/kotlin/com/huanshankeji/Internal.kt)); plugin modules compile with `-opt-in=com.huanshankeji.InternalApi`.
+- **Internal API:** APIs meant for in-repo use are marked
+  `@GradleCommonInternalApi` ([GradleCommonInternalApi.kt](kotlin-common-gradle-plugins/src/main/kotlin/com/huanshankeji/GradleCommonInternalApi.kt));
+  plugin modules compile with `-opt-in=com.huanshankeji.InternalApi`.
 - **Public ABI:** Binary compatibility is tracked via `api/*.api` files and `apiCheck` / `checkKotlinAbi`. Do not change public signatures casually; update dumps only when the ABI change is deliberate.
 - **Scope:** Keep changes minimal and localized. Match existing patterns in the module you touch. Do not add unrelated refactors, comments, or tests unless they support the task.
 - **Tests:** Limited coverage today (e.g. [ConcatenatedProjectNamesTest.kt](kotlin-common-gradle-plugins/src/test/kotlin/com/huanshankeji/ConcatenatedProjectNamesTest.kt)). Add tests when changing non-trivial logic; run `./gradlew check` before finishing.

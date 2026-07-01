@@ -1,63 +1,48 @@
+@file:Suppress("DEPRECATION")
+
 package com.huanshankeji
 
+import com.huanshankeji.gitlab.packageregistry.maven.gitlabPackageRegistryGroupLevelEndpointMavenRepository
+import com.huanshankeji.gitlab.packageregistry.maven.gitlabPackageRegistryInstanceLevelEndpointMavenRepository
+import com.huanshankeji.gitlab.packageregistry.maven.gitlabPackageRegistryMavenRepository
+import com.huanshankeji.gitlab.packageregistry.maven.gitlabPackageRegistryProjectLevelEndpointMavenRepository
 import org.gradle.api.Project
 import org.gradle.api.artifacts.dsl.RepositoryHandler
-import org.gradle.api.artifacts.repositories.MavenArtifactRepository
-import org.gradle.api.credentials.HttpHeaderCredentials
-import org.gradle.authentication.http.HttpHeaderAuthentication
-import org.gradle.kotlin.dsl.create
-import org.gradle.kotlin.dsl.credentials
 
-const val GITLAB_COM_HOST = "gitlab.com"
+// All APIs in this file are deprecated and this file can be removed directly in the future.
 
-const val GITLAB_PACKAGE_REGISTRY_REPOSITORY_NAME = "GitLabPackageRegistry"
+private const val GITLAB_PACKAGE_REGISTRY_MAVEN_REGISTRY_OLD_APIS_DEPRECATION_MESSAGE =
+    "Use the new APIs in `com.huanshankeji.gitlab.packageregistry.maven` instead."
 
-context(project: Project)
-fun MavenArtifactRepository.gitlabPackageRegistryMavenRepositorySetUrlAndCredentials(nameArg: String, urlArg: String) {
-    url = project.uri(urlArg)
-    name = nameArg
-    credentials(HttpHeaderCredentials::class) {
-        name = "Private-Token"
-        value = project.gitlabPackageRegistryPrivateToken()
-    }
-    authentication {
-        create("header", HttpHeaderAuthentication::class)
-    }
-}
-
-@Deprecated(
-    "Use the context parameter version instead.", // TODO
-)
+@Deprecated(GITLAB_PACKAGE_REGISTRY_MAVEN_REGISTRY_OLD_APIS_DEPRECATION_MESSAGE)
 fun Project.gitlabMavenRepository(repositoryHandler: RepositoryHandler, nameArg: String = "GitLab", urlArg: String) =
-    repositoryHandler.maven {
-        with(this@gitlabMavenRepository) {
-            gitlabPackageRegistryMavenRepositorySetUrlAndCredentials(nameArg, urlArg)
-        }
-    }
+    repositoryHandler.gitlabPackageRegistryMavenRepository(nameArg, urlArg)
 
-fun Project.gitlabPackageRegistryProjectLevelMavenRepository(
+@Deprecated(GITLAB_PACKAGE_REGISTRY_MAVEN_REGISTRY_OLD_APIS_DEPRECATION_MESSAGE)
+const val GITLAB_HOST = "gitlab.com"
+
+@Deprecated(GITLAB_PACKAGE_REGISTRY_MAVEN_REGISTRY_OLD_APIS_DEPRECATION_MESSAGE)
+fun Project.gitlabProjectLevelMavenRepository(
     repositoryHandler: RepositoryHandler,
-    name: String = GITLAB_PACKAGE_REGISTRY_REPOSITORY_NAME,
-    host: String = GITLAB_COM_HOST,
+    name: String = "GitLab",
+    host: String = GITLAB_HOST,
     projectIdOrProjectPath: String,
-): MavenArtifactRepository =
-    gitlabMavenRepository(
-        repositoryHandler,
-        name,
-        "https://$host/api/v4/projects/$projectIdOrProjectPath/packages/maven",
-    )
+) =
+    repositoryHandler.gitlabPackageRegistryProjectLevelEndpointMavenRepository(name, host, projectIdOrProjectPath)
 
-fun Project.gitlabPackageRegistryGroupLevelMavenRepository(
+@Deprecated(GITLAB_PACKAGE_REGISTRY_MAVEN_REGISTRY_OLD_APIS_DEPRECATION_MESSAGE)
+fun Project.gitlabGroupLevelMavenRepository(
     repositoryHandler: RepositoryHandler,
-    name: String = GITLAB_PACKAGE_REGISTRY_REPOSITORY_NAME,
-    host: String = GITLAB_COM_HOST,
+    name: String = "GitLab",
+    host: String = GITLAB_HOST,
     groupId: String,
-): MavenArtifactRepository =
-    gitlabMavenRepository(repositoryHandler, name, "https://$host/api/v4/groups/$groupId/-/packages/maven")
+) =
+    repositoryHandler.gitlabPackageRegistryGroupLevelEndpointMavenRepository(name, host, groupId)
 
-fun Project.gitlabPackageRegistryInstanceLevelMavenRepository(
+@Deprecated(GITLAB_PACKAGE_REGISTRY_MAVEN_REGISTRY_OLD_APIS_DEPRECATION_MESSAGE)
+fun Project.gitlabInstanceLevelMavenRepository(
     repositoryHandler: RepositoryHandler,
-    name: String = GITLAB_PACKAGE_REGISTRY_REPOSITORY_NAME,
+    name: String = "GitLab",
     host: String,
-): MavenArtifactRepository =
-    gitlabMavenRepository(repositoryHandler, name, "https://$host/api/v4/packages/maven")
+) =
+    repositoryHandler.gitlabPackageRegistryInstanceLevelEndpointMavenRepository(name, host)

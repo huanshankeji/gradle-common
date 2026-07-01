@@ -1,47 +1,38 @@
 package com.huanshankeji
 
-import org.gradle.api.Action
+import com.huanshankeji.github.packages.maven.githubPackagesMavenRegistry
+import com.huanshankeji.github.packages.maven.githubPackagesMavenRegistryWithName
+import com.huanshankeji.github.packages.maven.githubPackagesSetUrlAndCredentials
+import com.huanshankeji.publish.publishing
 import org.gradle.api.Project
 import org.gradle.api.artifacts.repositories.MavenArtifactRepository
-import org.gradle.api.publish.PublishingExtension
 import org.gradle.kotlin.dsl.repositories
 
-context(project: Project)
-fun MavenArtifactRepository.githubPackagesMavenRegistrySetUrlAndCredentials(owner: String, repository: String) {
-    url = project.uri("https://maven.pkg.github.com/$owner/$repository")
-    credentials {
-        username = project.githubPackagesMavenUsername()
-        password = project.githubPackagesMavenPassword()
-    }
-}
+// All APIs in this file are deprecated and this file can be removed directly in the future.
 
-@Deprecated(
-    "Use the context parameter version instead.", // TODO
-)
+private const val GITHUB_PACKAGES_MAVEN_REGISTRY_OLD_APIS_DEPRECATION_MESSAGE =
+    "Use the new APIs in `com.huanshankeji.github.packages.maven` instead."
+
+@Deprecated(GITHUB_PACKAGES_MAVEN_REGISTRY_OLD_APIS_DEPRECATION_MESSAGE)
+fun Project.githubPackagesMavenRegistrySetUrlAndCredentials(
+    mavenArtifactRepository: MavenArtifactRepository, owner: String, repository: String
+) =
+    mavenArtifactRepository.githubPackagesSetUrlAndCredentials(owner, repository)
+
+@Deprecated(GITHUB_PACKAGES_MAVEN_REGISTRY_OLD_APIS_DEPRECATION_MESSAGE)
 fun Project.repositoriesAddGithubPackagesMavenRegistry(owner: String, repository: String) =
     repositories {
-        maven {
-            with(this@repositoriesAddGithubPackagesMavenRegistry) {
-                githubPackagesMavenRegistrySetUrlAndCredentials(owner, repository)
-            }
-        }
+        githubPackagesMavenRegistry(owner, repository)
     }
 
+@Deprecated(GITHUB_PACKAGES_MAVEN_REGISTRY_OLD_APIS_DEPRECATION_MESSAGE)
 fun Project.publishingRepositoriesAddGithubPackagesMavenRepository(
-    nameArg: String = "GitHubPackages",
+    name: String = "GitHubPackages",
     owner: String,
     repository: String,
 ) =
     publishing {
         repositories {
-            maven {
-                name = nameArg
-                with(this@publishingRepositoriesAddGithubPackagesMavenRepository) {
-                    githubPackagesMavenRegistrySetUrlAndCredentials(owner, repository)
-                }
-            }
+            githubPackagesMavenRegistryWithName(owner, repository, name)
         }
     }
-
-fun Project.publishing(configure: Action<PublishingExtension>): Unit =
-    extensions.configure("publishing", configure)

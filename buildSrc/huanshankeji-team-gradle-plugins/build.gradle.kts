@@ -23,9 +23,14 @@ sourceSets.main {
 
 apply(plugin = "org.gradle.kotlin.kotlin-dsl")
 
+
+// copied from `aligned-version-plugin-conventions.gradle.kts`
+
 kotlin {
     compilerOptions {
-        optIn.add("com.huanshankeji.InternalApi")
+        optIn.addAll(
+            "com.huanshankeji.GradleCommonExperimentalApi"
+        )
         freeCompilerArgs.add("-Xcontext-parameters")
     }
 }

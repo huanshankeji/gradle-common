@@ -1,4 +1,6 @@
-package com.huanshankeji
+package com.huanshankeji.gitlab.packageregistry.maven
+
+import com.huanshankeji.publish.publishing
 
 plugins {
     /*
@@ -15,13 +17,12 @@ interface Extension {
     val projectId: Property<String>
 }
 
-val extension = extensions.create<Extension>("gitlabPackageRegistryProjectLevelMavenEndpointPublish")
+val extension = extensions.create<Extension>("gitlabPackageRegistryProjectLevelEndpointMavenPublish")
 
 afterEvaluate {
     publishing {
         repositories {
-            gitlabPackageRegistryProjectLevelMavenRepository(
-                this,
+            gitlabPackageRegistryProjectLevelEndpointMavenRepository(
                 host = extension.host.getOrElse(GITLAB_COM_HOST),
                 projectIdOrProjectPath = extension.projectId.get(),
             )

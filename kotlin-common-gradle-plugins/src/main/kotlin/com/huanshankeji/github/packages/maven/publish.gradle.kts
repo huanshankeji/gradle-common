@@ -1,7 +1,6 @@
-package com.huanshankeji
+package com.huanshankeji.github.packages.maven
 
-// This plugin is deprecated and can be removed directly in the future.
-// TODO deprecation warnings
+import com.huanshankeji.publish.publishing
 
 plugins {
     /*
@@ -18,12 +17,15 @@ interface Extension {
     val repository: Property<String>
 }
 
-val extension = extensions.create<Extension>("githubPackagesPublish")
+val extension = extensions.create<Extension>("githubPackagesMavenPublish")
 
 afterEvaluate {
-    @Suppress("DEPRECATION")
-    publishingRepositoriesAddGithubPackagesMavenRepository(
-        owner = extension.owner.get(),
-        repository = extension.repository.get()
-    )
+    publishing {
+        repositories {
+            githubPackagesMavenRegistryWithName(
+                extension.owner.get(),
+                extension.repository.get()
+            )
+        }
+    }
 }

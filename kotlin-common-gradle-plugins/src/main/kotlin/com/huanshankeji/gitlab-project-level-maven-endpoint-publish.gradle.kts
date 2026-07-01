@@ -1,5 +1,7 @@
 package com.huanshankeji
 
+import com.huanshankeji.publish.publishing
+
 // This plugin is deprecated and can be removed directly in the future.
 // TODO deprecation warnings
 
@@ -14,16 +16,21 @@ plugins {
 }
 
 interface Extension {
-    val owner: Property<String>
-    val repository: Property<String>
+    val host: Property<String>
+    val projectId: Property<String>
 }
 
-val extension = extensions.create<Extension>("githubPackagesPublish")
+val extension = extensions.create<Extension>("gitlabPackageRegistryProjectLevelMavenEndpointPublish")
 
 afterEvaluate {
-    @Suppress("DEPRECATION")
-    publishingRepositoriesAddGithubPackagesMavenRepository(
-        owner = extension.owner.get(),
-        repository = extension.repository.get()
-    )
+    publishing {
+        repositories {
+            @Suppress("DEPRECATION")
+            gitlabProjectLevelMavenRepository(
+                this,
+                host = extension.host.getOrElse(GITLAB_HOST),
+                projectIdOrProjectPath = extension.projectId.get(),
+            )
+        }
+    }
 }

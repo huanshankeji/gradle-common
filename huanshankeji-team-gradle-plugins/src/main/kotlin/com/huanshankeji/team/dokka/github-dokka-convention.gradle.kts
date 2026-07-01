@@ -2,10 +2,9 @@
 
 package com.huanshankeji.team.dokka
 
-import com.huanshankeji.gitCommitHash
+import com.huanshankeji.gitversion.gitCommitHash
 import com.huanshankeji.team.github.defaultRepositoryName
 import com.huanshankeji.team.github.githubRepositoryUrl
-import org.gradle.api.provider.Property
 
 plugins {
     id("com.huanshankeji.dokka.dokka-convention")
