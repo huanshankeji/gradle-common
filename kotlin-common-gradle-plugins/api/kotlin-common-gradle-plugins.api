@@ -81,7 +81,7 @@ public abstract interface annotation class com/huanshankeji/GradleCommonExperime
 public abstract interface annotation class com/huanshankeji/GradleCommonInternalApi : java/lang/annotation/Annotation {
 }
 
-public final class com/huanshankeji/GradleKotlinExtensionsKt {
+public final class com/huanshankeji/GradleGeneratedExtensionsKt {
 	public static final fun getSourceSets (Lorg/gradle/api/Project;)Lorg/gradle/api/tasks/SourceSetContainer;
 	public static final fun main (Lorg/gradle/api/tasks/SourceSetContainer;Lkotlin/jvm/functions/Function1;)Lorg/gradle/api/NamedDomainObjectProvider;
 }
@@ -152,36 +152,6 @@ public final class com/huanshankeji/MavenCentralPublishConventionsPlugin : org/g
 	public fun <init> ()V
 	public synthetic fun apply (Ljava/lang/Object;)V
 	public fun apply (Lorg/gradle/api/Project;)V
-}
-
-public final class com/huanshankeji/MavenPomKt {
-	public static final fun pomForDefaultOpenSourceWithApacheLicense20OnGitHub (Lorg/gradle/api/publish/maven/MavenPublication;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
-	public static synthetic fun pomForDefaultOpenSourceWithApacheLicense20OnGitHub$default (Lorg/gradle/api/publish/maven/MavenPublication;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
-	public static final fun setUpForDefaultOpenSourceWithApacheLicense20OnGitHub (Lorg/gradle/api/publish/maven/MavenPom;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
-	public static synthetic fun setUpForDefaultOpenSourceWithApacheLicense20OnGitHub$default (Lorg/gradle/api/publish/maven/MavenPom;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
-}
-
-public final class com/huanshankeji/MavenRegistryCredentialsKt {
-	public static final fun githubPackagesMavenPassword (Lorg/gradle/api/initialization/Settings;)Ljava/lang/String;
-	public static final fun githubPackagesMavenUsername (Lorg/gradle/api/initialization/Settings;)Ljava/lang/String;
-	public static final fun gitlabPackageRegistryPrivateToken (Lorg/gradle/api/Project;)Ljava/lang/String;
-}
-
-public final class com/huanshankeji/MavenRepositoryContentFilteringKt {
-	public static final fun contentExcludeGroupVersions (Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;Ljava/lang/String;Ljava/lang/String;)V
-	public static final fun contentExcludeHuanshankejiNonStableVersions (Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;)V
-	public static final fun contentExcludeModuleVersions (Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
-	public static final fun contentIncludeGroupVersions (Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;Ljava/lang/String;Ljava/lang/String;)V
-	public static final fun contentIncludeHuanshankejiDevCommitVersions (Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;)V
-	public static final fun contentIncludeHuanshankejiDirtyAndLegacySnapshots (Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;)V
-	public static final fun contentIncludeModuleVersions (Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
-}
-
-public final class com/huanshankeji/MavenRepositoryVersionsKt {
-	public static final field DEV_COMMIT_VERSION_REGEX Ljava/lang/String;
-	public static final field DIRTY_DEV_COMMIT_VERSION_REGEX Ljava/lang/String;
-	public static final field HUANSHANKEJI_MAVEN_GROUP Ljava/lang/String;
-	public static final field LEGACY_SNAPSHOT_VERSION_REGEX Ljava/lang/String;
 }
 
 public final class com/huanshankeji/Maven_central_publish_conventions_gradle : org/gradle/kotlin/dsl/precompile/v1/PrecompiledProjectScript {
@@ -300,6 +270,22 @@ public abstract interface class com/huanshankeji/dokka/Dokka_convention_gradle$D
 	public abstract fun getSourceLinkRemoteUrlRoot ()Lorg/gradle/api/provider/Property;
 }
 
+public final class com/huanshankeji/git/GitKt {
+	public static final fun gitCommitHash (Lorg/gradle/api/Project;)Lorg/gradle/api/provider/Provider;
+	public static final fun gitCurrentBranch (Lorg/gradle/api/Project;)Lorg/gradle/api/provider/Provider;
+	public static final fun isGitWorkingTreeDirty (Lorg/gradle/api/Project;)Lorg/gradle/api/provider/Provider;
+}
+
+public final class com/huanshankeji/git/workflow/GitWorkflowKt {
+	public static final fun isReleaseBranch (Lorg/gradle/api/Project;Ljava/lang/String;)Lorg/gradle/api/provider/Provider;
+	public static synthetic fun isReleaseBranch$default (Lorg/gradle/api/Project;Ljava/lang/String;ILjava/lang/Object;)Lorg/gradle/api/provider/Provider;
+}
+
+public final class com/huanshankeji/github/packages/maven/CredentialsKt {
+	public static final fun githubPackagesMavenPassword (Lorg/gradle/api/initialization/Settings;)Ljava/lang/String;
+	public static final fun githubPackagesMavenUsername (Lorg/gradle/api/initialization/Settings;)Ljava/lang/String;
+}
+
 public final class com/huanshankeji/github/packages/maven/GithubPackagesMavenRegistryKt {
 	public static final fun githubPackagesMavenPassword (Lorg/gradle/api/Project;)Ljava/lang/String;
 	public static final fun githubPackagesMavenRegistry (Lorg/gradle/api/Project;Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Ljava/lang/String;Ljava/lang/String;)Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;
@@ -335,6 +321,7 @@ public final class com/huanshankeji/gitlab/packageregistry/maven/GitlabPackageRe
 	public static synthetic fun gitlabPackageRegistryInstanceLevelEndpointMavenRepository$default (Lorg/gradle/api/Project;Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;
 	public static final fun gitlabPackageRegistryMavenRepository (Lorg/gradle/api/Project;Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Ljava/lang/String;Ljava/lang/String;)Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;
 	public static synthetic fun gitlabPackageRegistryMavenRepository$default (Lorg/gradle/api/Project;Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;
+	public static final fun gitlabPackageRegistryPrivateToken (Lorg/gradle/api/Project;)Ljava/lang/String;
 	public static final fun gitlabPackageRegistryProjectLevelEndpointMavenRepository (Lorg/gradle/api/Project;Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;
 	public static synthetic fun gitlabPackageRegistryProjectLevelEndpointMavenRepository$default (Lorg/gradle/api/Project;Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;
 	public static final fun gitlabPackageRegistrySetUrlAndCredentials (Lorg/gradle/api/Project;Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;Ljava/lang/String;Ljava/lang/String;)V
@@ -357,21 +344,29 @@ public abstract interface class com/huanshankeji/gitlab/packageregistry/maven/Pr
 	public abstract fun getProjectId ()Lorg/gradle/api/provider/Property;
 }
 
-public final class com/huanshankeji/gitversion/GitVersionKt {
+public final class com/huanshankeji/gitversioning/GitVersioningKt {
 	public static final fun devCommitVersionProvider (Lorg/gradle/api/Project;Ljava/lang/String;)Lorg/gradle/api/provider/Provider;
 	public static final fun devCommitVersionString (Ljava/lang/String;Ljava/lang/String;Z)Ljava/lang/String;
-	public static final fun gitCommitHash (Lorg/gradle/api/Project;)Lorg/gradle/api/provider/Provider;
-	public static final fun gitCurrentBranch (Lorg/gradle/api/Project;)Lorg/gradle/api/provider/Provider;
 	public static final fun isDevCommitVersion (Lorg/gradle/api/Project;)Z
 	public static final fun isDirtyDevCommitVersion (Lorg/gradle/api/Project;)Z
-	public static final fun isGitWorkingTreeDirty (Lorg/gradle/api/Project;)Lorg/gradle/api/provider/Provider;
-	public static final fun isReleaseBranch (Lorg/gradle/api/Project;Ljava/lang/String;)Lorg/gradle/api/provider/Provider;
-	public static synthetic fun isReleaseBranch$default (Lorg/gradle/api/Project;Ljava/lang/String;ILjava/lang/Object;)Lorg/gradle/api/provider/Provider;
 	public static final fun projectVersionFromGitProvider (Lorg/gradle/api/Project;Ljava/lang/String;Ljava/lang/String;)Lorg/gradle/api/provider/Provider;
 	public static synthetic fun projectVersionFromGitProvider$default (Lorg/gradle/api/Project;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/gradle/api/provider/Provider;
 }
 
-public final class com/huanshankeji/publish/GeneratedCodeShortcutsKt {
+public final class com/huanshankeji/gitversioning/VersionRegexesKt {
+	public static final field DEV_COMMIT_VERSION_REGEX Ljava/lang/String;
+	public static final field DIRTY_DEV_COMMIT_VERSION_REGEX Ljava/lang/String;
+	public static final field LEGACY_SNAPSHOT_VERSION_REGEX Ljava/lang/String;
+}
+
+public final class com/huanshankeji/publish/GradleGeneratedExtensionsKt {
 	public static final fun publishing (Lorg/gradle/api/Project;Lorg/gradle/api/Action;)V
+}
+
+public final class com/huanshankeji/publish/maven/MavenPomKt {
+	public static final fun pomForDefaultOpenSourceWithApacheLicense20OnGitHub (Lorg/gradle/api/publish/maven/MavenPublication;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun pomForDefaultOpenSourceWithApacheLicense20OnGitHub$default (Lorg/gradle/api/publish/maven/MavenPublication;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static final fun setUpForDefaultOpenSourceWithApacheLicense20OnGitHub (Lorg/gradle/api/publish/maven/MavenPom;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun setUpForDefaultOpenSourceWithApacheLicense20OnGitHub$default (Lorg/gradle/api/publish/maven/MavenPom;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 }
 

@@ -1,6 +1,4 @@
-package com.huanshankeji
-
-const val HUANSHANKEJI_MAVEN_GROUP = "com.huanshankeji"
+package com.huanshankeji.gitversioning
 
 /** Clean committed dev build, e.g. `1.0.0-dev-commit-abc123`. */
 const val DEV_COMMIT_VERSION_REGEX = ".*-dev-commit-[0-9a-f]+$"

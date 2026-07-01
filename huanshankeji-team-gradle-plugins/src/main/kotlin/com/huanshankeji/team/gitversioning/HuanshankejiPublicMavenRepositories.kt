@@ -1,8 +1,10 @@
-package com.huanshankeji.team.maven
+package com.huanshankeji.team.gitversioning
 
-import com.huanshankeji.*
 import com.huanshankeji.github.packages.maven.githubPackagesMavenPassword
 import com.huanshankeji.github.packages.maven.githubPackagesMavenUsername
+import com.huanshankeji.gitversioning.DEV_COMMIT_VERSION_REGEX
+import com.huanshankeji.gitversioning.DIRTY_DEV_COMMIT_VERSION_REGEX
+import com.huanshankeji.gitversioning.LEGACY_SNAPSHOT_VERSION_REGEX
 import com.huanshankeji.team.HUANSHANKEJI_IN_LOWERCASE
 import org.gradle.api.Project
 import org.gradle.api.artifacts.dsl.RepositoryHandler

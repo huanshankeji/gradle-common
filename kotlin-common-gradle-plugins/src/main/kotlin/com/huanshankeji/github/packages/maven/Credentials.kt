@@ -1,16 +1,13 @@
-package com.huanshankeji
+package com.huanshankeji.github.packages.maven
 
-import org.gradle.api.Project
+import com.huanshankeji.findStringGradleProperty
 import org.gradle.api.initialization.Settings
 
 
-// TODO remove these `Settings` extensions?
+// TODO remove/move these `Settings` extensions?
 
 fun Settings.githubPackagesMavenUsername(): String? =
     findStringGradleProperty("gpr.user") ?: findStringGradleProperty("gprUser")
 
 fun Settings.githubPackagesMavenPassword(): String? =
     findStringGradleProperty("gpr.key") ?: findStringGradleProperty("gprKey")
-
-fun Project.gitlabPackageRegistryPrivateToken(): String? =
-    findStringProperty("gitLabPrivateToken")

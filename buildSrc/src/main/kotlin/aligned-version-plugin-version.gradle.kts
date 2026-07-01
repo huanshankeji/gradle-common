@@ -1,4 +1,4 @@
-import com.huanshankeji.gitversion.projectVersionFromGitProvider
+import com.huanshankeji.gitversioning.projectVersionFromGitProvider
 
 // TODO don't use `afterEvaluate`
 afterEvaluate {

@@ -1,4 +1,4 @@
-package com.huanshankeji
+package com.huanshankeji.publish.maven
 
 import org.gradle.api.publish.maven.MavenPom
 import org.gradle.api.publish.maven.MavenPomDeveloperSpec

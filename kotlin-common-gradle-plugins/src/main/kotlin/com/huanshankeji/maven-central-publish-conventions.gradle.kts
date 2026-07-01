@@ -1,7 +1,7 @@
 package com.huanshankeji
 
-import com.huanshankeji.gitversion.isDevCommitVersion
-import com.huanshankeji.gitversion.isDirtyDevCommitVersion
+import com.huanshankeji.gitversioning.isDevCommitVersion
+import com.huanshankeji.gitversioning.isDirtyDevCommitVersion
 
 plugins {
     id("com.vanniktech.maven.publish")

@@ -1,7 +1,7 @@
 package com.huanshankeji.gitlab.packageregistry.maven
 
 import com.huanshankeji.GradleCommonExperimentalApi
-import com.huanshankeji.gitlabPackageRegistryPrivateToken
+import com.huanshankeji.findStringProperty
 import org.gradle.api.Project
 import org.gradle.api.artifacts.dsl.RepositoryHandler
 import org.gradle.api.artifacts.repositories.MavenArtifactRepository
@@ -9,6 +9,10 @@ import org.gradle.api.credentials.HttpHeaderCredentials
 import org.gradle.authentication.http.HttpHeaderAuthentication
 import org.gradle.kotlin.dsl.create
 import org.gradle.kotlin.dsl.credentials
+
+fun Project.gitlabPackageRegistryPrivateToken(): String? =
+    findStringProperty("gitLabPrivateToken")
+
 
 @GradleCommonExperimentalApi
 context(project: Project)

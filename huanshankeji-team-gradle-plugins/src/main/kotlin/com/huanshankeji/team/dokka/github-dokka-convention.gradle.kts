@@ -2,7 +2,7 @@
 
 package com.huanshankeji.team.dokka
 
-import com.huanshankeji.gitversion.gitCommitHash
+import com.huanshankeji.git.gitCommitHash
 import com.huanshankeji.team.github.defaultRepositoryName
 import com.huanshankeji.team.github.githubRepositoryUrl
 
