@@ -9,6 +9,7 @@ dependencies {
     implementation(kotlin("gradle-plugin"))
     implementation(libs.bundles.kotlinCommonGradlePlugins.implementation)
     api(libs.bundles.kotlinCommonGradlePlugins.api)
+    implementation(libs.foojay.resolver.convention)
 
     implementation(project(":common-gradle-dependencies"))
 }

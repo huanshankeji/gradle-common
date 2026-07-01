@@ -13,6 +13,8 @@ plugins {
     */
     // https://kotlinlang.org/docs/releases.html
     kotlin("jvm") version "2.4.0" apply false
+    // Bundled with Gradle 9.6+; version omitted to avoid conflicting with the embedded plugin.
+    id("org.gradle.toolchains.foojay-resolver-convention")
 }
 
 // alternative approach

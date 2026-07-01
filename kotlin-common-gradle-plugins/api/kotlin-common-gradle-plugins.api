@@ -1,3 +1,14 @@
+public final class com/huanshankeji/BaseSettingsConventionsPlugin : org/gradle/api/Plugin {
+	public fun <init> ()V
+	public synthetic fun apply (Ljava/lang/Object;)V
+	public fun apply (Lorg/gradle/api/initialization/Settings;)V
+}
+
+public final class com/huanshankeji/Base_settings_conventions_settings_gradle : org/gradle/kotlin/dsl/precompile/v1/PrecompiledSettingsScript {
+	public fun <init> (Lorg/gradle/api/initialization/Settings;Lorg/gradle/api/initialization/Settings;)V
+	public static final fun main ([Ljava/lang/String;)V
+}
+
 public final class com/huanshankeji/ConcatenatedProjectNamesKt {
 	public static final fun cpnProject (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Lorg/gradle/api/Project;Ljava/lang/String;Ljava/lang/String;)Lorg/gradle/api/artifacts/ProjectDependency;
 	public static final fun cpnProject (Lorg/jetbrains/kotlin/gradle/plugin/KotlinDependencyHandler;Lorg/gradle/api/Project;Ljava/lang/String;Ljava/lang/String;)Lorg/gradle/api/artifacts/ProjectDependency;
@@ -5,6 +16,8 @@ public final class com/huanshankeji/ConcatenatedProjectNamesKt {
 	public static synthetic fun cpnProject$default (Lorg/jetbrains/kotlin/gradle/plugin/KotlinDependencyHandler;Lorg/gradle/api/Project;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/gradle/api/artifacts/ProjectDependency;
 	public static final fun getConcatenatedProjectNamePath (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 	public static final fun getConcatenatedProjectNamePath (Lorg/gradle/api/Project;Ljava/lang/String;)Ljava/lang/String;
+	public static final fun setProjectConcatenatedNames (Lorg/gradle/api/initialization/ProjectDescriptor;Ljava/lang/String;)V
+	public static final fun setProjectConcatenatedNames (Lorg/gradle/api/initialization/Settings;)V
 }
 
 public final class com/huanshankeji/FeatureVariantsKt {
