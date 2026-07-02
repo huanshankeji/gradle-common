@@ -13,7 +13,8 @@ plugins {
     */
     // https://kotlinlang.org/docs/releases.html
     kotlin("jvm") version "2.4.0" apply false
-    // Bundled with Gradle 9.6+; version omitted to avoid conflicting with the embedded plugin.
+    // Same limitation as the root settings script: source-linked
+    // `com.huanshankeji.base-settings-conventions` is not on this nested settings classpath.
     id("org.gradle.toolchains.foojay-resolver-convention")
 }
 

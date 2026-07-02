@@ -8,7 +8,14 @@ plugins {
 dependencies {
     implementation(kotlin("gradle-plugin"))
 
-    implementation(project(":common-gradle-dependencies"))
+    implementation(
+        project(
+            com.huanshankeji.getConcatenatedProjectNamePath(
+                project.rootProject.name,
+                ":common-gradle-dependencies",
+            ),
+        ),
+    )
 }
 
 kotlin {

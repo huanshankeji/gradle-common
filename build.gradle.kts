@@ -18,6 +18,6 @@ dependencies {
         "kotlin-common-gradle-plugins",
         "architecture-common-gradle-plugins",
     ).forEach {
-        dokka(project(":$it"))
+        dokka(project(com.huanshankeji.getConcatenatedProjectNamePath(rootProject.name, ":$it")))
     }
 }
