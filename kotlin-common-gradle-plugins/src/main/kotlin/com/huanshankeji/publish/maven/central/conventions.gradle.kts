@@ -16,7 +16,7 @@ interface Extension {
 
 val extension = extensions.create<Extension>("mavenCentralPublishConventions")
 
-extension.signPublishing.convention(versionStringProvider().map { !it.isSnapshotVersion() })
+extension.signPublishing.convention(versionStringProvider().map { !isSnapshotVersion(it) })
 
 mavenPublishing {
     publishToMavenCentral()

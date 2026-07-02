@@ -35,14 +35,14 @@ fun Project.projectVersionFromGitProvider(
     }
 }
 
-fun String.isDirtyDevCommitVersion(): Boolean =
-    endsWith("-dirty-SNAPSHOT")
+fun isDirtyDevCommitVersion(version: String): Boolean =
+    version.endsWith("-dirty-SNAPSHOT")
 
 fun Project.isDirtyDevCommitVersion(): Boolean =
-    version.toString().isDirtyDevCommitVersion()
+    isDirtyDevCommitVersion(version.toString())
 
-fun String.isDevCommitVersion(): Boolean =
-    contains("-dev-commit-")
+fun isDevCommitVersion(version: String): Boolean =
+    version.contains("-dev-commit-")
 
 fun Project.isDevCommitVersion(): Boolean =
-    version.toString().isDevCommitVersion()
+    isDevCommitVersion(version.toString())

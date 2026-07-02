@@ -7,8 +7,8 @@ fun Project.versionStringProvider(): Provider<String> =
     provider { version.toString() }
 
 
-fun String.isSnapshotVersion(): Boolean =
-    endsWith("SNAPSHOT")
+fun isSnapshotVersion(version: String): Boolean =
+    version.endsWith("SNAPSHOT")
 
 fun Project.isSnapshotVersion(): Boolean =
-    version.toString().isSnapshotVersion()
+    isSnapshotVersion(version.toString())
