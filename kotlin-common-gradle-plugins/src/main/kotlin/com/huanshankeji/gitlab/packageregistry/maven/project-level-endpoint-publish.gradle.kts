@@ -19,13 +19,11 @@ interface Extension {
 
 val extension = extensions.create<Extension>("gitlabPackageRegistryProjectLevelEndpointMavenPublish")
 
-afterEvaluate {
-    publishing {
-        repositories {
-            gitlabPackageRegistryProjectLevelEndpointMavenRepository(
-                host = extension.host.getOrElse(GITLAB_COM_HOST),
-                projectIdOrProjectPath = extension.projectId.get(),
-            )
-        }
+publishing {
+    repositories {
+        gitlabPackageRegistryProjectLevelEndpointMavenRepository(
+            hostProvider = extension.host.orElse(GITLAB_COM_HOST),
+            projectIdOrProjectPathProvider = extension.projectId,
+        )
     }
 }

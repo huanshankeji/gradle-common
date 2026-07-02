@@ -5,6 +5,7 @@ import com.huanshankeji.findStringProperty
 import org.gradle.api.Project
 import org.gradle.api.artifacts.dsl.RepositoryHandler
 import org.gradle.api.artifacts.repositories.MavenArtifactRepository
+import org.gradle.api.provider.Provider
 
 @GradleCommonExperimentalApi
 fun Project.githubPackagesMavenUsername(): String? =
@@ -17,8 +18,13 @@ fun Project.githubPackagesMavenPassword(): String? =
 
 @GradleCommonExperimentalApi
 context(project: Project)
-fun MavenArtifactRepository.githubPackagesSetUrlAndCredentials(owner: String, repository: String) {
-    url = project.uri("https://maven.pkg.github.com/$owner/$repository")
+fun MavenArtifactRepository.githubPackagesSetUrlAndCredentials(
+    ownerProvider: Provider<String>,
+    repositoryProvider: Provider<String>,
+) {
+    setUrl(ownerProvider.zip(repositoryProvider) { owner, repository ->
+        project.uri("https://maven.pkg.github.com/$owner/$repository")
+    })
     credentials {
         username = project.githubPackagesMavenUsername()
         password = project.githubPackagesMavenPassword()
@@ -27,21 +33,21 @@ fun MavenArtifactRepository.githubPackagesSetUrlAndCredentials(owner: String, re
 
 context(_: Project)
 fun RepositoryHandler.githubPackagesMavenRegistry(
-    owner: String,
-    repository: String
+    ownerProvider: Provider<String>,
+    repositoryProvider: Provider<String>,
 ) =
     maven {
-        githubPackagesSetUrlAndCredentials(owner, repository)
+        githubPackagesSetUrlAndCredentials(ownerProvider, repositoryProvider)
     }
 
 context(_: Project)
 fun RepositoryHandler.githubPackagesMavenRegistryWithName(
-    owner: String,
-    repository: String,
-    name: String = "GitHubPackages"
+    ownerProvider: Provider<String>,
+    repositoryProvider: Provider<String>,
+    name: String = "GitHubPackages",
 ) =
     maven {
         // Copied and adapted from https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-gradle-registry.
         this.name = name
-        githubPackagesSetUrlAndCredentials(owner, repository)
+        githubPackagesSetUrlAndCredentials(ownerProvider, repositoryProvider)
     }

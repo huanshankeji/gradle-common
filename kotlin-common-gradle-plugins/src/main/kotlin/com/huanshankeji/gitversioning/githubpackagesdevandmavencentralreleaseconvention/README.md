@@ -1,0 +1,1 @@
+APIs of the publishing convention that publishes Git versioning dev versions to GitHub packages and release versions to Maven Central.

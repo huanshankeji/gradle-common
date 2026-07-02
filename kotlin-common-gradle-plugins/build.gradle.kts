@@ -27,7 +27,10 @@ gradlePlugin {
 
         scriptConventionsPlugin(
             "publish.maven.central.conventions",
-            "Maven Central publish conventions based on the `com.vanniktech.maven.publish` plugin."
+            "Maven Central publish conventions based on the `com.vanniktech.maven.publish` plugin. " +
+                    "Signing is enabled for all publications; `-SNAPSHOT` versions are not required to sign. " +
+                    "Customize requiredness with `signing { setRequired(...) }` when needed " +
+                    "(see `com.huanshankeji.gitversioning.githubpackagesdevandmavencentralreleaseconvention.publish` for a combined GitHub Packages / Maven Central example)."
         )
         scriptConventionsPlugin(
             "maven-central-publish-conventions",

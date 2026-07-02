@@ -17,12 +17,12 @@ private const val GITHUB_PACKAGES_MAVEN_REGISTRY_OLD_APIS_DEPRECATION_MESSAGE =
 fun Project.githubPackagesMavenRegistrySetUrlAndCredentials(
     mavenArtifactRepository: MavenArtifactRepository, owner: String, repository: String
 ) =
-    mavenArtifactRepository.githubPackagesSetUrlAndCredentials(owner, repository)
+    mavenArtifactRepository.githubPackagesSetUrlAndCredentials(provider { owner }, provider { repository })
 
 @Deprecated(GITHUB_PACKAGES_MAVEN_REGISTRY_OLD_APIS_DEPRECATION_MESSAGE)
 fun Project.repositoriesAddGithubPackagesMavenRegistry(owner: String, repository: String) =
     repositories {
-        githubPackagesMavenRegistry(owner, repository)
+        githubPackagesMavenRegistry(provider { owner }, provider { repository })
     }
 
 @Deprecated(GITHUB_PACKAGES_MAVEN_REGISTRY_OLD_APIS_DEPRECATION_MESSAGE)
@@ -33,6 +33,6 @@ fun Project.publishingRepositoriesAddGithubPackagesMavenRepository(
 ) =
     publishing {
         repositories {
-            githubPackagesMavenRegistryWithName(owner, repository, name)
+            githubPackagesMavenRegistryWithName(provider { owner }, provider { repository }, name)
         }
     }

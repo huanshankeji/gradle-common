@@ -19,13 +19,11 @@ interface Extension {
 
 val extension = extensions.create<Extension>("githubPackagesMavenPublish")
 
-afterEvaluate {
-    publishing {
-        repositories {
-            githubPackagesMavenRegistryWithName(
-                extension.owner.get(),
-                extension.repository.get()
-            )
-        }
+publishing {
+    repositories {
+        githubPackagesMavenRegistryWithName(
+            ownerProvider = extension.owner,
+            repositoryProvider = extension.repository,
+        )
     }
 }
