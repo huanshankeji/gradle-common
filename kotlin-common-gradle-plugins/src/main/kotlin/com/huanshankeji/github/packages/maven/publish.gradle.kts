@@ -19,7 +19,7 @@ interface Extension {
 
 val extension = extensions.create<Extension>("githubPackagesMavenPublish")
 
-afterEvaluate {
+pluginManager.withPlugin("com.vanniktech.maven.publish") {
     publishing {
         repositories {
             githubPackagesMavenRegistryWithName(

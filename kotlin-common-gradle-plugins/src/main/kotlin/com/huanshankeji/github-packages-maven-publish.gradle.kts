@@ -24,7 +24,7 @@ interface Extension {
 
 val extension = extensions.create<Extension>("githubPackagesPublish")
 
-afterEvaluate {
+pluginManager.withPlugin("com.vanniktech.maven.publish") {
     @Suppress("DEPRECATION")
     publishingRepositoriesAddGithubPackagesMavenRepository(
         owner = extension.owner.get(),
