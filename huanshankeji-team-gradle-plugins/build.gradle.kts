@@ -7,7 +7,6 @@ group = "com.huanshankeji.team"
 dependencies {
     // `api` is needed for the team GitHub Packages publish plugin to configure the base plugin's extension
     api(project(":kotlin-common-gradle-plugins"))
-    implementation(libs.benManes.gradleVersionsPlugin)
 }
 
 gradlePlugin {
@@ -26,11 +25,6 @@ gradlePlugin {
             "dokka.github-dokka-convention",
             "Dokka convention plugin for projects on GitHub",
             "Please apply this plugin after setting the project version."
-        )
-        scriptConventionsPlugin(
-            "root-project-conventions",
-            "Root project conventions",
-            "Applies team-wide root project plugins such as the Gradle versions plugin."
         )
     }
 }

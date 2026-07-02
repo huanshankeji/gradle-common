@@ -16,17 +16,6 @@ public final class com/huanshankeji/team/MavenPomKt {
 	public static synthetic fun setUpPomForTeamDefaultOpenSource$default (Lorg/gradle/api/publish/maven/MavenPom;Lorg/gradle/api/Project;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 }
 
-public final class com/huanshankeji/team/RootProjectConventionsPlugin : org/gradle/api/Plugin {
-	public fun <init> ()V
-	public synthetic fun apply (Ljava/lang/Object;)V
-	public fun apply (Lorg/gradle/api/Project;)V
-}
-
-public final class com/huanshankeji/team/Root_project_conventions_gradle : org/gradle/kotlin/dsl/precompile/v1/PrecompiledProjectScript {
-	public fun <init> (Lorg/gradle/api/Project;Lorg/gradle/api/Project;)V
-	public static final fun main ([Ljava/lang/String;)V
-}
-
 public final class com/huanshankeji/team/WithGroupPlugin : org/gradle/api/Plugin {
 	public fun <init> ()V
 	public synthetic fun apply (Ljava/lang/Object;)V
