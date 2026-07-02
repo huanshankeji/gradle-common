@@ -5,7 +5,7 @@ plugins {
 group = "com.huanshankeji.team"
 
 dependencies {
-    // `api` is needed for the team `github-packages-maven-publish` plugin to configure the base plugin's extension
+    // `api` is needed for the team GitHub Packages publish plugin to configure the base plugin's extension
     api(project(":kotlin-common-gradle-plugins"))
     implementation(libs.benManes.gradleVersionsPlugin)
 }
@@ -18,12 +18,8 @@ gradlePlugin {
 
         scriptConventionsPlugin("with-group", "With Huanshankeji team's group, aka \"com.huanshankeji\"")
         scriptConventionsPlugin(
-            "github-packages-maven-publish",
+            "github.packages.maven.publish",
             "GitHub Packages Maven publish (to Huanshankeji team's repository)"
-        )
-        scriptConventionsPlugin(
-            "default-github-packages-maven-publish",
-            "GitHub Packages Maven publish (to Huanshankeji team's repository) with default conventions"
         )
 
         scriptConventionsPlugin(

@@ -3,7 +3,7 @@ plugins {
     id("com.huanshankeji.team.with-group")
 
     id("com.gradle.plugin-publish")
-    id("com.huanshankeji.team.default-github-packages-maven-publish")
+    id("com.huanshankeji.team.github.packages.maven.publish")
 }
 
 kotlin.jvmToolchain(17)
