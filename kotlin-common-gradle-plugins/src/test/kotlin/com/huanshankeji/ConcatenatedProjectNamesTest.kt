@@ -39,7 +39,7 @@ class ConcatenatedProjectNamesTest {
 
 private class FakeProjectDescriptor(initialName: String) : org.gradle.api.initialization.ProjectDescriptor {
     private var descriptorName = initialName
-    private val childDescriptors = linkedSetOf<org.gradle.api.initialization.ProjectDescriptor>()
+    private val childDescriptors = linkedSetOf<FakeProjectDescriptor>()
 
     fun child(name: String) = FakeProjectDescriptor(name).also { childDescriptors.add(it) }
 
@@ -62,7 +62,7 @@ private class FakeProjectDescriptor(initialName: String) : org.gradle.api.initia
     override fun getParent(): org.gradle.api.initialization.ProjectDescriptor? = null
 
     override fun getChildren(): MutableSet<org.gradle.api.initialization.ProjectDescriptor> =
-        childDescriptors
+        childDescriptors as MutableSet<org.gradle.api.initialization.ProjectDescriptor>
 
     override fun getPath(): String = ":$descriptorName"
 }

@@ -3,14 +3,7 @@ plugins {
 }
 
 dependencies {
-    implementation(
-        project(
-            com.huanshankeji.getConcatenatedProjectNamePath(
-                rootProject.name,
-                ":kotlin-common-gradle-plugins",
-            ),
-        ),
-    )
+    implementation(project(":kotlin-common-gradle-plugins"))
     implementation(libs.bundles.architectureCommonGradlePlugins.implementation)
 
     //api(project(":common-gradle-dependencies"))
