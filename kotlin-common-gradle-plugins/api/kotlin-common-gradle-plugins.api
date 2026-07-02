@@ -180,10 +180,6 @@ public final class com/huanshankeji/PropertiesKt {
 	public static final fun findStringProperty (Lorg/gradle/api/Project;Ljava/lang/String;)Ljava/lang/String;
 }
 
-public final class com/huanshankeji/SnapshotAndReleaseVersionsKt {
-	public static final fun isSnapshotVersion (Lorg/gradle/api/Project;)Z
-}
-
 public final class com/huanshankeji/SourceFile {
 	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
 	public final fun getContent ()Ljava/lang/String;
@@ -216,6 +212,12 @@ public final class com/huanshankeji/SourceSetType : java/lang/Enum {
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lcom/huanshankeji/SourceSetType;
 	public static fun values ()[Lcom/huanshankeji/SourceSetType;
+}
+
+public final class com/huanshankeji/VersionKt {
+	public static final fun isSnapshotVersion (Ljava/lang/String;)Z
+	public static final fun isSnapshotVersion (Lorg/gradle/api/Project;)Z
+	public static final fun versionStringProvider (Lorg/gradle/api/Project;)Lorg/gradle/api/provider/Provider;
 }
 
 public final class com/huanshankeji/VersionsAndDependenciesKt {
@@ -347,7 +349,9 @@ public abstract interface class com/huanshankeji/gitlab/packageregistry/maven/Pr
 public final class com/huanshankeji/gitversioning/GitVersioningKt {
 	public static final fun devCommitVersionProvider (Lorg/gradle/api/Project;Ljava/lang/String;)Lorg/gradle/api/provider/Provider;
 	public static final fun devCommitVersionString (Ljava/lang/String;Ljava/lang/String;Z)Ljava/lang/String;
+	public static final fun isDevCommitVersion (Ljava/lang/String;)Z
 	public static final fun isDevCommitVersion (Lorg/gradle/api/Project;)Z
+	public static final fun isDirtyDevCommitVersion (Ljava/lang/String;)Z
 	public static final fun isDirtyDevCommitVersion (Lorg/gradle/api/Project;)Z
 	public static final fun projectVersionFromGitProvider (Lorg/gradle/api/Project;Ljava/lang/String;Ljava/lang/String;)Lorg/gradle/api/provider/Provider;
 	public static synthetic fun projectVersionFromGitProvider$default (Lorg/gradle/api/Project;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/gradle/api/provider/Provider;
@@ -368,5 +372,21 @@ public final class com/huanshankeji/publish/maven/MavenPomKt {
 	public static synthetic fun pomForDefaultOpenSourceWithApacheLicense20OnGitHub$default (Lorg/gradle/api/publish/maven/MavenPublication;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun setUpForDefaultOpenSourceWithApacheLicense20OnGitHub (Lorg/gradle/api/publish/maven/MavenPom;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun setUpForDefaultOpenSourceWithApacheLicense20OnGitHub$default (Lorg/gradle/api/publish/maven/MavenPom;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+}
+
+public final class com/huanshankeji/publish/maven/central/ConventionsPlugin : org/gradle/api/Plugin {
+	public fun <init> ()V
+	public synthetic fun apply (Ljava/lang/Object;)V
+	public fun apply (Lorg/gradle/api/Project;)V
+}
+
+public final class com/huanshankeji/publish/maven/central/Conventions_gradle : org/gradle/kotlin/dsl/precompile/v1/PrecompiledProjectScript {
+	public fun <init> (Lorg/gradle/api/Project;Lorg/gradle/api/Project;)V
+	public final fun getExtension ()Lcom/huanshankeji/publish/maven/central/Conventions_gradle$Extension;
+	public static final fun main ([Ljava/lang/String;)V
+}
+
+public abstract interface class com/huanshankeji/publish/maven/central/Conventions_gradle$Extension {
+	public abstract fun getSignPublishing ()Lorg/gradle/api/provider/Property;
 }
 

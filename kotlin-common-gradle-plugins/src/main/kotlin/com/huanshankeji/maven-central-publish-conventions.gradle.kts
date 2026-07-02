@@ -1,23 +1,19 @@
 package com.huanshankeji
 
-import com.huanshankeji.gitversioning.isDevCommitVersion
-import com.huanshankeji.gitversioning.isDirtyDevCommitVersion
-
 plugins {
     id("com.vanniktech.maven.publish")
 }
 
+logger.warn(
+    "WARNING: 'com.huanshankeji.maven-central-publish-conventions' is deprecated and will be removed in a future release. " +
+            "Please migrate to 'com.huanshankeji.publish.maven.central.conventions' instead."
+)
+
 mavenPublishing {
     publishToMavenCentral()
-}
 
-/*
-Currently added to wait for the version to resolve.
-TODO Avoid `afterEvaluate` and put this back into `mavenPublishing` above by refactoring related plugins to use `Provider` APIs.
- */
-afterEvaluate {
-    if (!isSnapshotVersion() && !isDirtyDevCommitVersion() && !isDevCommitVersion())
-        mavenPublishing.signAllPublications()
+    if (!isSnapshotVersion())
+        signAllPublications()
 }
 
 // should probably require the Java toolchain version to be set too when using this plugin

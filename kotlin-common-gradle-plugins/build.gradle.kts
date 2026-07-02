@@ -26,8 +26,13 @@ gradlePlugin {
         )
 
         scriptConventionsPlugin(
-            "maven-central-publish-conventions",
+            "publish.maven.central.conventions",
             "Maven Central publish conventions based on the `com.vanniktech.maven.publish` plugin."
+        )
+        scriptConventionsPlugin(
+            "maven-central-publish-conventions",
+            "Maven Central publish conventions based on the `com.vanniktech.maven.publish` plugin. " +
+                    "(deprecated, replaced by `com.huanshankeji.maven-central-publish-conventions`)"
         )
         scriptConventionsPlugin(
             "github.packages.maven.publish",
