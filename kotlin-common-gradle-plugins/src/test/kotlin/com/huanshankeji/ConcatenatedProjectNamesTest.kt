@@ -22,6 +22,11 @@ class ConcatenatedProjectNamesTest {
         }
     }
 
+    /*
+     * Added by an AI agent (Cursor); not reviewed line by line. Gradle has ProjectBuilder (Project)
+     * and TestKit (full builds), but no official fixture for ProjectDescriptor; see
+     * FakeProjectDescriptor below.
+     */
     @Test
     fun `setProjectConcatenatedNames renames descriptors consistently with getConcatenatedProjectNamePath`() {
         val root = FakeProjectDescriptor("p")
@@ -37,6 +42,12 @@ class ConcatenatedProjectNamesTest {
     }
 }
 
+/*
+ * Added by an AI agent (Cursor); not reviewed line by line. Minimal
+ * ProjectDescriptor for unit tests. Gradle's testing docs cover ProjectBuilder and TestKit only;
+ * there is no SettingsBuilder or ProjectDescriptor factory. setProjectConcatenatedNames needs just
+ * name, setName, and children, but the interface requires stubbing everything else.
+ */
 private class FakeProjectDescriptor(initialName: String) : org.gradle.api.initialization.ProjectDescriptor {
     private var descriptorName = initialName
     private val childDescriptors = linkedSetOf<FakeProjectDescriptor>()
