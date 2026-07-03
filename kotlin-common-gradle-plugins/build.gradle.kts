@@ -91,10 +91,16 @@ gradlePlugin {
             "Kotlin ABI validation conventions",
             "Enables Kotlin Gradle plugin ABI validation on JVM and Multiplatform projects."
         )
+
         scriptConventionsPlugin(
             "root-project-conventions",
             "Root project conventions",
             "Applies root project plugins such as the Gradle versions plugin."
+        )
+        scriptConventionsPlugin(
+            "base-settings-conventions",
+            "Base settings conventions",
+            "Applies common settings plugins such as the Foojay toolchain resolver convention."
         )
     }
 }
