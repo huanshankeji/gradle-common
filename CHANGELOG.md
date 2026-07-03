@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+* replace `com.huanshankeji.team.github-packages-maven-publish` and `com.huanshankeji.team.default-github-packages-maven-publish` with `com.huanshankeji.team.github.packages.maven.publish`
 * unify release publishing on the `release` branch (replacing `plugins-release` and `common-gradle-dependencies-release`)
 * remove duplicated build logic now that `buildSrc` source-links the plugin module sources (#54, #60)
     * drop the inlined `GitVersion.kt`, `kotlin-abi-validation`, and `dokka-convention` copies from `buildSrc`

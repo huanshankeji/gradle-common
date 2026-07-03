@@ -1,7 +1,6 @@
-plugins {
-    id("com.huanshankeji.git-version")
-}
+import com.huanshankeji.gitversioning.projectVersionFromGitProvider
 
-gitVersion {
-    baseVersion.set(alignedPluginBaseVersion)
+// TODO don't use `afterEvaluate`
+afterEvaluate {
+    version = projectVersionFromGitProvider(alignedPluginBaseVersion).get()
 }

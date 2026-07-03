@@ -1,5 +1,9 @@
 package com.huanshankeji
 
+import com.huanshankeji.publish.publishing
+
+// This plugin is deprecated and can be removed directly in the future.
+
 plugins {
     /*
     This plugin has special fast-path / custom behavior only for Maven Central,
@@ -9,6 +13,11 @@ plugins {
      */
     id("com.vanniktech.maven.publish")
 }
+
+logger.warn(
+    "WARNING: 'com.huanshankeji.gitlab-project-level-maven-endpoint-publish' is deprecated and will be removed in a future release. " +
+            "Please migrate to 'com.huanshankeji.gitlab.packageregistry.maven.project-level-endpoint-publish' instead."
+)
 
 interface Extension {
     val host: Property<String>
@@ -20,9 +29,10 @@ val extension = extensions.create<Extension>("gitlabPackageRegistryProjectLevelM
 afterEvaluate {
     publishing {
         repositories {
-            gitlabPackageRegistryProjectLevelMavenRepository(
+            @Suppress("DEPRECATION")
+            gitlabProjectLevelMavenRepository(
                 this,
-                host = extension.host.getOrElse(GITLAB_COM_HOST),
+                host = extension.host.getOrElse(GITLAB_HOST),
                 projectIdOrProjectPath = extension.projectId.get(),
             )
         }

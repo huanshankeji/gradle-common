@@ -1,3 +1,3 @@
 package com.huanshankeji.team
 
-group = "com.huanshankeji"
+group = HUANSHANKEJI_GROUP

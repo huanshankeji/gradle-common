@@ -26,18 +26,35 @@ gradlePlugin {
         )
 
         scriptConventionsPlugin(
-            "maven-central-publish-conventions",
-            "Maven Central publish conventions based on the `com.vanniktech.maven.publish` plugin."
+            "publish.maven.central.conventions",
+            "Maven Central publish conventions based on the `com.vanniktech.maven.publish` plugin. " +
+                    "Signing is enabled for all publications; `-SNAPSHOT` versions are not required to sign. " +
+                    "Customize requiredness with `signing { setRequired(...) }` when needed " +
+                    "(see `com.huanshankeji.gitversioning.githubpackagesdevandmavencentralreleaseconvention.publish` for a combined GitHub Packages / Maven Central example)."
         )
         scriptConventionsPlugin(
-            "github-packages-maven-publish",
+            "maven-central-publish-conventions",
+            "Maven Central publish conventions based on the `com.vanniktech.maven.publish` plugin. " +
+                    "(deprecated, replaced by `com.huanshankeji.maven-central-publish-conventions`)"
+        )
+        scriptConventionsPlugin(
+            "github.packages.maven.publish",
             "GitHub Packages publish",
             "Publishes to a Maven registry of GitHub Packages."
         )
         scriptConventionsPlugin(
-            "gitlab-package-registry-project-level-maven-endpoint-publish",
+            "github-packages-maven-publish",
+            "GitHub Packages publish (deprecated, replaced by `com.huanshankeji.github.packages.maven.publish`)",
+        )
+
+        scriptConventionsPlugin(
+            "gitlab.packageregistry.maven.project-level-endpoint-publish",
             "GitLab Package Registry project-level Maven endpoint publish",
             "Publishes to a GitLab Package Registry project-level Maven endpoint."
+        )
+        scriptConventionsPlugin(
+            "gitlab-project-level-maven-endpoint-publish",
+            "GitLab project-level Maven endpoint publish (deprecated, replaced by `com.huanshankeji.gitlab.packageregistry.maven.project-level-endpoint-publish`)",
         )
 
         scriptConventionsPlugin(
@@ -70,14 +87,14 @@ gradlePlugin {
             "Dokka convention plugin"
         )
         scriptConventionsPlugin(
-            "git-version",
-            "Git commit-hash project version",
-            "Sets the project version from Git: release branch uses the base version; otherwise `-dev-commit-<hash>` or `-dirty-SNAPSHOT`."
-        )
-        scriptConventionsPlugin(
             "kotlin-abi-validation-conventions",
             "Kotlin ABI validation conventions",
             "Enables Kotlin Gradle plugin ABI validation on JVM and Multiplatform projects."
+        )
+        scriptConventionsPlugin(
+            "root-project-conventions",
+            "Root project conventions",
+            "Applies root project plugins such as the Gradle versions plugin."
         )
         scriptConventionsPlugin(
             "base-settings-conventions",

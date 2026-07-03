@@ -1,7 +1,7 @@
 package com.huanshankeji.team
 
-import com.huanshankeji.pomForDefaultOpenSourceWithApacheLicense20OnGitHub
-import com.huanshankeji.setUpForDefaultOpenSourceWithApacheLicense20OnGitHub
+import com.huanshankeji.publish.maven.pomForDefaultOpenSourceWithApacheLicense20OnGitHub
+import com.huanshankeji.publish.maven.setUpForDefaultOpenSourceWithApacheLicense20OnGitHub
 import com.huanshankeji.team.github.defaultRootProjectGithubRepositoryUrl
 import org.gradle.api.Project
 import org.gradle.api.publish.maven.MavenPom

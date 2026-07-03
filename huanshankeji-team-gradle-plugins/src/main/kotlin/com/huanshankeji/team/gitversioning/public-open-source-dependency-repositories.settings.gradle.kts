@@ -1,4 +1,4 @@
-import com.huanshankeji.team.maven.PublicOpenSourceDependencyRepositoriesExtension
+package com.huanshankeji.team.gitversioning
 
 val extension = extensions.create(
     "publicOpenSourceDependencyRepositories",

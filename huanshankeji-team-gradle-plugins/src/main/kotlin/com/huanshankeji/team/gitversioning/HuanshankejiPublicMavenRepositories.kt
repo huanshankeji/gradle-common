@@ -1,17 +1,14 @@
-package com.huanshankeji.team.maven
+package com.huanshankeji.team.gitversioning
 
-import com.huanshankeji.DEV_COMMIT_VERSION_REGEX
-import com.huanshankeji.DIRTY_DEV_COMMIT_VERSION_REGEX
-import com.huanshankeji.HUANSHANKEJI_MAVEN_GROUP
-import com.huanshankeji.LEGACY_SNAPSHOT_VERSION_REGEX
-import com.huanshankeji.contentExcludeHuanshankejiNonStableVersions
-import com.huanshankeji.githubPackagesMavenPassword
-import com.huanshankeji.githubPackagesMavenUsername
+import com.huanshankeji.github.packages.maven.githubPackagesMavenPassword
+import com.huanshankeji.github.packages.maven.githubPackagesMavenUsername
+import com.huanshankeji.gitversioning.DEV_COMMIT_VERSION_REGEX
+import com.huanshankeji.gitversioning.DIRTY_DEV_COMMIT_VERSION_REGEX
+import com.huanshankeji.gitversioning.LEGACY_SNAPSHOT_VERSION_REGEX
 import com.huanshankeji.team.HUANSHANKEJI_IN_LOWERCASE
 import org.gradle.api.Project
 import org.gradle.api.artifacts.dsl.RepositoryHandler
 import org.gradle.api.artifacts.repositories.MavenArtifactRepository
-import org.gradle.kotlin.dsl.maven
 import java.net.URI
 
 /**

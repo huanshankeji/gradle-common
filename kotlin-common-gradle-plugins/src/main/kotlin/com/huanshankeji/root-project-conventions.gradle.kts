@@ -1,4 +1,4 @@
-package com.huanshankeji.team
+package com.huanshankeji
 
 plugins {
     id("com.github.ben-manes.versions")

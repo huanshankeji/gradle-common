@@ -1,7 +1,7 @@
 package com.huanshankeji
 
-@InternalApi
+@GradleCommonInternalApi
 val commonVersions = CommonVersions()
 
-@InternalApi
+@GradleCommonInternalApi
 val commonDependencies = CommonDependencies(commonVersions)

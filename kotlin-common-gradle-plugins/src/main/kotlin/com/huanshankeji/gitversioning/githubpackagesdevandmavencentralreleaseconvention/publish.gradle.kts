@@ -1,0 +1,3 @@
+package com.huanshankeji.gitversioning.githubpackagesdevandmavencentralreleaseconvention
+
+// TODO implementation

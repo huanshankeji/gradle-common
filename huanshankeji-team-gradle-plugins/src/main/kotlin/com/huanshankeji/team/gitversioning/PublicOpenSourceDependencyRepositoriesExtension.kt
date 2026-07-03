@@ -1,10 +1,7 @@
-package com.huanshankeji.team.maven
+package com.huanshankeji.team.gitversioning
 
-import com.huanshankeji.contentExcludeHuanshankejiNonStableVersions
-import com.huanshankeji.contentIncludeHuanshankejiDevCommitVersions
-import com.huanshankeji.contentIncludeHuanshankejiDirtyAndLegacySnapshots
-import com.huanshankeji.githubPackagesMavenPassword
-import com.huanshankeji.githubPackagesMavenUsername
+import com.huanshankeji.github.packages.maven.githubPackagesMavenPassword
+import com.huanshankeji.github.packages.maven.githubPackagesMavenUsername
 import com.huanshankeji.team.HUANSHANKEJI_IN_LOWERCASE
 import org.gradle.api.artifacts.dsl.RepositoryHandler
 import org.gradle.api.artifacts.repositories.MavenArtifactRepository

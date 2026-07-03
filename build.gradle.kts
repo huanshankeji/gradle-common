@@ -4,7 +4,7 @@ tasks.wrapper {
 
 plugins {
     id("org.jetbrains.dokka")
-    id("com.github.ben-manes.versions")
+    id("com.huanshankeji.root-project-conventions")
 }
 
 evaluationDependsOnChildren()
