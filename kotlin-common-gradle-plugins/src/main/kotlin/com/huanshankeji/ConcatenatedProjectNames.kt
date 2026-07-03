@@ -38,7 +38,7 @@ fun ProjectDescriptor.setProjectConcatenatedNames(prefix: String) {
 fun Settings.setProjectConcatenatedNames() =
     rootProject.setProjectConcatenatedNames("")
 
-// for consuming projects in build scripts
+// for project deps in build scripts
 
 fun getConcatenatedProjectNamePath(rootProjectName: String, path: String): String {
     val names = path.splitToSequence(':')
