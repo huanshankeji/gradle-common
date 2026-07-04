@@ -4,10 +4,7 @@ plugins {
     conventions
 }
 
-// TODO don't use `afterEvaluate`
-afterEvaluate {
-    version = projectVersionFromGitProvider(commonGradleDependenciesBaseVersion).get()
-}
+version = projectVersionFromGitProvider(commonGradleDependenciesBaseVersion).get()
 
 gradlePlugin {
     plugins {
