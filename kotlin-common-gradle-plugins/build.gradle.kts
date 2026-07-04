@@ -1,5 +1,12 @@
+import org.jetbrains.kotlin.gradle.dsl.abi.ExperimentalAbiValidation
+
 plugins {
     `aligned-version-plugin-conventions`
+}
+
+kotlin {
+    @OptIn(ExperimentalAbiValidation::class)
+    abiValidation()
 }
 
 dependencies {
@@ -86,12 +93,6 @@ gradlePlugin {
             "dokka.dokka-convention",
             "Dokka convention plugin"
         )
-        scriptConventionsPlugin(
-            "kotlin-abi-validation-conventions",
-            "Kotlin ABI validation conventions",
-            "Enables Kotlin Gradle plugin ABI validation on JVM and Multiplatform projects."
-        )
-
         scriptConventionsPlugin(
             "root-project-conventions",
             "Root project conventions",

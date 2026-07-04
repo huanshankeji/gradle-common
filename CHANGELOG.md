@@ -2,11 +2,12 @@
 
 ## Unreleased
 
+* replace kotlinx `binary-compatibility-validator` with Kotlin Gradle plugin `abiValidation()` on `:kotlin-common-gradle-plugins` and `:architecture-common-gradle-plugins` only (same scope as root `build.gradle.kts` on `main`)
 * replace `com.huanshankeji.team.github-packages-maven-publish` and `com.huanshankeji.team.default-github-packages-maven-publish` with `com.huanshankeji.team.github.packages.maven.publish`
 * unify release publishing on the `release` branch (replacing `plugins-release` and `common-gradle-dependencies-release`)
 * remove duplicated build logic now that `buildSrc` source-links the plugin module sources (#54, #60)
     * drop the inlined `GitVersion.kt`, `kotlin-abi-validation`, and `dokka-convention` copies from `buildSrc`
-    * dogfood `com.huanshankeji.git-version`, `com.huanshankeji.kotlin-abi-validation-conventions`, and `com.huanshankeji.team.dokka.github-dokka-convention` instead
+    * dogfood `com.huanshankeji.git-version` and `com.huanshankeji.team.dokka.github-dokka-convention` instead
 * remove the cross-version bootstrapping self-dependencies (#54)
     * `buildSrc` is now a multi-project build whose subprojects source-link the corresponding root modules' sources (`common-gradle-dependencies`, `kotlin-common-gradle-plugins`, `huanshankeji-team-gradle-plugins`) instead of depending on a stale released `com.huanshankeji.team:gradle-plugins`
     * the plugin modules now depend on the `common-gradle-dependencies` project directly instead of a stale released version
