@@ -177,11 +177,6 @@ public final class com/huanshankeji/ProjectNamesKt {
 	public static final fun getFullNameWithRootProjectNameForFileSystem (Lorg/gradle/api/Project;)Ljava/lang/String;
 }
 
-public final class com/huanshankeji/PropertiesKt {
-	public static final fun findStringGradleProperty (Lorg/gradle/api/initialization/Settings;Ljava/lang/String;)Ljava/lang/String;
-	public static final fun findStringProperty (Lorg/gradle/api/Project;Ljava/lang/String;)Ljava/lang/String;
-}
-
 public final class com/huanshankeji/RootProjectConventionsPlugin : org/gradle/api/Plugin {
 	public fun <init> ()V
 	public synthetic fun apply (Ljava/lang/Object;)V
@@ -296,17 +291,12 @@ public final class com/huanshankeji/git/workflow/GitWorkflowKt {
 	public static synthetic fun isReleaseBranch$default (Lorg/gradle/api/Project;Ljava/lang/String;ILjava/lang/Object;)Lorg/gradle/api/provider/Provider;
 }
 
-public final class com/huanshankeji/github/packages/maven/CredentialsKt {
-	public static final fun githubPackagesMavenPassword (Lorg/gradle/api/initialization/Settings;)Ljava/lang/String;
-	public static final fun githubPackagesMavenUsername (Lorg/gradle/api/initialization/Settings;)Ljava/lang/String;
-}
-
 public final class com/huanshankeji/github/packages/maven/GithubPackagesMavenRegistryKt {
-	public static final fun githubPackagesMavenPassword (Lorg/gradle/api/Project;)Ljava/lang/String;
+	public static final fun githubPackagesMavenPassword (Lorg/gradle/api/provider/ProviderFactory;)Ljava/lang/String;
 	public static final fun githubPackagesMavenRegistry (Lorg/gradle/api/Project;Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Lorg/gradle/api/provider/Provider;Lorg/gradle/api/provider/Provider;)Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;
 	public static final fun githubPackagesMavenRegistryWithName (Lorg/gradle/api/Project;Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Lorg/gradle/api/provider/Provider;Lorg/gradle/api/provider/Provider;Ljava/lang/String;)Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;
 	public static synthetic fun githubPackagesMavenRegistryWithName$default (Lorg/gradle/api/Project;Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Lorg/gradle/api/provider/Provider;Lorg/gradle/api/provider/Provider;Ljava/lang/String;ILjava/lang/Object;)Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;
-	public static final fun githubPackagesMavenUsername (Lorg/gradle/api/Project;)Ljava/lang/String;
+	public static final fun githubPackagesMavenUsername (Lorg/gradle/api/provider/ProviderFactory;)Ljava/lang/String;
 	public static final fun githubPackagesSetUrlAndCredentials (Lorg/gradle/api/Project;Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;Lorg/gradle/api/provider/Provider;Lorg/gradle/api/provider/Provider;)V
 }
 
@@ -336,7 +326,7 @@ public final class com/huanshankeji/gitlab/packageregistry/maven/GitlabPackageRe
 	public static synthetic fun gitlabPackageRegistryInstanceLevelEndpointMavenRepository$default (Lorg/gradle/api/Project;Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Ljava/lang/String;Lorg/gradle/api/provider/Provider;ILjava/lang/Object;)Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;
 	public static final fun gitlabPackageRegistryMavenRepository (Lorg/gradle/api/Project;Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Ljava/lang/String;Lorg/gradle/api/provider/Provider;)Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;
 	public static synthetic fun gitlabPackageRegistryMavenRepository$default (Lorg/gradle/api/Project;Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Ljava/lang/String;Lorg/gradle/api/provider/Provider;ILjava/lang/Object;)Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;
-	public static final fun gitlabPackageRegistryPrivateToken (Lorg/gradle/api/Project;)Ljava/lang/String;
+	public static final fun gitlabPackageRegistryPrivateToken (Lorg/gradle/api/provider/ProviderFactory;)Ljava/lang/String;
 	public static final fun gitlabPackageRegistryProjectLevelEndpointMavenRepository (Lorg/gradle/api/Project;Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Ljava/lang/String;Lorg/gradle/api/provider/Provider;Lorg/gradle/api/provider/Provider;)Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;
 	public static synthetic fun gitlabPackageRegistryProjectLevelEndpointMavenRepository$default (Lorg/gradle/api/Project;Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Ljava/lang/String;Lorg/gradle/api/provider/Provider;Lorg/gradle/api/provider/Provider;ILjava/lang/Object;)Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;
 	public static final fun gitlabPackageRegistrySetUrlAndCredentials (Lorg/gradle/api/Project;Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;Ljava/lang/String;Lorg/gradle/api/provider/Provider;)V

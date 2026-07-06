@@ -34,8 +34,10 @@ fun RepositoryHandler.configurePublicHuanshankejiArtifactRepositories(
             name = "GitHubPackages-$repositoryName"
             url = URI("https://maven.pkg.github.com/$owner/$repositoryName")
             credentials {
-                username = project.githubPackagesMavenUsername()
-                password = project.githubPackagesMavenPassword()
+                with(project.providers) {
+                    username = githubPackagesMavenUsername()
+                    password = githubPackagesMavenPassword()
+                }
             }
             content {
                 includeVersionByRegex(HUANSHANKEJI_MAVEN_GROUP, ".*", DEV_COMMIT_VERSION_REGEX)

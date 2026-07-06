@@ -31,8 +31,10 @@ open class PublicOpenSourceDependencyRepositoriesExtension {
                 name = "GitHubPackages-$repositoryName"
                 url = URI("https://maven.pkg.github.com/$owner/$repositoryName")
                 credentials {
-                    username = settings.githubPackagesMavenUsername()
-                    password = settings.githubPackagesMavenPassword()
+                    with(settings.providers) {
+                        username = githubPackagesMavenUsername()
+                        password = githubPackagesMavenPassword()
+                    }
                 }
                 content {
                     contentIncludeHuanshankejiDevCommitVersions()
