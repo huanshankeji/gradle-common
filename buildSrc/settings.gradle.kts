@@ -62,5 +62,7 @@ dependencyResolutionManagement {
 include(
     "common-gradle-dependencies",
     "kotlin-common-gradle-plugins",
+    "kotlin-common-settings-gradle-plugins",
     "huanshankeji-team-gradle-plugins",
+    "huanshankeji-team-settings-gradle-plugins",
 )

@@ -98,10 +98,5 @@ gradlePlugin {
             "Root project conventions",
             "Applies root project plugins such as the Gradle versions plugin."
         )
-        scriptConventionsPlugin(
-            "base-settings-conventions",
-            "Base settings conventions",
-            "Applies common settings plugins such as the Foojay toolchain resolver convention."
-        )
     }
 }

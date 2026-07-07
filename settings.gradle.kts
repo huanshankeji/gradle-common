@@ -6,8 +6,11 @@ plugins {
 }
 
 include("kotlin-common-gradle-plugins")
+include("kotlin-common-settings-gradle-plugins")
 include("huanshankeji-team-gradle-plugins")
 project(":huanshankeji-team-gradle-plugins").name = "gradle-plugins"
+include("huanshankeji-team-settings-gradle-plugins")
+project(":huanshankeji-team-settings-gradle-plugins").name = "team-settings-gradle-plugins"
 include("architecture-common-gradle-plugins")
 include("common-gradle-dependencies")
 

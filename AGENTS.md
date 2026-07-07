@@ -20,15 +20,17 @@ The APIs are experimental and may change. There are no end-user tutorials here; 
 |------|---------------------|---------|
 | `buildSrc/` | — | Shared build logic: versions, conventions, plugin registration helpers |
 | `kotlin-common-gradle-plugins/` | `:kotlin-common-gradle-plugins` | General Kotlin/KMP, publishing, Dokka, benchmark, and JVM test plugins (`com.huanshankeji.*`) |
+| `kotlin-common-settings-gradle-plugins/` | `:kotlin-common-settings-gradle-plugins` | Thin settings plugins (`com.huanshankeji.*` settings conventions; minimal runtime classpath) |
 | `architecture-common-gradle-plugins/` | `:architecture-common-gradle-plugins` | Compose/web, Vert.x, and JVM feature-variant plugins |
 | `common-gradle-dependencies/` | `:common-gradle-dependencies` | Centralized dependency versions and helpers; published separately |
 | `huanshankeji-team-gradle-plugins/` | `:gradle-plugins` | Team-internal plugins (`com.huanshankeji.team.*`); used by `buildSrc` bootstrapping |
+| `huanshankeji-team-settings-gradle-plugins/` | `:team-settings-gradle-plugins` | Team settings plugins (`com.huanshankeji.team.*` settings conventions) |
 
 Root [settings.gradle.kts](settings.gradle.kts) includes all modules. Version constants live in [buildSrc/src/main/kotlin/VersionsAndDependencies.kt](buildSrc/src/main/kotlin/VersionsAndDependencies.kt).
 
 ### Adding or changing a plugin
 
-1. Add or edit a `*.gradle.kts` script under the target module's `src/main/kotlin/com/huanshankeji/...`.
+1. Add or edit a `*.gradle.kts` script under the target module's `src/main/kotlin/com/huanshankeji/...` (or `*.settings.gradle.kts` for settings plugins in `kotlin-common-settings-gradle-plugins` / `huanshankeji-team-settings-gradle-plugins`).
 2. Register it in that module's `build.gradle.kts` (e.g., [kotlin-common-gradle-plugins/build.gradle.kts](kotlin-common-gradle-plugins/build.gradle.kts)) via `gradlePlugin { plugins { scriptConventionsPlugin(...) } }`.
 3. Reuse helpers from existing Kotlin sources in the same module; prefer extending conventions rather than duplicating logic.
 4. If the change affects public ABI, update the corresponding `api/*.api` dump (see below).
