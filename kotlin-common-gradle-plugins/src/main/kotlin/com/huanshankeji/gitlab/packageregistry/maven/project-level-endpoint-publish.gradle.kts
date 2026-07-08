@@ -21,9 +21,11 @@ val extension = extensions.create<Extension>("gitlabPackageRegistryProjectLevelE
 
 publishing {
     repositories {
-        gitlabPackageRegistryProjectLevelEndpointMavenRepository(
-            hostProvider = extension.host.orElse(GITLAB_COM_HOST),
-            projectIdOrProjectPathProvider = extension.projectId,
-        )
+        context(providers, ::uri) {
+            gitlabPackageRegistryProjectLevelEndpointMavenRepository(
+                hostProvider = extension.host.orElse(GITLAB_COM_HOST),
+                projectIdOrProjectPathProvider = extension.projectId,
+            )
+        }
     }
 }

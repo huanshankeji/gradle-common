@@ -1,7 +1,6 @@
 package com.huanshankeji.gitlab.packageregistry.maven
 
 import com.huanshankeji.GradleCommonExperimentalApi
-import org.gradle.api.Project
 import org.gradle.api.artifacts.dsl.RepositoryHandler
 import org.gradle.api.artifacts.repositories.MavenArtifactRepository
 import org.gradle.api.credentials.HttpHeaderCredentials
@@ -10,21 +9,23 @@ import org.gradle.api.provider.ProviderFactory
 import org.gradle.authentication.http.HttpHeaderAuthentication
 import org.gradle.kotlin.dsl.create
 import org.gradle.kotlin.dsl.credentials
+import java.net.URI
 
 @GradleCommonExperimentalApi
 fun ProviderFactory.gitlabPackageRegistryPrivateToken(): String? =
     gradleProperty("gitLabPrivateToken").getOrNull()
 
-
 @GradleCommonExperimentalApi
-context(project: Project)
-fun MavenArtifactRepository.gitlabPackageRegistrySetUrlAndCredentials(name: String, urlProvider: Provider<String>) {
-    // adapted from https://docs.gitlab.com/ee/user/packages/maven_repository/#authenticate-with-a-personal-access-token-in-gradle (link outdated as checked)
-    setUrl(urlProvider.map { url -> project.uri(url) })
+context(providers: ProviderFactory, uri: (path: Any) -> URI)
+fun MavenArtifactRepository.gitlabPackageRegistrySetUrlAndCredentials(
+    name: String,
+    urlProvider: Provider<String>,
+) {
+    setUrl(urlProvider.map(uri))
     this.name = name
     credentials(HttpHeaderCredentials::class) {
         this.name = "Private-Token"
-        value = project.providers.gitlabPackageRegistryPrivateToken()
+        value = providers.gitlabPackageRegistryPrivateToken()
     }
     authentication {
         create("header", HttpHeaderAuthentication::class)
@@ -34,7 +35,7 @@ fun MavenArtifactRepository.gitlabPackageRegistrySetUrlAndCredentials(name: Stri
 
 const val GITLAB_PACKAGE_REGISTRY_DEFAULT_REPOSITORY_NAME = "GitLabPackageRegistry"
 
-context(_: Project)
+context(_: ProviderFactory, _: (path: Any) -> URI)
 fun RepositoryHandler.gitlabPackageRegistryMavenRepository(
     name: String = GITLAB_PACKAGE_REGISTRY_DEFAULT_REPOSITORY_NAME,
     urlProvider: Provider<String>,
@@ -47,11 +48,11 @@ fun RepositoryHandler.gitlabPackageRegistryMavenRepository(
 const val GITLAB_COM_HOST = "gitlab.com"
 
 // see: https://docs.gitlab.com/ee/user/packages/maven_repository/#project-level-maven-endpoint (link outdated)
-// only the project’s ID can be used for publishing. TODO Check if only the project’s ID can be used for consumption too. If so, move this comment into a KDoc and rename the parameter to `projectId`.
-context(project: Project)
+// only the project's ID can be used for publishing. TODO Check if only the project's ID can be used for consumption too. If so, move this comment into a KDoc and rename the parameter to `projectId`.
+context(providers: ProviderFactory, _: (path: Any) -> URI)
 fun RepositoryHandler.gitlabPackageRegistryProjectLevelEndpointMavenRepository(
     name: String = GITLAB_PACKAGE_REGISTRY_DEFAULT_REPOSITORY_NAME,
-    hostProvider: Provider<String> = project.provider { GITLAB_COM_HOST },
+    hostProvider: Provider<String> = providers.provider { GITLAB_COM_HOST },
     projectIdOrProjectPathProvider: Provider<String>,
 ): MavenArtifactRepository =
     gitlabPackageRegistryMavenRepository(
@@ -62,10 +63,10 @@ fun RepositoryHandler.gitlabPackageRegistryProjectLevelEndpointMavenRepository(
     )
 
 // see: https://docs.gitlab.com/ee/user/packages/maven_repository/#group-level-maven-endpoint (link outdated)
-context(project: Project)
+context(providers: ProviderFactory, _: (path: Any) -> URI)
 fun RepositoryHandler.gitlabPackageRegistryGroupLevelEndpointMavenRepository(
     name: String = GITLAB_PACKAGE_REGISTRY_DEFAULT_REPOSITORY_NAME,
-    hostProvider: Provider<String> = project.provider { GITLAB_COM_HOST },
+    hostProvider: Provider<String> = providers.provider { GITLAB_COM_HOST },
     groupIdProvider: Provider<String>,
 ): MavenArtifactRepository =
     gitlabPackageRegistryMavenRepository(
@@ -76,10 +77,10 @@ fun RepositoryHandler.gitlabPackageRegistryGroupLevelEndpointMavenRepository(
     )
 
 // see: https://docs.gitlab.com/ee/user/packages/maven_repository/#group-level-maven-endpoint (link outdated)
-context(project: Project)
+context(providers: ProviderFactory, _: (path: Any) -> URI)
 fun RepositoryHandler.gitlabPackageRegistryInstanceLevelEndpointMavenRepository(
     name: String = GITLAB_PACKAGE_REGISTRY_DEFAULT_REPOSITORY_NAME,
-    hostProvider: Provider<String> = project.provider { GITLAB_COM_HOST },
+    hostProvider: Provider<String> = providers.provider { GITLAB_COM_HOST },
 ): MavenArtifactRepository =
     gitlabPackageRegistryMavenRepository(
         name,
