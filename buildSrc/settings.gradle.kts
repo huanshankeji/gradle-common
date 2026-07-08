@@ -66,3 +66,6 @@ include(
     "huanshankeji-team:gradle-library",
     "huanshankeji-team:project-gradle-plugins",
 )
+
+project(":kotlin-common-gradle-library").projectDir = file("kotlin-common/gradle-library")
+project(":kotlin-common-project-gradle-plugins").projectDir = file("kotlin-common/project-gradle-plugins")

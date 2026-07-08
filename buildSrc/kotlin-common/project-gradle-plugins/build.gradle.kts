@@ -19,7 +19,7 @@ dependencies {
 // IMPORTANT: the source directory must be added BEFORE the `kotlin-dsl` plugin is applied
 // (https://github.com/gradle/gradle/issues/21052); see the comment in the sibling build script.
 sourceSets.main {
-    kotlin.srcDir("../../kotlin-common/project-gradle-plugins/src/main/kotlin")
+    kotlin.srcDir("../../../kotlin-common/project-gradle-plugins/src/main/kotlin")
 }
 
 apply(plugin = "org.gradle.kotlin.kotlin-dsl")
