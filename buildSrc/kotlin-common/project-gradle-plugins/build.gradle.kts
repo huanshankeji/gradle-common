@@ -11,7 +11,7 @@ dependencies {
     api(libs.bundles.kotlinCommonGradlePlugins.api)
 
     implementation(project(":common-gradle-dependencies"))
-    implementation(project(":kotlin-common-gradle-library"))
+    implementation(project(":kotlin-common:kotlin-common-gradle-library"))
 }
 
 // Source-link the `kotlin-common/project-gradle-plugins` sources (#54).
