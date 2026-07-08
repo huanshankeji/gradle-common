@@ -4,6 +4,9 @@ modules' sources, so that the build logic is compiled from the current source in
 depending on stale released versions of this repository's plugins (#54). Mirroring the root
 module structure (rather than merging everything into one compilation) preserves the
 project/binary boundaries that the precompiled script plugins' type-safe accessors rely on.
+
+Settings plugin modules are not source-linked here: the root build keeps the Foojay resolver
+convention applied directly in `settings.gradle.kts` instead.
 */
 
 plugins {
@@ -14,36 +17,6 @@ plugins {
     // https://kotlinlang.org/docs/releases.html
     kotlin("jvm") version "2.4.0" apply false
 }
-
-// alternative approach
-/*
-buildscript {
-    repositories {
-        gradlePluginPortal()
-    }
-    dependencies {
-        classpath(kotlin("gradle-plugin", "2.4.0"))
-    }
-}
-*/
-
-// The explanation below was written by Cursor and is not verified to be absolutely correct.
-/*
-`pluginManagement { plugins { kotlin("jvm") version … } }` alone is not sufficient: it constrains
-plugin-id resolution for the `plugins {}` DSL but does not add `kotlin-gradle-plugins-bom` to the
-build classpath, so versionless `org.jetbrains.kotlin:*` implementation dependencies still resolve
-to `kotlin-dsl`'s embedded BOM.
-*/
-/*
-pluginManagement {
-    repositories {
-        gradlePluginPortal()
-    }
-    plugins {
-        kotlin("jvm") version "2.4.0"
-    }
-}
-*/
 
 dependencyResolutionManagement {
     @Suppress("UnstableApiUsage")
@@ -61,8 +34,8 @@ dependencyResolutionManagement {
 
 include(
     "common-gradle-dependencies",
-    "kotlin-common-gradle-plugins",
-    "kotlin-common-settings-gradle-plugins",
-    "huanshankeji-team-gradle-plugins",
-    "huanshankeji-team-settings-gradle-plugins",
+    "kotlin-common-gradle-library",
+    "kotlin-common-project-gradle-plugins",
+    "huanshankeji-team:gradle-library",
+    "huanshankeji-team:project-gradle-plugins",
 )

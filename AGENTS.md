@@ -19,19 +19,21 @@ The APIs are experimental and may change. There are no end-user tutorials here; 
 | Path | Gradle project name | Purpose |
 |------|---------------------|---------|
 | `buildSrc/` | — | Shared build logic: versions, conventions, plugin registration helpers |
-| `kotlin-common-gradle-plugins/` | `:kotlin-common-gradle-plugins` | General Kotlin/KMP, publishing, Dokka, benchmark, and JVM test plugins (`com.huanshankeji.*`) |
-| `kotlin-common-settings-gradle-plugins/` | `:kotlin-common-settings-gradle-plugins` | Thin settings plugins (`com.huanshankeji.*` settings conventions; minimal runtime classpath) |
-| `architecture-common-gradle-plugins/` | `:architecture-common-gradle-plugins` | Compose/web, Vert.x, and JVM feature-variant plugins |
+| `kotlin-common/gradle-library/` | `:kotlin-common-gradle-library` | Shared helpers for kotlin-common modules |
+| `kotlin-common/project-gradle-plugins/` | `:kotlin-common-project-gradle-plugins` | General Kotlin/KMP, publishing, Dokka, benchmark, and JVM test plugins (`com.huanshankeji.*`) |
+| `kotlin-common/settings-gradle-plugins/` | `:kotlin-common-settings-gradle-plugins` | Thin settings plugins (`com.huanshankeji.*` settings conventions; minimal runtime classpath) |
+| `architecture-common/project-gradle-plugins/` | `:architecture-common-project-gradle-plugins` | Compose/web, Vert.x, and JVM feature-variant plugins |
 | `common-gradle-dependencies/` | `:common-gradle-dependencies` | Centralized dependency versions and helpers; published separately |
-| `huanshankeji-team-gradle-plugins/` | `:gradle-plugins` | Team-internal plugins (`com.huanshankeji.team.*`); used by `buildSrc` bootstrapping |
-| `huanshankeji-team-settings-gradle-plugins/` | `:team-settings-gradle-plugins` | Team settings plugins (`com.huanshankeji.team.*` settings conventions) |
+| `huanshankeji-team/gradle-library/` | `:huanshankeji-team:gradle-library` | Shared helpers for team modules |
+| `huanshankeji-team/project-gradle-plugins/` | `:huanshankeji-team:project-gradle-plugins` | Team-internal plugins (`com.huanshankeji.team.*`); used by `buildSrc` bootstrapping |
+| `huanshankeji-team/settings-gradle-plugins/` | `:huanshankeji-team:settings-gradle-plugins` | Team settings plugins (`com.huanshankeji.team.*` settings conventions) |
 
-Root [settings.gradle.kts](settings.gradle.kts) includes all modules. Version constants live in [buildSrc/src/main/kotlin/VersionsAndDependencies.kt](buildSrc/src/main/kotlin/VersionsAndDependencies.kt).
+Root [settings.gradle.kts](settings.gradle.kts) includes all modules. `kotlin-common` and `architecture-common` subprojects use concatenated project names (CPN); `huanshankeji-team` keeps nested simple names. Version constants live in [buildSrc/src/main/kotlin/VersionsAndDependencies.kt](buildSrc/src/main/kotlin/VersionsAndDependencies.kt).
 
 ### Adding or changing a plugin
 
-1. Add or edit a `*.gradle.kts` script under the target module's `src/main/kotlin/com/huanshankeji/...` (or `*.settings.gradle.kts` for settings plugins in `kotlin-common-settings-gradle-plugins` / `huanshankeji-team-settings-gradle-plugins`).
-2. Register it in that module's `build.gradle.kts` (e.g., [kotlin-common-gradle-plugins/build.gradle.kts](kotlin-common-gradle-plugins/build.gradle.kts)) via `gradlePlugin { plugins { scriptConventionsPlugin(...) } }`.
+1. Add or edit a `*.gradle.kts` script under the target module's `src/main/kotlin/com/huanshankeji/...` (or `*.settings.gradle.kts` for settings plugins in `kotlin-common/settings-gradle-plugins` / `huanshankeji-team/settings-gradle-plugins`).
+2. Register it in that module's `build.gradle.kts` (e.g., [kotlin-common/project-gradle-plugins/build.gradle.kts](kotlin-common/project-gradle-plugins/build.gradle.kts)) via `gradlePlugin { plugins { scriptConventionsPlugin(...) } }`.
 3. Reuse helpers from existing Kotlin sources in the same module; prefer extending conventions rather than duplicating logic.
 4. If the change affects public ABI, update the corresponding `api/*.api` dump (see below).
 
@@ -52,7 +54,7 @@ Other useful tasks:
 ./gradlew publishToMavenLocal
 
 # Run tests for one module
-./gradlew :kotlin-common-gradle-plugins:test
+./gradlew :kotlin-common-project-gradle-plugins:test
 
 # Regenerate public API dumps after intentional ABI changes
 ./gradlew apiCheck          # verify
@@ -64,10 +66,10 @@ Configuration cache is enabled ([gradle.properties](gradle.properties)). Expect 
 ### Bootstrap / dependency resolution
 
 - There are no longer cross-version bootstrapping dependencies on released artifacts of this repository (#54):
-    - `buildSrc` is a **multi-project build** whose subprojects ([buildSrc/settings.gradle.kts](buildSrc/settings.gradle.kts)) source-link the corresponding root modules' sources (`common-gradle-dependencies`, `kotlin-common-gradle-plugins`, `huanshankeji-team-gradle-plugins`), compiling the build logic from the current source instead of depending on a stale released `com.huanshankeji.team:gradle-plugins`. The subproject structure mirrors the root modules (with the same inter-project dependencies) so the precompiled script plugins' cross-module type-safe accessors (e.g. `githubPackagesPublish`, `dokkaConvention`) still resolve across the project boundaries. The `buildSrc` root project depends on the `huanshankeji-team-gradle-plugins` subproject so its `conventions` plugin can dogfood the team plugins by id.
+    - `buildSrc` is a **multi-project build** whose subprojects ([buildSrc/settings.gradle.kts](buildSrc/settings.gradle.kts)) source-link the corresponding root modules' sources (`common-gradle-dependencies`, `kotlin-common/gradle-library`, `kotlin-common/project-gradle-plugins`, `huanshankeji-team/gradle-library`, `huanshankeji-team/project-gradle-plugins`), compiling the build logic from the current source instead of depending on a stale released `com.huanshankeji.team:gradle-plugins`. Settings plugin modules are not source-linked; the root build applies the Foojay resolver convention directly in [settings.gradle.kts](settings.gradle.kts). The subproject structure mirrors the root modules (with the same inter-project dependencies) so the precompiled script plugins' cross-module type-safe accessors (e.g. `githubPackagesPublish`, `dokkaConvention`) still resolve across the project boundaries. The `buildSrc` root project depends on the `huanshankeji-team:project-gradle-plugins` subproject so its `conventions` plugin can dogfood the team plugins by id.
     - Each source-linking subproject applies the Kotlin plugin via `kotlin("jvm")` (no version; registered in [buildSrc/settings.gradle.kts](buildSrc/settings.gradle.kts) with `kotlin("jvm") version … apply false`) and configures its source directory before applying `kotlin-dsl` imperatively, working around [gradle/gradle#21052](https://github.com/gradle/gradle/issues/21052).
     - Build-logic Kotlin is pinned in `buildSrc/settings.gradle.kts`, not by repeating `version.ref = "kotlin"` on `org.jetbrains.kotlin:*` [libraries] entries in the catalog (those omit a version and align via the Kotlin Gradle plugin BOM once the settings `plugins {}` block registers it). Do not rely on `pluginManagement { plugins { … } }` in `buildSrc/settings.gradle.kts` alone — see [README.md](README.md).
-    - The plugin modules depend on the `common-gradle-dependencies` **project** directly (see [aligned-version-plugin-conventions.gradle.kts](buildSrc/src/main/kotlin/aligned-version-plugin-conventions.gradle.kts)), so nothing needs to be published to Maven local before building.
+    - The plugin modules depend on the `common-gradle-dependencies` **project** directly (see [project-gradle-plugins-conventions.gradle.kts](buildSrc/src/main/kotlin/project-gradle-plugins-conventions.gradle.kts)), so nothing needs to be published to Maven local before building.
 - Dependency versions/coordinates used by the build scripts are centralized in the shared version catalog [gradle/libs.versions.toml](gradle/libs.versions.toml), consumed by both the root build and `buildSrc` (registered in [buildSrc/settings.gradle.kts](buildSrc/settings.gradle.kts)). Keep the overlapping versions in sync with `com.huanshankeji.CommonVersions` until #9 unifies them.
 
 - `mavenLocal()` is enabled in several build scripts for local iteration.
@@ -81,11 +83,11 @@ Configuration cache is enabled ([gradle.properties](gradle.properties)). Expect 
 - **Plugin IDs:** `com.huanshankeji.<kebab-case-suffix>` or `com.huanshankeji.team.<suffix>`, registered in each module's `gradlePlugin` block.
 - **Naming:** kebab-case for plugin id suffixes and script file names; camelCase for Kotlin APIs. Match patterns in existing plugins and helpers in the same module.
 - **Internal API:** APIs meant for in-repo use are marked
-  `@GradleCommonInternalApi` ([GradleCommonInternalApi.kt](kotlin-common-gradle-plugins/src/main/kotlin/com/huanshankeji/GradleCommonInternalApi.kt));
+  `@GradleCommonInternalApi` ([GradleCommonInternalApi.kt](kotlin-common/project-gradle-plugins/src/main/kotlin/com/huanshankeji/GradleCommonInternalApi.kt));
   plugin modules compile with `-opt-in=com.huanshankeji.InternalApi`.
 - **Public ABI:** Binary compatibility is tracked via `api/*.api` files and `apiCheck` / `checkKotlinAbi`. Do not change public signatures casually; update dumps only when the ABI change is deliberate.
 - **Scope:** Keep changes minimal and localized. Match existing patterns in the module you touch. Do not add unrelated refactors, comments, or tests unless they support the task.
-- **Tests:** Limited coverage today (e.g. [ConcatenatedProjectNamesTest.kt](kotlin-common-gradle-plugins/src/test/kotlin/com/huanshankeji/ConcatenatedProjectNamesTest.kt)). Add tests when changing non-trivial logic; run `./gradlew check` before finishing.
+- **Tests:** Limited coverage today (e.g. [ConcatenatedProjectNamesTest.kt](kotlin-common/project-gradle-plugins/src/test/kotlin/com/huanshankeji/ConcatenatedProjectNamesTest.kt)). Add tests when changing non-trivial logic; run `./gradlew check` before finishing.
 
 ## Version and changelog policy
 

@@ -15,8 +15,8 @@ dependencies {
     "huanshankeji-team-gradle-plugins" not added because it's renamed and more cumbersome to configure, and also because it's only used by us
      */
     listOf(
-        "kotlin-common-gradle-plugins",
-        "architecture-common-gradle-plugins",
+        "kotlin-common-project-gradle-plugins",
+        "architecture-common-project-gradle-plugins",
     ).forEach {
         dokka(project(":$it"))
     }

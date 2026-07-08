@@ -42,13 +42,11 @@ benManes-gradleVersionsPlugin = { module = "com.github.ben-manes:gradle-versions
 gradle-foojayResolverConvention = { module = "org.gradle.toolchains.foojay-resolver-convention:org.gradle.toolchains.foojay-resolver-convention.gradle.plugin", version.ref = "gradle-foojayResolverConvention" }
 
 [bundles]
-# Dependencies needed to compile the `kotlin-common-gradle-plugins` precompiled script plugins.
+# Dependencies needed to compile the `kotlin-common/project-gradle-plugins` precompiled script plugins.
 kotlinCommonGradlePlugins-implementation = ["kotlinx-benchmark-plugin", "kotlin-allopen", "dokka-gradlePlugin", "benManes-gradleVersionsPlugin"]
-# Dependencies needed to compile the `kotlin-common-settings-gradle-plugins` settings plugins.
-kotlinCommonSettingsGradlePlugins-implementation = ["gradle-foojayResolverConvention"]
 # made `api` to expose the plugin extension class (https://github.com/vanniktech/gradle-maven-publish-plugin/blob/main/plugin/src/main/kotlin/com/vanniktech/maven/publish/MavenPublishBaseExtension.kt)
 kotlinCommonGradlePlugins-api = ["vanniktech-mavenPublishGradlePlugin"]
-# Dependencies needed to compile the `architecture-common-gradle-plugins` precompiled script plugins.
+# Dependencies needed to compile the `architecture-common/project-gradle-plugins` precompiled script plugins.
 architectureCommonGradlePlugins-implementation = ["kotlin-composeCompilerGradlePlugin", "compose-gradlePlugin"]
 
 [plugins]
