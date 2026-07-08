@@ -1,10 +1,7 @@
 import org.jetbrains.kotlin.gradle.dsl.abi.ExperimentalAbiValidation
 
 plugins {
-    id("kotlin-common-module-conventions")
-    id("aligned-version-build-logic-conventions")
-    id("project-gradle-plugins-conventions")
-    id("com.huanshankeji.team.dokka.github-dokka-convention")
+    `aligned-version-plugin-conventions`
 }
 
 kotlin {
@@ -15,6 +12,14 @@ kotlin {
 dependencies {
     implementation(project(":kotlin-common-project-gradle-plugins"))
     implementation(libs.bundles.architectureCommonGradlePlugins.implementation)
+
+    //api(project(":common-gradle-dependencies"))
+    //implementation(project(":common-gradle-dependencies"))
+    /* This project depends on a specific version of the Maven dependency of "common-gradle-dependencies"
+     since now they are developed together in the same branch `main`,
+     enabling it to always depend on a release version. */
+
+    // implementation(commonGradleClasspathDependencies.composeMultiplatform.gradlePlugin.pluginProject()) // bootstrapping
 }
 
 gradlePlugin {
@@ -27,6 +32,7 @@ gradlePlugin {
             "default-web-frontend-conventions",
             "Default web frontend conventions for our projects with Compose for Web and kotlinx.html HTML generation"
         )
+        // TODO
         scriptConventionsPlugin(
             "default-material-web-frontend-conventions",
             "(not implemented yet) Default web frontend conventions for our projects with Compose for Web, kotlinx.html HTML generation, and Material Design"

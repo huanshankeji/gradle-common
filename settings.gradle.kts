@@ -18,8 +18,7 @@ include("huanshankeji-team:gradle-library")
 include("huanshankeji-team:project-gradle-plugins")
 include("huanshankeji-team:settings-gradle-plugins")
 
-include("architecture-common-project-gradle-plugins")
-project(":architecture-common-project-gradle-plugins").projectDir = file("architecture-common/project-gradle-plugins")
+include("architecture-common-gradle-plugins")
 
 dependencyResolutionManagement {
     @Suppress("UnstableApiUsage")

@@ -2,12 +2,12 @@
 
 ## Unreleased
 
-* overhaul module hierarchy into nested `kotlin-common/`, `huanshankeji-team/`, and `architecture-common/` directories with shared `gradle-library` modules
+* overhaul module hierarchy into nested `kotlin-common/` and `huanshankeji-team/` directories with shared `gradle-library` modules
     * split build-logic conventions into `gradle-library-conventions`, `project-gradle-plugins-conventions`, `settings-gradle-plugins-conventions`, `kotlin-common-module-conventions`, and `huanshankeji-team-module-conventions`
     * extract shared helpers (`VersionRegexes`, GitHub Packages credentials, team `Constants`, `MavenRepositoryContentFiltering`, …) into `gradle-library` modules
-    * `kotlin-common` and `architecture-common` subprojects use concatenated project names (CPN); `huanshankeji-team` keeps nested simple names
+    * `kotlin-common` subprojects use concatenated project names (CPN); `huanshankeji-team` keeps nested simple names
     * `buildSrc` no longer source-links settings plugin modules; the root build keeps the Foojay resolver convention applied directly
-* replace kotlinx `binary-compatibility-validator` with Kotlin Gradle plugin `abiValidation()` on `:kotlin-common-project-gradle-plugins` and `:architecture-common-project-gradle-plugins` only (same scope as root `build.gradle.kts` on `main`)
+* replace kotlinx `binary-compatibility-validator` with Kotlin Gradle plugin `abiValidation()` on `:kotlin-common-project-gradle-plugins` and `:architecture-common-gradle-plugins` only (same scope as root `build.gradle.kts` on `main`)
 * replace `com.huanshankeji.team.github-packages-maven-publish` and `com.huanshankeji.team.default-github-packages-maven-publish` with `com.huanshankeji.team.github.packages.maven.publish`
 * unify release publishing on the `release` branch (replacing `plugins-release` and `common-gradle-dependencies-release`)
 * remove duplicated build logic now that `buildSrc` source-links the plugin module sources (#54, #60)

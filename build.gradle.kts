@@ -16,7 +16,7 @@ dependencies {
      */
     listOf(
         "kotlin-common-project-gradle-plugins",
-        "architecture-common-project-gradle-plugins",
+        "architecture-common-gradle-plugins",
     ).forEach {
         dokka(project(":$it"))
     }

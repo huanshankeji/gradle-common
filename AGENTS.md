@@ -22,13 +22,13 @@ The APIs are experimental and may change. There are no end-user tutorials here; 
 | `kotlin-common/gradle-library/` | `:kotlin-common-gradle-library` | Shared helpers for kotlin-common modules |
 | `kotlin-common/project-gradle-plugins/` | `:kotlin-common-project-gradle-plugins` | General Kotlin/KMP, publishing, Dokka, benchmark, and JVM test plugins (`com.huanshankeji.*`) |
 | `kotlin-common/settings-gradle-plugins/` | `:kotlin-common-settings-gradle-plugins` | Thin settings plugins (`com.huanshankeji.*` settings conventions; minimal runtime classpath) |
-| `architecture-common/project-gradle-plugins/` | `:architecture-common-project-gradle-plugins` | Compose/web, Vert.x, and JVM feature-variant plugins |
+| `architecture-common-gradle-plugins/` | `:architecture-common-gradle-plugins` | Compose/web, Vert.x, and JVM feature-variant plugins |
 | `common-gradle-dependencies/` | `:common-gradle-dependencies` | Centralized dependency versions and helpers; published separately |
 | `huanshankeji-team/gradle-library/` | `:huanshankeji-team:gradle-library` | Shared helpers for team modules |
 | `huanshankeji-team/project-gradle-plugins/` | `:huanshankeji-team:project-gradle-plugins` | Team-internal plugins (`com.huanshankeji.team.*`); used by `buildSrc` bootstrapping |
 | `huanshankeji-team/settings-gradle-plugins/` | `:huanshankeji-team:settings-gradle-plugins` | Team settings plugins (`com.huanshankeji.team.*` settings conventions) |
 
-Root [settings.gradle.kts](settings.gradle.kts) includes all modules. `kotlin-common` and `architecture-common` subprojects use concatenated project names (CPN); `huanshankeji-team` keeps nested simple names. Version constants live in [buildSrc/src/main/kotlin/VersionsAndDependencies.kt](buildSrc/src/main/kotlin/VersionsAndDependencies.kt).
+Root [settings.gradle.kts](settings.gradle.kts) includes all modules. `kotlin-common` subprojects use concatenated project names (CPN); `huanshankeji-team` keeps nested simple names. Version constants live in [buildSrc/src/main/kotlin/VersionsAndDependencies.kt](buildSrc/src/main/kotlin/VersionsAndDependencies.kt).
 
 ### Adding or changing a plugin
 
