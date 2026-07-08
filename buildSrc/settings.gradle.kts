@@ -59,6 +59,15 @@ dependencyResolutionManagement {
     }
 }
 
+/*
+kotlin-common subprojects use CPN child names (`kotlin-common-gradle-library`, …), not simple
+names (`gradle-library`, `project-gradle-plugins`). huanshankeji-team already uses those
+simple names under its own parent (`:huanshankeji-team:gradle-library`, …). Reusing the same
+child names under `:kotlin-common:` would give modules the same logical coordinates in the
+buildSrc project tree; precompiled-script accessor generation then fails to load cross-module
+kotlin-common helpers (e.g. `GithubPackagesMavenCredentials` from gradle-library) when team
+scripts apply kotlin-common plugins.
+*/
 include(
     "common-gradle-dependencies",
     "kotlin-common:kotlin-common-gradle-library",
