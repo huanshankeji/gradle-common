@@ -1,15 +1,17 @@
 package com.huanshankeji.team.gitversioning
 
 import com.huanshankeji.gitversioning.DEV_COMMIT_VERSION_REGEX
-import com.huanshankeji.gitversioning.DIRTY_DEV_COMMIT_VERSION_REGEX
-import com.huanshankeji.gitversioning.LEGACY_SNAPSHOT_VERSION_REGEX
+import com.huanshankeji.gitversioning.RELEASE_VERSION_REGEX
+import com.huanshankeji.gitversioning.SNAPSHOT_VERSION_REGEX
 import com.huanshankeji.team.HUANSHANKEJI_GROUP
 import org.gradle.api.artifacts.repositories.MavenArtifactRepository
+import org.gradle.api.artifacts.repositories.MavenRepositoryContentDescriptor
+import org.gradle.api.artifacts.repositories.RepositoryContentDescriptor
 
-// TODO extract functions for non-`HUANSHANKEJI_MAVEN_GROUP` usages
+const val HUANSHANKEJI_MAVEN_GROUP = HUANSHANKEJI_GROUP
 
-
-// TODO consider inlining and removing these `contentInclude` APIs
+/** Regex-escaped [HUANSHANKEJI_MAVEN_GROUP] for `include*ByRegex` / `exclude*ByRegex`. */
+const val HUANSHANKEJI_MAVEN_GROUP_REGEX = "com\\.huanshankeji"
 
 fun MavenArtifactRepository.contentIncludeGroupVersions(
     groupRegex: String,
@@ -49,20 +51,34 @@ fun MavenArtifactRepository.contentExcludeModuleVersions(
     }
 }
 
+/** Full-version match for [RELEASE_VERSION_REGEX]. */
+const val ANCHORED_RELEASE_VERSION_REGEX = "^$RELEASE_VERSION_REGEX$"
 
-const val HUANSHANKEJI_MAVEN_GROUP = HUANSHANKEJI_GROUP
-
-fun MavenArtifactRepository.contentIncludeHuanshankejiDirtyAndLegacySnapshots() {
-    contentIncludeGroupVersions(HUANSHANKEJI_MAVEN_GROUP, DIRTY_DEV_COMMIT_VERSION_REGEX)
-    contentIncludeGroupVersions(HUANSHANKEJI_MAVEN_GROUP, LEGACY_SNAPSHOT_VERSION_REGEX)
+fun RepositoryContentDescriptor.includeSnapshotAndDevCommitVersions(
+    groupRegex: String = ".*",
+    moduleRegex: String = ".*",
+) {
+    includeVersionByRegex(groupRegex, moduleRegex, SNAPSHOT_VERSION_REGEX)
+    includeVersionByRegex(groupRegex, moduleRegex, DEV_COMMIT_VERSION_REGEX)
 }
 
-fun MavenArtifactRepository.contentIncludeHuanshankejiDevCommitVersions() {
-    contentIncludeGroupVersions(HUANSHANKEJI_MAVEN_GROUP, DEV_COMMIT_VERSION_REGEX)
+fun RepositoryContentDescriptor.includeDevCommitVersions(
+    groupRegex: String = ".*",
+    moduleRegex: String = ".*",
+) {
+    includeVersionByRegex(groupRegex, moduleRegex, DEV_COMMIT_VERSION_REGEX)
 }
 
-fun MavenArtifactRepository.contentExcludeHuanshankejiNonStableVersions() {
-    contentExcludeGroupVersions(HUANSHANKEJI_MAVEN_GROUP, DEV_COMMIT_VERSION_REGEX)
-    contentExcludeGroupVersions(HUANSHANKEJI_MAVEN_GROUP, DIRTY_DEV_COMMIT_VERSION_REGEX)
-    contentExcludeGroupVersions(HUANSHANKEJI_MAVEN_GROUP, LEGACY_SNAPSHOT_VERSION_REGEX)
+fun RepositoryContentDescriptor.includeReleaseVersions(
+    groupRegex: String = ".*",
+    moduleRegex: String = ".*",
+) {
+    includeVersionByRegex(groupRegex, moduleRegex, ANCHORED_RELEASE_VERSION_REGEX)
+}
+
+/** For `google { mavenContent { } }` — KMP template groups. */
+fun MavenRepositoryContentDescriptor.includeGoogleMavenGroups() {
+    includeGroupAndSubgroups("androidx")
+    includeGroupAndSubgroups("com.android")
+    includeGroupAndSubgroups("com.google")
 }

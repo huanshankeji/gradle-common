@@ -33,7 +33,7 @@ public final class com/huanshankeji/gitlab/packageregistry/maven/GitlabPackageRe
 
 public final class com/huanshankeji/gitversioning/VersionRegexesKt {
 	public static final field DEV_COMMIT_VERSION_REGEX Ljava/lang/String;
-	public static final field DIRTY_DEV_COMMIT_VERSION_REGEX Ljava/lang/String;
-	public static final field LEGACY_SNAPSHOT_VERSION_REGEX Ljava/lang/String;
+	public static final field RELEASE_VERSION_REGEX Ljava/lang/String;
+	public static final field SNAPSHOT_VERSION_REGEX Ljava/lang/String;
 }
 

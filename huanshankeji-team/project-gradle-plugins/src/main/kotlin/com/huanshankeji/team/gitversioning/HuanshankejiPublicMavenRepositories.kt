@@ -3,8 +3,7 @@ package com.huanshankeji.team.gitversioning
 import com.huanshankeji.github.packages.maven.githubPackagesMavenPassword
 import com.huanshankeji.github.packages.maven.githubPackagesMavenUsername
 import com.huanshankeji.gitversioning.DEV_COMMIT_VERSION_REGEX
-import com.huanshankeji.gitversioning.DIRTY_DEV_COMMIT_VERSION_REGEX
-import com.huanshankeji.gitversioning.LEGACY_SNAPSHOT_VERSION_REGEX
+import com.huanshankeji.gitversioning.SNAPSHOT_VERSION_REGEX
 import com.huanshankeji.team.HUANSHANKEJI_IN_LOWERCASE
 import org.gradle.api.Project
 import org.gradle.api.artifacts.dsl.RepositoryHandler
@@ -12,11 +11,10 @@ import org.gradle.api.artifacts.repositories.MavenArtifactRepository
 import java.net.URI
 
 /**
- * Configures Maven local (first) and GitHub Packages for [HUANSHANKEJI_MAVEN_GROUP] artifacts.
- * Intended for public open-source repos that must not be aware of internal project names.
- *
- * Call [configureMavenCentralExcludeHuanshankejiNonStable] on an existing `mavenCentral()` repository.
+ * Legacy project-level helper. Prefer the settings DSL
+ * (`publicOpenSourceDependencyRepositories` / `huanshankejiMavenRepositories`).
  */
+@Deprecated("Use publicOpenSourceDependencyRepositories / huanshankejiMavenRepositories settings DSL")
 context(project: Project)
 fun RepositoryHandler.configurePublicHuanshankejiArtifactRepositories(
     githubPackageRepositoryNames: List<String> = emptyList(),
@@ -25,8 +23,7 @@ fun RepositoryHandler.configurePublicHuanshankejiArtifactRepositories(
     mavenLocal {
         content {
             includeVersionByRegex(HUANSHANKEJI_MAVEN_GROUP, ".*", DEV_COMMIT_VERSION_REGEX)
-            includeVersionByRegex(HUANSHANKEJI_MAVEN_GROUP, ".*", DIRTY_DEV_COMMIT_VERSION_REGEX)
-            includeVersionByRegex(HUANSHANKEJI_MAVEN_GROUP, ".*", LEGACY_SNAPSHOT_VERSION_REGEX)
+            includeVersionByRegex(HUANSHANKEJI_MAVEN_GROUP, ".*", SNAPSHOT_VERSION_REGEX)
         }
     }
     for (repositoryName in githubPackageRepositoryNames) {
@@ -46,6 +43,9 @@ fun RepositoryHandler.configurePublicHuanshankejiArtifactRepositories(
     }
 }
 
+@Deprecated("Use mavenCentralExcludingHuanshankeji in the settings DSL", ReplaceWith("content { excludeGroupAndSubgroups(HUANSHANKEJI_MAVEN_GROUP) }"))
 fun MavenArtifactRepository.configureMavenCentralExcludeHuanshankejiNonStable() {
-    contentExcludeHuanshankejiNonStableVersions()
+    content {
+        excludeGroupAndSubgroups(HUANSHANKEJI_MAVEN_GROUP)
+    }
 }

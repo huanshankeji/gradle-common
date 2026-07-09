@@ -4,13 +4,19 @@ public final class com/huanshankeji/team/ConstantsKt {
 }
 
 public final class com/huanshankeji/team/gitversioning/MavenRepositoryContentFilteringKt {
+	public static final field ANCHORED_RELEASE_VERSION_REGEX Ljava/lang/String;
 	public static final field HUANSHANKEJI_MAVEN_GROUP Ljava/lang/String;
+	public static final field HUANSHANKEJI_MAVEN_GROUP_REGEX Ljava/lang/String;
 	public static final fun contentExcludeGroupVersions (Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;Ljava/lang/String;Ljava/lang/String;)V
-	public static final fun contentExcludeHuanshankejiNonStableVersions (Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;)V
 	public static final fun contentExcludeModuleVersions (Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
 	public static final fun contentIncludeGroupVersions (Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;Ljava/lang/String;Ljava/lang/String;)V
-	public static final fun contentIncludeHuanshankejiDevCommitVersions (Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;)V
-	public static final fun contentIncludeHuanshankejiDirtyAndLegacySnapshots (Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;)V
 	public static final fun contentIncludeModuleVersions (Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public static final fun includeDevCommitVersions (Lorg/gradle/api/artifacts/repositories/RepositoryContentDescriptor;Ljava/lang/String;Ljava/lang/String;)V
+	public static synthetic fun includeDevCommitVersions$default (Lorg/gradle/api/artifacts/repositories/RepositoryContentDescriptor;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)V
+	public static final fun includeGoogleMavenGroups (Lorg/gradle/api/artifacts/repositories/MavenRepositoryContentDescriptor;)V
+	public static final fun includeReleaseVersions (Lorg/gradle/api/artifacts/repositories/RepositoryContentDescriptor;Ljava/lang/String;Ljava/lang/String;)V
+	public static synthetic fun includeReleaseVersions$default (Lorg/gradle/api/artifacts/repositories/RepositoryContentDescriptor;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)V
+	public static final fun includeSnapshotAndDevCommitVersions (Lorg/gradle/api/artifacts/repositories/RepositoryContentDescriptor;Ljava/lang/String;Ljava/lang/String;)V
+	public static synthetic fun includeSnapshotAndDevCommitVersions$default (Lorg/gradle/api/artifacts/repositories/RepositoryContentDescriptor;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)V
 }
 
