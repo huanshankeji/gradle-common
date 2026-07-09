@@ -1,0 +1,16 @@
+public final class com/huanshankeji/team/ConstantsKt {
+	public static final field HUANSHANKEJI_GROUP Ljava/lang/String;
+	public static final field HUANSHANKEJI_IN_LOWERCASE Ljava/lang/String;
+}
+
+public final class com/huanshankeji/team/gitversioning/MavenRepositoryContentFilteringKt {
+	public static final field HUANSHANKEJI_MAVEN_GROUP Ljava/lang/String;
+	public static final fun contentExcludeGroupVersions (Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;Ljava/lang/String;Ljava/lang/String;)V
+	public static final fun contentExcludeHuanshankejiNonStableVersions (Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;)V
+	public static final fun contentExcludeModuleVersions (Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public static final fun contentIncludeGroupVersions (Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;Ljava/lang/String;Ljava/lang/String;)V
+	public static final fun contentIncludeHuanshankejiDevCommitVersions (Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;)V
+	public static final fun contentIncludeHuanshankejiDirtyAndLegacySnapshots (Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;)V
+	public static final fun contentIncludeModuleVersions (Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+}
+

@@ -1,0 +1,23 @@
+public class com/huanshankeji/team/gitversioning/PublicOpenSourceDependencyRepositoriesExtension {
+	public fun <init> ()V
+	public final fun githubPackages ([Ljava/lang/String;Ljava/lang/String;)V
+	public static synthetic fun githubPackages$default (Lcom/huanshankeji/team/gitversioning/PublicOpenSourceDependencyRepositoriesExtension;[Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)V
+	public final fun google ()V
+	public final fun huanshankejiMavenLocal ()V
+	public final fun mavenCentral (Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun mavenCentral$default (Lcom/huanshankeji/team/gitversioning/PublicOpenSourceDependencyRepositoriesExtension;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public final fun mavenCentralExcludingHuanshankejiNonStable ()V
+}
+
+public final class com/huanshankeji/team/gitversioning/PublicOpenSourceDependencyRepositoriesPlugin : org/gradle/api/Plugin {
+	public fun <init> ()V
+	public synthetic fun apply (Ljava/lang/Object;)V
+	public fun apply (Lorg/gradle/api/initialization/Settings;)V
+}
+
+public final class com/huanshankeji/team/gitversioning/Public_open_source_dependency_repositories_settings_gradle : org/gradle/kotlin/dsl/precompile/v1/PrecompiledSettingsScript {
+	public fun <init> (Lorg/gradle/api/initialization/Settings;Lorg/gradle/api/initialization/Settings;)V
+	public final fun getExtension ()Lcom/huanshankeji/team/gitversioning/PublicOpenSourceDependencyRepositoriesExtension;
+	public static final fun main ([Ljava/lang/String;)V
+}
+

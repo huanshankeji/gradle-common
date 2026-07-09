@@ -7,13 +7,3 @@ dependencies {
 
     implementation(project(":common-gradle-dependencies"))
 }
-
-kotlin {
-    compilerOptions {
-        optIn.addAll(
-            "com.huanshankeji.GradleCommonInternalApi",
-            "com.huanshankeji.GradleCommonExperimentalApi",
-        )
-        freeCompilerArgs.add("-Xcontext-parameters")
-    }
-}

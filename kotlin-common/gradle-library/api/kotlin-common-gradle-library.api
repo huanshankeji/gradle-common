@@ -1,0 +1,24 @@
+public abstract interface annotation class com/huanshankeji/GradleCommonExperimentalApi : java/lang/annotation/Annotation {
+}
+
+public abstract interface annotation class com/huanshankeji/GradleCommonInternalApi : java/lang/annotation/Annotation {
+}
+
+public abstract interface annotation class com/huanshankeji/InternalApi : java/lang/annotation/Annotation {
+}
+
+public final class com/huanshankeji/github/packages/maven/GithubPackagesMavenRegistryKt {
+	public static final fun githubPackagesMavenPassword (Lorg/gradle/api/provider/ProviderFactory;)Ljava/lang/String;
+	public static final fun githubPackagesMavenRegistry (Lorg/gradle/api/Project;Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Lorg/gradle/api/provider/Provider;Lorg/gradle/api/provider/Provider;)Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;
+	public static final fun githubPackagesMavenRegistryWithName (Lorg/gradle/api/Project;Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Lorg/gradle/api/provider/Provider;Lorg/gradle/api/provider/Provider;Ljava/lang/String;)Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;
+	public static synthetic fun githubPackagesMavenRegistryWithName$default (Lorg/gradle/api/Project;Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Lorg/gradle/api/provider/Provider;Lorg/gradle/api/provider/Provider;Ljava/lang/String;ILjava/lang/Object;)Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;
+	public static final fun githubPackagesMavenUsername (Lorg/gradle/api/provider/ProviderFactory;)Ljava/lang/String;
+	public static final fun githubPackagesSetUrlAndCredentials (Lorg/gradle/api/Project;Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;Lorg/gradle/api/provider/Provider;Lorg/gradle/api/provider/Provider;)V
+}
+
+public final class com/huanshankeji/gitversioning/VersionRegexesKt {
+	public static final field DEV_COMMIT_VERSION_REGEX Ljava/lang/String;
+	public static final field DIRTY_DEV_COMMIT_VERSION_REGEX Ljava/lang/String;
+	public static final field LEGACY_SNAPSHOT_VERSION_REGEX Ljava/lang/String;
+}
+

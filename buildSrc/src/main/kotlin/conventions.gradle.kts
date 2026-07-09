@@ -8,7 +8,6 @@ plugins {
 
 kotlin.jvmToolchain(17)
 
-
 gradlePlugin {
     website.set(GITHUB_URL)
     vcsUrl.set(GITHUB_GIT_URL)

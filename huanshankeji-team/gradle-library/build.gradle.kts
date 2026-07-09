@@ -4,5 +4,5 @@ plugins {
 }
 
 dependencies {
-    api(project(":kotlin-common-gradle-library"))
+    api(project(":kotlin-common:kotlin-common-gradle-library"))
 }

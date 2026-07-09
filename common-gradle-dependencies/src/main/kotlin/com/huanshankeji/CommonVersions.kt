@@ -2,7 +2,7 @@ package com.huanshankeji
 
 class CommonVersions(
     // Keep in sync with `gradle/libs.versions.toml` (see #9). Previously generated into
-    // `GeneratedVersions` from `buildSrc`; now declared directly here (#54).
+    // `GeneratedVersions` from `buildSrc`; now declared directly here.
     val kotlin: String = "2.4.0",
 
     // https://github.com/huanshankeji/kotlin-common/releases

@@ -1,20 +1,24 @@
 plugins {
     // Provides `sourceSets`/`kotlin {}` so the source directory can be configured before `kotlin-dsl`.
     kotlin("jvm")
-    // Applied imperatively at the end (see below).
-    `kotlin-dsl` apply false
+    // Not applied imperatively at the end because there are no plugins in this module.
+    `kotlin-dsl`
 }
 
-dependencies {
-    implementation(kotlin("gradle-plugin"))
-}
-
-// Source-link the `kotlin-common/gradle-library` sources (#54).
-//
-// IMPORTANT: the source directory must be added BEFORE the `kotlin-dsl` plugin is applied
-// (https://github.com/gradle/gradle/issues/21052); see the comment in the sibling build script.
+// Source-link the `kotlin-common/gradle-library` sources.
 sourceSets.main {
     kotlin.srcDir("../../../kotlin-common/gradle-library/src/main/kotlin")
 }
 
-apply(plugin = "org.gradle.kotlin.kotlin-dsl")
+
+// Copied from `aligned-version-build-logic-conventions.gradle.kts`. Keep consistent with it.
+
+kotlin {
+    compilerOptions {
+        optIn.addAll(
+            "com.huanshankeji.GradleCommonInternalApi",
+            "com.huanshankeji.GradleCommonExperimentalApi",
+        )
+        freeCompilerArgs.add("-Xcontext-parameters")
+    }
+}

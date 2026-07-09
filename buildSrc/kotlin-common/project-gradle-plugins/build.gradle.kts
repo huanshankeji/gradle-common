@@ -14,7 +14,7 @@ dependencies {
     implementation(project(":kotlin-common:kotlin-common-gradle-library"))
 }
 
-// Source-link the `kotlin-common/project-gradle-plugins` sources (#54).
+// Source-link the `kotlin-common/project-gradle-plugins` sources.
 //
 // IMPORTANT: the source directory must be added BEFORE the `kotlin-dsl` plugin is applied
 // (https://github.com/gradle/gradle/issues/21052); see the comment in the sibling build script.
@@ -24,12 +24,14 @@ sourceSets.main {
 
 apply(plugin = "org.gradle.kotlin.kotlin-dsl")
 
+
+// Copied from `aligned-version-build-logic-conventions.gradle.kts`. Keep consistent with it.
+
 kotlin {
     compilerOptions {
         optIn.addAll(
             "com.huanshankeji.GradleCommonInternalApi",
             "com.huanshankeji.GradleCommonExperimentalApi",
-            "org.jetbrains.kotlin.gradle.dsl.abi.ExperimentalAbiValidation",
         )
         freeCompilerArgs.add("-Xcontext-parameters")
     }

@@ -1,5 +1,6 @@
 package com.huanshankeji.github.packages.maven
 
+import com.huanshankeji.github.packages.maven.githubPackagesMavenRegistryWithName
 import com.huanshankeji.publish.publishing
 
 plugins {

@@ -4,8 +4,9 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":huanshankeji-team:gradle-library"))
-    api(project(":kotlin-common-project-gradle-plugins"))
+    api(project(":huanshankeji-team:gradle-library"))
+    // `api` is needed for the team GitHub Packages publish plugin to configure the base plugin's extension
+    api(project(":kotlin-common:kotlin-common-project-gradle-plugins"))
 }
 
 gradlePlugin {

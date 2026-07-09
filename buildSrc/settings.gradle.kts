@@ -1,7 +1,7 @@
 /*
 `buildSrc` is a multi-project build whose subprojects source-link the corresponding root
 modules' sources, so that the build logic is compiled from the current source instead of
-depending on stale released versions of this repository's plugins (#54). Mirroring the root
+depending on stale released versions of this repository's plugins. Mirroring the root
 module structure (rather than merging everything into one compilation) preserves the
 project/binary boundaries that the precompiled script plugins' type-safe accessors rely on.
 */
@@ -51,7 +51,7 @@ dependencyResolutionManagement {
         gradlePluginPortal()
     }
     // Register the root build's shared version catalog so the `buildSrc` build scripts can
-    // reference the same dependency versions/coordinates as the root build (#54).
+    // reference the same dependency versions/coordinates as the root build.
     versionCatalogs {
         create("libs") {
             from(files("../gradle/libs.versions.toml"))
@@ -70,11 +70,11 @@ scripts apply kotlin-common plugins.
 */
 include(
     "common-gradle-dependencies",
-    "kotlin-common:kotlin-common-gradle-library",
-    "kotlin-common:kotlin-common-project-gradle-plugins",
+    "kotlin-common:gradle-library",
+    "kotlin-common:project-gradle-plugins",
     "huanshankeji-team:gradle-library",
     "huanshankeji-team:project-gradle-plugins",
 )
 
-project(":kotlin-common:kotlin-common-gradle-library").projectDir = file("kotlin-common/gradle-library")
-project(":kotlin-common:kotlin-common-project-gradle-plugins").projectDir = file("kotlin-common/project-gradle-plugins")
+project(":kotlin-common:gradle-library").name = "kotlin-common-gradle-library"
+project(":kotlin-common:project-gradle-plugins").name = "kotlin-common-project-gradle-plugins"

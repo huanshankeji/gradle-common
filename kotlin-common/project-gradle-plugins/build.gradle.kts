@@ -5,13 +5,8 @@ plugins {
     `kotlin-common-module`
 }
 
-kotlin {
-    @OptIn(ExperimentalAbiValidation::class)
-    abiValidation()
-}
-
 dependencies {
-    implementation(project(":kotlin-common-gradle-library"))
+    api(project(":kotlin-common:kotlin-common-gradle-library"))
     implementation(libs.bundles.kotlinCommonGradlePlugins.implementation)
     api(libs.bundles.kotlinCommonGradlePlugins.api)
 

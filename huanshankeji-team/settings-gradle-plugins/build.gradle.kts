@@ -4,7 +4,7 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":huanshankeji-team:gradle-library"))
+    api(project(":huanshankeji-team:gradle-library"))
 }
 
 gradlePlugin {
