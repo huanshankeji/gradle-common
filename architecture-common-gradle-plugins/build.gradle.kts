@@ -1,16 +1,11 @@
 import org.jetbrains.kotlin.gradle.dsl.abi.ExperimentalAbiValidation
 
 plugins {
-    `aligned-version-plugin-conventions`
-}
-
-kotlin {
-    @OptIn(ExperimentalAbiValidation::class)
-    abiValidation()
+    `project-gradle-plugins-conventions`
 }
 
 dependencies {
-    implementation(project(":kotlin-common-gradle-plugins"))
+    implementation(project(":kotlin-common:kotlin-common-project-gradle-plugins"))
     implementation(libs.bundles.architectureCommonGradlePlugins.implementation)
 
     //api(project(":common-gradle-dependencies"))
