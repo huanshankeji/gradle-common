@@ -5,6 +5,8 @@ plugins {
     `kotlin-dsl` apply false
 }
 
+group = "kotlincommon"
+
 dependencies {
     implementation(kotlin("gradle-plugin"))
 }

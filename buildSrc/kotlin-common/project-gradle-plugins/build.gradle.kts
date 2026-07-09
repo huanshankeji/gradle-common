@@ -5,13 +5,15 @@ plugins {
     `kotlin-dsl` apply false
 }
 
+group = "kotlincommon"
+
 dependencies {
     implementation(kotlin("gradle-plugin"))
     implementation(libs.bundles.kotlinCommonGradlePlugins.implementation)
     api(libs.bundles.kotlinCommonGradlePlugins.api)
 
     implementation(project(":common-gradle-dependencies"))
-    implementation(project(":kotlin-common:kotlin-common-gradle-library"))
+    implementation(project(":kotlin-common:gradle-library"))
 }
 
 // Source-link the `kotlin-common/project-gradle-plugins` sources (#54).

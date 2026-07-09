@@ -70,11 +70,8 @@ scripts apply kotlin-common plugins.
 */
 include(
     "common-gradle-dependencies",
-    "kotlin-common:kotlin-common-gradle-library",
-    "kotlin-common:kotlin-common-project-gradle-plugins",
+    "kotlin-common:gradle-library",
+    "kotlin-common:project-gradle-plugins",
     "huanshankeji-team:gradle-library",
     "huanshankeji-team:project-gradle-plugins",
 )
-
-project(":kotlin-common:kotlin-common-gradle-library").projectDir = file("kotlin-common/gradle-library")
-project(":kotlin-common:kotlin-common-project-gradle-plugins").projectDir = file("kotlin-common/project-gradle-plugins")
