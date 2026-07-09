@@ -5,15 +5,15 @@
 # versions/coordinates needed to compile the plugin sources are declared
 # exactly once. See #54.
 #
-# The version values that overlap with `com.huanshankeji.CommonVersions`
-# (in `common-gradle-dependencies`) are currently kept in sync by hand
-# (see the comments there); a future single version catalog will unify
-# them (#9).
+# Overlapping versions used by `com.huanshankeji.CommonVersions`
+# (`kotlin`, `composeMultiplatform`, `kotlinx-benchmark`) are generated into
+# `GeneratedVersions` at build time so they are not duplicated by hand.
+# Fully replacing `common-gradle-dependencies` with a published catalog is #9.
 
 [versions]
 # https://kotlinlang.org/docs/releases.html
-# Build-logic Kotlin is pinned in `buildSrc/settings.gradle.kts` now.
-#kotlin = "2.4.0"
+# Also pin the same version in `buildSrc/settings.gradle.kts` (`kotlin("jvm") …`).
+kotlin = "2.4.0"
 composeMultiplatform = "1.10.3"
 kotlinx-benchmark = "0.4.16"
 # https://github.com/Kotlin/dokka/releases

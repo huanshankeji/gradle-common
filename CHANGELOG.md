@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+* generate overlapping `CommonVersions` defaults (`kotlin`, `composeMultiplatform`, `kotlinxBenchmark`) from `gradle/libs.versions.toml` into `GeneratedVersions`, and remove the unused `DependencyVersions` duplicate in `buildSrc` (partial #9)
 * overhaul module hierarchy into nested `kotlin-common/` and `huanshankeji-team/` directories with shared `gradle-library` modules
     * split build-logic conventions into `gradle-library-conventions`, `project-gradle-plugins-conventions`, `settings-gradle-plugins-conventions`, `kotlin-common-module-conventions`, and `huanshankeji-team-module-conventions`
     * extract shared helpers (`VersionRegexes`, GitHub Packages credentials, team `Constants`, `MavenRepositoryContentFiltering`, …) into `gradle-library` modules

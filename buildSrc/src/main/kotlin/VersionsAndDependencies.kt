@@ -5,28 +5,10 @@ val commonGradleClasspathDependencies = CommonGradleClasspathDependencies(common
 */
 
 
-object DependencyVersions {
-    // https://kotlinlang.org/docs/releases.html#release-details
-    val kotlin = "2.4.0" // compatible with the compose version below
-
-    // https://github.com/JetBrains/compose-multiplatform/releases
-    val composeMultiplatform = "1.10.3"
-
-    // https://github.com/Kotlin/kotlinx-benchmark/releases
-    val kotlinxBenchmark = "0.4.16"
-
-    // https://github.com/Kotlin/dokka/releases
-    val dokka = "2.2.0"
-
-    // https://github.com/gradle-nexus/publish-plugin/releases - replaced by Kotlin abiValidation in consumers
-    val binaryCompatibilityValidator = "0.18.1"
-
-    // https://github.com/vanniktech/gradle-maven-publish-plugin/releases
-    val vanniktechMavenPublish = "0.36.0"
-
-    // https://github.com/ben-manes/gradle-versions-plugin/releases
-    val benManesGradleVersionsPlugin = "0.54.0"
-}
+// Dependency versions/coordinates needed to compile the plugin sources live in the
+// shared version catalog `gradle/libs.versions.toml`. Overlapping values used by
+// `CommonVersions` are generated into `GeneratedVersions` from that catalog.
+// Only this repository's release version constants remain here.
 
 val alignedPluginBaseVersion = "0.12.0"
 
