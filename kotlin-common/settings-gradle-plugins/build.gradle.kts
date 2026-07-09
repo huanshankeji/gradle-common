@@ -1,7 +1,6 @@
 plugins {
-    id("kotlin-common-module-conventions")
-    id("aligned-version-build-logic-conventions")
-    id("settings-gradle-plugins-conventions")
+    `settings-gradle-plugins-conventions`
+    `kotlin-common-module`
 }
 
 dependencies {

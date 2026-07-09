@@ -1,10 +1,8 @@
 plugins {
-    kotlin("jvm")
+    id("aligned-version-build-logic-conventions")
 }
 
-kotlin.jvmToolchain(17)
-
 dependencies {
-    compileOnly(gradleApi())
-    compileOnly(kotlin("gradle-plugin"))
+    //implementation(gradleApi())
+    //implementation(kotlin("gradle-plugin"))
 }

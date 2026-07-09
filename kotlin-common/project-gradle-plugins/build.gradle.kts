@@ -1,10 +1,8 @@
 import org.jetbrains.kotlin.gradle.dsl.abi.ExperimentalAbiValidation
 
 plugins {
-    id("kotlin-common-module-conventions")
-    id("aligned-version-build-logic-conventions")
-    id("project-gradle-plugins-conventions")
-    id("com.huanshankeji.team.dokka.github-dokka-convention")
+    `project-gradle-plugins-conventions`
+    `kotlin-common-module`
 }
 
 kotlin {

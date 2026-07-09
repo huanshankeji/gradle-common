@@ -1,7 +1,7 @@
 import org.jetbrains.kotlin.gradle.dsl.abi.ExperimentalAbiValidation
 
 plugins {
-    `aligned-version-plugin-conventions`
+    `project-gradle-plugins-conventions`
 }
 
 kotlin {
