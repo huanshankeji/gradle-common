@@ -18,6 +18,7 @@ public final class com/huanshankeji/team/gitversioning/Maven_repository_settings
 
 public class com/huanshankeji/team/gitversioning/PublicOpenSourceDependencyRepositoriesExtension {
 	public fun <init> ()V
+	protected fun defaultGithubPackagesModuleRegex (Ljava/lang/String;)Ljava/lang/String;
 	public final fun githubPackages ([Ljava/lang/String;Ljava/lang/String;)V
 	public static synthetic fun githubPackages$default (Lcom/huanshankeji/team/gitversioning/PublicOpenSourceDependencyRepositoriesExtension;[Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)V
 	public final fun google ()V

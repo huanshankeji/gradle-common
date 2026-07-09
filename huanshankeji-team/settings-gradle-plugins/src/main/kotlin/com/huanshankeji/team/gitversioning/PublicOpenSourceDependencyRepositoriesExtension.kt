@@ -18,6 +18,16 @@ open class PublicOpenSourceDependencyRepositoriesExtension {
     internal lateinit var providers: ProviderFactory
     internal lateinit var uri: (Any) -> URI
 
+    /**
+     * Maven module-id regex for a GitHub Packages repository name.
+     * `compose-html-material` also publishes `compose-html-common`, so it uses `compose-html-.*`.
+     */
+    protected open fun defaultGithubPackagesModuleRegex(repositoryName: String): String =
+        when (repositoryName) {
+            "compose-html-material" -> "compose-html-.*"
+            else -> "$repositoryName.*"
+        }
+
     fun mavenCentralExcludingHuanshankeji() {
         repositories.mavenCentral {
             content {
@@ -41,11 +51,11 @@ open class PublicOpenSourceDependencyRepositoriesExtension {
     /**
      * One exclusive block per GitHub repository name.
      * mavenLocal: SNAPSHOT + dev-commit; GitHub: dev-commit; Maven Central: releases.
-     * Module convention: `com.huanshankeji` + `$repositoryName.*`.
+     * Module convention: [defaultGithubPackagesModuleRegex].
      */
     fun githubPackages(vararg repositoryNames: String, owner: String = HUANSHANKEJI_IN_LOWERCASE) {
         for (repositoryName in repositoryNames) {
-            val moduleRegex = "$repositoryName.*"
+            val moduleRegex = defaultGithubPackagesModuleRegex(repositoryName)
             context(providers, uri) {
                 // Factory overload of forRepository: lambda must return ArtifactRepository.
                 repositories.exclusiveContent {
