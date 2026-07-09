@@ -24,7 +24,7 @@ val generatedVersionsDir = layout.buildDirectory.dir("gen/main/kotlin")
 val generateCatalogVersions = tasks.register("generateCatalogVersions") {
     val kotlinVersion = libs.versions.kotlin.get()
     val composeMultiplatformVersion = libs.versions.composeMultiplatform.get()
-    val kotlinxBenchmarkVersion = libs.versions.kotlinx.benchmark.asProvider().get()
+    val kotlinxBenchmarkVersion = libs.versions.kotlinx.benchmark.get()
 
     inputs.property("kotlin", kotlinVersion)
     inputs.property("composeMultiplatform", composeMultiplatformVersion)

@@ -20,7 +20,7 @@ package com.huanshankeji
 internal object GeneratedVersions {
     internal const val kotlin = "${libs.versions.kotlin.get()}"
     internal const val composeMultiplatform = "${libs.versions.composeMultiplatform.get()}"
-    internal const val kotlinxBenchmark = "${libs.versions.kotlinx.benchmark.asProvider().get()}"
+    internal const val kotlinxBenchmark = "${libs.versions.kotlinx.benchmark.get()}"
 }
 """.trimIndent() + "\n"
         )
