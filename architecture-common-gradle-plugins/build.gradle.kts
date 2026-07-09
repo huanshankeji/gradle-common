@@ -7,14 +7,7 @@ plugins {
 dependencies {
     implementation(project(":kotlin-common:kotlin-common-project-gradle-plugins"))
     implementation(libs.bundles.architectureCommonGradlePlugins.implementation)
-
-    //api(project(":common-gradle-dependencies"))
-    //implementation(project(":common-gradle-dependencies"))
-    /* This project depends on a specific version of the Maven dependency of "common-gradle-dependencies"
-     since now they are developed together in the same branch `main`,
-     enabling it to always depend on a release version. */
-
-    // implementation(commonGradleClasspathDependencies.composeMultiplatform.gradlePlugin.pluginProject()) // bootstrapping
+    implementation(commonGradleClasspathDependencies.composeMultiplatform.gradlePlugin.pluginProject())
 }
 
 gradlePlugin {

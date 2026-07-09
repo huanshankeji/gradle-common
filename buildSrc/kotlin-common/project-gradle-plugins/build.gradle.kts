@@ -8,6 +8,9 @@ plugins {
 dependencies {
     implementation(kotlin("gradle-plugin"))
     implementation(libs.bundles.kotlinCommonGradlePlugins.implementation)
+    // Keep in sync with `CommonVersions.kotlinxBenchmark` (this script cannot see the root
+    // buildSrc classpath helper used by the corresponding root module build script).
+    implementation("org.jetbrains.kotlinx:kotlinx-benchmark-plugin:0.4.16")
     api(libs.bundles.kotlinCommonGradlePlugins.api)
 
     implementation(project(":common-gradle-dependencies"))

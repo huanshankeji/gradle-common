@@ -1,14 +1,12 @@
-/*
-// Bootstrapping from "common-gradle-dependencies"
+import com.huanshankeji.CommonGradleClasspathDependencies
+import com.huanshankeji.CommonVersions
+
+// Available on the root build classpath via buildSrc. Prefer these over duplicating
+// overlapping dependency versions in `gradle/libs.versions.toml`.
 val commonVersions = CommonVersions()
 val commonGradleClasspathDependencies = CommonGradleClasspathDependencies(commonVersions)
-*/
 
-
-// Dependency versions/coordinates needed to compile the plugin sources live in the
-// shared version catalog `gradle/libs.versions.toml`. Overlapping values used by
-// `CommonVersions` are generated into `GeneratedVersions` from that catalog.
-// Only this repository's release version constants remain here.
+// Only this repository's release version constants remain here (not dependency versions).
 
 val alignedPluginBaseVersion = "0.12.0"
 

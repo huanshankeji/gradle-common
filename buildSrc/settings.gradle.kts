@@ -8,8 +8,7 @@ project/binary boundaries that the precompiled script plugins' type-safe accesso
 
 plugins {
     /*
-    Keep in sync with `[versions] kotlin` in `gradle/libs.versions.toml` (and therefore
-    `CommonVersions.kotlin` via `GeneratedVersions`).
+    Keep in sync with `com.huanshankeji.CommonVersions.kotlin`.
     */
     // https://kotlinlang.org/docs/releases.html
     kotlin("jvm") version "2.4.0" apply false

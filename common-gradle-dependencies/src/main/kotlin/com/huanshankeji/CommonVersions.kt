@@ -1,10 +1,10 @@
 package com.huanshankeji
 
 class CommonVersions(
-    // Defaults for versions that also appear in `gradle/libs.versions.toml` come from
-    // `GeneratedVersions` (generated at build time from the catalog). Other versions remain
-    // declared here until #9 replaces this module with a published catalog / BOM.
-    val kotlin: String = GeneratedVersions.kotlin,
+    // Keep in sync with the Kotlin pin in `buildSrc/settings.gradle.kts` (`kotlin("jvm") …`).
+    // Overlapping build-script classpath deps (Compose, kotlinx-benchmark) read these values
+    // via `commonGradleClasspathDependencies` instead of duplicating them in the version catalog.
+    val kotlin: String = "2.4.0",
 
     // https://github.com/huanshankeji/kotlin-common/releases
     val kotlinCommon: String = "0.6.1",
@@ -17,7 +17,7 @@ class CommonVersions(
     val kotlinxSerialization: String = "1.9.0",
     // https://github.com/Kotlin/kotlinx-datetime/releases
     val kotlinxDatetime: String = "0.7.1",
-    val kotlinxBenchmark: String = GeneratedVersions.kotlinxBenchmark,
+    val kotlinxBenchmark: String = "0.4.16",
     // https://github.com/Kotlin/kotlinx-io/releases
     val kotlinxIo: String = "0.8.0",
     // https://github.com/JetBrains/Exposed/releases
@@ -45,7 +45,7 @@ class CommonVersions(
 ) {
     class JetbrainsAndroidx(
         // Usually only used in classpath dependencies
-        val composeMultiplatform: String = GeneratedVersions.composeMultiplatform,
+        val composeMultiplatform: String = "1.10.3",
         // https://www.jetbrains.com/help/kotlin-multiplatform-dev/compose-lifecycle.html
         val lifecycle: String = "2.9.5",
         // https://www.jetbrains.com/help/kotlin-multiplatform-dev/compose-navigation-routing.html
