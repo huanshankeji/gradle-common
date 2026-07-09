@@ -6,6 +6,7 @@ import org.gradle.api.artifacts.dsl.RepositoryHandler
 import org.gradle.api.artifacts.repositories.MavenArtifactRepository
 import org.gradle.api.provider.Provider
 import org.gradle.api.provider.ProviderFactory
+import java.net.URI
 
 /**
  * GitHub Packages Maven username from Gradle properties `gpr.user` or `gprUser`.
@@ -31,23 +32,23 @@ fun ProviderFactory.githubPackagesMavenPassword(): String? =
     gradleProperty("gpr.key").orElse(gradleProperty("gprKey")).getOrNull()
 
 @GradleCommonExperimentalApi
-context(project: Project)
+context(providers: ProviderFactory, uri: (path: Any) -> URI)
 fun MavenArtifactRepository.githubPackagesSetUrlAndCredentials(
     ownerProvider: Provider<String>,
     repositoryProvider: Provider<String>,
 ) {
     setUrl(ownerProvider.zip(repositoryProvider) { owner, repository ->
-        project.uri("https://maven.pkg.github.com/$owner/$repository")
+        uri("https://maven.pkg.github.com/$owner/$repository")
     })
     credentials {
-        with(project.providers) {
+        with(providers) {
             username = githubPackagesMavenUsername()
             password = githubPackagesMavenPassword()
         }
     }
 }
 
-context(_: Project)
+context(_: ProviderFactory, _: (path: Any) -> URI)
 fun RepositoryHandler.githubPackagesMavenRegistry(
     ownerProvider: Provider<String>,
     repositoryProvider: Provider<String>,
@@ -56,7 +57,7 @@ fun RepositoryHandler.githubPackagesMavenRegistry(
         githubPackagesSetUrlAndCredentials(ownerProvider, repositoryProvider)
     }
 
-context(_: Project)
+context(_: ProviderFactory, _: (path: Any) -> URI)
 fun RepositoryHandler.githubPackagesMavenRegistryWithName(
     ownerProvider: Provider<String>,
     repositoryProvider: Provider<String>,

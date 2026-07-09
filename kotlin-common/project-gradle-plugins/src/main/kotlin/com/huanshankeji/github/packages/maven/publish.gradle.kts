@@ -21,9 +21,11 @@ val extension = extensions.create<Extension>("githubPackagesMavenPublish")
 
 publishing {
     repositories {
-        githubPackagesMavenRegistryWithName(
-            ownerProvider = extension.owner,
-            repositoryProvider = extension.repository,
-        )
+        context(providers, ::uri) {
+            githubPackagesMavenRegistryWithName(
+                ownerProvider = extension.owner,
+                repositoryProvider = extension.repository,
+            )
+        }
     }
 }

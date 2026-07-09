@@ -22,5 +22,11 @@ gradlePlugin {
             "Public open-source dependency repositories",
             "Composable settings DSL for Huanshankeji public OSS Maven repositories.",
         )
+        scriptConventionsPlugin(
+            "com.huanshankeji.team.gitversioning",
+            "maven-repository-settings-conventions",
+            "Maven repository settings conventions",
+            "Composable settings DSL for Huanshankeji Maven repositories (GitHub Packages, GitLab, Maven Central, Google).",
+        )
     }
 }
