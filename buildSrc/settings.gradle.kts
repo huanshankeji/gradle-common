@@ -15,6 +15,36 @@ plugins {
     kotlin("jvm") version "2.4.0" apply false
 }
 
+// alternative approach
+/*
+buildscript {
+    repositories {
+        gradlePluginPortal()
+    }
+    dependencies {
+        classpath(kotlin("gradle-plugin", "2.4.0"))
+    }
+}
+*/
+
+// The explanation below was written by Cursor and is not verified to be absolutely correct.
+/*
+`pluginManagement { plugins { kotlin("jvm") version … } }` alone is not sufficient: it constrains
+plugin-id resolution for the `plugins {}` DSL but does not add `kotlin-gradle-plugins-bom` to the
+build classpath, so versionless `org.jetbrains.kotlin:*` implementation dependencies still resolve
+to `kotlin-dsl`'s embedded BOM.
+*/
+/*
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+    }
+    plugins {
+        kotlin("jvm") version "2.4.0"
+    }
+}
+*/
+
 dependencyResolutionManagement {
     @Suppress("UnstableApiUsage")
     repositories {
@@ -30,20 +60,21 @@ dependencyResolutionManagement {
 }
 
 /*
-Team subprojects use `group = "team"` and the `:team:*` project path prefix (see their
-`build.gradle.kts` files) so their simple child names do not share coordinates with
-kotlin-common modules. kotlin-common still uses CPN child names (`kotlin-common-gradle-library`,
-…) for the same reason on its side.
+kotlin-common subprojects use CPN child names (`kotlin-common-gradle-library`, …), not simple
+names (`gradle-library`, `project-gradle-plugins`). huanshankeji-team already uses those
+simple names under its own parent (`:huanshankeji-team:gradle-library`, …). Reusing the same
+child names under `:kotlin-common:` would give modules the same logical coordinates in the
+buildSrc project tree; precompiled-script accessor generation then fails to load cross-module
+kotlin-common helpers (e.g. `GithubPackagesMavenCredentials` from gradle-library) when team
+scripts apply kotlin-common plugins.
 */
 include(
     "common-gradle-dependencies",
     "kotlin-common:kotlin-common-gradle-library",
     "kotlin-common:kotlin-common-project-gradle-plugins",
-    "team:gradle-library",
-    "team:project-gradle-plugins",
+    "huanshankeji-team:gradle-library",
+    "huanshankeji-team:project-gradle-plugins",
 )
 
 project(":kotlin-common:kotlin-common-gradle-library").projectDir = file("kotlin-common/gradle-library")
 project(":kotlin-common:kotlin-common-project-gradle-plugins").projectDir = file("kotlin-common/project-gradle-plugins")
-project(":team:gradle-library").projectDir = file("huanshankeji-team/gradle-library")
-project(":team:project-gradle-plugins").projectDir = file("huanshankeji-team/project-gradle-plugins")

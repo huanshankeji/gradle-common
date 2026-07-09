@@ -5,8 +5,6 @@ plugins {
     `kotlin-dsl` apply false
 }
 
-group = "team"
-
 dependencies {
     implementation(kotlin("gradle-plugin"))
     compileOnly(gradleApi())
