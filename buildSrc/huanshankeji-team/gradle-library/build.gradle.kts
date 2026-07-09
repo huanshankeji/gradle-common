@@ -5,10 +5,12 @@ plugins {
     `kotlin-dsl` apply false
 }
 
+group = "team"
+
 dependencies {
     implementation(kotlin("gradle-plugin"))
     compileOnly(gradleApi())
-    api(project(":kotlin-common-gradle-library"))
+    api(project(":kotlin-common:kotlin-common-gradle-library"))
 }
 
 // Source-link the `huanshankeji-team/gradle-library` sources (#54).

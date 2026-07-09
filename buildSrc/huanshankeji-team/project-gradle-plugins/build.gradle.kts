@@ -5,12 +5,14 @@ plugins {
     `kotlin-dsl` apply false
 }
 
+group = "team"
+
 dependencies {
     implementation(kotlin("gradle-plugin"))
     // `api`, matching the root module; provides the `com.huanshankeji.*` plugins whose extensions
     // the team plugins configure via type-safe accessors (compiled across this project boundary).
-    api(project(":kotlin-common-project-gradle-plugins"))
-    implementation(project(":huanshankeji-team:gradle-library"))
+    api(project(":kotlin-common:kotlin-common-project-gradle-plugins"))
+    implementation(project(":team:gradle-library"))
 }
 
 // Source-link the `huanshankeji-team/project-gradle-plugins` sources (#54).
