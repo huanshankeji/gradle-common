@@ -8,7 +8,6 @@ plugins {
 dependencies {
     api(project(":kotlin-common:kotlin-common-gradle-library"))
     implementation(libs.bundles.kotlinCommonGradlePlugins.implementation)
-    implementation(commonGradleClasspathDependencies.kotlinx.benchmark.pluginProject())
     api(libs.bundles.kotlinCommonGradlePlugins.api)
 
     testImplementation(kotlin("test"))

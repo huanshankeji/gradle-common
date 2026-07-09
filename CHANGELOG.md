@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-* avoid duplicating `CommonVersions` values in `gradle/libs.versions.toml`: take Compose Multiplatform and kotlinx-benchmark classpath deps from `commonGradleClasspathDependencies`, and remove the unused `DependencyVersions` object in `buildSrc` (partial #9)
+* remove unused leftover `DependencyVersions` in `buildSrc` (catalog already owns those coordinates; overlaps with `CommonVersions` remain until #9)
 * overhaul module hierarchy into nested `kotlin-common/` and `huanshankeji-team/` directories with shared `gradle-library` modules
     * split build-logic conventions into `gradle-library-conventions`, `project-gradle-plugins-conventions`, `settings-gradle-plugins-conventions`, `kotlin-common-module-conventions`, and `huanshankeji-team-module-conventions`
     * extract shared helpers (`VersionRegexes`, GitHub Packages credentials, team `Constants`, `MavenRepositoryContentFiltering`, …) into `gradle-library` modules
