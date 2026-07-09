@@ -1,7 +1,7 @@
 import com.huanshankeji.gitversioning.projectVersionFromGitProvider
 
 plugins {
-    conventions
+    `common-conventions`
 }
 
 version = projectVersionFromGitProvider(commonGradleDependenciesBaseVersion).get()
