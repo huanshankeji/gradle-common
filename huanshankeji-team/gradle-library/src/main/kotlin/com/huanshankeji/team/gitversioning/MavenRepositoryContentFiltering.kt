@@ -76,6 +76,14 @@ fun RepositoryContentDescriptor.includeReleaseVersions(
     includeVersionByRegex(groupRegex, moduleRegex, ANCHORED_RELEASE_VERSION_REGEX)
 }
 
+fun RepositoryContentDescriptor.includeDevCommitAndReleaseVersions(
+    groupRegex: String = ".*",
+    moduleRegex: String = ".*",
+) {
+    includeDevCommitVersions(groupRegex, moduleRegex)
+    includeReleaseVersions(groupRegex, moduleRegex)
+}
+
 /** For `google { mavenContent { } }` — KMP template groups. */
 fun MavenRepositoryContentDescriptor.includeGoogleMavenGroups() {
     includeGroupAndSubgroups("androidx")

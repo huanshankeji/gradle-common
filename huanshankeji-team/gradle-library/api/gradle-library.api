@@ -11,6 +11,8 @@ public final class com/huanshankeji/team/gitversioning/MavenRepositoryContentFil
 	public static final fun contentExcludeModuleVersions (Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
 	public static final fun contentIncludeGroupVersions (Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;Ljava/lang/String;Ljava/lang/String;)V
 	public static final fun contentIncludeModuleVersions (Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public static final fun includeDevCommitAndReleaseVersions (Lorg/gradle/api/artifacts/repositories/RepositoryContentDescriptor;Ljava/lang/String;Ljava/lang/String;)V
+	public static synthetic fun includeDevCommitAndReleaseVersions$default (Lorg/gradle/api/artifacts/repositories/RepositoryContentDescriptor;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)V
 	public static final fun includeDevCommitVersions (Lorg/gradle/api/artifacts/repositories/RepositoryContentDescriptor;Ljava/lang/String;Ljava/lang/String;)V
 	public static synthetic fun includeDevCommitVersions$default (Lorg/gradle/api/artifacts/repositories/RepositoryContentDescriptor;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)V
 	public static final fun includeGoogleMavenGroups (Lorg/gradle/api/artifacts/repositories/MavenRepositoryContentDescriptor;)V

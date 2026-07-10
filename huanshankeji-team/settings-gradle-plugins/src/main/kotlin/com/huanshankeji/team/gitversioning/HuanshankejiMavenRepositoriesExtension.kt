@@ -12,7 +12,8 @@ import org.gradle.api.artifacts.repositories.InclusiveRepositoryContentDescripto
  */
 open class HuanshankejiMavenRepositoriesExtension : PublicOpenSourceDependencyRepositoriesExtension() {
     /**
-     * Exclusive mavenLocal (SNAPSHOT + dev-commit) + GitLab project endpoint for [exclusiveFilter] modules.
+     * Exclusive mavenLocal + GitLab project endpoint for [exclusiveFilter] modules.
+     * mavenLocal: SNAPSHOT + dev-commit; GitLab: dev-commit + releases.
      * No Maven Central — internal artifacts are not published there.
      */
     fun gitlabProjectEndpoint(
@@ -35,6 +36,9 @@ open class HuanshankejiMavenRepositoriesExtension : PublicOpenSourceDependencyRe
                             "GitLab-$nameSuffix",
                             providers.provider { "https://$GITLAB_COM_HOST/api/v4/projects/$projectId/packages/maven" },
                         )
+                        content {
+                            includeDevCommitAndReleaseVersions()
+                        }
                     }
                 }
                 filter(exclusiveFilter)
