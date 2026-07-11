@@ -2,7 +2,6 @@ package com.huanshankeji.gitversioning.opensourceconvention.gitlabpackageregistr
 
 import com.huanshankeji.GradleCommonExperimentalApi
 import com.huanshankeji.gitlab.packageregistry.maven.GITLAB_COM_HOST
-import com.huanshankeji.gitlab.packageregistry.maven.GITLAB_PACKAGE_REGISTRY_DEFAULT_REPOSITORY_NAME
 import com.huanshankeji.gitlab.packageregistry.maven.gitlabPackageRegistryProjectLevelEndpointMavenRepository
 import com.huanshankeji.gitversioning.opensourceconvention.openSourceConventionMavenRepositories
 import org.gradle.api.artifacts.dsl.RepositoryHandler
@@ -15,7 +14,6 @@ import java.net.URI
  */
 context(providers: ProviderFactory, _: (path: Any) -> URI)
 fun RepositoryHandler.gitlabPackageRegistryProjectLevelEndpointOpenSourceConventionMavenRepositories(
-    name: String = GITLAB_PACKAGE_REGISTRY_DEFAULT_REPOSITORY_NAME,
     host: String = GITLAB_COM_HOST,
     projectId: String,
     exclusiveContentFilterConfig: InclusiveRepositoryContentDescriptor.() -> Unit,
@@ -23,7 +21,6 @@ fun RepositoryHandler.gitlabPackageRegistryProjectLevelEndpointOpenSourceConvent
     openSourceConventionMavenRepositories(
         { extraAction ->
             gitlabPackageRegistryProjectLevelEndpointMavenRepository(
-                name,
                 providers.provider { host },
                 providers.provider { projectId },
                 extraAction
@@ -35,12 +32,11 @@ fun RepositoryHandler.gitlabPackageRegistryProjectLevelEndpointOpenSourceConvent
 @GradleCommonExperimentalApi
 context(providers: ProviderFactory, _: (path: Any) -> URI)
 fun RepositoryHandler.gitlabPackageRegistryProjectLevelEndpointOpenSourceConventionMavenRepositories(
-    name: String = GITLAB_PACKAGE_REGISTRY_DEFAULT_REPOSITORY_NAME,
     host: String = GITLAB_COM_HOST,
     projectId: String,
     groupRegex: String,
     moduleRegex: String,
 ) =
-    gitlabPackageRegistryProjectLevelEndpointOpenSourceConventionMavenRepositories(name, host, projectId) {
+    gitlabPackageRegistryProjectLevelEndpointOpenSourceConventionMavenRepositories(host, projectId) {
         includeModuleByRegex(groupRegex, moduleRegex)
     }

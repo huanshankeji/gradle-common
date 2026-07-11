@@ -17,7 +17,9 @@ private const val GITLAB_PACKAGE_REGISTRY_MAVEN_REGISTRY_OLD_APIS_DEPRECATION_ME
 @Deprecated(GITLAB_PACKAGE_REGISTRY_MAVEN_REGISTRY_OLD_APIS_DEPRECATION_MESSAGE)
 fun Project.gitlabMavenRepository(repositoryHandler: RepositoryHandler, nameArg: String = "GitLab", urlArg: String) =
     context(providers, ::uri) {
-        repositoryHandler.gitlabPackageRegistryMavenRepository(nameArg, provider { urlArg })
+        repositoryHandler.gitlabPackageRegistryMavenRepository(provider { urlArg }) {
+            name = nameArg
+        }
     }
 
 @Deprecated(GITLAB_PACKAGE_REGISTRY_MAVEN_REGISTRY_OLD_APIS_DEPRECATION_MESSAGE)
@@ -32,8 +34,10 @@ fun Project.gitlabProjectLevelMavenRepository(
 ) =
     context(providers, ::uri) {
         repositoryHandler.gitlabPackageRegistryProjectLevelEndpointMavenRepository(
-            name, provider { host }, provider { projectIdOrProjectPath }
-        )
+            provider { host }, provider { projectIdOrProjectPath }
+        ) {
+            this.name = name
+        }
     }
 
 @Deprecated(GITLAB_PACKAGE_REGISTRY_MAVEN_REGISTRY_OLD_APIS_DEPRECATION_MESSAGE)
@@ -45,8 +49,10 @@ fun Project.gitlabGroupLevelMavenRepository(
 ) =
     context(providers, ::uri) {
         repositoryHandler.gitlabPackageRegistryGroupLevelEndpointMavenRepository(
-            name, provider { host }, provider { groupId }
-        )
+            provider { host }, provider { groupId }
+        ) {
+            this.name = name
+        }
     }
 
 @Deprecated(GITLAB_PACKAGE_REGISTRY_MAVEN_REGISTRY_OLD_APIS_DEPRECATION_MESSAGE)
@@ -56,5 +62,7 @@ fun Project.gitlabInstanceLevelMavenRepository(
     host: String,
 ) =
     context(providers, ::uri) {
-        repositoryHandler.gitlabPackageRegistryInstanceLevelEndpointMavenRepository(name, provider { host })
+        repositoryHandler.gitlabPackageRegistryInstanceLevelEndpointMavenRepository(provider { host }) {
+            this.name = name
+        }
     }

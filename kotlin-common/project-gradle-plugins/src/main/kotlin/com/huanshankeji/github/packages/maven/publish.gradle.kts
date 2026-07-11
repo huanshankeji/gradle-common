@@ -22,7 +22,7 @@ val extension = extensions.create<Extension>("githubPackagesMavenPublish")
 publishing {
     repositories {
         context(providers, ::uri) {
-            githubPackagesMavenRegistryWithName(
+            githubPackagesMavenRegistry(
                 ownerProvider = extension.owner,
                 repositoryProvider = extension.repository,
             )

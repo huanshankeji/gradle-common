@@ -3,7 +3,6 @@ package com.huanshankeji.team.gitversioning.gitlabpackageregistry
 import com.huanshankeji.artifacts.leadingProjectNameModuleRegex
 import com.huanshankeji.gitlab.packageregistry.maven.GITLAB_COM_HOST
 import com.huanshankeji.gitversioning.gitlabpackageregistry.gitlabPackageRegistryProjectLevelEndpointConventionMavenRepositories
-import com.huanshankeji.team.HUANSHANKEJI_IN_LOWERCASE
 import org.gradle.api.artifacts.dsl.RepositoryHandler
 import org.gradle.api.provider.ProviderFactory
 import java.net.URI
@@ -13,7 +12,7 @@ fun RepositoryHandler.huanshankejiGitLabPackageRegistryProjectEndpointConvention
     projectId: String, groupRegex: String, moduleRegex: String
 ) =
     gitlabPackageRegistryProjectLevelEndpointConventionMavenRepositories(
-        HUANSHANKEJI_IN_LOWERCASE, GITLAB_COM_HOST, projectId, groupRegex, moduleRegex
+        GITLAB_COM_HOST, projectId, groupRegex, moduleRegex
     )
 
 context(providers: ProviderFactory, _: (path: Any) -> URI)

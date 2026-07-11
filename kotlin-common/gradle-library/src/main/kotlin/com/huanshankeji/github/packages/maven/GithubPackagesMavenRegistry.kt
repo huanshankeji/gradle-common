@@ -48,6 +48,13 @@ fun MavenArtifactRepository.githubPackagesSetUrlAndCredentials(
     }
 }
 
+const val GITHUB_PACKAGES_DEFAULT_REPOSITORY_NAME = "GitHubPackages"
+
+/**
+ * Adds a GitHub packages Maven repository.
+ *
+ * Pass [extraAction] for additional configuration, such as overriding [MavenArtifactRepository.name].
+ */
 context(_: ProviderFactory, _: (path: Any) -> URI)
 fun RepositoryHandler.githubPackagesMavenRegistry(
     ownerProvider: Provider<String>,
@@ -55,20 +62,8 @@ fun RepositoryHandler.githubPackagesMavenRegistry(
     extraAction: MavenArtifactRepository.() -> Unit = {}
 ) =
     maven {
-        githubPackagesSetUrlAndCredentials(ownerProvider, repositoryProvider)
-        extraAction()
-    }
-
-context(_: ProviderFactory, _: (path: Any) -> URI)
-fun RepositoryHandler.githubPackagesMavenRegistryWithName(
-    ownerProvider: Provider<String>,
-    repositoryProvider: Provider<String>,
-    name: String = "GitHubPackages",
-    extraAction: MavenArtifactRepository.() -> Unit = {}
-) =
-    maven {
         // Copied and adapted from https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-gradle-registry.
-        this.name = name
+        name = GITHUB_PACKAGES_DEFAULT_REPOSITORY_NAME
         githubPackagesSetUrlAndCredentials(ownerProvider, repositoryProvider)
         extraAction()
     }

@@ -1,7 +1,7 @@
 package com.huanshankeji
 
+import com.huanshankeji.github.packages.maven.GITHUB_PACKAGES_DEFAULT_REPOSITORY_NAME
 import com.huanshankeji.github.packages.maven.githubPackagesMavenRegistry
-import com.huanshankeji.github.packages.maven.githubPackagesMavenRegistryWithName
 import com.huanshankeji.github.packages.maven.githubPackagesSetUrlAndCredentials
 import com.huanshankeji.publish.publishing
 import org.gradle.api.Project
@@ -34,14 +34,16 @@ fun Project.repositoriesAddGithubPackagesMavenRegistry(owner: String, repository
 
 @Deprecated(GITHUB_PACKAGES_MAVEN_REGISTRY_OLD_APIS_DEPRECATION_MESSAGE)
 fun Project.publishingRepositoriesAddGithubPackagesMavenRepository(
-    name: String = "GitHubPackages",
+    name: String = GITHUB_PACKAGES_DEFAULT_REPOSITORY_NAME,
     owner: String,
     repository: String,
 ) =
     publishing {
         repositories {
             context(providers, ::uri) {
-                githubPackagesMavenRegistryWithName(provider { owner }, provider { repository }, name)
+                githubPackagesMavenRegistry(provider { owner }, provider { repository }) {
+                    this.name = name
+                }
             }
         }
     }
