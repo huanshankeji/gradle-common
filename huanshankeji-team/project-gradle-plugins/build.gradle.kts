@@ -12,16 +12,16 @@ dependencies {
 gradlePlugin {
     plugins {
         val `package` = group as String
-        fun scriptConventionsPlugin(idSuffix: String, displayName: String, description: String = displayName) =
-            scriptPlugin(`package`, idSuffix, displayName, description)
+        fun scriptPlugin(idSuffix: String, displayName: String, description: String = displayName) =
+            commonScriptPlugin(`package`, idSuffix, displayName, description)
 
-        scriptConventionsPlugin("with-group", "With Huanshankeji team's group, aka \"com.huanshankeji\"")
-        scriptConventionsPlugin(
+        scriptPlugin("with-group", "With Huanshankeji team's group, aka \"com.huanshankeji\"")
+        scriptPlugin(
             "github.packages.maven.publish",
             "GitHub Packages Maven publish (to Huanshankeji team's repository)"
         )
 
-        scriptConventionsPlugin(
+        scriptPlugin(
             "dokka.github-dokka-convention",
             "Dokka convention plugin for projects on GitHub",
             "Please apply this plugin after setting the project version."

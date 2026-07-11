@@ -16,7 +16,7 @@ fun Project.devCommitVersionProvider(baseVersion: String): Provider<String> =
     }
 
 /**
- * Returns [baseVersion] on [releaseBranch]; otherwise a dev-commit version from Git.
+ * Returns [baseVersion] on [releaseBranch]; otherwise a `*-dev-commit-*` version from Git.
  * Override with the Gradle property `com.huanshankeji.forceReleaseVersion=true` when needed.
  */
 fun Project.projectVersionFromGitProvider(

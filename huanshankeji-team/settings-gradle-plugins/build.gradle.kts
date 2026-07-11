@@ -9,24 +9,14 @@ dependencies {
 
 gradlePlugin {
     plugins {
-        fun scriptConventionsPlugin(
-            `package`: String,
+        val `package` = group as String
+        fun scriptPlugin(
             idSuffix: String,
             displayName: String,
             description: String = displayName,
-        ) = scriptPlugin(`package`, idSuffix, displayName, description)
-
-        scriptConventionsPlugin(
-            "com.huanshankeji.team.gitversioning",
-            "public-open-source-dependency-repositories",
-            "Public open-source dependency repositories",
-            "Composable settings DSL for Huanshankeji public OSS Maven repositories.",
-        )
-        scriptConventionsPlugin(
-            "com.huanshankeji.team.gitversioning",
-            "maven-repository-settings-conventions",
-            "Maven repository settings conventions",
-            "Composable settings DSL for Huanshankeji Maven repositories (GitHub Packages, GitLab, Maven Central, Google).",
-        )
+        ) =
+            commonScriptPlugin(`package`, idSuffix, displayName, description)
     }
+
+    // currently emtpy but reserved for future use
 }

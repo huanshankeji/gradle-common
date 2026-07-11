@@ -33,7 +33,7 @@ Root [settings.gradle.kts](settings.gradle.kts) includes all modules. `kotlin-co
 ### Adding or changing a plugin
 
 1. Add or edit a `*.gradle.kts` script under the target module's `src/main/kotlin/com/huanshankeji/...` (or `*.settings.gradle.kts` for settings plugins in `kotlin-common/settings-gradle-plugins` / `huanshankeji-team/settings-gradle-plugins`).
-2. Register it in that module's `build.gradle.kts` (e.g., [kotlin-common/project-gradle-plugins/build.gradle.kts](kotlin-common/project-gradle-plugins/build.gradle.kts)) via `gradlePlugin { plugins { scriptConventionsPlugin(...) } }`.
+2. Register it in that module's `build.gradle.kts` (e.g., [kotlin-common/project-gradle-plugins/build.gradle.kts](kotlin-common/project-gradle-plugins/build.gradle.kts)) via `gradlePlugin { plugins { scriptPlugin(...) } }`.
 3. Reuse helpers from existing Kotlin sources in the same module; prefer extending conventions rather than duplicating logic.
 4. If the change affects public ABI, update the corresponding `api/*.api` dump (see below).
 
@@ -91,8 +91,8 @@ Configuration cache is enabled ([gradle.properties](gradle.properties)). Expect 
 
 ## Version and changelog policy
 
-- Plugin release version: `alignedPluginBaseVersion` in [VersionsAndDependencies.kt](buildSrc/src/main/kotlin/VersionsAndDependencies.kt), with dev-commit suffixes off the `release` branch.
-- `common-gradle-dependencies` version: `commonGradleDependenciesBaseVersion` (separate version; releases are coordinated but version numbers remain independent), with dev-commit suffixes off the `release` branch.
+- Plugin release version: `alignedPluginBaseVersion` in [VersionsAndDependencies.kt](buildSrc/src/main/kotlin/VersionsAndDependencies.kt), with `*-dev-commit-*` suffixes off the `release` branch.
+- `common-gradle-dependencies` version: `commonGradleDependenciesBaseVersion` (separate version; releases are coordinated but version numbers remain independent), with `*-dev-commit-*` suffixes off the `release` branch.
 - Release branch: `release` publishes to the Gradle Plugin Portal (`publishPlugins`); all other branches publish to GitHub Packages.
 - Release notes: [CHANGELOG.md](CHANGELOG.md) (single change log for all published artifacts going forward).
 - Outdated per-artifact change logs (historical releases only): [PLUGINS_CHANGELOG.md](PLUGINS_CHANGELOG.md), [COMMON_GRADLE_DEPENDENCIES_CHANGELOG.md](COMMON_GRADLE_DEPENDENCIES_CHANGELOG.md).

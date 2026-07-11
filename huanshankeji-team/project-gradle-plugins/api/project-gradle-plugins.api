@@ -56,9 +56,3 @@ public final class com/huanshankeji/team/github/packages/maven/Publish_gradle : 
 	public static final fun main ([Ljava/lang/String;)V
 }
 
-public final class com/huanshankeji/team/gitversioning/HuanshankejiPublicMavenRepositoriesKt {
-	public static final fun configureMavenCentralExcludeHuanshankejiNonStable (Lorg/gradle/api/artifacts/repositories/MavenArtifactRepository;)V
-	public static final fun configurePublicHuanshankejiArtifactRepositories (Lorg/gradle/api/Project;Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Ljava/util/List;Ljava/lang/String;)V
-	public static synthetic fun configurePublicHuanshankejiArtifactRepositories$default (Lorg/gradle/api/Project;Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Ljava/util/List;Ljava/lang/String;ILjava/lang/Object;)V
-}
-

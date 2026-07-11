@@ -8,7 +8,7 @@ plugins {
  * Applies Maven Central publishing and signs all publications.
  *
  * vanniktech's signAllPublications() already sets signing as not required for `-SNAPSHOT` versions.
- * To use different rules (for example dev-commit versions), configure signing requiredness after
+ * To use different rules (for example `*-dev-commit-*` versions), configure signing requiredness after
  * applying this plugin, for example:
  *
  *     signing {

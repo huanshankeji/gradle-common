@@ -39,9 +39,11 @@ context(_: ProviderFactory, _: (path: Any) -> URI)
 fun RepositoryHandler.gitlabPackageRegistryMavenRepository(
     name: String = GITLAB_PACKAGE_REGISTRY_DEFAULT_REPOSITORY_NAME,
     urlProvider: Provider<String>,
+    extraAction: MavenArtifactRepository.() -> Unit = {}
 ) =
     maven {
         gitlabPackageRegistrySetUrlAndCredentials(name, urlProvider)
+        extraAction()
     }
 
 
@@ -54,12 +56,14 @@ fun RepositoryHandler.gitlabPackageRegistryProjectLevelEndpointMavenRepository(
     name: String = GITLAB_PACKAGE_REGISTRY_DEFAULT_REPOSITORY_NAME,
     hostProvider: Provider<String> = providers.provider { GITLAB_COM_HOST },
     projectIdOrProjectPathProvider: Provider<String>,
+    extraAction: MavenArtifactRepository.() -> Unit = {}
 ): MavenArtifactRepository =
     gitlabPackageRegistryMavenRepository(
         name,
         hostProvider.zip(projectIdOrProjectPathProvider) { host, projectIdOrProjectPath ->
             "https://$host/api/v4/projects/$projectIdOrProjectPath/packages/maven"
         },
+        extraAction
     )
 
 // see: https://docs.gitlab.com/ee/user/packages/maven_repository/#group-level-maven-endpoint (link outdated)
@@ -68,12 +72,14 @@ fun RepositoryHandler.gitlabPackageRegistryGroupLevelEndpointMavenRepository(
     name: String = GITLAB_PACKAGE_REGISTRY_DEFAULT_REPOSITORY_NAME,
     hostProvider: Provider<String> = providers.provider { GITLAB_COM_HOST },
     groupIdProvider: Provider<String>,
+    extraAction: MavenArtifactRepository.() -> Unit = {}
 ): MavenArtifactRepository =
     gitlabPackageRegistryMavenRepository(
         name,
         hostProvider.zip(groupIdProvider) { host, groupId ->
             "https://$host/api/v4/groups/$groupId/-/packages/maven"
         },
+        extraAction
     )
 
 // see: https://docs.gitlab.com/ee/user/packages/maven_repository/#group-level-maven-endpoint (link outdated)
@@ -81,8 +87,10 @@ context(providers: ProviderFactory, _: (path: Any) -> URI)
 fun RepositoryHandler.gitlabPackageRegistryInstanceLevelEndpointMavenRepository(
     name: String = GITLAB_PACKAGE_REGISTRY_DEFAULT_REPOSITORY_NAME,
     hostProvider: Provider<String> = providers.provider { GITLAB_COM_HOST },
+    extraAction: MavenArtifactRepository.() -> Unit = {}
 ): MavenArtifactRepository =
     gitlabPackageRegistryMavenRepository(
         name,
         hostProvider.map { host -> "https://$host/api/v4/packages/maven" },
+        extraAction
     )
