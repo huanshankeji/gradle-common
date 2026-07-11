@@ -1,9 +1,9 @@
-package com.huanshankeji.gitversioning.opensourcemavenconvention.githubpackages
+package com.huanshankeji.gitversioning.opensourceconvention.githubpackages
 
 import com.huanshankeji.GradleCommonExperimentalApi
 import com.huanshankeji.artifacts.leadingProjectNameModuleRegex
 import com.huanshankeji.github.packages.maven.githubPackagesMavenRegistry
-import com.huanshankeji.gitversioning.opensourcemavenconvention.openSourceMavenConventionProjectRepositories
+import com.huanshankeji.gitversioning.opensourceconvention.openSourceConventionMavenRepositories
 import org.gradle.api.artifacts.dsl.RepositoryHandler
 import org.gradle.api.artifacts.repositories.InclusiveRepositoryContentDescriptor
 import org.gradle.api.provider.ProviderFactory
@@ -13,12 +13,12 @@ import java.net.URI
  * Maven local: SNAPSHOT + `*-dev-commit-*`; GitHub: `*-dev-commit-*`; Maven Central: releases.
  */
 context(providers: ProviderFactory, _: (path: Any) -> URI)
-fun RepositoryHandler.githubPackagesOpenSourceMavenConventionProjectRepositories(
+fun RepositoryHandler.githubPackagesSingleProjectOpenSourceConventionMavenRepositories(
     githubOwner: String,
     githubRepository: String,
     exclusiveContentFilterConfig: InclusiveRepositoryContentDescriptor.() -> Unit,
 ) =
-    openSourceMavenConventionProjectRepositories(
+    openSourceConventionMavenRepositories(
         { extraAction ->
             githubPackagesMavenRegistry(
                 providers.provider { githubOwner },
@@ -31,10 +31,10 @@ fun RepositoryHandler.githubPackagesOpenSourceMavenConventionProjectRepositories
 
 @GradleCommonExperimentalApi
 context(providers: ProviderFactory, _: (path: Any) -> URI)
-fun RepositoryHandler.githubPackagesOpenSourceMavenConventionProjectRepositories(
+fun RepositoryHandler.githubPackagesSingleProjectOpenSourceConventionMavenRepositories(
     githubOwner: String, githubRepository: String, groupRegex: String, moduleRegex: String
 ) =
-    githubPackagesOpenSourceMavenConventionProjectRepositories(githubOwner, githubRepository) {
+    githubPackagesSingleProjectOpenSourceConventionMavenRepositories(githubOwner, githubRepository) {
         includeModuleByRegex(groupRegex, moduleRegex)
     }
 
@@ -49,11 +49,11 @@ private data class RepositoryNameAndModuleRegex(val githubRepositoryName: String
 }
 
 context(_: ProviderFactory, _: (path: Any) -> URI)
-private fun RepositoryHandler.githubPackagesOpenSourceMavenConventionMultiProjectRepositories(
+private fun RepositoryHandler.githubPackagesMultiProjectOpenSourceConventionMavenRepositories(
     groupRegex: String,
     githubOwner: String,
     repositoryNameAndModuleRegexes: List<RepositoryNameAndModuleRegex>,
 ) {
     for ((moduleRegex, repository) in repositoryNameAndModuleRegexes)
-        githubPackagesOpenSourceMavenConventionProjectRepositories(groupRegex, moduleRegex, githubOwner, repository)
+        githubPackagesSingleProjectOpenSourceConventionMavenRepositories(groupRegex, moduleRegex, githubOwner, repository)
 }

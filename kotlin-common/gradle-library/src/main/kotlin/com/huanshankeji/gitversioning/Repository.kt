@@ -6,6 +6,7 @@ import org.gradle.api.artifacts.repositories.MavenArtifactRepository
 
 /**
  * Maven local: SNAPSHOT + `*-dev-commit-*`; [remoteMavenRepository]: `*-dev-commit-*` + releases.
+ * This function can be used for both single-project repositories and multi-project repositories.
  */
 fun RepositoryHandler.conventionMavenRepositories(
     remoteMavenRepository: RepositoryHandler.(extraAction: MavenArtifactRepository.() -> Unit) -> MavenArtifactRepository,

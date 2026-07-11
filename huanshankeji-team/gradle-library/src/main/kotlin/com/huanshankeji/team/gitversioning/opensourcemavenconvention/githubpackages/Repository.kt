@@ -1,7 +1,7 @@
 package com.huanshankeji.team.gitversioning.opensourcemavenconvention.githubpackages
 
 import com.huanshankeji.artifacts.leadingProjectNameModuleRegex
-import com.huanshankeji.gitversioning.opensourcemavenconvention.githubpackages.githubPackagesOpenSourceMavenConventionProjectRepositories
+import com.huanshankeji.gitversioning.opensourceconvention.githubpackages.githubPackagesSingleProjectOpenSourceConventionMavenRepositories
 import com.huanshankeji.team.HUANSHANKEJI_GROUP_REGEX
 import com.huanshankeji.team.HUANSHANKEJI_IN_LOWERCASE
 import org.gradle.api.artifacts.dsl.RepositoryHandler
@@ -17,6 +17,6 @@ fun RepositoryHandler.huanshankejiGithubPackagesOpenSourceMavenConventionProject
     groupRegex: String = HUANSHANKEJI_GROUP_REGEX,
     moduleRegex: String = leadingProjectNameModuleRegex(projectName)
 ) =
-    githubPackagesOpenSourceMavenConventionProjectRepositories(
+    githubPackagesSingleProjectOpenSourceConventionMavenRepositories(
         HUANSHANKEJI_IN_LOWERCASE, projectName, groupRegex, moduleRegex
     )

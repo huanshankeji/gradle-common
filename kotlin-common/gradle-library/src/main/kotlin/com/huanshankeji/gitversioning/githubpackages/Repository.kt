@@ -14,7 +14,7 @@ import java.net.URI
  * No Maven Central.
  */
 context(providers: ProviderFactory, _: (path: Any) -> URI)
-fun RepositoryHandler.githubPackagesConventionMavenRepositories(
+fun RepositoryHandler.githubPackagesSingleProjectConventionMavenRepositories(
     githubOwner: String,
     githubRepository: String,
     exclusiveContentFilterConfig: InclusiveRepositoryContentDescriptor.() -> Unit,
@@ -32,9 +32,9 @@ fun RepositoryHandler.githubPackagesConventionMavenRepositories(
 
 @GradleCommonExperimentalApi
 context(providers: ProviderFactory, _: (path: Any) -> URI)
-fun RepositoryHandler.githubPackagesConventionMavenRepositories(
+fun RepositoryHandler.githubPackagesSingleProjectConventionMavenRepositories(
     githubOwner: String, githubRepository: String, groupRegex: String, moduleRegex: String
 ) =
-    githubPackagesConventionMavenRepositories(githubOwner, githubRepository) {
+    githubPackagesSingleProjectConventionMavenRepositories(githubOwner, githubRepository) {
         includeModuleByRegex(groupRegex, moduleRegex)
     }

@@ -17,7 +17,7 @@ import java.net.URI
  * No Maven Central.
  */
 context(providers: ProviderFactory, _: (path: Any) -> URI)
-fun RepositoryHandler.gitlabPackageRegistryProjectEndpointConventionMavenRepositories(
+fun RepositoryHandler.gitlabPackageRegistryProjectLevelEndpointConventionMavenRepositories(
     name: String = GITLAB_PACKAGE_REGISTRY_DEFAULT_REPOSITORY_NAME,
     host: String = GITLAB_COM_HOST,
     projectId: String,
@@ -36,13 +36,13 @@ fun RepositoryHandler.gitlabPackageRegistryProjectEndpointConventionMavenReposit
 
 @GradleCommonExperimentalApi
 context(providers: ProviderFactory, _: (path: Any) -> URI)
-fun RepositoryHandler.gitlabPackageRegistryProjectEndpointConventionMavenRepositories(
+fun RepositoryHandler.gitlabPackageRegistryProjectLevelEndpointConventionMavenRepositories(
     name: String = GITLAB_PACKAGE_REGISTRY_DEFAULT_REPOSITORY_NAME,
     host: String = GITLAB_COM_HOST,
     projectId: String,
     groupRegex: String,
     moduleRegex: String,
 ) =
-    gitlabPackageRegistryProjectEndpointConventionMavenRepositories(name, host, projectId) {
+    gitlabPackageRegistryProjectLevelEndpointConventionMavenRepositories(name, host, projectId) {
         includeModuleByRegex(groupRegex, moduleRegex)
     }

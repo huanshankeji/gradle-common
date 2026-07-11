@@ -1,18 +1,21 @@
-package com.huanshankeji.gitversioning.opensourcemavenconvention
+package com.huanshankeji.gitversioning.opensourceconvention
 
 import com.huanshankeji.GradleCommonExperimentalApi
 import com.huanshankeji.RELEASE_VERSION_REGEX
 import com.huanshankeji.gitversioning.DEV_COMMIT_VERSION_REGEX
 import com.huanshankeji.gitversioning.SNAPSHOT_AND_DEV_COMMIT_VERSION_REGEX
+import com.huanshankeji.gitversioning.conventionMavenRepositories
 import org.gradle.api.artifacts.dsl.RepositoryHandler
 import org.gradle.api.artifacts.repositories.InclusiveRepositoryContentDescriptor
 import org.gradle.api.artifacts.repositories.MavenArtifactRepository
 
 /**
  * Maven local: SNAPSHOT + `*-dev-commit-*`; [devCommitMavenRepository]: `*-dev-commit-*`; Maven Central: releases.
+ * This function can be used for both single-project repositories and multi-project repositories.
+ * @see conventionMavenRepositories
  */
 @GradleCommonExperimentalApi
-fun RepositoryHandler.openSourceMavenConventionProjectRepositories(
+fun RepositoryHandler.openSourceConventionMavenRepositories(
     devCommitMavenRepository: RepositoryHandler.(extraAction: MavenArtifactRepository.() -> Unit) -> MavenArtifactRepository,
     exclusiveContentFilterConfig: InclusiveRepositoryContentDescriptor.() -> Unit,
 ) {
