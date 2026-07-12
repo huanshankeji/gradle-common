@@ -13,7 +13,8 @@ import java.net.URI
  * When context parameters are available at the call site, prefer calling the context-parameter
  * [RepositoryHandler] extensions directly.
  *
- * When this wrapper is no longer needed, blame and revert the commit that introduced it.
+ * When this wrapper is no longer needed, `git revert 656d3d5f54d76c571b79f96ecc236cb54b013f50`
+ * (the commit object remains reachable even after a squash merge).
  */
 @GradleCommonExperimentalApi
 class MavenRepositoryHandlerContext(
