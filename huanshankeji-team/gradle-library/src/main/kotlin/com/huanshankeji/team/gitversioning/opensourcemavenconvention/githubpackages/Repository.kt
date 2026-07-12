@@ -1,5 +1,7 @@
 package com.huanshankeji.team.gitversioning.opensourcemavenconvention.githubpackages
 
+import com.huanshankeji.GradleCommonExperimentalApi
+import com.huanshankeji.artifacts.MavenRepositoryHandlerContext
 import com.huanshankeji.artifacts.leadingProjectNameModuleRegex
 import com.huanshankeji.gitversioning.opensourceconvention.githubpackages.githubPackagesSingleProjectOpenSourceConventionMavenRepositories
 import com.huanshankeji.team.HUANSHANKEJI_GROUP_REGEX
@@ -20,3 +22,15 @@ fun RepositoryHandler.huanshankejiGithubPackagesOpenSourceMavenConventionProject
     githubPackagesSingleProjectOpenSourceConventionMavenRepositories(
         HUANSHANKEJI_IN_LOWERCASE, projectName, groupRegex, moduleRegex
     )
+
+@GradleCommonExperimentalApi
+fun MavenRepositoryHandlerContext.huanshankejiGithubPackagesOpenSourceMavenConventionProjectRepositories(
+    projectName: String,
+    groupRegex: String = HUANSHANKEJI_GROUP_REGEX,
+    moduleRegex: String = leadingProjectNameModuleRegex(projectName),
+) =
+    context(providers, uri) {
+        repositories.huanshankejiGithubPackagesOpenSourceMavenConventionProjectRepositories(
+            projectName, groupRegex, moduleRegex
+        )
+    }

@@ -9,12 +9,16 @@ public final class com/huanshankeji/team/artifacts/RepositoryKt {
 }
 
 public final class com/huanshankeji/team/gitversioning/gitlabpackageregistry/RepositoryKt {
+	public static final fun defaultHuanshankejiGitLabPackageRegistryProjectEndpointConventionMavenRepositories (Lcom/huanshankeji/artifacts/MavenRepositoryHandlerContext;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
 	public static final fun defaultHuanshankejiGitLabPackageRegistryProjectEndpointConventionMavenRepositories (Lorg/gradle/api/provider/ProviderFactory;Lkotlin/jvm/functions/Function1;Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public static final fun huanshankejiGitLabPackageRegistryProjectEndpointConventionMavenRepositories (Lcom/huanshankeji/artifacts/MavenRepositoryHandlerContext;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
 	public static final fun huanshankejiGitLabPackageRegistryProjectEndpointConventionMavenRepositories (Lorg/gradle/api/provider/ProviderFactory;Lkotlin/jvm/functions/Function1;Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
 }
 
 public final class com/huanshankeji/team/gitversioning/opensourcemavenconvention/githubpackages/RepositoryKt {
+	public static final fun huanshankejiGithubPackagesOpenSourceMavenConventionProjectRepositories (Lcom/huanshankeji/artifacts/MavenRepositoryHandlerContext;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
 	public static final fun huanshankejiGithubPackagesOpenSourceMavenConventionProjectRepositories (Lorg/gradle/api/provider/ProviderFactory;Lkotlin/jvm/functions/Function1;Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public static synthetic fun huanshankejiGithubPackagesOpenSourceMavenConventionProjectRepositories$default (Lcom/huanshankeji/artifacts/MavenRepositoryHandlerContext;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)V
 	public static synthetic fun huanshankejiGithubPackagesOpenSourceMavenConventionProjectRepositories$default (Lorg/gradle/api/provider/ProviderFactory;Lkotlin/jvm/functions/Function1;Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)V
 }
 

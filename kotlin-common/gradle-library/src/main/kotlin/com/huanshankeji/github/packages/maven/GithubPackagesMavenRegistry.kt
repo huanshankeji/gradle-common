@@ -1,6 +1,7 @@
 package com.huanshankeji.github.packages.maven
 
 import com.huanshankeji.GradleCommonExperimentalApi
+import com.huanshankeji.artifacts.MavenRepositoryHandlerContext
 import org.gradle.api.Project
 import org.gradle.api.artifacts.dsl.RepositoryHandler
 import org.gradle.api.artifacts.repositories.MavenArtifactRepository
@@ -66,4 +67,14 @@ fun RepositoryHandler.githubPackagesMavenRegistry(
         name = GITHUB_PACKAGES_DEFAULT_REPOSITORY_NAME
         githubPackagesSetUrlAndCredentials(ownerProvider, repositoryProvider)
         extraAction()
+    }
+
+@GradleCommonExperimentalApi
+fun MavenRepositoryHandlerContext.githubPackagesMavenRegistry(
+    ownerProvider: Provider<String>,
+    repositoryProvider: Provider<String>,
+    extraAction: MavenArtifactRepository.() -> Unit = {},
+) =
+    context(providers, uri) {
+        repositories.githubPackagesMavenRegistry(ownerProvider, repositoryProvider, extraAction)
     }

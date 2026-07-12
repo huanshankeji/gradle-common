@@ -1,6 +1,7 @@
 package com.huanshankeji.gitversioning.opensourceconvention.gitlabpackageregistry
 
 import com.huanshankeji.GradleCommonExperimentalApi
+import com.huanshankeji.artifacts.MavenRepositoryHandlerContext
 import com.huanshankeji.gitlab.packageregistry.maven.GITLAB_COM_HOST
 import com.huanshankeji.gitlab.packageregistry.maven.gitlabPackageRegistryProjectLevelEndpointMavenRepository
 import com.huanshankeji.gitversioning.opensourceconvention.openSourceConventionMavenRepositories
@@ -30,6 +31,18 @@ fun RepositoryHandler.gitlabPackageRegistryProjectLevelEndpointOpenSourceConvent
     )
 
 @GradleCommonExperimentalApi
+fun MavenRepositoryHandlerContext.gitlabPackageRegistryProjectLevelEndpointOpenSourceConventionMavenRepositories(
+    host: String = GITLAB_COM_HOST,
+    projectId: String,
+    exclusiveContentFilterConfig: InclusiveRepositoryContentDescriptor.() -> Unit,
+) =
+    context(providers, uri) {
+        repositories.gitlabPackageRegistryProjectLevelEndpointOpenSourceConventionMavenRepositories(
+            host, projectId, exclusiveContentFilterConfig
+        )
+    }
+
+@GradleCommonExperimentalApi
 context(providers: ProviderFactory, _: (path: Any) -> URI)
 fun RepositoryHandler.gitlabPackageRegistryProjectLevelEndpointOpenSourceConventionMavenRepositories(
     host: String = GITLAB_COM_HOST,
@@ -39,4 +52,17 @@ fun RepositoryHandler.gitlabPackageRegistryProjectLevelEndpointOpenSourceConvent
 ) =
     gitlabPackageRegistryProjectLevelEndpointOpenSourceConventionMavenRepositories(host, projectId) {
         includeModuleByRegex(groupRegex, moduleRegex)
+    }
+
+@GradleCommonExperimentalApi
+fun MavenRepositoryHandlerContext.gitlabPackageRegistryProjectLevelEndpointOpenSourceConventionMavenRepositories(
+    host: String = GITLAB_COM_HOST,
+    projectId: String,
+    groupRegex: String,
+    moduleRegex: String,
+) =
+    context(providers, uri) {
+        repositories.gitlabPackageRegistryProjectLevelEndpointOpenSourceConventionMavenRepositories(
+            host, projectId, groupRegex, moduleRegex
+        )
     }

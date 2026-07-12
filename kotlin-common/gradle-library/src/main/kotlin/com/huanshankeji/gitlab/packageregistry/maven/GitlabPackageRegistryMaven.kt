@@ -1,6 +1,7 @@
 package com.huanshankeji.gitlab.packageregistry.maven
 
 import com.huanshankeji.GradleCommonExperimentalApi
+import com.huanshankeji.artifacts.MavenRepositoryHandlerContext
 import org.gradle.api.artifacts.dsl.RepositoryHandler
 import org.gradle.api.artifacts.repositories.MavenArtifactRepository
 import org.gradle.api.credentials.HttpHeaderCredentials
@@ -48,6 +49,15 @@ fun RepositoryHandler.gitlabPackageRegistryMavenRepository(
         extraAction()
     }
 
+@GradleCommonExperimentalApi
+fun MavenRepositoryHandlerContext.gitlabPackageRegistryMavenRepository(
+    urlProvider: Provider<String>,
+    extraAction: MavenArtifactRepository.() -> Unit = {},
+) =
+    context(providers, uri) {
+        repositories.gitlabPackageRegistryMavenRepository(urlProvider, extraAction)
+    }
+
 
 const val GITLAB_COM_HOST = "gitlab.com"
 
@@ -66,6 +76,18 @@ fun RepositoryHandler.gitlabPackageRegistryProjectLevelEndpointMavenRepository(
         extraAction
     )
 
+@GradleCommonExperimentalApi
+fun MavenRepositoryHandlerContext.gitlabPackageRegistryProjectLevelEndpointMavenRepository(
+    hostProvider: Provider<String> = providers.provider { GITLAB_COM_HOST },
+    projectIdOrProjectPathProvider: Provider<String>,
+    extraAction: MavenArtifactRepository.() -> Unit = {},
+) =
+    context(providers, uri) {
+        repositories.gitlabPackageRegistryProjectLevelEndpointMavenRepository(
+            hostProvider, projectIdOrProjectPathProvider, extraAction
+        )
+    }
+
 // see: https://docs.gitlab.com/ee/user/packages/maven_repository/#group-level-maven-endpoint (link outdated)
 context(providers: ProviderFactory, _: (path: Any) -> URI)
 fun RepositoryHandler.gitlabPackageRegistryGroupLevelEndpointMavenRepository(
@@ -80,6 +102,18 @@ fun RepositoryHandler.gitlabPackageRegistryGroupLevelEndpointMavenRepository(
         extraAction
     )
 
+@GradleCommonExperimentalApi
+fun MavenRepositoryHandlerContext.gitlabPackageRegistryGroupLevelEndpointMavenRepository(
+    hostProvider: Provider<String> = providers.provider { GITLAB_COM_HOST },
+    groupIdProvider: Provider<String>,
+    extraAction: MavenArtifactRepository.() -> Unit = {},
+) =
+    context(providers, uri) {
+        repositories.gitlabPackageRegistryGroupLevelEndpointMavenRepository(
+            hostProvider, groupIdProvider, extraAction
+        )
+    }
+
 // see: https://docs.gitlab.com/ee/user/packages/maven_repository/#group-level-maven-endpoint (link outdated)
 context(providers: ProviderFactory, _: (path: Any) -> URI)
 fun RepositoryHandler.gitlabPackageRegistryInstanceLevelEndpointMavenRepository(
@@ -90,3 +124,12 @@ fun RepositoryHandler.gitlabPackageRegistryInstanceLevelEndpointMavenRepository(
         hostProvider.map { host -> "https://$host/api/v4/packages/maven" },
         extraAction
     )
+
+@GradleCommonExperimentalApi
+fun MavenRepositoryHandlerContext.gitlabPackageRegistryInstanceLevelEndpointMavenRepository(
+    hostProvider: Provider<String> = providers.provider { GITLAB_COM_HOST },
+    extraAction: MavenArtifactRepository.() -> Unit = {},
+) =
+    context(providers, uri) {
+        repositories.gitlabPackageRegistryInstanceLevelEndpointMavenRepository(hostProvider, extraAction)
+    }

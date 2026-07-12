@@ -1,5 +1,7 @@
 package com.huanshankeji.team.gitversioning.gitlabpackageregistry
 
+import com.huanshankeji.GradleCommonExperimentalApi
+import com.huanshankeji.artifacts.MavenRepositoryHandlerContext
 import com.huanshankeji.artifacts.leadingProjectNameModuleRegex
 import com.huanshankeji.gitlab.packageregistry.maven.GITLAB_COM_HOST
 import com.huanshankeji.gitversioning.gitlabpackageregistry.gitlabPackageRegistryProjectLevelEndpointConventionMavenRepositories
@@ -15,6 +17,16 @@ fun RepositoryHandler.huanshankejiGitLabPackageRegistryProjectEndpointConvention
         GITLAB_COM_HOST, projectId, groupRegex, moduleRegex
     )
 
+@GradleCommonExperimentalApi
+fun MavenRepositoryHandlerContext.huanshankejiGitLabPackageRegistryProjectEndpointConventionMavenRepositories(
+    projectId: String, groupRegex: String, moduleRegex: String
+) =
+    context(providers, uri) {
+        repositories.huanshankejiGitLabPackageRegistryProjectEndpointConventionMavenRepositories(
+            projectId, groupRegex, moduleRegex
+        )
+    }
+
 context(providers: ProviderFactory, _: (path: Any) -> URI)
 fun RepositoryHandler.defaultHuanshankejiGitLabPackageRegistryProjectEndpointConventionMavenRepositories(
     projectId: String, groupRegex: String, projectName: String
@@ -22,3 +34,13 @@ fun RepositoryHandler.defaultHuanshankejiGitLabPackageRegistryProjectEndpointCon
     huanshankejiGitLabPackageRegistryProjectEndpointConventionMavenRepositories(
         projectId, groupRegex, leadingProjectNameModuleRegex(projectName)
     )
+
+@GradleCommonExperimentalApi
+fun MavenRepositoryHandlerContext.defaultHuanshankejiGitLabPackageRegistryProjectEndpointConventionMavenRepositories(
+    projectId: String, groupRegex: String, projectName: String
+) =
+    context(providers, uri) {
+        repositories.defaultHuanshankejiGitLabPackageRegistryProjectEndpointConventionMavenRepositories(
+            projectId, groupRegex, projectName
+        )
+    }

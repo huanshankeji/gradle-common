@@ -1,6 +1,7 @@
 package com.huanshankeji.gitversioning.opensourceconvention.githubpackages
 
 import com.huanshankeji.GradleCommonExperimentalApi
+import com.huanshankeji.artifacts.MavenRepositoryHandlerContext
 import com.huanshankeji.artifacts.leadingProjectNameModuleRegex
 import com.huanshankeji.github.packages.maven.githubPackagesMavenRegistry
 import com.huanshankeji.gitversioning.opensourceconvention.openSourceConventionMavenRepositories
@@ -30,12 +31,34 @@ fun RepositoryHandler.githubPackagesSingleProjectOpenSourceConventionMavenReposi
     )
 
 @GradleCommonExperimentalApi
+fun MavenRepositoryHandlerContext.githubPackagesSingleProjectOpenSourceConventionMavenRepositories(
+    githubOwner: String,
+    githubRepository: String,
+    exclusiveContentFilterConfig: InclusiveRepositoryContentDescriptor.() -> Unit,
+) =
+    context(providers, uri) {
+        repositories.githubPackagesSingleProjectOpenSourceConventionMavenRepositories(
+            githubOwner, githubRepository, exclusiveContentFilterConfig
+        )
+    }
+
+@GradleCommonExperimentalApi
 context(providers: ProviderFactory, _: (path: Any) -> URI)
 fun RepositoryHandler.githubPackagesSingleProjectOpenSourceConventionMavenRepositories(
     githubOwner: String, githubRepository: String, groupRegex: String, moduleRegex: String
 ) =
     githubPackagesSingleProjectOpenSourceConventionMavenRepositories(githubOwner, githubRepository) {
         includeModuleByRegex(groupRegex, moduleRegex)
+    }
+
+@GradleCommonExperimentalApi
+fun MavenRepositoryHandlerContext.githubPackagesSingleProjectOpenSourceConventionMavenRepositories(
+    githubOwner: String, githubRepository: String, groupRegex: String, moduleRegex: String
+) =
+    context(providers, uri) {
+        repositories.githubPackagesSingleProjectOpenSourceConventionMavenRepositories(
+            githubOwner, githubRepository, groupRegex, moduleRegex
+        )
     }
 
 
