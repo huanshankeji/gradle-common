@@ -1,4 +1,4 @@
-import com.huanshankeji.gitversioning.projectVersionFromGitProvider
+import com.huanshankeji.gitversioning.devCommitVersionProvider
 import org.jetbrains.kotlin.gradle.dsl.abi.ExperimentalAbiValidation
 
 plugins {
@@ -6,7 +6,7 @@ plugins {
     id("com.huanshankeji.team.dokka.github-dokka-convention")
 }
 
-version = projectVersionFromGitProvider(alignedPluginBaseVersion).get()
+version = providers.devCommitVersionProvider(alignedPluginBaseVersion).get()
 
 kotlin {
     compilerOptions {

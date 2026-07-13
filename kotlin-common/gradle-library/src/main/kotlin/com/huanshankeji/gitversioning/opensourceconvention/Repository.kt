@@ -21,6 +21,7 @@ fun RepositoryHandler.openSourceConventionMavenRepositories(
 ) {
     // Factory overload of forRepository: lambda must return ArtifactRepository.
     exclusiveContent {
+        // Note that `*-dev-commit-*` versions are resolved from both `mavenLocal` and `devCommitMavenRepository` in order.
         forRepository {
             mavenLocal {
                 content {

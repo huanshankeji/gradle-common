@@ -2,7 +2,7 @@
 
 package com.huanshankeji.team.dokka
 
-import com.huanshankeji.git.gitCommitHash
+import com.huanshankeji.git.workflow.conventionalGitCommitHashOrTag
 import com.huanshankeji.team.github.defaultRepositoryName
 import com.huanshankeji.team.github.githubRepositoryUrl
 
@@ -12,16 +12,16 @@ plugins {
 
 interface GithubDokkaConventionExtension {
     val repositoryName: Property<String>
-    val commitOrTag: Property<String>
+    val commitHashOrTag: Property<String>
 }
 
 extensions.create<GithubDokkaConventionExtension>("githubDokkaConvention").apply {
     repositoryName.convention(defaultRepositoryName())
-    commitOrTag.set(gitCommitHash())
+    commitHashOrTag.convention(conventionalGitCommitHashOrTag())
 
     val sourceLinkRemoteUrlRoot = repositoryName.flatMap { repositoryName ->
         val repositoryUrl = githubRepositoryUrl(repositoryName)
-        commitOrTag.map { commitOrTag ->
+        commitHashOrTag.map { commitOrTag ->
             "$repositoryUrl/blob/$commitOrTag"
         }
     }

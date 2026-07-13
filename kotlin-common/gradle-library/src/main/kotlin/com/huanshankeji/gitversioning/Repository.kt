@@ -1,5 +1,6 @@
 package com.huanshankeji.gitversioning
 
+import com.huanshankeji.NON_SNAPSHOT_VERSION_REGEX
 import org.gradle.api.artifacts.dsl.RepositoryHandler
 import org.gradle.api.artifacts.repositories.InclusiveRepositoryContentDescriptor
 import org.gradle.api.artifacts.repositories.MavenArtifactRepository
@@ -13,6 +14,7 @@ fun RepositoryHandler.conventionMavenRepositories(
     exclusiveContentFilter: InclusiveRepositoryContentDescriptor.() -> Unit,
 ) {
     exclusiveContent {
+        // Note that `*-dev-commit-*` versions are resolved from both `mavenLocal` and `remoteMavenRepository` in order.
         forRepository {
             mavenLocal {
                 content {
@@ -23,7 +25,7 @@ fun RepositoryHandler.conventionMavenRepositories(
         forRepository {
             remoteMavenRepository {
                 content {
-                    includeVersionByRegex(".+", ".+", DEV_COMMIT_AND_RELEASE_VERSION_REGEX)
+                    includeVersionByRegex(".+", ".+", NON_SNAPSHOT_VERSION_REGEX)
                 }
             }
         }

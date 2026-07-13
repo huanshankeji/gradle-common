@@ -1,10 +1,10 @@
-import com.huanshankeji.gitversioning.projectVersionFromGitProvider
+import com.huanshankeji.gitversioning.devCommitVersionProvider
 
 plugins {
     `common-conventions`
 }
 
-version = projectVersionFromGitProvider(commonGradleDependenciesBaseVersion).get()
+version = providers.devCommitVersionProvider(commonGradleDependenciesBaseVersion).get()
 
 gradlePlugin {
     plugins {
