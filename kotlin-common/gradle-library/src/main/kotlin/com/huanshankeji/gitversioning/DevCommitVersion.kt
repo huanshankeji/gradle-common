@@ -22,9 +22,8 @@ fun ProviderFactory.devCommitVersionProvider(baseVersion: String): Provider<Stri
  * Returns [baseVersion] on [releaseBranch]; otherwise a `*-dev-commit-*` version from Git.
  * Override with the Gradle property `com.huanshankeji.forceReleaseVersion=true` when needed.
  *
- * This API is not recommended now per our convention.
- * You are recommended to always set the version directly explicitly in a release branch.
- * Use [devCommitVersionProvider] directly in a non-release branch instead.
+ * Not recommended under the current convention: set the release version explicitly on the
+ * release branch, and use [devCommitVersionProvider] on non-release branches.
  */
 @GradleCommonExperimentalApi
 fun ProviderFactory.projectVersionFromGitProvider(

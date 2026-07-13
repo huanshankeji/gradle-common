@@ -11,8 +11,8 @@ import org.gradle.api.provider.Provider
 import org.gradle.api.provider.ProviderFactory
 
 /**
- * This API is not recommended now per our convention.
- * You are recommended to always set the version directly explicitly in a release branch.
+ * Not recommended under the current convention: set the release version explicitly on the
+ * release branch instead of detecting it from Git.
  */
 @GradleCommonExperimentalApi
 fun ProviderFactory.isReleaseBranch(releaseBranch: String = "release"): Provider<Boolean> =
@@ -31,4 +31,3 @@ fun Project.conventionalGitCommitHashOrTag(): Provider<String> =
         else if (isReleaseVersion(version)) provider { "v$version" }
         else providers.gitCommitHash()
     }
-

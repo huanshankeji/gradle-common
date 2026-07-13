@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+* git versioning / Maven exclusive-content / Dokka source-link APIs (breaking, experimental)
+    * move Git helpers and version providers from `Project` to `ProviderFactory` receivers (`gitCommitHash`, `devCommitVersionProvider`, `projectVersionFromGitProvider`, …)
+    * rename file facades `GitVersioningKt` → `DevCommitVersionKt`, `VersionKt` → `VersionMatchingKt` under `gitversioning`
+    * prefer `devCommitVersionProvider` on non-release branches; set the base version explicitly on `release` (discourage branch auto-detection via `projectVersionFromGitProvider`)
+    * remote `conventionMavenRepositories` exclusive content now matches any non-`-SNAPSHOT` version (`NON_SNAPSHOT_VERSION_REGEX`) instead of only release ∪ clean `*-dev-commit-*`
+    * remove unused `DEV_COMMIT_AND_RELEASE_VERSION_REGEX` and Project-receiver `isDevCommitVersion` / `isDirtyDevCommitVersion` overloads; keep the `String` predicates
+    * add `isReleaseVersion` and `conventionalGitCommitHashOrTag` (release → `v$version`, else commit hash) for Dokka source links; rename `githubDokkaConvention.commitOrTag` → `commitHashOrTag`
 * overhaul module hierarchy into nested `kotlin-common/` and `huanshankeji-team/` directories with shared `gradle-library` modules
     * split build-logic conventions into `gradle-library-conventions`, `project-gradle-plugins-conventions`, `settings-gradle-plugins-conventions`, `kotlin-common-module-conventions`, and `huanshankeji-team-module-conventions`
     * extract shared helpers (`VersionRegexes`, GitHub Packages credentials, team `Constants`, `MavenRepositoryContentFiltering`, …) into `gradle-library` modules

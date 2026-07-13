@@ -4,6 +4,7 @@ plugins {
     `common-conventions`
 }
 
+// On the release branch, set `version = commonGradleDependenciesBaseVersion` explicitly.
 version = providers.devCommitVersionProvider(commonGradleDependenciesBaseVersion).get()
 
 gradlePlugin {

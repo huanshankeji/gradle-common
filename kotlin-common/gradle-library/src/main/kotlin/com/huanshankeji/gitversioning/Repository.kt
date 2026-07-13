@@ -6,7 +6,8 @@ import org.gradle.api.artifacts.repositories.InclusiveRepositoryContentDescripto
 import org.gradle.api.artifacts.repositories.MavenArtifactRepository
 
 /**
- * Maven local: SNAPSHOT + `*-dev-commit-*`; [remoteMavenRepository]: `*-dev-commit-*` + releases.
+ * Maven local: SNAPSHOT + `*-dev-commit-*`; [remoteMavenRepository]: any non-`-SNAPSHOT` version
+ * (including clean `*-dev-commit-*` and release coordinates).
  * This function can be used for both single-project repositories and multi-project repositories.
  */
 fun RepositoryHandler.conventionMavenRepositories(

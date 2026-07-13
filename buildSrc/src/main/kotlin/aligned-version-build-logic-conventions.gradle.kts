@@ -6,6 +6,7 @@ plugins {
     id("com.huanshankeji.team.dokka.github-dokka-convention")
 }
 
+// On the release branch, set `version = alignedPluginBaseVersion` explicitly.
 version = providers.devCommitVersionProvider(alignedPluginBaseVersion).get()
 
 kotlin {

@@ -25,4 +25,3 @@ const val RELEASE_VERSION_REGEX = """\d+\.\d+\.\d+(-(alpha|beta|rc)(-\d+)?)?"""
 
 fun isReleaseVersion(version: String): Boolean =
     version.matches(RELEASE_VERSION_REGEX.toRegex())
-
