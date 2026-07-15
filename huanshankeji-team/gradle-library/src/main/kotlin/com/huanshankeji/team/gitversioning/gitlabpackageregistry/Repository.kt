@@ -10,7 +10,7 @@ import org.gradle.api.provider.ProviderFactory
 import java.net.URI
 
 context(providers: ProviderFactory, _: (path: Any) -> URI)
-fun RepositoryHandler.huanshankejiGitLabPackageRegistryProjectEndpointConventionMavenRepositories(
+fun RepositoryHandler.huanshankejiGitlabPackageRegistryProjectEndpointConventionMavenRepositories(
     projectId: String, groupRegex: String, moduleRegex: String
 ) =
     gitlabPackageRegistryProjectLevelEndpointConventionMavenRepositories(
@@ -18,31 +18,31 @@ fun RepositoryHandler.huanshankejiGitLabPackageRegistryProjectEndpointConvention
     )
 
 @GradleCommonExperimentalApi
-fun MavenRepositoryHandlerContext.huanshankejiGitLabPackageRegistryProjectEndpointConventionMavenRepositories(
+fun MavenRepositoryHandlerContext.huanshankejiGitlabPackageRegistryProjectEndpointConventionMavenRepositories(
     projectId: String, groupRegex: String, moduleRegex: String
 ) =
     context(providers, uri) {
-        repositories.huanshankejiGitLabPackageRegistryProjectEndpointConventionMavenRepositories(
+        repositories.huanshankejiGitlabPackageRegistryProjectEndpointConventionMavenRepositories(
             projectId, groupRegex, moduleRegex
         )
     }
 
 @Deprecated("Not actually used in practice now.")
 context(providers: ProviderFactory, _: (path: Any) -> URI)
-fun RepositoryHandler.defaultHuanshankejiGitLabPackageRegistryProjectEndpointConventionMavenRepositories(
+fun RepositoryHandler.defaultHuanshankejiGitlabPackageRegistryProjectEndpointConventionMavenRepositories(
     projectId: String, groupRegex: String, projectName: String
 ) =
-    huanshankejiGitLabPackageRegistryProjectEndpointConventionMavenRepositories(
+    huanshankejiGitlabPackageRegistryProjectEndpointConventionMavenRepositories(
         projectId, groupRegex, leadingProjectNameModuleRegex(projectName)
     )
 
 @Deprecated("Not actually used in practice now.")
 @GradleCommonExperimentalApi
-fun MavenRepositoryHandlerContext.defaultHuanshankejiGitLabPackageRegistryProjectEndpointConventionMavenRepositories(
+fun MavenRepositoryHandlerContext.defaultHuanshankejiGitlabPackageRegistryProjectEndpointConventionMavenRepositories(
     projectId: String, groupRegex: String, projectName: String
 ) =
     context(providers, uri) {
-        repositories.defaultHuanshankejiGitLabPackageRegistryProjectEndpointConventionMavenRepositories(
+        repositories.defaultHuanshankejiGitlabPackageRegistryProjectEndpointConventionMavenRepositories(
             projectId, groupRegex, projectName
         )
     }
