@@ -17,13 +17,11 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      - name: Set up JDKs
-        uses: huanshankeji/.github/actions/setup-javas@v0.3.0
+      - name: Set up JDKs and Gradle
+        uses: huanshankeji/.github/actions/setup-javas-and-gradle@improve-cross-repo-dependency
         with:
           jdk-versions: 17-temurin
-
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v6
+          cache-encryption-key: ${{ secrets.GRADLE_ENCRYPTION_KEY }}
 
       - name: Publish with Gradle Wrapper
         env:
