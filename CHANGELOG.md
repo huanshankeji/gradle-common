@@ -4,6 +4,7 @@
 
 * git versioning / Maven exclusive-content / Dokka source-link APIs (breaking, experimental)
     * move Git helpers and version providers from `Project` to `ProviderFactory` receivers (`gitCommitHash`, `devCommitVersionProvider`, `projectVersionFromGitProvider`, …)
+    * add a non-experimental `Project.projectVersionFromGitProvider` convenience that opts into the `ProviderFactory` API internally
     * rename file facades `GitVersioningKt` → `DevCommitVersionKt`, `VersionKt` → `VersionMatchingKt` under `gitversioning`
     * prefer `devCommitVersionProvider` on non-release branches; set the base version explicitly on `release` (discourage branch auto-detection via `projectVersionFromGitProvider`)
     * fix exclusive-content version partitioning: split into multiple `exclusiveContent` blocks with disjoint `includeVersionByRegex` filters (filter lambdas now take a `versionRegex`); avoids Gradle’s OR’d includes making Maven Central accept `*-dev-commit-*`
