@@ -4,7 +4,6 @@ import com.huanshankeji.GradleCommonExperimentalApi
 import com.huanshankeji.git.gitCommitHash
 import com.huanshankeji.git.isGitWorkingTreeDirty
 import com.huanshankeji.git.workflow.isReleaseBranch
-import org.gradle.api.Project
 import org.gradle.api.provider.Provider
 import org.gradle.api.provider.ProviderFactory
 
@@ -42,11 +41,3 @@ fun ProviderFactory.projectVersionFromGitProvider(
         }
     }
 }
-
-/** Non-experimental [Project] convenience for [ProviderFactory.projectVersionFromGitProvider]. */
-@OptIn(GradleCommonExperimentalApi::class)
-fun Project.projectVersionFromGitProvider(
-    baseVersion: String,
-    releaseBranch: String = "release",
-): Provider<String> =
-    providers.projectVersionFromGitProvider(baseVersion, releaseBranch)
