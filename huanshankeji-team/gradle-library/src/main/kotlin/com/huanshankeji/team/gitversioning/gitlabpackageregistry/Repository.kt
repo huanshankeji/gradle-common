@@ -27,7 +27,6 @@ fun MavenRepositoryHandlerContext.huanshankejiGitlabPackageRegistryProjectEndpoi
         )
     }
 
-@Deprecated("Not actually used in practice now.")
 context(providers: ProviderFactory, _: (path: Any) -> URI)
 fun RepositoryHandler.defaultHuanshankejiGitlabPackageRegistryProjectEndpointConventionMavenRepositories(
     projectId: String, groupRegex: String, projectName: String
@@ -36,7 +35,6 @@ fun RepositoryHandler.defaultHuanshankejiGitlabPackageRegistryProjectEndpointCon
         projectId, groupRegex, leadingProjectNameModuleRegex(projectName)
     )
 
-@Deprecated("Not actually used in practice now.")
 @GradleCommonExperimentalApi
 fun MavenRepositoryHandlerContext.defaultHuanshankejiGitlabPackageRegistryProjectEndpointConventionMavenRepositories(
     projectId: String, groupRegex: String, projectName: String
