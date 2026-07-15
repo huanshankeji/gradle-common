@@ -6,7 +6,8 @@
     * move Git helpers and version providers from `Project` to `ProviderFactory` receivers (`gitCommitHash`, `devCommitVersionProvider`, `projectVersionFromGitProvider`, …)
     * rename file facades `GitVersioningKt` → `DevCommitVersionKt`, `VersionKt` → `VersionMatchingKt` under `gitversioning`
     * prefer `devCommitVersionProvider` on non-release branches; set the base version explicitly on `release` (discourage branch auto-detection via `projectVersionFromGitProvider`)
-    * remote `conventionMavenRepositories` exclusive content now matches any non-`-SNAPSHOT` version (`NON_SNAPSHOT_VERSION_REGEX`) instead of only release ∪ clean `*-dev-commit-*`
+    * fix exclusive-content version partitioning: split into multiple `exclusiveContent` blocks with disjoint `includeVersionByRegex` filters (filter lambdas now take a `versionRegex`); avoids Gradle’s OR’d includes making Maven Central accept `*-dev-commit-*`
+    * `conventionMavenRepositories` remote side is clean `*-dev-commit-*` + releases (not any non-`-SNAPSHOT`)
     * remove unused `DEV_COMMIT_AND_RELEASE_VERSION_REGEX` and Project-receiver `isDevCommitVersion` / `isDirtyDevCommitVersion` overloads; keep the `String` predicates
     * add `isReleaseVersion` and `conventionalGitCommitHashOrTag` (release → `v$version`, else commit hash) for Dokka source links; rename `githubDokkaConvention.commitOrTag` → `commitHashOrTag`
 * overhaul module hierarchy into nested `kotlin-common/` and `huanshankeji-team/` directories with shared `gradle-library` modules

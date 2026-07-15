@@ -17,7 +17,7 @@ context(providers: ProviderFactory, _: (path: Any) -> URI)
 fun RepositoryHandler.gitlabPackageRegistryProjectLevelEndpointOpenSourceConventionMavenRepositories(
     host: String = GITLAB_COM_HOST,
     projectId: String,
-    exclusiveContentFilterConfig: InclusiveRepositoryContentDescriptor.() -> Unit,
+    exclusiveContentFilterConfig: InclusiveRepositoryContentDescriptor.(versionRegex: String) -> Unit,
 ) =
     openSourceConventionMavenRepositories(
         { extraAction ->
@@ -34,7 +34,7 @@ fun RepositoryHandler.gitlabPackageRegistryProjectLevelEndpointOpenSourceConvent
 fun MavenRepositoryHandlerContext.gitlabPackageRegistryProjectLevelEndpointOpenSourceConventionMavenRepositories(
     host: String = GITLAB_COM_HOST,
     projectId: String,
-    exclusiveContentFilterConfig: InclusiveRepositoryContentDescriptor.() -> Unit,
+    exclusiveContentFilterConfig: InclusiveRepositoryContentDescriptor.(versionRegex: String) -> Unit,
 ) =
     context(providers, uri) {
         repositories.gitlabPackageRegistryProjectLevelEndpointOpenSourceConventionMavenRepositories(
@@ -50,8 +50,8 @@ fun RepositoryHandler.gitlabPackageRegistryProjectLevelEndpointOpenSourceConvent
     groupRegex: String,
     moduleRegex: String,
 ) =
-    gitlabPackageRegistryProjectLevelEndpointOpenSourceConventionMavenRepositories(host, projectId) {
-        includeModuleByRegex(groupRegex, moduleRegex)
+    gitlabPackageRegistryProjectLevelEndpointOpenSourceConventionMavenRepositories(host, projectId) { versionRegex ->
+        includeVersionByRegex(groupRegex, moduleRegex, versionRegex)
     }
 
 @GradleCommonExperimentalApi

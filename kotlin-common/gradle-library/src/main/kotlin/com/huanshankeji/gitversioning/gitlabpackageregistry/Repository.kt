@@ -13,14 +13,14 @@ import java.net.URI
 
 /**
  * Exclusive mavenLocal + GitLab project endpoint for modules filtered by [exclusiveContentFilterConfig].
- * Maven local: SNAPSHOT + `*-dev-commit-*`; GitLab package registry: `*-dev-commit-*` + releases.
+ * Maven local: SNAPSHOT + `*-dev-commit-*`; GitLab package registry: clean `*-dev-commit-*` + releases.
  * No Maven Central.
  */
 context(providers: ProviderFactory, _: (path: Any) -> URI)
 fun RepositoryHandler.gitlabPackageRegistryProjectLevelEndpointConventionMavenRepositories(
     host: String = GITLAB_COM_HOST,
     projectId: String,
-    exclusiveContentFilterConfig: InclusiveRepositoryContentDescriptor.() -> Unit,
+    exclusiveContentFilterConfig: InclusiveRepositoryContentDescriptor.(versionRegex: String) -> Unit,
 ) =
     conventionMavenRepositories(
         { extraAction ->
@@ -36,7 +36,7 @@ fun RepositoryHandler.gitlabPackageRegistryProjectLevelEndpointConventionMavenRe
 fun MavenRepositoryHandlerContext.gitlabPackageRegistryProjectLevelEndpointConventionMavenRepositories(
     host: String = GITLAB_COM_HOST,
     projectId: String,
-    exclusiveContentFilterConfig: InclusiveRepositoryContentDescriptor.() -> Unit,
+    exclusiveContentFilterConfig: InclusiveRepositoryContentDescriptor.(versionRegex: String) -> Unit,
 ) =
     context(providers, uri) {
         repositories.gitlabPackageRegistryProjectLevelEndpointConventionMavenRepositories(
@@ -52,8 +52,8 @@ fun RepositoryHandler.gitlabPackageRegistryProjectLevelEndpointConventionMavenRe
     groupRegex: String,
     moduleRegex: String,
 ) =
-    gitlabPackageRegistryProjectLevelEndpointConventionMavenRepositories(host, projectId) {
-        includeModuleByRegex(groupRegex, moduleRegex)
+    gitlabPackageRegistryProjectLevelEndpointConventionMavenRepositories(host, projectId) { versionRegex ->
+        includeVersionByRegex(groupRegex, moduleRegex, versionRegex)
     }
 
 @GradleCommonExperimentalApi

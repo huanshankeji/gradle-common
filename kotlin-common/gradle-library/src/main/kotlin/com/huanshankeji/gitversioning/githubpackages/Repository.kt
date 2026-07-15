@@ -11,14 +11,14 @@ import java.net.URI
 
 /**
  * Exclusive mavenLocal + GitHub Packages for modules filtered by [exclusiveContentFilterConfig].
- * Maven local: SNAPSHOT + `*-dev-commit-*`; GitHub Packages: `*-dev-commit-*` + releases.
+ * Maven local: SNAPSHOT + `*-dev-commit-*`; GitHub Packages: clean `*-dev-commit-*` + releases.
  * No Maven Central.
  */
 context(providers: ProviderFactory, _: (path: Any) -> URI)
 fun RepositoryHandler.githubPackagesSingleProjectConventionMavenRepositories(
     githubOwner: String,
     githubRepository: String,
-    exclusiveContentFilterConfig: InclusiveRepositoryContentDescriptor.() -> Unit,
+    exclusiveContentFilterConfig: InclusiveRepositoryContentDescriptor.(versionRegex: String) -> Unit,
 ) =
     conventionMavenRepositories(
         { extraAction ->
@@ -35,7 +35,7 @@ fun RepositoryHandler.githubPackagesSingleProjectConventionMavenRepositories(
 fun MavenRepositoryHandlerContext.githubPackagesSingleProjectConventionMavenRepositories(
     githubOwner: String,
     githubRepository: String,
-    exclusiveContentFilterConfig: InclusiveRepositoryContentDescriptor.() -> Unit,
+    exclusiveContentFilterConfig: InclusiveRepositoryContentDescriptor.(versionRegex: String) -> Unit,
 ) =
     context(providers, uri) {
         repositories.githubPackagesSingleProjectConventionMavenRepositories(
@@ -48,8 +48,8 @@ context(providers: ProviderFactory, _: (path: Any) -> URI)
 fun RepositoryHandler.githubPackagesSingleProjectConventionMavenRepositories(
     githubOwner: String, githubRepository: String, groupRegex: String, moduleRegex: String
 ) =
-    githubPackagesSingleProjectConventionMavenRepositories(githubOwner, githubRepository) {
-        includeModuleByRegex(groupRegex, moduleRegex)
+    githubPackagesSingleProjectConventionMavenRepositories(githubOwner, githubRepository) { versionRegex ->
+        includeVersionByRegex(groupRegex, moduleRegex, versionRegex)
     }
 
 @GradleCommonExperimentalApi

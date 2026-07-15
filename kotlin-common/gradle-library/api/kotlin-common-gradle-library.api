@@ -90,7 +90,8 @@ public final class com/huanshankeji/gitversioning/DevCommitVersionKt {
 }
 
 public final class com/huanshankeji/gitversioning/RepositoryKt {
-	public static final fun conventionMavenRepositories (Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Lkotlin/jvm/functions/Function2;Lkotlin/jvm/functions/Function1;)V
+	public static final fun conventionMavenRepositories (Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Lkotlin/jvm/functions/Function2;Ljava/lang/String;Ljava/lang/String;)V
+	public static final fun conventionMavenRepositories (Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Lkotlin/jvm/functions/Function2;Lkotlin/jvm/functions/Function2;)V
 }
 
 public final class com/huanshankeji/gitversioning/VersionMatchingKt {
@@ -105,41 +106,42 @@ public final class com/huanshankeji/gitversioning/VersionMatchingKt {
 
 public final class com/huanshankeji/gitversioning/githubpackages/RepositoryKt {
 	public static final fun githubPackagesSingleProjectConventionMavenRepositories (Lcom/huanshankeji/artifacts/MavenRepositoryHandlerContext;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
-	public static final fun githubPackagesSingleProjectConventionMavenRepositories (Lcom/huanshankeji/artifacts/MavenRepositoryHandlerContext;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public static final fun githubPackagesSingleProjectConventionMavenRepositories (Lcom/huanshankeji/artifacts/MavenRepositoryHandlerContext;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function2;)V
 	public static final fun githubPackagesSingleProjectConventionMavenRepositories (Lorg/gradle/api/provider/ProviderFactory;Lkotlin/jvm/functions/Function1;Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
-	public static final fun githubPackagesSingleProjectConventionMavenRepositories (Lorg/gradle/api/provider/ProviderFactory;Lkotlin/jvm/functions/Function1;Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public static final fun githubPackagesSingleProjectConventionMavenRepositories (Lorg/gradle/api/provider/ProviderFactory;Lkotlin/jvm/functions/Function1;Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function2;)V
 }
 
 public final class com/huanshankeji/gitversioning/gitlabpackageregistry/RepositoryKt {
 	public static final fun gitlabPackageRegistryProjectLevelEndpointConventionMavenRepositories (Lcom/huanshankeji/artifacts/MavenRepositoryHandlerContext;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
-	public static final fun gitlabPackageRegistryProjectLevelEndpointConventionMavenRepositories (Lcom/huanshankeji/artifacts/MavenRepositoryHandlerContext;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public static final fun gitlabPackageRegistryProjectLevelEndpointConventionMavenRepositories (Lcom/huanshankeji/artifacts/MavenRepositoryHandlerContext;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function2;)V
 	public static final fun gitlabPackageRegistryProjectLevelEndpointConventionMavenRepositories (Lorg/gradle/api/provider/ProviderFactory;Lkotlin/jvm/functions/Function1;Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
-	public static final fun gitlabPackageRegistryProjectLevelEndpointConventionMavenRepositories (Lorg/gradle/api/provider/ProviderFactory;Lkotlin/jvm/functions/Function1;Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public static final fun gitlabPackageRegistryProjectLevelEndpointConventionMavenRepositories (Lorg/gradle/api/provider/ProviderFactory;Lkotlin/jvm/functions/Function1;Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function2;)V
 	public static synthetic fun gitlabPackageRegistryProjectLevelEndpointConventionMavenRepositories$default (Lcom/huanshankeji/artifacts/MavenRepositoryHandlerContext;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)V
-	public static synthetic fun gitlabPackageRegistryProjectLevelEndpointConventionMavenRepositories$default (Lcom/huanshankeji/artifacts/MavenRepositoryHandlerContext;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static synthetic fun gitlabPackageRegistryProjectLevelEndpointConventionMavenRepositories$default (Lcom/huanshankeji/artifacts/MavenRepositoryHandlerContext;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function2;ILjava/lang/Object;)V
 	public static synthetic fun gitlabPackageRegistryProjectLevelEndpointConventionMavenRepositories$default (Lorg/gradle/api/provider/ProviderFactory;Lkotlin/jvm/functions/Function1;Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)V
-	public static synthetic fun gitlabPackageRegistryProjectLevelEndpointConventionMavenRepositories$default (Lorg/gradle/api/provider/ProviderFactory;Lkotlin/jvm/functions/Function1;Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static synthetic fun gitlabPackageRegistryProjectLevelEndpointConventionMavenRepositories$default (Lorg/gradle/api/provider/ProviderFactory;Lkotlin/jvm/functions/Function1;Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function2;ILjava/lang/Object;)V
 }
 
 public final class com/huanshankeji/gitversioning/opensourceconvention/RepositoryKt {
-	public static final fun openSourceConventionMavenRepositories (Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Lkotlin/jvm/functions/Function2;Lkotlin/jvm/functions/Function1;)V
+	public static final fun openSourceConventionMavenRepositories (Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Lkotlin/jvm/functions/Function2;Ljava/lang/String;Ljava/lang/String;)V
+	public static final fun openSourceConventionMavenRepositories (Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Lkotlin/jvm/functions/Function2;Lkotlin/jvm/functions/Function2;)V
 }
 
 public final class com/huanshankeji/gitversioning/opensourceconvention/githubpackages/RepositoryKt {
 	public static final fun githubPackagesSingleProjectOpenSourceConventionMavenRepositories (Lcom/huanshankeji/artifacts/MavenRepositoryHandlerContext;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
-	public static final fun githubPackagesSingleProjectOpenSourceConventionMavenRepositories (Lcom/huanshankeji/artifacts/MavenRepositoryHandlerContext;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public static final fun githubPackagesSingleProjectOpenSourceConventionMavenRepositories (Lcom/huanshankeji/artifacts/MavenRepositoryHandlerContext;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function2;)V
 	public static final fun githubPackagesSingleProjectOpenSourceConventionMavenRepositories (Lorg/gradle/api/provider/ProviderFactory;Lkotlin/jvm/functions/Function1;Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
-	public static final fun githubPackagesSingleProjectOpenSourceConventionMavenRepositories (Lorg/gradle/api/provider/ProviderFactory;Lkotlin/jvm/functions/Function1;Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public static final fun githubPackagesSingleProjectOpenSourceConventionMavenRepositories (Lorg/gradle/api/provider/ProviderFactory;Lkotlin/jvm/functions/Function1;Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function2;)V
 }
 
 public final class com/huanshankeji/gitversioning/opensourceconvention/gitlabpackageregistry/RepositoryKt {
 	public static final fun gitlabPackageRegistryProjectLevelEndpointOpenSourceConventionMavenRepositories (Lcom/huanshankeji/artifacts/MavenRepositoryHandlerContext;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
-	public static final fun gitlabPackageRegistryProjectLevelEndpointOpenSourceConventionMavenRepositories (Lcom/huanshankeji/artifacts/MavenRepositoryHandlerContext;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public static final fun gitlabPackageRegistryProjectLevelEndpointOpenSourceConventionMavenRepositories (Lcom/huanshankeji/artifacts/MavenRepositoryHandlerContext;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function2;)V
 	public static final fun gitlabPackageRegistryProjectLevelEndpointOpenSourceConventionMavenRepositories (Lorg/gradle/api/provider/ProviderFactory;Lkotlin/jvm/functions/Function1;Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
-	public static final fun gitlabPackageRegistryProjectLevelEndpointOpenSourceConventionMavenRepositories (Lorg/gradle/api/provider/ProviderFactory;Lkotlin/jvm/functions/Function1;Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public static final fun gitlabPackageRegistryProjectLevelEndpointOpenSourceConventionMavenRepositories (Lorg/gradle/api/provider/ProviderFactory;Lkotlin/jvm/functions/Function1;Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function2;)V
 	public static synthetic fun gitlabPackageRegistryProjectLevelEndpointOpenSourceConventionMavenRepositories$default (Lcom/huanshankeji/artifacts/MavenRepositoryHandlerContext;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)V
-	public static synthetic fun gitlabPackageRegistryProjectLevelEndpointOpenSourceConventionMavenRepositories$default (Lcom/huanshankeji/artifacts/MavenRepositoryHandlerContext;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static synthetic fun gitlabPackageRegistryProjectLevelEndpointOpenSourceConventionMavenRepositories$default (Lcom/huanshankeji/artifacts/MavenRepositoryHandlerContext;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function2;ILjava/lang/Object;)V
 	public static synthetic fun gitlabPackageRegistryProjectLevelEndpointOpenSourceConventionMavenRepositories$default (Lorg/gradle/api/provider/ProviderFactory;Lkotlin/jvm/functions/Function1;Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)V
-	public static synthetic fun gitlabPackageRegistryProjectLevelEndpointOpenSourceConventionMavenRepositories$default (Lorg/gradle/api/provider/ProviderFactory;Lkotlin/jvm/functions/Function1;Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static synthetic fun gitlabPackageRegistryProjectLevelEndpointOpenSourceConventionMavenRepositories$default (Lorg/gradle/api/provider/ProviderFactory;Lkotlin/jvm/functions/Function1;Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function2;ILjava/lang/Object;)V
 }
 

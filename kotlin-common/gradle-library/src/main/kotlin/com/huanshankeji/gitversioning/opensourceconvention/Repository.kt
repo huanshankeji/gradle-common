@@ -2,50 +2,53 @@ package com.huanshankeji.gitversioning.opensourceconvention
 
 import com.huanshankeji.GradleCommonExperimentalApi
 import com.huanshankeji.RELEASE_VERSION_REGEX
+import com.huanshankeji.SNAPSHOT_VERSION_REGEX
 import com.huanshankeji.gitversioning.DEV_COMMIT_VERSION_REGEX
-import com.huanshankeji.gitversioning.SNAPSHOT_AND_DEV_COMMIT_VERSION_REGEX
 import com.huanshankeji.gitversioning.conventionMavenRepositories
 import org.gradle.api.artifacts.dsl.RepositoryHandler
 import org.gradle.api.artifacts.repositories.InclusiveRepositoryContentDescriptor
 import org.gradle.api.artifacts.repositories.MavenArtifactRepository
 
 /**
- * Maven local: SNAPSHOT + `*-dev-commit-*`; [devCommitMavenRepository]: `*-dev-commit-*`; Maven Central: releases.
+ * Maven local: SNAPSHOT + `*-dev-commit-*`; [devMavenRepository]: `*-dev-commit-*`; Maven Central: releases.
  * This function can be used for both single-project repositories and multi-project repositories.
+ *
+ * Uses separate [exclusiveContent] blocks with disjoint [includeVersionByRegex] filters so Gradle’s
+ * OR’d includes cannot widen version acceptance across repositories (e.g. Maven Central accepting
+ * `*-dev-commit-*`).
+ *
  * @see conventionMavenRepositories
  */
 @GradleCommonExperimentalApi
 fun RepositoryHandler.openSourceConventionMavenRepositories(
-    devCommitMavenRepository: RepositoryHandler.(extraAction: MavenArtifactRepository.() -> Unit) -> MavenArtifactRepository,
-    exclusiveContentFilterConfig: InclusiveRepositoryContentDescriptor.() -> Unit,
+    devMavenRepository: RepositoryHandler.(extraAction: MavenArtifactRepository.() -> Unit) -> MavenArtifactRepository,
+    exclusiveContentFilterConfig: InclusiveRepositoryContentDescriptor.(versionRegex: String) -> Unit,
 ) {
-    // Factory overload of forRepository: lambda must return ArtifactRepository.
+    val mavenLocalRepository = mavenLocal()
+    val remoteRepository = devMavenRepository {}
+    val mavenCentralRepository = mavenCentral()
+
     exclusiveContent {
-        // Note that `*-dev-commit-*` versions are resolved from both `mavenLocal` and `devCommitMavenRepository` in order.
-        forRepository {
-            mavenLocal {
-                content {
-                    //includeVersionByRegex(groupRegex, moduleRegex, SNAPSHOT_AND_DEV_COMMIT_VERSION_REGEX)
-                    includeVersionByRegex(".+", ".+", SNAPSHOT_AND_DEV_COMMIT_VERSION_REGEX)
-                }
-            }
-        }
-        forRepository {
-            devCommitMavenRepository {
-                content {
-                    //includeVersionByRegex(groupRegex, moduleRegex, DEV_COMMIT_VERSION_REGEX)
-                    includeVersionByRegex(".+", ".+", DEV_COMMIT_VERSION_REGEX)
-                }
-            }
-        }
-        forRepository {
-            mavenCentral {
-                content {
-                    //includeVersionByRegex(groupRegex, moduleRegex, RELEASE_VERSION_REGEX)
-                    includeVersionByRegex(".+", ".+", RELEASE_VERSION_REGEX)
-                }
-            }
-        }
-        filter(exclusiveContentFilterConfig)
+        forRepositories(mavenLocalRepository)
+        filter { exclusiveContentFilterConfig(SNAPSHOT_VERSION_REGEX) }
+    }
+    // `*-dev-commit-*` from both `mavenLocal` and `devMavenRepository` in order.
+    exclusiveContent {
+        forRepositories(mavenLocalRepository, remoteRepository)
+        filter { exclusiveContentFilterConfig(DEV_COMMIT_VERSION_REGEX) }
+    }
+    exclusiveContent {
+        forRepositories(mavenCentralRepository)
+        filter { exclusiveContentFilterConfig(RELEASE_VERSION_REGEX) }
     }
 }
+
+@GradleCommonExperimentalApi
+fun RepositoryHandler.openSourceConventionMavenRepositories(
+    devMavenRepository: RepositoryHandler.(extraAction: MavenArtifactRepository.() -> Unit) -> MavenArtifactRepository,
+    groupRegex: String,
+    moduleRegex: String,
+) =
+    openSourceConventionMavenRepositories(devMavenRepository) { versionRegex ->
+        includeVersionByRegex(groupRegex, moduleRegex, versionRegex)
+    }
