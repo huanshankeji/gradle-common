@@ -1,7 +1,7 @@
 package com.huanshankeji.gitversioning
 
-import com.huanshankeji.RELEASE_VERSION_REGEX
 import com.huanshankeji.SNAPSHOT_VERSION_REGEX
+import com.huanshankeji.STANDARD_RELEASE_VERSION_REGEX
 import org.gradle.api.artifacts.dsl.RepositoryHandler
 import org.gradle.api.artifacts.repositories.InclusiveRepositoryContentDescriptor
 import org.gradle.api.artifacts.repositories.MavenArtifactRepository
@@ -27,11 +27,11 @@ fun RepositoryHandler.conventionMavenRepositories(
     // `*-dev-commit-*` from both `mavenLocal` and `remoteMavenRepository` in order.
     exclusiveContent {
         forRepositories(mavenLocalRepository, remoteRepository)
-        filter { exclusiveContentFilter(DEV_COMMIT_VERSION_REGEX) }
+        filter { exclusiveContentFilter(STANDARD_DEV_COMMIT_VERSION_REGEX) }
     }
     exclusiveContent {
         forRepositories(remoteRepository)
-        filter { exclusiveContentFilter(RELEASE_VERSION_REGEX) }
+        filter { exclusiveContentFilter(STANDARD_RELEASE_VERSION_REGEX) }
     }
 }
 

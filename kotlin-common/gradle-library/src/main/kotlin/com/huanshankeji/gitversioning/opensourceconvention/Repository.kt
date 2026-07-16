@@ -1,9 +1,9 @@
 package com.huanshankeji.gitversioning.opensourceconvention
 
 import com.huanshankeji.GradleCommonExperimentalApi
-import com.huanshankeji.RELEASE_VERSION_REGEX
 import com.huanshankeji.SNAPSHOT_VERSION_REGEX
-import com.huanshankeji.gitversioning.DEV_COMMIT_VERSION_REGEX
+import com.huanshankeji.STANDARD_RELEASE_VERSION_REGEX
+import com.huanshankeji.gitversioning.STANDARD_DEV_COMMIT_VERSION_REGEX
 import com.huanshankeji.gitversioning.conventionMavenRepositories
 import org.gradle.api.artifacts.dsl.RepositoryHandler
 import org.gradle.api.artifacts.repositories.InclusiveRepositoryContentDescriptor
@@ -35,11 +35,11 @@ fun RepositoryHandler.openSourceConventionMavenRepositories(
     // `*-dev-commit-*` from both `mavenLocal` and `devMavenRepository` in order.
     exclusiveContent {
         forRepositories(mavenLocalRepository, remoteRepository)
-        filter { exclusiveContentFilterConfig(DEV_COMMIT_VERSION_REGEX) }
+        filter { exclusiveContentFilterConfig(STANDARD_DEV_COMMIT_VERSION_REGEX) }
     }
     exclusiveContent {
         forRepositories(mavenCentralRepository)
-        filter { exclusiveContentFilterConfig(RELEASE_VERSION_REGEX) }
+        filter { exclusiveContentFilterConfig(STANDARD_RELEASE_VERSION_REGEX) }
     }
 }
 

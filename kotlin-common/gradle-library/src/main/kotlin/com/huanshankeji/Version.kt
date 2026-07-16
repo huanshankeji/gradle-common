@@ -21,7 +21,7 @@ const val NON_SNAPSHOT_VERSION_REGEX = "(?!${SNAPSHOT_VERSION_REGEX}$).*"
 
 
 /** Semver release, optionally with one of alpha/beta/rc and an extra number, e.g. `1.2.3`, `1.2.3-alpha`, `1.2.3-alpha-1`. */
-const val RELEASE_VERSION_REGEX = """\d+\.\d+\.\d+(-(alpha|beta|rc)(-\d+)?)?"""
+const val STANDARD_RELEASE_VERSION_REGEX = """\d+\.\d+\.\d+(-(alpha|beta|rc)(-\d+)?)?"""
 
-fun isReleaseVersion(version: String): Boolean =
-    version.matches(RELEASE_VERSION_REGEX.toRegex())
+fun isStandardReleaseVersion(version: String): Boolean =
+    version.matches(STANDARD_RELEASE_VERSION_REGEX.toRegex())

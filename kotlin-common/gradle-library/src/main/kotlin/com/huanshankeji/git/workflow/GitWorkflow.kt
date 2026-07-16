@@ -4,7 +4,7 @@ import com.huanshankeji.GradleCommonExperimentalApi
 import com.huanshankeji.git.gitCommitHash
 import com.huanshankeji.git.gitCurrentBranch
 import com.huanshankeji.gitversioning.isDirtyDevCommitVersion
-import com.huanshankeji.isReleaseVersion
+import com.huanshankeji.isStandardReleaseVersion
 import com.huanshankeji.versionStringProvider
 import org.gradle.api.Project
 import org.gradle.api.provider.Provider
@@ -28,6 +28,6 @@ fun ProviderFactory.isReleaseBranch(releaseBranch: String = "release"): Provider
 fun Project.conventionalGitCommitHashOrTag(): Provider<String> =
     versionStringProvider().flatMap { version ->
         if (isDirtyDevCommitVersion()) provider { null } // `null` for dirty versions now.
-        else if (isReleaseVersion(version)) provider { "v$version" }
+        else if (isStandardReleaseVersion(version)) provider { "v$version" }
         else providers.gitCommitHash()
     }
