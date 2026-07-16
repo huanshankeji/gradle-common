@@ -12,7 +12,7 @@ import org.gradle.api.provider.ProviderFactory
 import java.net.URI
 
 /**
- * @param projectName serves as both the repository name and the previx for the deefault [leadingProjectNameModuleRegex] [moduleRegex].
+ * @param projectName serves as both the repository name and the prefix for the default [leadingProjectNameModuleRegex] [moduleRegex].
  */
 context(providers: ProviderFactory, _: (path: Any) -> URI)
 fun RepositoryHandler.huanshankejiGithubPackagesOpenSourceMavenConventionProjectRepositories(

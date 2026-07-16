@@ -37,23 +37,23 @@ fun MavenRepositoryHandlerContext.huanshankejiGitlabPackageRegistryProjectEndpoi
 context(providers: ProviderFactory, _: (path: Any) -> URI)
 fun RepositoryHandler.defaultHuanshankejiGitlabPackageRegistryProjectEndpointConventionMavenRepositories(
     projectId: String,
-    groupRegex: String,
+    group: String,
     projectName: String,
     versionRegexes: ConventionVersionRegexes = ConventionVersionRegexes(),
 ) =
     huanshankejiGitlabPackageRegistryProjectEndpointConventionMavenRepositories(
-        projectId, groupRegex, leadingProjectNameModuleRegex(projectName), versionRegexes
+        projectId, Regex.escape(group), leadingProjectNameModuleRegex(projectName), versionRegexes
     )
 
 @GradleCommonExperimentalApi
 fun MavenRepositoryHandlerContext.defaultHuanshankejiGitlabPackageRegistryProjectEndpointConventionMavenRepositories(
     projectId: String,
-    groupRegex: String,
+    group: String,
     projectName: String,
     versionRegexes: ConventionVersionRegexes = ConventionVersionRegexes(),
 ) =
     context(providers, uri) {
         repositories.defaultHuanshankejiGitlabPackageRegistryProjectEndpointConventionMavenRepositories(
-            projectId, groupRegex, projectName, versionRegexes
+            projectId, group, projectName, versionRegexes
         )
     }
