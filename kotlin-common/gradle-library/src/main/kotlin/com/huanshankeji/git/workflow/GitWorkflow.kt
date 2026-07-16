@@ -26,7 +26,7 @@ fun ProviderFactory.isReleaseBranch(releaseBranch: String = "release"): Provider
 /**
  * `v$version` for a standard release version; otherwise [gitCommitHash] (HEAD).
  * A dirty working tree still resolves to HEAD, so Dokka source links may not match
- * uncommitted local edits.
+ * uncommitted local edits. This makes debugging easier.
  */
 fun Project.conventionalGitCommitHashOrTag(): Provider<String> =
     versionStringProvider().flatMap { version ->
