@@ -4,6 +4,7 @@ import com.huanshankeji.GradleCommonExperimentalApi
 import com.huanshankeji.artifacts.MavenRepositoryHandlerContext
 import com.huanshankeji.gitlab.packageregistry.maven.GITLAB_COM_HOST
 import com.huanshankeji.gitlab.packageregistry.maven.gitlabPackageRegistryProjectLevelEndpointMavenRepository
+import com.huanshankeji.gitversioning.ConventionVersionRegexes
 import com.huanshankeji.gitversioning.opensourceconvention.openSourceConventionMavenRepositories
 import org.gradle.api.artifacts.dsl.RepositoryHandler
 import org.gradle.api.artifacts.repositories.InclusiveRepositoryContentDescriptor
@@ -17,6 +18,7 @@ context(providers: ProviderFactory, _: (path: Any) -> URI)
 fun RepositoryHandler.gitlabPackageRegistryProjectLevelEndpointOpenSourceConventionMavenRepositories(
     host: String = GITLAB_COM_HOST,
     projectId: String,
+    versionRegexes: ConventionVersionRegexes = ConventionVersionRegexes(),
     exclusiveContentFilterConfig: InclusiveRepositoryContentDescriptor.(versionRegex: String) -> Unit,
 ) =
     openSourceConventionMavenRepositories(
@@ -27,6 +29,7 @@ fun RepositoryHandler.gitlabPackageRegistryProjectLevelEndpointOpenSourceConvent
                 extraAction
             )
         },
+        versionRegexes,
         exclusiveContentFilterConfig,
     )
 
@@ -34,11 +37,12 @@ fun RepositoryHandler.gitlabPackageRegistryProjectLevelEndpointOpenSourceConvent
 fun MavenRepositoryHandlerContext.gitlabPackageRegistryProjectLevelEndpointOpenSourceConventionMavenRepositories(
     host: String = GITLAB_COM_HOST,
     projectId: String,
+    versionRegexes: ConventionVersionRegexes = ConventionVersionRegexes(),
     exclusiveContentFilterConfig: InclusiveRepositoryContentDescriptor.(versionRegex: String) -> Unit,
 ) =
     context(providers, uri) {
         repositories.gitlabPackageRegistryProjectLevelEndpointOpenSourceConventionMavenRepositories(
-            host, projectId, exclusiveContentFilterConfig
+            host, projectId, versionRegexes, exclusiveContentFilterConfig
         )
     }
 
@@ -49,8 +53,11 @@ fun RepositoryHandler.gitlabPackageRegistryProjectLevelEndpointOpenSourceConvent
     projectId: String,
     groupRegex: String,
     moduleRegex: String,
+    versionRegexes: ConventionVersionRegexes = ConventionVersionRegexes(),
 ) =
-    gitlabPackageRegistryProjectLevelEndpointOpenSourceConventionMavenRepositories(host, projectId) { versionRegex ->
+    gitlabPackageRegistryProjectLevelEndpointOpenSourceConventionMavenRepositories(
+        host, projectId, versionRegexes
+    ) { versionRegex ->
         includeVersionByRegex(groupRegex, moduleRegex, versionRegex)
     }
 
@@ -60,9 +67,10 @@ fun MavenRepositoryHandlerContext.gitlabPackageRegistryProjectLevelEndpointOpenS
     projectId: String,
     groupRegex: String,
     moduleRegex: String,
+    versionRegexes: ConventionVersionRegexes = ConventionVersionRegexes(),
 ) =
     context(providers, uri) {
         repositories.gitlabPackageRegistryProjectLevelEndpointOpenSourceConventionMavenRepositories(
-            host, projectId, groupRegex, moduleRegex
+            host, projectId, groupRegex, moduleRegex, versionRegexes
         )
     }

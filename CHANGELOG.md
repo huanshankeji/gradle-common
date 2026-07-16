@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+* add `ConventionVersionRegexes` (incl. `forReleaseVersionRegex`) to configure exclusive-content version regexes on convention and open-source convention Maven repository APIs (defaults unchanged)
 * git versioning / Maven exclusive-content / Dokka source-link APIs (breaking, experimental)
     * move Git helpers and version providers from `Project` to `ProviderFactory` receivers (`gitCommitHash`, `devCommitVersionProvider`, `projectVersionFromGitProvider`, …)
     * rename file facades `GitVersioningKt` → `DevCommitVersionKt`, `VersionKt` → `VersionMatchingKt` under `gitversioning`

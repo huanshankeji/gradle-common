@@ -1,7 +1,5 @@
 package com.huanshankeji.gitversioning
 
-import com.huanshankeji.SNAPSHOT_VERSION_REGEX
-import com.huanshankeji.STANDARD_RELEASE_VERSION_REGEX
 import org.gradle.api.artifacts.dsl.RepositoryHandler
 import org.gradle.api.artifacts.repositories.InclusiveRepositoryContentDescriptor
 import org.gradle.api.artifacts.repositories.MavenArtifactRepository
@@ -15,6 +13,7 @@ import org.gradle.api.artifacts.repositories.MavenArtifactRepository
  */
 fun RepositoryHandler.conventionMavenRepositories(
     remoteMavenRepository: RepositoryHandler.(extraAction: MavenArtifactRepository.() -> Unit) -> MavenArtifactRepository,
+    versionRegexes: ConventionVersionRegexes = ConventionVersionRegexes(),
     exclusiveContentFilter: InclusiveRepositoryContentDescriptor.(versionRegex: String) -> Unit,
 ) {
     val mavenLocalRepository = mavenLocal()
@@ -22,16 +21,16 @@ fun RepositoryHandler.conventionMavenRepositories(
 
     exclusiveContent {
         forRepositories(mavenLocalRepository)
-        filter { exclusiveContentFilter(SNAPSHOT_VERSION_REGEX) }
+        filter { exclusiveContentFilter(versionRegexes.snapshotVersionRegex) }
     }
     // `*-dev-commit-*` from both `mavenLocal` and `remoteMavenRepository` in order.
     exclusiveContent {
         forRepositories(mavenLocalRepository, remoteRepository)
-        filter { exclusiveContentFilter(STANDARD_DEV_COMMIT_VERSION_REGEX) }
+        filter { exclusiveContentFilter(versionRegexes.devCommitVersionRegex) }
     }
     exclusiveContent {
         forRepositories(remoteRepository)
-        filter { exclusiveContentFilter(STANDARD_RELEASE_VERSION_REGEX) }
+        filter { exclusiveContentFilter(versionRegexes.releaseVersionRegex) }
     }
 }
 
@@ -39,7 +38,8 @@ fun RepositoryHandler.conventionMavenRepositories(
     remoteMavenRepository: RepositoryHandler.(extraAction: MavenArtifactRepository.() -> Unit) -> MavenArtifactRepository,
     groupRegex: String,
     moduleRegex: String,
+    versionRegexes: ConventionVersionRegexes = ConventionVersionRegexes(),
 ) =
-    conventionMavenRepositories(remoteMavenRepository) { versionRegex ->
+    conventionMavenRepositories(remoteMavenRepository, versionRegexes) { versionRegex ->
         includeVersionByRegex(groupRegex, moduleRegex, versionRegex)
     }

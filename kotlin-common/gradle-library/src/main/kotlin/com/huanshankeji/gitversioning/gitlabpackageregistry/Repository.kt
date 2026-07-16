@@ -4,6 +4,7 @@ import com.huanshankeji.GradleCommonExperimentalApi
 import com.huanshankeji.artifacts.MavenRepositoryHandlerContext
 import com.huanshankeji.gitlab.packageregistry.maven.GITLAB_COM_HOST
 import com.huanshankeji.gitlab.packageregistry.maven.gitlabPackageRegistryProjectLevelEndpointMavenRepository
+import com.huanshankeji.gitversioning.ConventionVersionRegexes
 import com.huanshankeji.gitversioning.conventionMavenRepositories
 import org.gradle.api.artifacts.dsl.RepositoryHandler
 import org.gradle.api.artifacts.repositories.InclusiveRepositoryContentDescriptor
@@ -20,6 +21,7 @@ context(providers: ProviderFactory, _: (path: Any) -> URI)
 fun RepositoryHandler.gitlabPackageRegistryProjectLevelEndpointConventionMavenRepositories(
     host: String = GITLAB_COM_HOST,
     projectId: String,
+    versionRegexes: ConventionVersionRegexes = ConventionVersionRegexes(),
     exclusiveContentFilterConfig: InclusiveRepositoryContentDescriptor.(versionRegex: String) -> Unit,
 ) =
     conventionMavenRepositories(
@@ -29,18 +31,21 @@ fun RepositoryHandler.gitlabPackageRegistryProjectLevelEndpointConventionMavenRe
                 providers.provider { projectId },
                 extraAction
             )
-        }, exclusiveContentFilterConfig
+        },
+        versionRegexes,
+        exclusiveContentFilterConfig,
     )
 
 @GradleCommonExperimentalApi
 fun MavenRepositoryHandlerContext.gitlabPackageRegistryProjectLevelEndpointConventionMavenRepositories(
     host: String = GITLAB_COM_HOST,
     projectId: String,
+    versionRegexes: ConventionVersionRegexes = ConventionVersionRegexes(),
     exclusiveContentFilterConfig: InclusiveRepositoryContentDescriptor.(versionRegex: String) -> Unit,
 ) =
     context(providers, uri) {
         repositories.gitlabPackageRegistryProjectLevelEndpointConventionMavenRepositories(
-            host, projectId, exclusiveContentFilterConfig
+            host, projectId, versionRegexes, exclusiveContentFilterConfig
         )
     }
 
@@ -51,8 +56,11 @@ fun RepositoryHandler.gitlabPackageRegistryProjectLevelEndpointConventionMavenRe
     projectId: String,
     groupRegex: String,
     moduleRegex: String,
+    versionRegexes: ConventionVersionRegexes = ConventionVersionRegexes(),
 ) =
-    gitlabPackageRegistryProjectLevelEndpointConventionMavenRepositories(host, projectId) { versionRegex ->
+    gitlabPackageRegistryProjectLevelEndpointConventionMavenRepositories(
+        host, projectId, versionRegexes
+    ) { versionRegex ->
         includeVersionByRegex(groupRegex, moduleRegex, versionRegex)
     }
 
@@ -62,9 +70,10 @@ fun MavenRepositoryHandlerContext.gitlabPackageRegistryProjectLevelEndpointConve
     projectId: String,
     groupRegex: String,
     moduleRegex: String,
+    versionRegexes: ConventionVersionRegexes = ConventionVersionRegexes(),
 ) =
     context(providers, uri) {
         repositories.gitlabPackageRegistryProjectLevelEndpointConventionMavenRepositories(
-            host, projectId, groupRegex, moduleRegex
+            host, projectId, groupRegex, moduleRegex, versionRegexes
         )
     }

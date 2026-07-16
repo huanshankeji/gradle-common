@@ -7,17 +7,22 @@ fun Project.versionStringProvider(): Provider<String> =
     provider { version.toString() }
 
 
+const val SNAPSHOT_VERSION_SUFFIX = "-SNAPSHOT"
+
 fun isSnapshotVersion(version: String): Boolean =
-    version.endsWith("-SNAPSHOT")
+    version.endsWith(SNAPSHOT_VERSION_SUFFIX)
 
 // consider removing this since it's not used now
 fun Project.isSnapshotVersion(): Boolean =
     isSnapshotVersion(version.toString())
 
-const val SNAPSHOT_VERSION_REGEX = ".*-SNAPSHOT"
+const val SNAPSHOT_VERSION_REGEX = """.*$SNAPSHOT_VERSION_SUFFIX"""
+
+fun snapshotVersionRegexOf(releaseVersionRegex: String) =
+    """(?:$releaseVersionRegex)$SNAPSHOT_VERSION_SUFFIX"""
 
 /** Matches any version that does not end with `-SNAPSHOT`. */
-const val NON_SNAPSHOT_VERSION_REGEX = "(?!${SNAPSHOT_VERSION_REGEX}$).*"
+const val NON_SNAPSHOT_VERSION_REGEX = """(?!$SNAPSHOT_VERSION_REGEX$).*"""
 
 
 /** Semver release, optionally with one of alpha/beta/rc and an extra number, e.g. `1.2.3`, `1.2.3-alpha`, `1.2.3-alpha-1`. */

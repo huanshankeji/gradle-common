@@ -3,6 +3,7 @@ package com.huanshankeji.gitversioning.githubpackages
 import com.huanshankeji.GradleCommonExperimentalApi
 import com.huanshankeji.artifacts.MavenRepositoryHandlerContext
 import com.huanshankeji.github.packages.maven.githubPackagesMavenRegistry
+import com.huanshankeji.gitversioning.ConventionVersionRegexes
 import com.huanshankeji.gitversioning.conventionMavenRepositories
 import org.gradle.api.artifacts.dsl.RepositoryHandler
 import org.gradle.api.artifacts.repositories.InclusiveRepositoryContentDescriptor
@@ -18,6 +19,7 @@ context(providers: ProviderFactory, _: (path: Any) -> URI)
 fun RepositoryHandler.githubPackagesSingleProjectConventionMavenRepositories(
     githubOwner: String,
     githubRepository: String,
+    versionRegexes: ConventionVersionRegexes = ConventionVersionRegexes(),
     exclusiveContentFilterConfig: InclusiveRepositoryContentDescriptor.(versionRegex: String) -> Unit,
 ) =
     conventionMavenRepositories(
@@ -28,6 +30,7 @@ fun RepositoryHandler.githubPackagesSingleProjectConventionMavenRepositories(
                 extraAction
             )
         },
+        versionRegexes,
         exclusiveContentFilterConfig,
     )
 
@@ -35,29 +38,40 @@ fun RepositoryHandler.githubPackagesSingleProjectConventionMavenRepositories(
 fun MavenRepositoryHandlerContext.githubPackagesSingleProjectConventionMavenRepositories(
     githubOwner: String,
     githubRepository: String,
+    versionRegexes: ConventionVersionRegexes = ConventionVersionRegexes(),
     exclusiveContentFilterConfig: InclusiveRepositoryContentDescriptor.(versionRegex: String) -> Unit,
 ) =
     context(providers, uri) {
         repositories.githubPackagesSingleProjectConventionMavenRepositories(
-            githubOwner, githubRepository, exclusiveContentFilterConfig
+            githubOwner, githubRepository, versionRegexes, exclusiveContentFilterConfig
         )
     }
 
 @GradleCommonExperimentalApi
 context(providers: ProviderFactory, _: (path: Any) -> URI)
 fun RepositoryHandler.githubPackagesSingleProjectConventionMavenRepositories(
-    githubOwner: String, githubRepository: String, groupRegex: String, moduleRegex: String
+    githubOwner: String,
+    githubRepository: String,
+    groupRegex: String,
+    moduleRegex: String,
+    versionRegexes: ConventionVersionRegexes = ConventionVersionRegexes(),
 ) =
-    githubPackagesSingleProjectConventionMavenRepositories(githubOwner, githubRepository) { versionRegex ->
+    githubPackagesSingleProjectConventionMavenRepositories(
+        githubOwner, githubRepository, versionRegexes
+    ) { versionRegex ->
         includeVersionByRegex(groupRegex, moduleRegex, versionRegex)
     }
 
 @GradleCommonExperimentalApi
 fun MavenRepositoryHandlerContext.githubPackagesSingleProjectConventionMavenRepositories(
-    githubOwner: String, githubRepository: String, groupRegex: String, moduleRegex: String
+    githubOwner: String,
+    githubRepository: String,
+    groupRegex: String,
+    moduleRegex: String,
+    versionRegexes: ConventionVersionRegexes = ConventionVersionRegexes(),
 ) =
     context(providers, uri) {
         repositories.githubPackagesSingleProjectConventionMavenRepositories(
-            githubOwner, githubRepository, groupRegex, moduleRegex
+            githubOwner, githubRepository, groupRegex, moduleRegex, versionRegexes
         )
     }

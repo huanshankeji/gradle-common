@@ -1,9 +1,7 @@
 package com.huanshankeji.gitversioning.opensourceconvention
 
 import com.huanshankeji.GradleCommonExperimentalApi
-import com.huanshankeji.SNAPSHOT_VERSION_REGEX
-import com.huanshankeji.STANDARD_RELEASE_VERSION_REGEX
-import com.huanshankeji.gitversioning.STANDARD_DEV_COMMIT_VERSION_REGEX
+import com.huanshankeji.gitversioning.ConventionVersionRegexes
 import com.huanshankeji.gitversioning.conventionMavenRepositories
 import org.gradle.api.artifacts.dsl.RepositoryHandler
 import org.gradle.api.artifacts.repositories.InclusiveRepositoryContentDescriptor
@@ -22,6 +20,7 @@ import org.gradle.api.artifacts.repositories.MavenArtifactRepository
 @GradleCommonExperimentalApi
 fun RepositoryHandler.openSourceConventionMavenRepositories(
     devMavenRepository: RepositoryHandler.(extraAction: MavenArtifactRepository.() -> Unit) -> MavenArtifactRepository,
+    versionRegexes: ConventionVersionRegexes = ConventionVersionRegexes(),
     exclusiveContentFilterConfig: InclusiveRepositoryContentDescriptor.(versionRegex: String) -> Unit,
 ) {
     val mavenLocalRepository = mavenLocal()
@@ -30,16 +29,16 @@ fun RepositoryHandler.openSourceConventionMavenRepositories(
 
     exclusiveContent {
         forRepositories(mavenLocalRepository)
-        filter { exclusiveContentFilterConfig(SNAPSHOT_VERSION_REGEX) }
+        filter { exclusiveContentFilterConfig(versionRegexes.snapshotVersionRegex) }
     }
     // `*-dev-commit-*` from both `mavenLocal` and `devMavenRepository` in order.
     exclusiveContent {
         forRepositories(mavenLocalRepository, remoteRepository)
-        filter { exclusiveContentFilterConfig(STANDARD_DEV_COMMIT_VERSION_REGEX) }
+        filter { exclusiveContentFilterConfig(versionRegexes.devCommitVersionRegex) }
     }
     exclusiveContent {
         forRepositories(mavenCentralRepository)
-        filter { exclusiveContentFilterConfig(STANDARD_RELEASE_VERSION_REGEX) }
+        filter { exclusiveContentFilterConfig(versionRegexes.releaseVersionRegex) }
     }
 }
 
@@ -48,7 +47,8 @@ fun RepositoryHandler.openSourceConventionMavenRepositories(
     devMavenRepository: RepositoryHandler.(extraAction: MavenArtifactRepository.() -> Unit) -> MavenArtifactRepository,
     groupRegex: String,
     moduleRegex: String,
+    versionRegexes: ConventionVersionRegexes = ConventionVersionRegexes(),
 ) =
-    openSourceConventionMavenRepositories(devMavenRepository) { versionRegex ->
+    openSourceConventionMavenRepositories(devMavenRepository, versionRegexes) { versionRegex ->
         includeVersionByRegex(groupRegex, moduleRegex, versionRegex)
     }
