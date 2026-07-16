@@ -3,7 +3,6 @@ package com.huanshankeji.git.workflow
 import com.huanshankeji.GradleCommonExperimentalApi
 import com.huanshankeji.git.gitCommitHash
 import com.huanshankeji.git.gitCurrentBranch
-import com.huanshankeji.gitversioning.isDirtyDevCommitVersion
 import com.huanshankeji.isStandardReleaseVersion
 import com.huanshankeji.versionStringProvider
 import org.gradle.api.Project
@@ -24,10 +23,13 @@ fun ProviderFactory.isReleaseBranch(releaseBranch: String = "release"): Provider
         branch == releaseBranch
     }
 
-// `String?` doesn't work with this API here.
+/**
+ * `v$version` for a standard release version; otherwise [gitCommitHash] (HEAD).
+ * A dirty working tree still resolves to HEAD, so Dokka source links may not match
+ * uncommitted local edits.
+ */
 fun Project.conventionalGitCommitHashOrTag(): Provider<String> =
     versionStringProvider().flatMap { version ->
-        if (isDirtyDevCommitVersion()) provider { null } // `null` for dirty versions now.
-        else if (isStandardReleaseVersion(version)) provider { "v$version" }
+        if (isStandardReleaseVersion(version)) provider { "v$version" }
         else providers.gitCommitHash()
     }
