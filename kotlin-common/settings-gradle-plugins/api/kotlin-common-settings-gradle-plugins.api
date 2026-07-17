@@ -9,3 +9,8 @@ public final class com/huanshankeji/Base_settings_conventions_settings_gradle : 
 	public static final fun main ([Ljava/lang/String;)V
 }
 
+public final class com/huanshankeji/SettingsConcatenatedProjectNamesKt {
+	public static final fun setProjectConcatenatedNames (Lorg/gradle/api/initialization/ProjectDescriptor;Ljava/lang/String;)V
+	public static final fun setProjectConcatenatedNames (Lorg/gradle/api/initialization/Settings;)V
+}
+

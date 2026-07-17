@@ -5,6 +5,8 @@ plugins {
 
 dependencies {
     implementation(libs.gradle.foojayResolverConvention)
+
+    testImplementation(kotlin("test"))
 }
 
 gradlePlugin {

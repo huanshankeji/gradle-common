@@ -3,42 +3,11 @@ package com.huanshankeji
 import org.gradle.api.Project
 import org.gradle.api.artifacts.ProjectDependency
 import org.gradle.api.artifacts.dsl.DependencyHandler
-import org.gradle.api.initialization.ProjectDescriptor
-import org.gradle.api.initialization.Settings
 import org.gradle.kotlin.dsl.project
 import org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler
 
-// CPN: concatenated project name
-
-// for a settings script
-
-/**
- * Renames this project descriptor and its descendants so each name is prefixed by its parent's
- * concatenated name. This is mainly for Maven publications: with default Gradle publishing,
- * [Project.name] becomes the artifactId, and concatenating avoids collisions when subprojects
- * under different parents share a simple name (e.g. `:a:b` and `:x:b` are both named `b`).
- * Manually setting `artifactId` on the Maven publication for Kotlin Multiplatform used to cause
- * bugs in practice, so this project-name approach is preferred instead.
- *
- * Call on [Settings.rootProject] after all [Settings.include] calls — for example
- * `setProjectConcatenatedNames()`. A settings [org.gradle.api.Plugin] applied in `plugins {}`
- * runs before subsequent `include` calls in the settings script, so it cannot perform this
- * rename synchronously in [org.gradle.api.Plugin.apply]; call this explicitly at the end of
- * the settings script instead.
- *
- * After renaming, use [getConcatenatedProjectNamePath] / [cpnProject] in build scripts to refer
- * to projects by their logical paths.
- */
-fun ProjectDescriptor.setProjectConcatenatedNames(prefix: String) {
-    name = prefix + name
-    for (child in children)
-        child.setProjectConcatenatedNames("$name-")
-}
-
-fun Settings.setProjectConcatenatedNames() =
-    rootProject.setProjectConcatenatedNames("")
-
-// for project deps in build scripts
+// CPN: concatenated project name — for project deps in build scripts
+// (settings rename helpers live in kotlin-common-settings-gradle-plugins)
 
 fun getConcatenatedProjectNamePath(rootProjectName: String, path: String): String {
     val names = path.splitToSequence(':')
