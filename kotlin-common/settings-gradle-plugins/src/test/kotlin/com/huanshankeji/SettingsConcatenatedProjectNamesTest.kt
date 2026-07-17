@@ -10,7 +10,7 @@ class SettingsConcatenatedProjectNamesTest {
      * FakeProjectDescriptor below.
      */
     @Test
-    fun `setProjectConcatenatedNames renames descriptors with parent prefixes`() {
+    fun `setProjectConcatenatedNames renames descriptors consistently with getConcatenatedProjectNamePath`() {
         val root = FakeProjectDescriptor("p")
         val a = root.child("a")
         val b = a.child("b")
@@ -20,6 +20,7 @@ class SettingsConcatenatedProjectNamesTest {
         assertEquals("p", root.getName())
         assertEquals("p-a", a.getName())
         assertEquals("p-a-b", b.getName())
+        assertEquals(":p-a:p-a-b", getConcatenatedProjectNamePath("p", ":a:b"))
     }
 }
 

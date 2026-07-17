@@ -7,15 +7,7 @@ import org.gradle.kotlin.dsl.project
 import org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler
 
 // CPN: concatenated project name — for project deps in build scripts
-// (settings rename helpers live in kotlin-common-settings-gradle-plugins)
-
-fun getConcatenatedProjectNamePath(rootProjectName: String, path: String): String {
-    val names = path.splitToSequence(':')
-    require(names.first() == "")
-    return names.drop(1).scan(rootProjectName) { concatenatedName, name ->
-        "$concatenatedName-$name"
-    }.drop(1).joinToString(":", ":")
-}
+// (pure path helper in kotlin-common-gradle-library; settings rename in settings-gradle-plugins)
 
 fun Project.getConcatenatedProjectNamePath(path: String) =
     getConcatenatedProjectNamePath(rootProject.name, path)

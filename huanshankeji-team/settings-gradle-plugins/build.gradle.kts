@@ -5,6 +5,7 @@ plugins {
 
 dependencies {
     api(project(":huanshankeji-team:gradle-library"))
+    api(project(":kotlin-common:kotlin-common-settings-gradle-plugins"))
 }
 
 gradlePlugin {

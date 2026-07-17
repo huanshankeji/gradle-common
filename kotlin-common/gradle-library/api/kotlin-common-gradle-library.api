@@ -1,3 +1,7 @@
+public final class com/huanshankeji/ConcatenatedProjectNamesKt {
+	public static final fun getConcatenatedProjectNamePath (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+}
+
 public abstract interface annotation class com/huanshankeji/GradleCommonExperimentalApi : java/lang/annotation/Annotation {
 }
 

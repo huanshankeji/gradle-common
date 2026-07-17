@@ -21,8 +21,8 @@ import org.gradle.api.initialization.Settings
  * rename synchronously in [org.gradle.api.Plugin.apply]; call this explicitly at the end of
  * the settings script instead.
  *
- * After renaming, use `getConcatenatedProjectNamePath` / `cpnProject` from
- * `kotlin-common-project-gradle-plugins` in build scripts to refer to projects by their logical paths.
+ * After renaming, use [getConcatenatedProjectNamePath] / `cpnProject` in build scripts to refer
+ * to projects by their logical paths.
  */
 fun ProjectDescriptor.setProjectConcatenatedNames(prefix: String) {
     name = prefix + name
