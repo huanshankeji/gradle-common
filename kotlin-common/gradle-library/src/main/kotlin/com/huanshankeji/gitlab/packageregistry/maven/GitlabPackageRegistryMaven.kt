@@ -12,10 +12,23 @@ import org.gradle.kotlin.dsl.create
 import org.gradle.kotlin.dsl.credentials
 import java.net.URI
 
+/**
+ * See https://docs.gitlab.com/user/packages/maven_repository/?tab=gradle#custom-http-header.
+ * Note that per the official guide the spelling is `gitLab` not `gitlab` in the property name.
+ */
 @GradleCommonExperimentalApi
 fun ProviderFactory.gitlabPackageRegistryPrivateToken(): String? =
     gradleProperty("gitLabPrivateToken").getOrNull()
 
+/**
+ * Configures the repository URL and authenticates with a Custom HTTP header
+ * (`Private-Token`), as documented at
+ * https://docs.gitlab.com/user/packages/maven_repository/?tab=gradle#custom-http-header.
+ *
+ * [Basic HTTP Authentication](https://docs.gitlab.com/user/packages/maven_repository/?tab=gradle#basic-http-authentication)
+ * is also supported by GitLab, but Custom HTTP header is preferred here
+ * (GitLab’s primary Gradle examples, native token headers, OAuth support).
+ */
 @GradleCommonExperimentalApi
 context(providers: ProviderFactory, uri: (path: Any) -> URI)
 fun MavenArtifactRepository.gitlabPackageRegistrySetUrlAndCredentials(
@@ -23,7 +36,7 @@ fun MavenArtifactRepository.gitlabPackageRegistrySetUrlAndCredentials(
 ) {
     setUrl(urlProvider.map(uri))
     credentials(HttpHeaderCredentials::class) {
-        this.name = "Private-Token"
+        name = "Private-Token"
         value = providers.gitlabPackageRegistryPrivateToken()
     }
     authentication {
@@ -31,6 +44,9 @@ fun MavenArtifactRepository.gitlabPackageRegistrySetUrlAndCredentials(
     }
 }
 
+/**
+ * In the guide it's just "GitLab" but we use the full name here to make it more explicit.
+ */
 const val GITLAB_PACKAGE_REGISTRY_DEFAULT_REPOSITORY_NAME = "GitLabPackageRegistry"
 
 /**
@@ -61,8 +77,19 @@ fun MavenRepositoryHandlerContext.gitlabPackageRegistryMavenRepository(
 
 const val GITLAB_COM_HOST = "gitlab.com"
 
-// see: https://docs.gitlab.com/ee/user/packages/maven_repository/#project-level-maven-endpoint (link outdated)
-// only the project's ID can be used for publishing. TODO Check if only the project's ID can be used for consumption too. If so, move this comment into a KDoc and rename the parameter to `projectId`.
+/**
+ * Project-level Maven endpoint:
+ * `https://<host>/api/v4/projects/<projectIdOrProjectPath>/packages/maven`
+ *
+ * See https://docs.gitlab.com/user/packages/maven_repository/?tab=gradle#endpoint-urls.
+ *
+ * @param projectIdOrProjectPathProvider GitLab project identifier for the URL segment.
+ * Prefer the numeric [project ID](https://docs.gitlab.com/user/project/working_with_projects/#find-the-project-id)
+ * (required for **publishing**; also works for consumption).
+ * For **consumption only**, a URL-encoded full project path (e.g. `group%2Fproject`) may work;
+ * a bare project name is not sufficient. Publishing with a path fails (GitLab workhorse accepts
+ * only a numeric project ID for Maven uploads). (by AI agent, not thoroughly verified)
+ */
 context(providers: ProviderFactory, _: (path: Any) -> URI)
 fun RepositoryHandler.gitlabPackageRegistryProjectLevelEndpointMavenRepository(
     hostProvider: Provider<String> = providers.provider { GITLAB_COM_HOST },
@@ -76,6 +103,9 @@ fun RepositoryHandler.gitlabPackageRegistryProjectLevelEndpointMavenRepository(
         extraAction
     )
 
+/**
+ * @see RepositoryHandler.gitlabPackageRegistryProjectLevelEndpointMavenRepository
+ */
 @GradleCommonExperimentalApi
 fun MavenRepositoryHandlerContext.gitlabPackageRegistryProjectLevelEndpointMavenRepository(
     hostProvider: Provider<String> = providers.provider { GITLAB_COM_HOST },
@@ -88,7 +118,16 @@ fun MavenRepositoryHandlerContext.gitlabPackageRegistryProjectLevelEndpointMaven
         )
     }
 
-// see: https://docs.gitlab.com/ee/user/packages/maven_repository/#group-level-maven-endpoint (link outdated)
+/**
+ * Group-level Maven endpoint:
+ * `https://<host>/api/v4/groups/<groupId>/-/packages/maven`
+ *
+ * See https://docs.gitlab.com/user/packages/maven_repository/?tab=gradle#endpoint-urls.
+ *
+ * @param groupIdProvider Prefer the numeric group ID from the group homepage.
+ * A URL-encoded group path may work for consumption on some GitLab versions; current docs
+ * document the group ID. (by AI agent, not thoroughly verified)
+ */
 context(providers: ProviderFactory, _: (path: Any) -> URI)
 fun RepositoryHandler.gitlabPackageRegistryGroupLevelEndpointMavenRepository(
     hostProvider: Provider<String> = providers.provider { GITLAB_COM_HOST },
@@ -102,6 +141,9 @@ fun RepositoryHandler.gitlabPackageRegistryGroupLevelEndpointMavenRepository(
         extraAction
     )
 
+/**
+ * @see RepositoryHandler.gitlabPackageRegistryGroupLevelEndpointMavenRepository
+ */
 @GradleCommonExperimentalApi
 fun MavenRepositoryHandlerContext.gitlabPackageRegistryGroupLevelEndpointMavenRepository(
     hostProvider: Provider<String> = providers.provider { GITLAB_COM_HOST },
@@ -114,7 +156,13 @@ fun MavenRepositoryHandlerContext.gitlabPackageRegistryGroupLevelEndpointMavenRe
         )
     }
 
-// see: https://docs.gitlab.com/ee/user/packages/maven_repository/#group-level-maven-endpoint (link outdated)
+/**
+ * Instance-level Maven endpoint: `https://<host>/api/v4/packages/maven`
+ *
+ * See https://docs.gitlab.com/user/packages/maven_repository/?tab=gradle#endpoint-urls.
+ * Publishing still targets a project-level endpoint; this endpoint is for consumption with
+ * the instance naming convention. (by AI agent, not thoroughly verified)
+ */
 context(providers: ProviderFactory, _: (path: Any) -> URI)
 fun RepositoryHandler.gitlabPackageRegistryInstanceLevelEndpointMavenRepository(
     hostProvider: Provider<String> = providers.provider { GITLAB_COM_HOST },
@@ -125,6 +173,9 @@ fun RepositoryHandler.gitlabPackageRegistryInstanceLevelEndpointMavenRepository(
         extraAction
     )
 
+/**
+ * @see RepositoryHandler.gitlabPackageRegistryInstanceLevelEndpointMavenRepository
+ */
 @GradleCommonExperimentalApi
 fun MavenRepositoryHandlerContext.gitlabPackageRegistryInstanceLevelEndpointMavenRepository(
     hostProvider: Provider<String> = providers.provider { GITLAB_COM_HOST },

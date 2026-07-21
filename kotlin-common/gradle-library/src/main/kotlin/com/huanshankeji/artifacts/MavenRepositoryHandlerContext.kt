@@ -6,10 +6,10 @@ import org.gradle.api.provider.ProviderFactory
 import java.net.URI
 
 /**
- * Bundles [RepositoryHandler], [ProviderFactory], and a `uri` factory for Maven repository helpers
+ * Bundles [RepositoryHandler], [ProviderFactory], and a `uri` function for Maven repository helpers
  * that use context parameters.
  *
- * Prefer this from `settings.gradle.kts`, which cannot enable `-Xcontext-parameters`.
+ * Prefer this from Gradle scripts (`build.gradle.kts` and `settings.gradle.kts`), which cannot enable `-Xcontext-parameters`.
  * When context parameters are available at the call site, prefer calling the context-parameter
  * [RepositoryHandler] extensions directly.
  *

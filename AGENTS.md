@@ -12,21 +12,33 @@ This repository publishes Kotlin Gradle convention plugins and a shared dependen
 
 The APIs are experimental and may change. There are no end-user tutorials here; see [README.md](README.md) for status, version notes, and links to [API docs](https://huanshankeji.github.io/gradle-common/) and the [kotlin-common](https://github.com/huanshankeji/kotlin-common) example builds.
 
-**Toolchain:** JDK **17** (toolchain; CI uses Temurin 17 — see [.github/workflows/kotlin-jvm-ci.yml](.github/workflows/kotlin-jvm-ci.yml)). Gradle version: [gradle/wrapper/gradle-wrapper.properties](gradle/wrapper/gradle-wrapper.properties). Build-logic Kotlin version: [buildSrc/settings.gradle.kts](buildSrc/settings.gradle.kts) (`plugins { kotlin("jvm") … apply false }`); keep in sync with [CommonVersions.kt](common-gradle-dependencies/src/main/kotlin/com/huanshankeji/CommonVersions.kt) — see [README.md](README.md) ("Build-logic Kotlin vs Gradle's embedded Kotlin"). Release version constants for this repository's build (`alignedPluginBaseVersion`, `commonGradleDependenciesBaseVersion`, …): [VersionsAndDependencies.kt](buildSrc/src/main/kotlin/VersionsAndDependencies.kt) in `buildSrc` (build logic on the classpath when evaluating root build scripts; not published). Feature/dev builds use `providers.devCommitVersionProvider(baseVersion)` (`*-dev-commit-*`); on the `release` branch set `version = baseVersion` explicitly. Dependency versions published for downstream projects: [CommonVersions.kt](common-gradle-dependencies/src/main/kotlin/com/huanshankeji/CommonVersions.kt) in `common-gradle-dependencies`.
+**Toolchain:** JDK **17** (toolchain; CI uses Temurin 17 —
+see [.github/workflows/kotlin-jvm-ci.yml](.github/workflows/kotlin-jvm-ci.yml)). Gradle
+version: [gradle/wrapper/gradle-wrapper.properties](gradle/wrapper/gradle-wrapper.properties). Build-logic Kotlin
+version: [buildSrc/settings.gradle.kts](buildSrc/settings.gradle.kts) (`plugins { kotlin("jvm") … apply false }`); keep
+in sync with [CommonVersions.kt](common-gradle-dependencies/src/main/kotlin/com/huanshankeji/CommonVersions.kt) —
+see [README.md](README.md) ("Build-logic Kotlin vs Gradle's embedded Kotlin"). Release version constants for this
+repository's build (`alignedPluginBaseVersion`,
+`commonGradleDependenciesBaseVersion`, …): [VersionsAndDependencies.kt](buildSrc/src/main/kotlin/VersionsAndDependencies.kt)
+in `buildSrc` (build logic on the classpath when evaluating root build scripts; not published). Prefer
+`providers.devCommitOrReleaseVersionProvider(baseVersion, isRelease)` (`isRelease = false` → `*-dev-commit-*`; set
+`isRelease = true` on the `release` branch for the base version). Dependency versions published for downstream
+projects: [CommonVersions.kt](common-gradle-dependencies/src/main/kotlin/com/huanshankeji/CommonVersions.kt) in
+`common-gradle-dependencies`.
 
 ## Repository layout
 
-| Path | Gradle project name | Purpose |
-|------|---------------------|---------|
-| `buildSrc/` | — | Shared build logic: versions, conventions, plugin registration helpers |
-| `kotlin-common/gradle-library/` | `:kotlin-common-gradle-library` | Shared helpers for kotlin-common modules |
-| `kotlin-common/project-gradle-plugins/` | `:kotlin-common-project-gradle-plugins` | General Kotlin/KMP, publishing, Dokka, benchmark, and JVM test plugins (`com.huanshankeji.*`) |
-| `kotlin-common/settings-gradle-plugins/` | `:kotlin-common-settings-gradle-plugins` | Thin settings plugins (`com.huanshankeji.*` settings conventions; minimal runtime classpath) |
-| `architecture-common-gradle-plugins/` | `:architecture-common-gradle-plugins` | Compose/web, Vert.x, and JVM feature-variant plugins |
-| `common-gradle-dependencies/` | `:common-gradle-dependencies` | Centralized dependency versions and helpers; published separately |
-| `huanshankeji-team/gradle-library/` | `:huanshankeji-team:gradle-library` | Shared helpers for team modules |
-| `huanshankeji-team/project-gradle-plugins/` | `:huanshankeji-team:project-gradle-plugins` | Team-internal plugins (`com.huanshankeji.team.*`); used by `buildSrc` bootstrapping |
-| `huanshankeji-team/settings-gradle-plugins/` | `:huanshankeji-team:settings-gradle-plugins` | Team settings plugins (`com.huanshankeji.team.*` settings conventions) |
+| Path                                         | Gradle project name                                    | Purpose                                                                                       |
+|----------------------------------------------|--------------------------------------------------------|-----------------------------------------------------------------------------------------------|
+| `buildSrc/`                                  | —                                                      | Shared build logic: versions, conventions, plugin registration helpers                        |
+| `kotlin-common/gradle-library/`              | `:kotlin-common:kotlin-common-gradle-library`          | Shared helpers for kotlin-common modules                                                      |
+| `kotlin-common/project-gradle-plugins/`      | `:kotlin-common:kotlin-common-project-gradle-plugins`  | General Kotlin/KMP, publishing, Dokka, benchmark, and JVM test plugins (`com.huanshankeji.*`) |
+| `kotlin-common/settings-gradle-plugins/`     | `:kotlin-common:kotlin-common-settings-gradle-plugins` | Thin settings plugins (`com.huanshankeji.*` settings conventions)                             |
+| `architecture-common-gradle-plugins/`        | `:architecture-common-gradle-plugins`                  | Compose/web, Vert.x, and JVM feature-variant plugins                                          |
+| `common-gradle-dependencies/`                | `:common-gradle-dependencies`                          | Centralized dependency versions and helpers; published separately                             |
+| `huanshankeji-team/gradle-library/`          | `:huanshankeji-team:gradle-library`                    | Shared helpers for team modules                                                               |
+| `huanshankeji-team/project-gradle-plugins/`  | `:huanshankeji-team:project-gradle-plugins`            | Team-internal plugins (`com.huanshankeji.team.*`); used by `buildSrc` bootstrapping           |
+| `huanshankeji-team/settings-gradle-plugins/` | `:huanshankeji-team:settings-gradle-plugins`           | Team settings plugins (`com.huanshankeji.team.*` settings conventions)                        |
 
 Root [settings.gradle.kts](settings.gradle.kts) includes all modules. `kotlin-common` subprojects use concatenated project names (CPN); `huanshankeji-team` keeps nested simple names. Version constants live in [buildSrc/src/main/kotlin/VersionsAndDependencies.kt](buildSrc/src/main/kotlin/VersionsAndDependencies.kt).
 
@@ -54,7 +66,7 @@ Other useful tasks:
 ./gradlew publishToMavenLocal
 
 # Run tests for one module
-./gradlew :kotlin-common-project-gradle-plugins:test
+./gradlew :kotlin-common:kotlin-common-project-gradle-plugins:test
 
 # Regenerate public API dumps after intentional ABI changes
 ./gradlew apiCheck          # verify
@@ -91,8 +103,13 @@ Configuration cache is enabled ([gradle.properties](gradle.properties)). Expect 
 
 ## Version and changelog policy
 
-- Plugin release version: `alignedPluginBaseVersion` in [VersionsAndDependencies.kt](buildSrc/src/main/kotlin/VersionsAndDependencies.kt). Non-release builds append `*-dev-commit-*` via `devCommitVersionProvider`; on `release`, set the base version explicitly.
-- `common-gradle-dependencies` version: `commonGradleDependenciesBaseVersion` (separate version; releases are coordinated but version numbers remain independent). Same `devCommitVersionProvider` / explicit-release convention as plugins.
+- Plugin release version: `alignedPluginBaseVersion`
+  in [VersionsAndDependencies.kt](buildSrc/src/main/kotlin/VersionsAndDependencies.kt). Prefer
+  `providers.devCommitOrReleaseVersionProvider(baseVersion, isRelease)` (`isRelease = false` → `*-dev-commit-*`;
+  `true` → base version on `release`).
+- `common-gradle-dependencies` version: `commonGradleDependenciesBaseVersion` (separate version; releases are
+  coordinated but version numbers remain independent). Same `devCommitOrReleaseVersionProvider` / `isRelease` convention
+  as plugins.
 - Release branch: `release` publishes to the Gradle Plugin Portal (`publishPlugins`); all other branches publish to GitHub Packages.
 - Release notes: [CHANGELOG.md](CHANGELOG.md) (single change log for all published artifacts going forward).
 - Outdated per-artifact change logs (historical releases only): [PLUGINS_CHANGELOG.md](PLUGINS_CHANGELOG.md), [COMMON_GRADLE_DEPENDENCIES_CHANGELOG.md](COMMON_GRADLE_DEPENDENCIES_CHANGELOG.md).

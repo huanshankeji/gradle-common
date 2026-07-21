@@ -17,6 +17,10 @@ import java.net.URI
  * [gradleProperty] instead, which reads only build-level Gradle property sources
  * (`gradle.properties`, `-P`, `ORG_GRADLE_PROJECT_*`, …) as
  * [Gradle recommends](https://docs.gradle.org/current/userguide/build_environment.html#sec:gradle_system_properties).
+ *
+ * This API is also better suited for the settings script—for example in
+ * [dependencyResolutionManagement][org.gradle.api.initialization.Settings.dependencyResolutionManagement]—
+ * where a [Project] is not available.
  */
 @GradleCommonExperimentalApi
 fun ProviderFactory.githubPackagesMavenUsername(): String? =

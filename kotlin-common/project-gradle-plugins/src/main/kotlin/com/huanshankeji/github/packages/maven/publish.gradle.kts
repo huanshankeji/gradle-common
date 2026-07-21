@@ -12,12 +12,7 @@ plugins {
     id("com.vanniktech.maven.publish")
 }
 
-interface Extension {
-    val owner: Property<String>
-    val repository: Property<String>
-}
-
-val extension = extensions.create<Extension>("githubPackagesMavenPublish")
+val extension = extensions.create<GithubPackagesMavenPublishExtension>("githubPackagesMavenPublish")
 
 publishing {
     repositories {

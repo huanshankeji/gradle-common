@@ -1,41 +1,74 @@
 package com.huanshankeji.gitversioning
 
+import com.huanshankeji.GradleCommonExperimentalApi
 import org.gradle.api.artifacts.dsl.RepositoryHandler
 import org.gradle.api.artifacts.repositories.InclusiveRepositoryContentDescriptor
 import org.gradle.api.artifacts.repositories.MavenArtifactRepository
 
 /**
- * Maven local: SNAPSHOT + `*-dev-commit-*`; [remoteMavenRepository]: clean `*-dev-commit-*` + releases.
- * This function can be used for both single-project repositories and multi-project repositories.
- *
- * Uses separate [exclusiveContent] blocks with disjoint [includeVersionByRegex] filters so Gradle’s
- * OR’d includes cannot widen version acceptance across repositories.
+ * Most general exclusive-content partitioning by version kind.
+ * Pass the exact repository sets for SNAPSHOT, `*-dev-commit-*`, and release
+ * (e.g. omit Maven local from [devCommitMavenRepositories] if desired).
  */
+@GradleCommonExperimentalApi
 fun RepositoryHandler.conventionMavenRepositories(
-    remoteMavenRepository: RepositoryHandler.(extraAction: MavenArtifactRepository.() -> Unit) -> MavenArtifactRepository,
+    snapshotMavenRepositories: List<MavenArtifactRepository>,
+    devCommitMavenRepositories: List<MavenArtifactRepository>,
+    releaseMavenRepositories: List<MavenArtifactRepository>,
     versionRegexes: ConventionVersionRegexes = ConventionVersionRegexes(),
-    exclusiveContentFilter: InclusiveRepositoryContentDescriptor.(versionRegex: String) -> Unit,
+    filterConfig: InclusiveRepositoryContentDescriptor.(versionRegex: String) -> Unit,
 ) {
-    val mavenLocalRepository = mavenLocal()
-    val remoteRepository = remoteMavenRepository {}
-
     exclusiveContent {
-        forRepositories(mavenLocalRepository)
-        filter { exclusiveContentFilter(versionRegexes.snapshotVersionRegex) }
-    }
-    // `*-dev-commit-*` from both `mavenLocal` and `remoteMavenRepository` in order.
-    exclusiveContent {
-        forRepositories(mavenLocalRepository, remoteRepository)
-        filter { exclusiveContentFilter(versionRegexes.devCommitVersionRegex) }
+        forRepositories(*snapshotMavenRepositories.toTypedArray())
+        filter { filterConfig(versionRegexes.snapshotVersionRegex) }
     }
     exclusiveContent {
-        forRepositories(remoteRepository)
-        filter { exclusiveContentFilter(versionRegexes.releaseVersionRegex) }
+        forRepositories(*devCommitMavenRepositories.toTypedArray())
+        filter { filterConfig(versionRegexes.devCommitVersionRegex) }
+    }
+    exclusiveContent {
+        forRepositories(*releaseMavenRepositories.toTypedArray())
+        filter { filterConfig(versionRegexes.releaseVersionRegex) }
     }
 }
 
+/**
+ * Maven local: SNAPSHOT + `*-dev-commit-*`; [remoteDevCommitMavenRepository]: `*-dev-commit-*`;
+ * [releaseMavenRepository]: releases.
+ * This function can be used for both single-project repositories and multi-project repositories.
+ */
+@GradleCommonExperimentalApi
 fun RepositoryHandler.conventionMavenRepositories(
-    remoteMavenRepository: RepositoryHandler.(extraAction: MavenArtifactRepository.() -> Unit) -> MavenArtifactRepository,
+    remoteDevCommitMavenRepository: MavenArtifactRepository,
+    releaseMavenRepository: MavenArtifactRepository,
+    versionRegexes: ConventionVersionRegexes = ConventionVersionRegexes(),
+    filterConfig: InclusiveRepositoryContentDescriptor.(versionRegex: String) -> Unit,
+) {
+    val mavenLocalRepository = mavenLocal()
+    conventionMavenRepositories(
+        listOf(mavenLocalRepository),
+        listOf(mavenLocalRepository, remoteDevCommitMavenRepository),
+        listOf(releaseMavenRepository),
+        versionRegexes,
+        filterConfig,
+    )
+}
+
+/**
+ * Maven local: SNAPSHOT + `*-dev-commit-*`; [remoteMavenRepository]: clean `*-dev-commit-*` + releases.
+ * This function can be used for both single-project repositories and multi-project repositories.
+ */
+fun RepositoryHandler.conventionMavenRepositories(
+    remoteMavenRepository: RepositoryHandler.(/*extraAction: MavenArtifactRepository.() -> Unit*/) -> MavenArtifactRepository,
+    versionRegexes: ConventionVersionRegexes = ConventionVersionRegexes(),
+    filterConfig: InclusiveRepositoryContentDescriptor.(versionRegex: String) -> Unit,
+) {
+    val remoteMavenRepository = remoteMavenRepository()
+    conventionMavenRepositories(remoteMavenRepository, remoteMavenRepository, versionRegexes, filterConfig)
+}
+
+fun RepositoryHandler.conventionMavenRepositories(
+    remoteMavenRepository: RepositoryHandler.(/*extraAction: MavenArtifactRepository.() -> Unit*/) -> MavenArtifactRepository,
     groupRegex: String,
     moduleRegex: String,
     versionRegexes: ConventionVersionRegexes = ConventionVersionRegexes(),

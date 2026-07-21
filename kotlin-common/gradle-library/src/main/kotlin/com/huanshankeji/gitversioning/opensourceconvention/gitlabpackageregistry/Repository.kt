@@ -13,36 +13,37 @@ import java.net.URI
 
 /**
  * Maven local: SNAPSHOT + `*-dev-commit-*`; GitLab: `*-dev-commit-*`; Maven Central: releases.
+ *
+ * @param projectIdOrProjectPath See [gitlabPackageRegistryProjectLevelEndpointMavenRepository].
  */
 context(providers: ProviderFactory, _: (path: Any) -> URI)
 fun RepositoryHandler.gitlabPackageRegistryProjectLevelEndpointOpenSourceConventionMavenRepositories(
     host: String = GITLAB_COM_HOST,
-    projectId: String,
+    projectIdOrProjectPath: String,
     versionRegexes: ConventionVersionRegexes = ConventionVersionRegexes(),
-    exclusiveContentFilterConfig: InclusiveRepositoryContentDescriptor.(versionRegex: String) -> Unit,
+    filterConfig: InclusiveRepositoryContentDescriptor.(versionRegex: String) -> Unit,
 ) =
     openSourceConventionMavenRepositories(
-        { extraAction ->
+        {
             gitlabPackageRegistryProjectLevelEndpointMavenRepository(
                 providers.provider { host },
-                providers.provider { projectId },
-                extraAction
+                providers.provider { projectIdOrProjectPath },
             )
         },
         versionRegexes,
-        exclusiveContentFilterConfig,
+        filterConfig,
     )
 
 @GradleCommonExperimentalApi
 fun MavenRepositoryHandlerContext.gitlabPackageRegistryProjectLevelEndpointOpenSourceConventionMavenRepositories(
     host: String = GITLAB_COM_HOST,
-    projectId: String,
+    projectIdOrProjectPath: String,
     versionRegexes: ConventionVersionRegexes = ConventionVersionRegexes(),
-    exclusiveContentFilterConfig: InclusiveRepositoryContentDescriptor.(versionRegex: String) -> Unit,
+    filterConfig: InclusiveRepositoryContentDescriptor.(versionRegex: String) -> Unit,
 ) =
     context(providers, uri) {
         repositories.gitlabPackageRegistryProjectLevelEndpointOpenSourceConventionMavenRepositories(
-            host, projectId, versionRegexes, exclusiveContentFilterConfig
+            host, projectIdOrProjectPath, versionRegexes, filterConfig
         )
     }
 
@@ -50,13 +51,13 @@ fun MavenRepositoryHandlerContext.gitlabPackageRegistryProjectLevelEndpointOpenS
 context(providers: ProviderFactory, _: (path: Any) -> URI)
 fun RepositoryHandler.gitlabPackageRegistryProjectLevelEndpointOpenSourceConventionMavenRepositories(
     host: String = GITLAB_COM_HOST,
-    projectId: String,
+    projectIdOrProjectPath: String,
     groupRegex: String,
     moduleRegex: String,
     versionRegexes: ConventionVersionRegexes = ConventionVersionRegexes(),
 ) =
     gitlabPackageRegistryProjectLevelEndpointOpenSourceConventionMavenRepositories(
-        host, projectId, versionRegexes
+        host, projectIdOrProjectPath, versionRegexes
     ) { versionRegex ->
         includeVersionByRegex(groupRegex, moduleRegex, versionRegex)
     }
@@ -64,13 +65,13 @@ fun RepositoryHandler.gitlabPackageRegistryProjectLevelEndpointOpenSourceConvent
 @GradleCommonExperimentalApi
 fun MavenRepositoryHandlerContext.gitlabPackageRegistryProjectLevelEndpointOpenSourceConventionMavenRepositories(
     host: String = GITLAB_COM_HOST,
-    projectId: String,
+    projectIdOrProjectPath: String,
     groupRegex: String,
     moduleRegex: String,
     versionRegexes: ConventionVersionRegexes = ConventionVersionRegexes(),
 ) =
     context(providers, uri) {
         repositories.gitlabPackageRegistryProjectLevelEndpointOpenSourceConventionMavenRepositories(
-            host, projectId, groupRegex, moduleRegex, versionRegexes
+            host, projectIdOrProjectPath, groupRegex, moduleRegex, versionRegexes
         )
     }

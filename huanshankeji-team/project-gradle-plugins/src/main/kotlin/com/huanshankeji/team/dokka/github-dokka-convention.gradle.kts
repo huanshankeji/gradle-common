@@ -2,7 +2,7 @@
 
 package com.huanshankeji.team.dokka
 
-import com.huanshankeji.git.workflow.conventionalGitCommitHashOrTag
+import com.huanshankeji.git.workflow.conventionalGitRef
 import com.huanshankeji.team.github.defaultRepositoryName
 import com.huanshankeji.team.github.githubRepositoryUrl
 
@@ -12,17 +12,23 @@ plugins {
 
 interface GithubDokkaConventionExtension {
     val repositoryName: Property<String>
-    val commitHashOrTag: Property<String>
+
+    /** Git ref for Dokka source links: either a commit hash or a tag. */
+    val gitRef: Property<String>
+
+    @Deprecated("Renamed to `gitRef`.", ReplaceWith("gitRef"))
+    val commitOrTag: Property<String>
+        get() = gitRef
 }
 
 extensions.create<GithubDokkaConventionExtension>("githubDokkaConvention").apply {
     repositoryName.convention(defaultRepositoryName())
-    commitHashOrTag.convention(conventionalGitCommitHashOrTag())
+    gitRef.convention(conventionalGitRef())
 
     val sourceLinkRemoteUrlRoot = repositoryName.flatMap { repositoryName ->
         val repositoryUrl = githubRepositoryUrl(repositoryName)
-        commitHashOrTag.map { commitOrTag ->
-            "$repositoryUrl/blob/$commitOrTag"
+        gitRef.map { gitRef ->
+            "$repositoryUrl/blob/$gitRef"
         }
     }
 

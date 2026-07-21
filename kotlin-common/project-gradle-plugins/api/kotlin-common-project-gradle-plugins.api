@@ -259,13 +259,8 @@ public final class com/huanshankeji/github/packages/maven/PublishPlugin : org/gr
 
 public final class com/huanshankeji/github/packages/maven/Publish_gradle : org/gradle/kotlin/dsl/precompile/v1/PrecompiledProjectScript {
 	public fun <init> (Lorg/gradle/api/Project;Lorg/gradle/api/Project;)V
-	public final fun getExtension ()Lcom/huanshankeji/github/packages/maven/Publish_gradle$Extension;
+	public final fun getExtension ()Lcom/huanshankeji/github/packages/maven/GithubPackagesMavenPublishExtension;
 	public static final fun main ([Ljava/lang/String;)V
-}
-
-public abstract interface class com/huanshankeji/github/packages/maven/Publish_gradle$Extension {
-	public abstract fun getOwner ()Lorg/gradle/api/provider/Property;
-	public abstract fun getRepository ()Lorg/gradle/api/provider/Property;
 }
 
 public final class com/huanshankeji/gitlab/packageregistry/maven/ProjectLevelEndpointPublishPlugin : org/gradle/api/Plugin {
@@ -283,6 +278,23 @@ public final class com/huanshankeji/gitlab/packageregistry/maven/Project_level_e
 public abstract interface class com/huanshankeji/gitlab/packageregistry/maven/Project_level_endpoint_publish_gradle$Extension {
 	public abstract fun getHost ()Lorg/gradle/api/provider/Property;
 	public abstract fun getProjectId ()Lorg/gradle/api/provider/Property;
+}
+
+public final class com/huanshankeji/gitversioning/opensourceconvention/githubpackages/PublishPlugin : org/gradle/api/Plugin {
+	public fun <init> ()V
+	public synthetic fun apply (Ljava/lang/Object;)V
+	public fun apply (Lorg/gradle/api/Project;)V
+}
+
+public final class com/huanshankeji/gitversioning/opensourceconvention/githubpackages/Publish_gradle : org/gradle/kotlin/dsl/precompile/v1/PrecompiledProjectScript {
+	public fun <init> (Lorg/gradle/api/Project;Lorg/gradle/api/Project;)V
+	public final fun getExtension ()Lcom/huanshankeji/gitversioning/opensourceconvention/githubpackages/Publish_gradle$Extension;
+	public static final fun main ([Ljava/lang/String;)V
+}
+
+public abstract class com/huanshankeji/gitversioning/opensourceconvention/githubpackages/Publish_gradle$Extension {
+	public fun <init> (Lorg/gradle/api/Project;)V
+	public final fun signAllPublicationsIfRelease (Z)V
 }
 
 public final class com/huanshankeji/publish/GradleGeneratedExtensionsKt {

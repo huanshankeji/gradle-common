@@ -24,7 +24,7 @@ interface Extension {
     val projectId: Property<String>
 }
 
-val extension = extensions.create<Extension>("gitlabPackageRegistryProjectLevelMavenEndpointPublish")
+val extension = extensions.create<Extension>("gitlabPackagesPublish")
 
 afterEvaluate {
     publishing {

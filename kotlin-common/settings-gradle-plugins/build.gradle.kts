@@ -4,10 +4,10 @@ plugins {
 }
 
 dependencies {
-    testImplementation(project(":kotlin-common:kotlin-common-gradle-library"))
     implementation(libs.gradle.foojayResolverConvention)
 
     testImplementation(kotlin("test"))
+    testImplementation(project(":kotlin-common:kotlin-common-gradle-library"))
 }
 
 gradlePlugin {

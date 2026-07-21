@@ -1,7 +1,3 @@
-public final class com/huanshankeji/team/GithubPackagesMavenKt {
-	public static final fun repositoriesAddTeamGithubPackagesMavenRegistry (Lorg/gradle/api/Project;Ljava/lang/String;)V
-}
-
 public final class com/huanshankeji/team/MavenPomKt {
 	public static final fun Shreck Ye (Lorg/gradle/api/publish/maven/MavenPomDeveloperSpec;)V
 	public static final fun ShreckYe (Lorg/gradle/api/publish/maven/MavenPomDeveloperSpec;)V
@@ -35,7 +31,8 @@ public final class com/huanshankeji/team/dokka/Github_dokka_convention_gradle : 
 }
 
 public abstract interface class com/huanshankeji/team/dokka/Github_dokka_convention_gradle$GithubDokkaConventionExtension {
-	public abstract fun getCommitHashOrTag ()Lorg/gradle/api/provider/Property;
+	public fun getCommitOrTag ()Lorg/gradle/api/provider/Property;
+	public abstract fun getGitRef ()Lorg/gradle/api/provider/Property;
 	public abstract fun getRepositoryName ()Lorg/gradle/api/provider/Property;
 }
 
@@ -45,6 +42,10 @@ public final class com/huanshankeji/team/github/GithubKt {
 	public static final fun githubRepositoryUrl (Ljava/lang/String;)Ljava/lang/String;
 }
 
+public final class com/huanshankeji/team/github/packages/maven/HuanshankejiGithubPackagesMavenPublishKt {
+	public static final fun configureHuanshankejiGithubPackagesMavenPublish (Lorg/gradle/api/Project;)V
+}
+
 public final class com/huanshankeji/team/github/packages/maven/PublishPlugin : org/gradle/api/Plugin {
 	public fun <init> ()V
 	public synthetic fun apply (Ljava/lang/Object;)V
@@ -52,6 +53,17 @@ public final class com/huanshankeji/team/github/packages/maven/PublishPlugin : o
 }
 
 public final class com/huanshankeji/team/github/packages/maven/Publish_gradle : org/gradle/kotlin/dsl/precompile/v1/PrecompiledProjectScript {
+	public fun <init> (Lorg/gradle/api/Project;Lorg/gradle/api/Project;)V
+	public static final fun main ([Ljava/lang/String;)V
+}
+
+public final class com/huanshankeji/team/gitversioning/opensourceconvention/githubpackages/PublishPlugin : org/gradle/api/Plugin {
+	public fun <init> ()V
+	public synthetic fun apply (Ljava/lang/Object;)V
+	public fun apply (Lorg/gradle/api/Project;)V
+}
+
+public final class com/huanshankeji/team/gitversioning/opensourceconvention/githubpackages/Publish_gradle : org/gradle/kotlin/dsl/precompile/v1/PrecompiledProjectScript {
 	public fun <init> (Lorg/gradle/api/Project;Lorg/gradle/api/Project;)V
 	public static final fun main ([Ljava/lang/String;)V
 }

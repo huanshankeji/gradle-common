@@ -5,8 +5,8 @@ plugins {
 
 dependencies {
     api(project(":kotlin-common:kotlin-common-gradle-library"))
-    implementation(libs.bundles.kotlinCommonGradlePlugins.implementation)
-    api(libs.bundles.kotlinCommonGradlePlugins.api)
+    implementation(libs.bundles.kotlinCommonProjectGradlePlugins.implementation)
+    api(libs.bundles.kotlinCommonProjectGradlePlugins.api)
 
     testImplementation(kotlin("test"))
 }
@@ -29,14 +29,21 @@ gradlePlugin {
         scriptPlugin(
             "publish.maven.central.conventions",
             "Maven Central publish conventions based on the `com.vanniktech.maven.publish` plugin. " +
-                    "Signing is enabled for all publications; `-SNAPSHOT` versions are not required to sign. " +
-                    "Customize requiredness with `signing { setRequired(...) }` when needed " +
-                    "(see `com.huanshankeji.gitversioning.githubpackagesdevandmavencentralreleaseconvention.publish` for a combined GitHub Packages / Maven Central example)."
+                    "Always configures signing for all publications (`-SNAPSHOT` versions are not required to sign). " +
+                    "For custom signing rules, apply `com.vanniktech.maven.publish` yourself and configure signing."
         )
         scriptPlugin(
             "maven-central-publish-conventions",
             "Maven Central publish conventions based on the `com.vanniktech.maven.publish` plugin. " +
-                    "(deprecated, replaced by `com.huanshankeji.maven-central-publish-conventions`)"
+                    "(deprecated, replaced by `com.huanshankeji.publish.maven.central.conventions`)"
+        )
+        scriptPlugin(
+            "gitversioning.opensourceconvention.githubpackages.publish",
+            "Open-source convention GitHub Packages + Maven Central publish",
+            "Publishes non-release / `*-dev-commit-*` versions to GitHub Packages and release versions to Maven Central. " +
+                    "Call required `openSourceConventionGithubPackagesPublish.signAllPublicationsIfRelease(isRelease)` " +
+                    "(enables signing on release and gates publish tasks by destination). " +
+                    "Team defaults: `com.huanshankeji.team.gitversioning.opensourceconvention.githubpackages.publish`."
         )
         scriptPlugin(
             "github.packages.maven.publish",

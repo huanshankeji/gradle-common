@@ -25,8 +25,12 @@ fun snapshotVersionRegexOf(releaseVersionRegex: String) =
 const val NON_SNAPSHOT_VERSION_REGEX = """(?!$SNAPSHOT_VERSION_REGEX$).*"""
 
 
-/** Semver release, optionally with one of alpha/beta/rc and an extra number, e.g. `1.2.3`, `1.2.3-alpha`, `1.2.3-alpha-1`. */
+/**
+ * Semver release, optionally with one of alpha/beta/rc and an extra number, e.g. `1.2.3`, `1.2.3-alpha`, `1.2.3-alpha-1`.
+ * This convention is from popular Kotlin libraries.
+ */
 const val STANDARD_RELEASE_VERSION_REGEX = """\d+\.\d+\.\d+(-(alpha|beta|rc)(-\d+)?)?"""
+val standardReleaseVersionRegex = Regex(STANDARD_RELEASE_VERSION_REGEX)
 
 fun isStandardReleaseVersion(version: String): Boolean =
-    version.matches(STANDARD_RELEASE_VERSION_REGEX.toRegex())
+    version matches standardReleaseVersionRegex

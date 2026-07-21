@@ -19,11 +19,23 @@ fun ProviderFactory.devCommitVersionProvider(baseVersion: String): Provider<Stri
     }
 
 /**
+ * Returns [baseVersion] when [isRelease] is `true`; otherwise a `*-dev-commit-*` version from Git.
+ * Prefer an explicit `isRelease` flag in build logic (set `true` on the release branch) over
+ * auto-detecting the Git branch.
+ */
+fun ProviderFactory.devCommitOrReleaseVersionProvider(
+    baseVersion: String,
+    isRelease: Boolean,
+): Provider<String> =
+    if (isRelease) provider { baseVersion }
+    else devCommitVersionProvider(baseVersion)
+
+/**
  * Returns [baseVersion] on [releaseBranch]; otherwise a `*-dev-commit-*` version from Git.
  * Override with the Gradle property `com.huanshankeji.forceReleaseVersion=true` when needed.
  *
- * Not recommended under the current convention: set the release version explicitly on the
- * release branch, and use [devCommitVersionProvider] on non-release branches.
+ * This API is currently not recommended under our convention.
+ * Prefer [devCommitOrReleaseVersionProvider] with an explicit `isRelease` flag instead.
  */
 @GradleCommonExperimentalApi
 fun ProviderFactory.projectVersionFromGitProvider(
@@ -33,11 +45,10 @@ fun ProviderFactory.projectVersionFromGitProvider(
     val forceRelease = gradleProperty("com.huanshankeji.forceReleaseVersion")
         .map { it.toBoolean() }
         .orElse(false)
-    return forceRelease.flatMap { forced ->
-        if (forced) provider { baseVersion }
-        else isReleaseBranch(releaseBranch).flatMap { release ->
-            if (release) provider { baseVersion }
-            else devCommitVersionProvider(baseVersion)
+    return forceRelease.flatMap { forceRelease ->
+        if (forceRelease) provider { baseVersion }
+        else isReleaseBranch(releaseBranch).flatMap { isReleaseBranch ->
+            devCommitOrReleaseVersionProvider(baseVersion, isReleaseBranch)
         }
     }
 }

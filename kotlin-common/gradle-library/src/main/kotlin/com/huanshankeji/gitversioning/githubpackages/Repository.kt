@@ -11,7 +11,7 @@ import org.gradle.api.provider.ProviderFactory
 import java.net.URI
 
 /**
- * Exclusive mavenLocal + GitHub Packages for modules filtered by [exclusiveContentFilterConfig].
+ * Exclusive mavenLocal + GitHub Packages for modules filtered by [filterConfig].
  * Maven local: SNAPSHOT + `*-dev-commit-*`; GitHub Packages: clean `*-dev-commit-*` + releases.
  * No Maven Central.
  */
@@ -20,18 +20,17 @@ fun RepositoryHandler.githubPackagesSingleProjectConventionMavenRepositories(
     githubOwner: String,
     githubRepository: String,
     versionRegexes: ConventionVersionRegexes = ConventionVersionRegexes(),
-    exclusiveContentFilterConfig: InclusiveRepositoryContentDescriptor.(versionRegex: String) -> Unit,
+    filterConfig: InclusiveRepositoryContentDescriptor.(versionRegex: String) -> Unit,
 ) =
     conventionMavenRepositories(
-        { extraAction ->
+        {
             githubPackagesMavenRegistry(
                 providers.provider { githubOwner },
                 providers.provider { githubRepository },
-                extraAction
             )
         },
         versionRegexes,
-        exclusiveContentFilterConfig,
+        filterConfig,
     )
 
 @GradleCommonExperimentalApi
@@ -39,11 +38,11 @@ fun MavenRepositoryHandlerContext.githubPackagesSingleProjectConventionMavenRepo
     githubOwner: String,
     githubRepository: String,
     versionRegexes: ConventionVersionRegexes = ConventionVersionRegexes(),
-    exclusiveContentFilterConfig: InclusiveRepositoryContentDescriptor.(versionRegex: String) -> Unit,
+    filterConfig: InclusiveRepositoryContentDescriptor.(versionRegex: String) -> Unit,
 ) =
     context(providers, uri) {
         repositories.githubPackagesSingleProjectConventionMavenRepositories(
-            githubOwner, githubRepository, versionRegexes, exclusiveContentFilterConfig
+            githubOwner, githubRepository, versionRegexes, filterConfig
         )
     }
 

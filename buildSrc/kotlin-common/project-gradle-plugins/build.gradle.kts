@@ -6,12 +6,13 @@ plugins {
 }
 
 dependencies {
+    // Copied from `project-gradle-plugins-conventions.gradle.kts`. Keep consistent with it.
     implementation(kotlin("gradle-plugin"))
-    implementation(libs.bundles.kotlinCommonGradlePlugins.implementation)
-    api(libs.bundles.kotlinCommonGradlePlugins.api)
-
     implementation(project(":common-gradle-dependencies"))
-    implementation(project(":kotlin-common:kotlin-common-gradle-library"))
+    // `api`, matching the root module
+    api(project(":kotlin-common:kotlin-common-gradle-library"))
+    implementation(libs.bundles.kotlinCommonProjectGradlePlugins.implementation)
+    api(libs.bundles.kotlinCommonProjectGradlePlugins.api)
 }
 
 // Source-link the `kotlin-common/project-gradle-plugins` sources.
