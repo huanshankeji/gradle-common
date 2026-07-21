@@ -41,8 +41,8 @@ gradlePlugin {
             "gitversioning.opensourceconvention.githubpackages.publish",
             "Open-source convention GitHub Packages + Maven Central publish",
             "Publishes non-release / `*-dev-commit-*` versions to GitHub Packages and release versions to Maven Central. " +
-                    "Call required `openSourceConventionGithubPackagesPublish.signAllPublicationsIfRelease(isRelease)` " +
-                    "(enables signing on release and gates publish tasks by destination). " +
+                    "Call required `gitVersioningOpenSourceConventionGithubPackagesPublish.signAllPublicationsIfRelease(isRelease)` " +
+                    "(enables signing on release; both destinations stay configured). " +
                     "Team defaults: `com.huanshankeji.team.gitversioning.opensourceconvention.githubpackages.publish`."
         )
         scriptPlugin(

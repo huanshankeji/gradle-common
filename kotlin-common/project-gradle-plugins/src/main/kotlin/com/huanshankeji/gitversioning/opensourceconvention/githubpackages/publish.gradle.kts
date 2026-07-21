@@ -11,8 +11,8 @@ plugins {
  * Maven Central for release versions. This plugin does **not** enable signing by itself.
  *
  * After applying, call [Extension.signAllPublicationsIfRelease]
- * (required; enforced after project evaluation). That call also gates publish tasks so
- * `publish` uploads to GitHub Packages when `isRelease` is `false`, and to Maven Central when `true`.
+ * (required; enforced after project evaluation) to enable signing on release.
+ * Both destinations stay configured; pick the publish task for the intended destination.
  */
 abstract class Extension(
     private val project: Project,
@@ -39,7 +39,7 @@ abstract class Extension(
 
     internal fun ensureSignAllPublicationsIfReleaseCalled() {
         check(signAllPublicationsIfReleaseCalled) {
-            "openSourceConventionGithubPackagesPublish.signAllPublicationsIfRelease(isRelease) must be called " +
+            "gitVersioningOpenSourceConventionGithubPackagesPublish.signAllPublicationsIfRelease(isRelease) must be called " +
                     "when using com.huanshankeji.gitversioning.opensourceconvention.githubpackages.publish"
         }
     }

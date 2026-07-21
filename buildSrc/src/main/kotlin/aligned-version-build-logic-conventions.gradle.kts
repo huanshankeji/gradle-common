@@ -1,4 +1,4 @@
-import com.huanshankeji.gitversioning.devCommitVersionProvider
+import com.huanshankeji.gitversioning.devCommitOrReleaseVersionProvider
 import org.jetbrains.kotlin.gradle.dsl.abi.ExperimentalAbiValidation
 
 plugins {
@@ -6,8 +6,7 @@ plugins {
     id("com.huanshankeji.team.dokka.github-dokka-convention")
 }
 
-// On the release branch, set `version = alignedPluginBaseVersion` explicitly.
-version = providers.devCommitVersionProvider(alignedPluginBaseVersion).get()
+version = providers.devCommitOrReleaseVersionProvider(alignedPluginBaseVersion, isRelease).get()
 
 kotlin {
     compilerOptions {

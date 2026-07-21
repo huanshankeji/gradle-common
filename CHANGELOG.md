@@ -13,15 +13,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `com.huanshankeji.base-settings-conventions` settings plugin (Foojay toolchain resolver convention) and `setProjectConcatenatedNames` settings helpers
 - Shared helpers (`VersionRegexes`, GitHub Packages credentials, team `Constants`, `MavenRepositoryContentFiltering`, …) extracted into `gradle-library` modules
 - `ConventionVersionRegexes` (incl. `forReleaseVersionRegex`) to configure exclusive-content version regexes on convention and open-source convention Maven repository APIs (defaults unchanged)
-- `isReleaseVersion` and `conventionalGitRef` (release → `v$version`, else commit hash) for Dokka source links
+- `isStandardReleaseVersion` and `conventionalGitRef` (release → `v$version`, else commit hash) for Dokka source links
 - Experimental `conventionMavenRepositories` overloads: one taking SNAPSHOT / `*-dev-commit-*` / release repository
   lists (so Maven local can be omitted from `*-dev-commit-*`), and a mid-level remote+release form reused by the
   open-source convention API
 - `com.huanshankeji.gitversioning.opensourceconvention.githubpackages.publish` (and team defaults wrapper
   `com.huanshankeji.team.gitversioning.opensourceconvention.githubpackages.publish`): GitHub Packages + Maven Central
   open-source publish convention; call required
-  `openSourceConventionGithubPackagesPublish.signAllPublicationsIfRelease(isRelease)` to enable signing on release and
-  to gate `publish` so non-release goes to GitHub Packages and release to Maven Central
+  `gitVersioningOpenSourceConventionGithubPackagesPublish.signAllPublicationsIfRelease(isRelease)` to enable signing
+  on release (both destinations stay configured; pick the publish task for the intended destination)
 - `ProviderFactory.devCommitOrReleaseVersionProvider(baseVersion, isRelease)` for explicit release vs `*-dev-commit-*`
   project versions
 

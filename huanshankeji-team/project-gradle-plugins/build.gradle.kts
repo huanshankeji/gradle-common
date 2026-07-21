@@ -25,8 +25,8 @@ gradlePlugin {
             "Open-source convention GitHub Packages + Maven Central publish (Huanshankeji defaults)",
             "Applies `com.huanshankeji.gitversioning.opensourceconvention.githubpackages.publish` " +
                     "and sets GitHub Packages owner/repository to the Huanshankeji team defaults. " +
-                    "Still call `openSourceConventionGithubPackagesPublish.signAllPublicationsIfRelease(isRelease)` " +
-                    "(signing + publish-destination gating)."
+                    "Still call `gitVersioningOpenSourceConventionGithubPackagesPublish.signAllPublicationsIfRelease(isRelease)` " +
+                    "(enables signing on release)."
         )
 
         scriptPlugin(
