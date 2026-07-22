@@ -15,7 +15,7 @@ jobs:
       contents: read
       packages: write
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - name: Set up JDKs and Gradle
         uses: huanshankeji/.github/actions/setup-javas-and-gradle@v0.4.1
