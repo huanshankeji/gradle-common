@@ -47,9 +47,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     project path may work for consumption only; rename consumption `projectId` parameters to `projectIdOrProjectPath`
     (publish plugins keep `projectId`)
 - Replace the `com.huanshankeji.team.github-packages-maven-publish` and `com.huanshankeji.team.default-github-packages-maven-publish` plugins with `com.huanshankeji.team.github.packages.maven.publish`
-- Replace kotlinx `binary-compatibility-validator` with Kotlin Gradle plugin `abiValidation()` on
-  `:kotlin-common:kotlin-common-project-gradle-plugins` and `:architecture-common-gradle-plugins` only (same scope as
-  root `build.gradle.kts` on `main`)
+- Replace kotlinx `binary-compatibility-validator` with Kotlin Gradle plugin `abiValidation()` via
+  `aligned-version-build-logic-conventions` (all modules using that convention, including `gradle-library` / team
+  modules)
 - Unify release publishing on the `release` branch (replacing `plugins-release` and `common-gradle-dependencies-release`)
 - Dogfood `com.huanshankeji.git-version` and `com.huanshankeji.team.dokka.github-dokka-convention` from `buildSrc` instead of inlined copies (#54, #60)
 - Remove the cross-version bootstrapping self-dependencies (#54)
@@ -57,7 +57,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - The plugin modules now depend on the `common-gradle-dependencies` project directly instead of a stale released version
   - Dependency versions/coordinates used by the build scripts are centralized in a single shared version catalog `gradle/libs.versions.toml`, shared by both the root build and `buildSrc`
   - Stop generating `GeneratedVersions` from `buildSrc`'s `DependencyVersions`; the versions are now declared directly in `CommonVersions` and kept in sync by hand with the shared version catalog (to be unified by #9)
-- Update Gradle to 9.6.0
+- Update Gradle to 9.6.1
 - Bump Kotlin to 2.4.0, including `CommonVersions` and `gradle-kotlin-dsl-plugins` 6.7.3 for build logic
 
 ### Deprecated

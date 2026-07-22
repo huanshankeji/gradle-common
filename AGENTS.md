@@ -13,7 +13,7 @@ This repository publishes Kotlin Gradle convention plugins and a shared dependen
 The APIs are experimental and may change. There are no end-user tutorials here; see [README.md](README.md) for status, version notes, and links to [API docs](https://huanshankeji.github.io/gradle-common/) and the [kotlin-common](https://github.com/huanshankeji/kotlin-common) example builds.
 
 **Toolchain:** JDK **17** (toolchain; CI uses Temurin 17 —
-see [.github/workflows/kotlin-jvm-ci.yml](.github/workflows/kotlin-jvm-ci.yml)). Gradle
+see [.github/workflows/ci.yml](.github/workflows/ci.yml)). Gradle
 version: [gradle/wrapper/gradle-wrapper.properties](gradle/wrapper/gradle-wrapper.properties). Build-logic Kotlin
 version: [buildSrc/settings.gradle.kts](buildSrc/settings.gradle.kts) (`plugins { kotlin("jvm") … apply false }`); keep
 in sync with [CommonVersions.kt](common-gradle-dependencies/src/main/kotlin/com/huanshankeji/CommonVersions.kt) —
@@ -95,8 +95,9 @@ Configuration cache is enabled ([gradle.properties](gradle.properties)). Expect 
 - **Plugin IDs:** `com.huanshankeji.<kebab-case-suffix>` or `com.huanshankeji.team.<suffix>`, registered in each module's `gradlePlugin` block.
 - **Naming:** kebab-case for plugin id suffixes and script file names; camelCase for Kotlin APIs. Match patterns in existing plugins and helpers in the same module.
 - **Internal API:** APIs meant for in-repo use are marked
-  `@GradleCommonInternalApi` ([GradleCommonInternalApi.kt](kotlin-common/project-gradle-plugins/src/main/kotlin/com/huanshankeji/GradleCommonInternalApi.kt));
-  plugin modules compile with `-opt-in=com.huanshankeji.InternalApi`.
+  `@GradleCommonInternalApi` ([GradleCommonInternalApi.kt](kotlin-common/gradle-library/src/main/kotlin/com/huanshankeji/GradleCommonInternalApi.kt));
+  plugin modules compile with `-opt-in=com.huanshankeji.GradleCommonInternalApi` and
+  `-opt-in=com.huanshankeji.GradleCommonExperimentalApi` (`InternalApi` is deprecated).
 - **Public ABI:** Binary compatibility is tracked via `api/*.api` files and `apiCheck` / `checkKotlinAbi`. Do not change public signatures casually; update dumps only when the ABI change is deliberate.
 - **Scope:** Keep changes minimal and localized. Match existing patterns in the module you touch. Do not add unrelated refactors, comments, or tests unless they support the task.
 - **Tests:** Limited coverage today (e.g. [ConcatenatedProjectNamesTest.kt](kotlin-common/project-gradle-plugins/src/test/kotlin/com/huanshankeji/ConcatenatedProjectNamesTest.kt)). Add tests when changing non-trivial logic; run `./gradlew check` before finishing.
