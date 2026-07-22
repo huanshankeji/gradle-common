@@ -9,69 +9,46 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Settings plugins in thin modules (`kotlin-common-settings-gradle-plugins`, `huanshankeji-team:settings-gradle-plugins`) so consumers are not forced to pull project-plugin runtime classpaths
-- `com.huanshankeji.base-settings-conventions` settings plugin (Foojay toolchain resolver convention) and `setProjectConcatenatedNames` settings helpers
-- Shared helpers (`VersionRegexes`, GitHub Packages credentials, team `Constants`, `MavenRepositoryContentFiltering`, …) extracted into `gradle-library` modules
-- `ConventionVersionRegexes` (incl. `forReleaseVersionRegex`) to configure exclusive-content version regexes on convention and open-source convention Maven repository APIs (defaults unchanged)
-- `isStandardReleaseVersion` and `conventionalGitRef` (release → `v$version`, else commit hash) for Dokka source links
-- Experimental `conventionMavenRepositories` overloads: one taking SNAPSHOT / `*-dev-commit-*` / release repository
-  lists (so Maven local can be omitted from `*-dev-commit-*`), and a mid-level remote+release form reused by the
-  open-source convention API
-- `com.huanshankeji.gitversioning.opensourceconvention.githubpackages.publish` (and team defaults wrapper
-  `com.huanshankeji.team.gitversioning.opensourceconvention.githubpackages.publish`): GitHub Packages + Maven Central
-  open-source publish convention; call required
-  `gitVersioningOpenSourceConventionGithubPackagesPublish.signAllPublicationsIfRelease(isRelease)` to enable signing
-  on release (both destinations stay configured; pick the publish task for the intended destination)
-- `ProviderFactory.devCommitOrReleaseVersionProvider(baseVersion, isRelease)` for explicit release vs `*-dev-commit-*`
-  project versions
+- Experimental git-versioning / exclusive-content Maven repository / Dokka source-link APIs: `ProviderFactory` Git helpers (`gitCommitHash`, `devCommitVersionProvider`, …), `devCommitOrReleaseVersionProvider(baseVersion, isRelease)`, `ConventionVersionRegexes` (incl. `forReleaseVersionRegex`), `conventionMavenRepositories` / open-source convention overloads (disjoint `exclusiveContent` filters so Maven Central does not resolve `*-dev-commit-*`), GitHub Packages and GitLab package-registry convention helpers, `isStandardReleaseVersion`, and `conventionalGitRef`
+- New context-parameter Maven registry APIs under `com.huanshankeji.github.packages.maven` and `com.huanshankeji.gitlab.packageregistry.maven`
+- `com.huanshankeji.gitversioning.opensourceconvention.githubpackages.publish`: GitHub Packages + Maven Central open-source publish; call required `gitVersioningOpenSourceConventionGithubPackagesPublish.signAllPublicationsIfRelease(isRelease)` to enable signing on release (both destinations stay configured; pick the publish task for the intended destination)
+- Thin settings-plugin module `kotlin-common-settings-gradle-plugins` so consumers are not forced to pull project-plugin runtime classpaths; `com.huanshankeji.base-settings-conventions` (Foojay toolchain resolver) and `setProjectConcatenatedNames`
 
 ### Changed
 
-- **Breaking:** build-logic module overhaul: reorganize into nested `kotlin-common/` and `huanshankeji-team/` directories with shared `gradle-library` modules, and update the published plugin/library artifact coordinates accordingly
-  - Split conventions into `gradle-library-conventions`, `project-gradle-plugins-conventions`, `settings-gradle-plugins-conventions`, `kotlin-common-module-conventions`, and `huanshankeji-team-module-conventions`
-  - `kotlin-common` subprojects use concatenated project names (CPN); `huanshankeji-team` keeps nested simple names
-- **Breaking (experimental):** git versioning / Maven exclusive-content / Dokka source-link APIs
-  - Move Git helpers and version providers from `Project` to `ProviderFactory` receivers (`gitCommitHash`, `devCommitVersionProvider`, `projectVersionFromGitProvider`, …); rename file facades `GitVersioningKt` → `DevCommitVersionKt` and `VersionKt` → `VersionMatchingKt` under `gitversioning`
-  - Prefer `devCommitOrReleaseVersionProvider(baseVersion, isRelease)` with an explicit `isRelease` flag (set `true` on
-    `release`)
-  - `defaultHuanshankejiGitlabPackageRegistryProjectEndpointConventionMavenRepositories` takes a literal Maven `group`
-    instead of `groupRegex`, and orders parameters as `projectName` then `group` (aligned with
-    `huanshankejiGithubPackagesOpenSourceMavenConventionProjectRepositories`'s `projectName` then `groupRegex`)
-  - Rename exclusive-content lambda parameters `exclusiveContentFilter` / `exclusiveContentFilterConfig` →
-    `filterConfig`
-  - Drop unused `extraAction` from `conventionMavenRepositories` /
-    `openSourceConventionMavenRepositories` repository-factory lambdas
-    (`RepositoryHandler.() -> MavenArtifactRepository`)
-  - Rename `githubDokkaConvention.commitOrTag` → `gitRef` (keep deprecated `commitOrTag` alias)
-  - Document GitLab Maven project-level endpoint IDs: numeric project ID required for publishing; URL-encoded full
-    project path may work for consumption only; rename consumption `projectId` parameters to `projectIdOrProjectPath`
-    (publish plugins keep `projectId`)
-- Replace the `com.huanshankeji.team.github-packages-maven-publish` and `com.huanshankeji.team.default-github-packages-maven-publish` plugins with `com.huanshankeji.team.github.packages.maven.publish`
-- Replace kotlinx `binary-compatibility-validator` with Kotlin Gradle plugin `abiValidation()` via
-  `aligned-version-build-logic-conventions` (all modules using that convention, including `gradle-library` / team
-  modules)
-- Unify release publishing on the `release` branch (replacing `plugins-release` and `common-gradle-dependencies-release`)
-- Dogfood `com.huanshankeji.git-version` and `com.huanshankeji.team.dokka.github-dokka-convention` from `buildSrc` instead of inlined copies (#54, #60)
-- Remove the cross-version bootstrapping self-dependencies (#54)
-  - `buildSrc` is now a multi-project build whose subprojects source-link the corresponding root modules' sources (`common-gradle-dependencies`, `kotlin-common/project-gradle-plugins`, `huanshankeji-team/project-gradle-plugins`) instead of depending on a stale released `com.huanshankeji.team:gradle-plugins`
-  - The plugin modules now depend on the `common-gradle-dependencies` project directly instead of a stale released version
-  - Dependency versions/coordinates used by the build scripts are centralized in a single shared version catalog `gradle/libs.versions.toml`, shared by both the root build and `buildSrc`
-  - Stop generating `GeneratedVersions` from `buildSrc`'s `DependencyVersions`; the versions are now declared directly in `CommonVersions` and kept in sync by hand with the shared version catalog (to be unified by #9)
+- **Breaking:** build-logic module overhaul: nested `kotlin-common/` with shared `gradle-library` modules; `kotlin-common` subprojects use concatenated project names (CPN); updated published artifact coordinates
 - Update Gradle to 9.6.1
 - Bump Kotlin to 2.4.0, including `CommonVersions` and `gradle-kotlin-dsl-plugins` 6.7.3 for build logic
 
 ### Deprecated
 
+- Project-receiver GitHub Packages / GitLab package-registry Maven helpers in `com.huanshankeji` (use `com.huanshankeji.github.packages.maven` / `com.huanshankeji.gitlab.packageregistry.maven`)
+
+### Team (for Huanshankeji's own team)
+
+#### Added
+
+- `com.huanshankeji.team.gitversioning.opensourceconvention.githubpackages.publish` team defaults wrapper for the open-source GitHub Packages + Maven Central publish convention
+- Thin settings-plugin module `huanshankeji-team:settings-gradle-plugins`
+
+#### Changed
+
+- Nested `huanshankeji-team/` layout with shared `gradle-library`; nested simple project names; `huanshankeji-team-module-conventions`
+- Rename `githubDokkaConvention.commitOrTag` → `gitRef`
+- Replace `com.huanshankeji.team.github-packages-maven-publish` and `com.huanshankeji.team.default-github-packages-maven-publish` with `com.huanshankeji.team.github.packages.maven.publish`
+
+#### Deprecated
+
 - `githubDokkaConvention.commitOrTag` (use `gitRef`)
 
-### Removed
+### Internal
 
-- Unused `DEV_COMMIT_AND_RELEASE_VERSION_REGEX` and the `Project`-receiver `isDevCommitVersion` / `isDirtyDevCommitVersion` overloads (keep the `String` predicates)
-- Inlined `GitVersion.kt`, `kotlin-abi-validation`, and `dokka-convention` copies from `buildSrc` now that `buildSrc` source-links the plugin module sources (#54, #60)
+#### Changed
 
-### Fixed
-
-- Exclusive-content version partitioning: split into multiple `exclusiveContent` blocks with disjoint `includeVersionByRegex` filters (filter lambdas now take a `versionRegex`) so Gradle no longer OR's the includes and Maven Central stops resolving `*-dev-commit-*`; the `conventionMavenRepositories` remote side is clean `*-dev-commit-*` + releases
+- Split build-logic conventions into `gradle-library-conventions`, `project-gradle-plugins-conventions`, `settings-gradle-plugins-conventions`, `kotlin-common-module-conventions`, and `huanshankeji-team-module-conventions`
+- Replace kotlinx `binary-compatibility-validator` with Kotlin Gradle plugin `abiValidation()` via `aligned-version-build-logic-conventions` (all modules using that convention)
+- Unify release publishing on the `release` branch (replacing `plugins-release` and `common-gradle-dependencies-release`)
+- Remove cross-version bootstrapping self-dependencies (#54, #60): `buildSrc` is a multi-project build whose subprojects source-link the corresponding root module sources; plugin modules depend on the `common-gradle-dependencies` project; shared `gradle/libs.versions.toml`; drop inlined `buildSrc` copies (`GitVersion.kt`, `kotlin-abi-validation`, `dokka-convention`); dogfood `com.huanshankeji.team.dokka.github-dokka-convention` and call `devCommitOrReleaseVersionProvider` directly; versions live in `CommonVersions` (kept in sync with the catalog by hand until #9)
 
 ## Outdated historical per-artifact change logs
 
