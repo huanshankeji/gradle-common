@@ -1,0 +1,28 @@
+public final class com/huanshankeji/team/ConstantsKt {
+	public static final field HUANSHANKEJI_GROUP Ljava/lang/String;
+	public static final field HUANSHANKEJI_GROUP_REGEX Ljava/lang/String;
+	public static final field HUANSHANKEJI_IN_LOWERCASE Ljava/lang/String;
+}
+
+public final class com/huanshankeji/team/artifacts/RepositoryKt {
+	public static final fun mavenCentralExcludingHuanshankeji (Lorg/gradle/api/artifacts/dsl/RepositoryHandler;)V
+}
+
+public final class com/huanshankeji/team/gitversioning/gitlabpackageregistry/RepositoryKt {
+	public static final fun defaultHuanshankejiGitlabPackageRegistryProjectEndpointConventionMavenRepositories (Lcom/huanshankeji/artifacts/MavenRepositoryHandlerContext;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/huanshankeji/gitversioning/ConventionVersionRegexes;)V
+	public static final fun defaultHuanshankejiGitlabPackageRegistryProjectEndpointConventionMavenRepositories (Lorg/gradle/api/provider/ProviderFactory;Lkotlin/jvm/functions/Function1;Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/huanshankeji/gitversioning/ConventionVersionRegexes;)V
+	public static synthetic fun defaultHuanshankejiGitlabPackageRegistryProjectEndpointConventionMavenRepositories$default (Lcom/huanshankeji/artifacts/MavenRepositoryHandlerContext;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/huanshankeji/gitversioning/ConventionVersionRegexes;ILjava/lang/Object;)V
+	public static synthetic fun defaultHuanshankejiGitlabPackageRegistryProjectEndpointConventionMavenRepositories$default (Lorg/gradle/api/provider/ProviderFactory;Lkotlin/jvm/functions/Function1;Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/huanshankeji/gitversioning/ConventionVersionRegexes;ILjava/lang/Object;)V
+	public static final fun huanshankejiGitlabPackageRegistryProjectEndpointConventionMavenRepositories (Lcom/huanshankeji/artifacts/MavenRepositoryHandlerContext;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/huanshankeji/gitversioning/ConventionVersionRegexes;)V
+	public static final fun huanshankejiGitlabPackageRegistryProjectEndpointConventionMavenRepositories (Lorg/gradle/api/provider/ProviderFactory;Lkotlin/jvm/functions/Function1;Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/huanshankeji/gitversioning/ConventionVersionRegexes;)V
+	public static synthetic fun huanshankejiGitlabPackageRegistryProjectEndpointConventionMavenRepositories$default (Lcom/huanshankeji/artifacts/MavenRepositoryHandlerContext;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/huanshankeji/gitversioning/ConventionVersionRegexes;ILjava/lang/Object;)V
+	public static synthetic fun huanshankejiGitlabPackageRegistryProjectEndpointConventionMavenRepositories$default (Lorg/gradle/api/provider/ProviderFactory;Lkotlin/jvm/functions/Function1;Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/huanshankeji/gitversioning/ConventionVersionRegexes;ILjava/lang/Object;)V
+}
+
+public final class com/huanshankeji/team/gitversioning/opensourcemavenconvention/githubpackages/RepositoryKt {
+	public static final fun huanshankejiGithubPackagesOpenSourceMavenConventionProjectRepositories (Lcom/huanshankeji/artifacts/MavenRepositoryHandlerContext;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/huanshankeji/gitversioning/ConventionVersionRegexes;)V
+	public static final fun huanshankejiGithubPackagesOpenSourceMavenConventionProjectRepositories (Lorg/gradle/api/provider/ProviderFactory;Lkotlin/jvm/functions/Function1;Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/huanshankeji/gitversioning/ConventionVersionRegexes;)V
+	public static synthetic fun huanshankejiGithubPackagesOpenSourceMavenConventionProjectRepositories$default (Lcom/huanshankeji/artifacts/MavenRepositoryHandlerContext;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/huanshankeji/gitversioning/ConventionVersionRegexes;ILjava/lang/Object;)V
+	public static synthetic fun huanshankejiGithubPackagesOpenSourceMavenConventionProjectRepositories$default (Lorg/gradle/api/provider/ProviderFactory;Lkotlin/jvm/functions/Function1;Lorg/gradle/api/artifacts/dsl/RepositoryHandler;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/huanshankeji/gitversioning/ConventionVersionRegexes;ILjava/lang/Object;)V
+}
+

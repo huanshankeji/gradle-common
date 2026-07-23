@@ -5,12 +5,8 @@ plugins {
     `kotlin-dsl` apply false
 }
 
-dependencies {
-    implementation(kotlin("gradle-plugin"))
-}
-
 // Source-link the `common-gradle-dependencies` sources so the build logic is compiled from
-// the current source instead of a stale released version (#54).
+// the current source instead of a stale released version.
 //
 // IMPORTANT: the source directory must be added BEFORE the `kotlin-dsl` plugin is applied,
 // because it reads the precompiled-script-plugin source directories eagerly at apply time

@@ -1,0 +1,15 @@
+plugins {
+    id("org.gradle.kotlin.kotlin-dsl")
+    id("com.huanshankeji.team.with-group")
+
+    id("com.gradle.plugin-publish")
+    id("com.huanshankeji.team.github.packages.maven.publish")
+}
+
+kotlin.jvmToolchain(17)
+
+gradlePlugin {
+    website.set(GITHUB_URL)
+    vcsUrl.set(GITHUB_GIT_URL)
+    plugins.all { tags.set(listOf("kotlin", "kotlin-multiplatform")) }
+}

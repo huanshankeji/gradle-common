@@ -1,15 +1,17 @@
+import com.huanshankeji.gitversioning.devCommitOrReleaseVersionProvider
+
 plugins {
-    conventions
+    `common-conventions`
 }
 
-version = commonGradleDependenciesVersion
+version = providers.devCommitOrReleaseVersionProvider(commonGradleDependenciesBaseVersion, isRelease).get()
 
 gradlePlugin {
     plugins {
-        scriptPlugin(
-            "com.huanshankeji",
+        commonScriptPlugin(
+            group as String,
             "common-gradle-dependencies-dummy-plugin",
-            "A dummy plugin defined to enable publishing the package to the Gradle Plugin Portal"
+            "A dummy plugin defined to enable publishing this module to the Gradle Plugin Portal"
         )
     }
 }

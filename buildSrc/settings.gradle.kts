@@ -1,7 +1,7 @@
 /*
 `buildSrc` is a multi-project build whose subprojects source-link the corresponding root
 modules' sources, so that the build logic is compiled from the current source instead of
-depending on stale released versions of this repository's plugins (#54). Mirroring the root
+depending on stale released versions of this repository's plugins. Mirroring the root
 module structure (rather than merging everything into one compilation) preserves the
 project/binary boundaries that the precompiled script plugins' type-safe accessors rely on.
 */
@@ -51,7 +51,7 @@ dependencyResolutionManagement {
         gradlePluginPortal()
     }
     // Register the root build's shared version catalog so the `buildSrc` build scripts can
-    // reference the same dependency versions/coordinates as the root build (#54).
+    // reference the same dependency versions/coordinates as the root build.
     versionCatalogs {
         create("libs") {
             from(files("../gradle/libs.versions.toml"))
@@ -59,8 +59,22 @@ dependencyResolutionManagement {
     }
 }
 
+/*
+kotlin-common subprojects use CPN child names (`kotlin-common-gradle-library`, …), not simple
+names (`gradle-library`, `project-gradle-plugins`). huanshankeji-team already uses those
+simple names under its own parent (`:huanshankeji-team:gradle-library`, …). Reusing the same
+child names under `:kotlin-common:` would give modules the same logical coordinates in the
+buildSrc project tree; precompiled-script accessor generation then fails to load cross-module
+kotlin-common helpers (e.g. `GithubPackagesMavenCredentials` from gradle-library) when team
+scripts apply kotlin-common plugins.
+*/
 include(
     "common-gradle-dependencies",
-    "kotlin-common-gradle-plugins",
-    "huanshankeji-team-gradle-plugins",
+    "kotlin-common:gradle-library",
+    "kotlin-common:project-gradle-plugins",
+    "huanshankeji-team:gradle-library",
+    "huanshankeji-team:project-gradle-plugins",
 )
+
+project(":kotlin-common:gradle-library").name = "kotlin-common-gradle-library"
+project(":kotlin-common:project-gradle-plugins").name = "kotlin-common-project-gradle-plugins"
