@@ -11,8 +11,6 @@ interface Extension {
 }
 
 val extension = extensions.create<Extension>("webFrontendConventions")
-// Deprecated alias kept so existing `defaultWebFrontendConventions { }` usage still works.
-extensions.add("defaultWebFrontendConventions", extension)
 
 kotlin {
     js {

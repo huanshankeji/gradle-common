@@ -24,7 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Deprecated
 
-- `com.huanshankeji.default-web-frontend-conventions` (use `com.huanshankeji.web-frontend-conventions`) and extension `defaultWebFrontendConventions` (use `webFrontendConventions`; the old extension name remains as an alias)
+- `com.huanshankeji.default-web-frontend-conventions` (use `com.huanshankeji.web-frontend-conventions`) and extension `defaultWebFrontendConventions` (use `webFrontendConventions`)
 - `com.huanshankeji.default-material-web-frontend-conventions` (use `com.huanshankeji.material-web-frontend-conventions`)
 - Project-receiver GitHub Packages / GitLab package-registry Maven helpers in `com.huanshankeji` (use `com.huanshankeji.github.packages.maven` / `com.huanshankeji.gitlab.packageregistry.maven`)
 - Separate per-artifact changelogs ([PLUGINS_CHANGELOG.md](PLUGINS_CHANGELOG.md), [COMMON_GRADLE_DEPENDENCIES_CHANGELOG.md](COMMON_GRADLE_DEPENDENCIES_CHANGELOG.md)); use this file going forward
