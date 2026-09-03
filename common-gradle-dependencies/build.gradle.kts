@@ -1,7 +1,7 @@
 import com.huanshankeji.gitversioning.devCommitOrReleaseVersionProvider
 
 plugins {
-    `common-conventions`
+    `base-conventions`
 }
 
 version = providers.devCommitOrReleaseVersionProvider(commonGradleDependenciesBaseVersion, isRelease).get()

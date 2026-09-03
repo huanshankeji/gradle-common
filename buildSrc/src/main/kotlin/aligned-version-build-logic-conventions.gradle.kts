@@ -2,7 +2,7 @@ import com.huanshankeji.gitversioning.devCommitOrReleaseVersionProvider
 import org.jetbrains.kotlin.gradle.dsl.abi.ExperimentalAbiValidation
 
 plugins {
-    id("common-conventions")
+    id("base-conventions")
     id("com.huanshankeji.team.dokka.github-dokka-convention")
 }
 
