@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- `com.huanshankeji.web-frontend-conventions` and `com.huanshankeji.material-web-frontend-conventions` (renamed from the `default-*` plugin IDs; `conventions` already implies the default)
 - Experimental git-versioning / exclusive-content Maven repository / Dokka source-link APIs: `ProviderFactory` Git helpers (`gitCommitHash`, `devCommitVersionProvider`, …), `devCommitOrReleaseVersionProvider(baseVersion, isRelease)`, `ConventionVersionRegexes` (incl. `forReleaseVersionRegex`), `conventionMavenRepositories` / open-source convention overloads (disjoint `exclusiveContent` filters so Maven Central does not resolve `*-dev-commit-*`), GitHub Packages and GitLab package-registry convention helpers, `isStandardReleaseVersion`, and `conventionalGitRef`
 - New context-parameter Maven registry APIs under `com.huanshankeji.github.packages.maven` and `com.huanshankeji.gitlab.packageregistry.maven`
 - `com.huanshankeji.gitversioning.opensourceconvention.githubpackages.publish`: GitHub Packages + Maven Central open-source publish; call required `gitVersioningOpenSourceConventionGithubPackagesPublish.signAllPublicationsIfRelease(isRelease)` to enable signing on release (both destinations stay configured; pick the publish task for the intended destination)
@@ -16,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- **Breaking:** rename the `defaultWebFrontendConventions` extension to `webFrontendConventions` (no alias)
 - **Breaking:** build-logic module overhaul: nested `kotlin-common/` with shared `gradle-library` modules; `kotlin-common` subprojects use concatenated project names (CPN); updated published artifact coordinates
 - Adapt this changelog to [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) 1.1.0 (#73)
 - Update Gradle to 9.6.1
@@ -23,6 +25,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Deprecated
 
+- `com.huanshankeji.default-web-frontend-conventions` (use `com.huanshankeji.web-frontend-conventions`)
+- `com.huanshankeji.default-material-web-frontend-conventions` (use `com.huanshankeji.material-web-frontend-conventions`)
 - Project-receiver GitHub Packages / GitLab package-registry Maven helpers in `com.huanshankeji` (use `com.huanshankeji.github.packages.maven` / `com.huanshankeji.gitlab.packageregistry.maven`)
 - Separate per-artifact changelogs ([PLUGINS_CHANGELOG.md](PLUGINS_CHANGELOG.md), [COMMON_GRADLE_DEPENDENCIES_CHANGELOG.md](COMMON_GRADLE_DEPENDENCIES_CHANGELOG.md)); use this file going forward
 
