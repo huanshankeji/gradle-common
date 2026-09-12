@@ -42,11 +42,11 @@ Root [settings.gradle.kts](settings.gradle.kts) includes all modules. `kotlin-co
 
 ### Adding or changing a Gradle feature
 
-Prefer **function APIs** over a new plugin unless a plugin is clearly necessary, is implemented with much simpler code, or is the conventional Gradle shape for that feature. Typical function APIs live on `ProviderFactory` / `providers` or other existing receivers.
-
 Use **modern Gradle APIs** and follow [Gradle’s general best practices](https://docs.gradle.org/current/userguide/best_practices_general.html).
 
-When a plugin is warranted:
+Prefer **function APIs** over a new plugin unless a plugin is clearly necessary, is implemented with much simpler code, or is the conventional Gradle shape for that feature. Typical function APIs live on `ProviderFactory` / `providers` or other existing receivers.
+
+When you add a plugin:
 
 1. Add or edit a `*.gradle.kts` script under the target module's `src/main/kotlin/com/huanshankeji/...` (or `*.settings.gradle.kts` for settings plugins in `kotlin-common/settings-gradle-plugins` / `huanshankeji-team/settings-gradle-plugins`).
 2. Register it in that module's `build.gradle.kts` (e.g., [kotlin-common/project-gradle-plugins/build.gradle.kts](kotlin-common/project-gradle-plugins/build.gradle.kts)) via `gradlePlugin { plugins { scriptPlugin(...) } }`.
