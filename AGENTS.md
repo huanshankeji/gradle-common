@@ -40,7 +40,11 @@ projects: [CommonVersions.kt](common-gradle-dependencies/src/main/kotlin/com/hua
 
 Root [settings.gradle.kts](settings.gradle.kts) includes all modules. `kotlin-common` subprojects use concatenated project names (CPN); `huanshankeji-team` keeps nested simple names. Version constants live in [buildSrc/src/main/kotlin/VersionsAndDependencies.kt](buildSrc/src/main/kotlin/VersionsAndDependencies.kt).
 
-### Adding or changing a plugin
+### Adding or changing a Gradle feature
+
+Prefer **function APIs** over a new plugin unless a plugin is clearly necessary, is implemented with much simpler code, or is the conventional Gradle shape for that feature. Typical function APIs live on `ProviderFactory` / `providers` or other existing receivers.
+
+When a plugin is warranted:
 
 1. Add or edit a `*.gradle.kts` script under the target module's `src/main/kotlin/com/huanshankeji/...` (or `*.settings.gradle.kts` for settings plugins in `kotlin-common/settings-gradle-plugins` / `huanshankeji-team/settings-gradle-plugins`).
 2. Register it in that module's `build.gradle.kts` (e.g., [kotlin-common/project-gradle-plugins/build.gradle.kts](kotlin-common/project-gradle-plugins/build.gradle.kts)) via `gradlePlugin { plugins { scriptPlugin(...) } }`.
@@ -97,6 +101,7 @@ Configuration cache is enabled ([gradle.properties](gradle.properties)). Expect 
   plugin modules compile with `-opt-in=com.huanshankeji.GradleCommonInternalApi` and
   `-opt-in=com.huanshankeji.GradleCommonExperimentalApi` (`InternalApi` is deprecated).
 - **Public ABI:** Binary compatibility is tracked via `api/*.api` files and `apiCheck` / `checkKotlinAbi`. Do not change public signatures casually; update dumps only when the ABI change is deliberate.
+- **Provider APIs:** Prefer lazy Gradle `Provider` / `Property` APIs for new wiring. If something cannot be fully lazy yet, accept a partial deferral rather than inventing a clever half-fix.
 - **Scope:** Keep changes minimal and localized. Match existing patterns in the module you touch. Do not add unrelated refactors, comments, or tests unless they support the task.
 - **Tests:** Limited coverage today (e.g. [ConcatenatedProjectNamesTest.kt](kotlin-common/project-gradle-plugins/src/test/kotlin/com/huanshankeji/ConcatenatedProjectNamesTest.kt)). Add tests when changing non-trivial logic; run `./gradlew check` before finishing.
 
