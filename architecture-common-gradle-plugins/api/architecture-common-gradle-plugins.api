@@ -48,6 +48,23 @@ public final class com/huanshankeji/OptInsKt {
 	public static final fun defaultOptIns (Lorg/jetbrains/kotlin/gradle/plugin/LanguageSettingsBuilder;)V
 }
 
+public final class com/huanshankeji/WebFrontendConventionsPlugin : org/gradle/api/Plugin {
+	public fun <init> ()V
+	public synthetic fun apply (Ljava/lang/Object;)V
+	public fun apply (Lorg/gradle/api/Project;)V
+}
+
+public final class com/huanshankeji/Web_frontend_conventions_gradle : org/gradle/kotlin/dsl/precompile/v1/PrecompiledProjectScript {
+	public fun <init> (Lorg/gradle/api/Project;Lorg/gradle/api/Project;)V
+	public final fun getExtension ()Lcom/huanshankeji/Web_frontend_conventions_gradle$Extension;
+	public final fun getGeneratedResourcesFile ()Ljava/io/File;
+	public static final fun main ([Ljava/lang/String;)V
+}
+
+public abstract interface class com/huanshankeji/Web_frontend_conventions_gradle$Extension {
+	public abstract fun getHtmlGenerationProjectPath ()Lorg/gradle/api/provider/Property;
+}
+
 public final class com/huanshankeji/jvm/native/osandarch/CpuArchitecture : java/lang/Enum {
 	public static final field Aarch64 Lcom/huanshankeji/jvm/native/osandarch/CpuArchitecture;
 	public static final field X8664 Lcom/huanshankeji/jvm/native/osandarch/CpuArchitecture;

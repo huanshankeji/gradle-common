@@ -22,13 +22,19 @@ gradlePlugin {
             commonScriptPlugin(`package`, idSuffix, displayName, description)
 
         scriptPlugin(
+            "web-frontend-conventions",
+            "Web frontend conventions for our projects with Compose for Web and kotlinx.html HTML generation"
+        )
+        scriptPlugin(
             "default-web-frontend-conventions",
-            "Default web frontend conventions for our projects with Compose for Web and kotlinx.html HTML generation"
+            "Default web frontend conventions for our projects with Compose for Web and kotlinx.html HTML generation " +
+                    "(deprecated, replaced by `com.huanshankeji.web-frontend-conventions`)"
         )
         // TODO
         scriptPlugin(
             "default-material-web-frontend-conventions",
-            "(not implemented yet) Default web frontend conventions for our projects with Compose for Web, kotlinx.html HTML generation, and Material Design"
+            "(not implemented yet) Default web frontend conventions for our projects with Compose for Web, kotlinx.html HTML generation, and Material Design " +
+                    "(deprecated, no longer used or needed)"
         )
 
         scriptPlugin(
