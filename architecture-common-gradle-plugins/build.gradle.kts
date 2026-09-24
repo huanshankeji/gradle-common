@@ -32,13 +32,9 @@ gradlePlugin {
         )
         // TODO
         scriptPlugin(
-            "material-web-frontend-conventions",
-            "(not implemented yet) Material web frontend conventions for our projects with Compose for Web, kotlinx.html HTML generation, and Material Design"
-        )
-        scriptPlugin(
             "default-material-web-frontend-conventions",
             "(not implemented yet) Default web frontend conventions for our projects with Compose for Web, kotlinx.html HTML generation, and Material Design " +
-                    "(deprecated, replaced by `com.huanshankeji.material-web-frontend-conventions`)"
+                    "(deprecated, no longer used or needed)"
         )
 
         scriptPlugin(
