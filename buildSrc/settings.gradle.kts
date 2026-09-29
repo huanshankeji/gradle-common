@@ -12,7 +12,7 @@ plugins {
     `gradle/libs.versions.toml` when that entry is uncommented).
     */
     // https://kotlinlang.org/docs/releases.html
-    kotlin("jvm") version "2.4.0" apply false
+    kotlin("jvm") version "2.4.20" apply false
 }
 
 // alternative approach
@@ -22,7 +22,7 @@ buildscript {
         gradlePluginPortal()
     }
     dependencies {
-        classpath(kotlin("gradle-plugin", "2.4.0"))
+        classpath(kotlin("gradle-plugin", "2.4.20"))
     }
 }
 */
@@ -40,7 +40,7 @@ pluginManagement {
         gradlePluginPortal()
     }
     plugins {
-        kotlin("jvm") version "2.4.0"
+        kotlin("jvm") version "2.4.20"
     }
 }
 */

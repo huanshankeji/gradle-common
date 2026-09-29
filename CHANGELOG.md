@@ -19,8 +19,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - **Breaking:** build-logic module overhaul: nested `kotlin-common/` with shared `gradle-library` modules; `kotlin-common` subprojects use concatenated project names (CPN); updated published artifact coordinates
 - Adapt this changelog to [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) 1.1.0 (#73)
-- Update Gradle to 9.6.1
-- Bump Kotlin to 2.4.0, including `CommonVersions` and `gradle-kotlin-dsl-plugins` 6.7.3 for build logic
+- Update Gradle to 9.8.0
+- Bump Kotlin to 2.4.20, including `CommonVersions` and `gradle-kotlin-dsl-plugins` 6.7.11 for build logic
 
 ### Deprecated
 
@@ -39,6 +39,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 #### Changed
 
 - Nested `huanshankeji-team/` layout with shared `gradle-library`; nested simple project names; `huanshankeji-team-module-conventions`
+- Kotlin 2.4.20 ABI dump includes `DefaultImpls` for the deprecated `githubDokkaConvention.commitOrTag` getter
 - Rename `githubDokkaConvention.commitOrTag` → `gitRef`
 - Replace `com.huanshankeji.team.github-packages-maven-publish` and `com.huanshankeji.team.default-github-packages-maven-publish` with `com.huanshankeji.team.github.packages.maven.publish`
 
