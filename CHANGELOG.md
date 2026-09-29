@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Dokka convention plugin (`com.huanshankeji.dokka.dokka-convention`) shows the project version and Git commit hash in generated HTML (#16)
 - `com.huanshankeji.web-frontend-conventions` (renamed from `com.huanshankeji.default-web-frontend-conventions`; `conventions` already implies the default)
 - Experimental git-versioning / exclusive-content Maven repository / Dokka source-link APIs: `ProviderFactory` Git helpers (`gitCommitHash`, `devCommitVersionProvider`, …), `devCommitOrReleaseVersionProvider(baseVersion, isRelease)`, `ConventionVersionRegexes` (incl. `forReleaseVersionRegex`), `conventionMavenRepositories` / open-source convention overloads (disjoint `exclusiveContent` filters so Maven Central does not resolve `*-dev-commit-*`), GitHub Packages and GitLab package-registry convention helpers, `isStandardReleaseVersion`, and `conventionalGitRef`
 - New context-parameter Maven registry APIs under `com.huanshankeji.github.packages.maven` and `com.huanshankeji.gitlab.packageregistry.maven`

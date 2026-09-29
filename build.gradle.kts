@@ -1,7 +1,12 @@
+import com.huanshankeji.gitversioning.devCommitOrReleaseVersionProvider
+
 plugins {
     id("com.huanshankeji.root-project-conventions")
     id("org.jetbrains.dokka")
+    id("com.huanshankeji.team.dokka.github-dokka-convention")
 }
+
+version = providers.devCommitOrReleaseVersionProvider(alignedPluginBaseVersion, isRelease).get()
 
 evaluationDependsOnChildren()
 /*
