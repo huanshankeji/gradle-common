@@ -17,15 +17,16 @@ class GenerateKotlinJsBrowserWebrootTest {
         backend.pluginManager.apply("java")
         backend.pluginManager.apply("com.huanshankeji.generate-kotlin-js-browser-webroot-for-vertx-web")
 
-        val syncTask = assertNotNull(
-            backend.tasks.findByName("syncJsBrowserDistributionToResourcesWebroot")
-        )
+        assertNotNull(backend.tasks.findByName("syncJsBrowserDistributionToResourcesWebroot"))
 
         val extension =
             backend.extensions.getByType(Generate_kotlin_js_browser_webroot_for_vertx_web_gradle.Extension::class.java)
         extension.webFrontendProjectPath.set(frontend.path)
 
-        val sync = syncTask as Sync
-        assertEquals(1, sync.source.files.size)
+        val sync = backend.tasks.named("syncJsBrowserDistributionToResourcesWebroot", Sync::class.java).get()
+        assertEquals(
+            setOf("jsBrowserDistribution"),
+            sync.taskDependencies.getDependencies(sync).mapTo(mutableSetOf()) { it.name }
+        )
     }
 }

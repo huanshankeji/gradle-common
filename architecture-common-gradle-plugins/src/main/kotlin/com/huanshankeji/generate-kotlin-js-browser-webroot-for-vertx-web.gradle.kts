@@ -17,19 +17,20 @@ interface Extension {
 
 val extension = extensions.create<Extension>("generateKotlinJsResources")
 
-val browserDistributionResourcesDirectory = layout.buildDirectory.dir("browserDistributionResources")
-
-val syncJsBrowserDistributionToResourcesWebroot = tasks.register<Sync>("syncJsBrowserDistributionToResourcesWebroot") {
+tasks.register<Sync>("syncJsBrowserDistributionToResourcesWebroot") {
     from(extension.webFrontendProjectPath.flatMap { path ->
         project(path).tasks.named("jsBrowserDistribution")
     })
     //if (extension.production.get())
     extension.includes.getOrNull()?.let { include(it) }
-    into(browserDistributionResourcesDirectory.map { it.dir(extension.webRoot.getOrElse("webroot")) })
+    into(layout.buildDirectory.dir("browserDistributionResources").map { it.dir(extension.webRoot.getOrElse("webroot")) })
 }
 
 pluginManager.withPlugin("java") {
     sourceSets.main {
-        resources.srcDir(files(browserDistributionResourcesDirectory).builtBy(syncJsBrowserDistributionToResourcesWebroot))
+        resources.srcDir(
+            files(layout.buildDirectory.dir("browserDistributionResources"))
+                .builtBy(tasks.named("syncJsBrowserDistributionToResourcesWebroot"))
+        )
     }
 }

@@ -4,6 +4,7 @@ import com.huanshankeji.benchmark.KotlinxBenchmarkConventionsExtension
 import com.huanshankeji.github.packages.maven.GITHUB_PACKAGES_DEFAULT_REPOSITORY_NAME
 import kotlinx.benchmark.gradle.BenchmarksExtension
 import org.gradle.api.Project
+import org.gradle.api.ProjectConfigurationException
 import org.gradle.api.artifacts.repositories.MavenArtifactRepository
 import org.gradle.api.internal.project.ProjectInternal
 import org.gradle.api.publish.PublishingExtension
@@ -88,8 +89,9 @@ class AfterEvaluateReplacementTest {
         val project = project()
         project.pluginManager.apply("com.huanshankeji.benchmark.kotlinx-benchmark-jvm-conventions")
 
-        val error = assertFailsWith<IllegalStateException> { project.evaluate() }
-        assertTrue(error.message!!.contains("sourceSetType"))
+        val error = assertFailsWith<ProjectConfigurationException> { project.evaluate() }
+        val cause = generateSequence(error.cause) { it.cause }.first { it is IllegalStateException }
+        assertTrue(cause.message!!.contains("sourceSetType"))
     }
 
     @Test
