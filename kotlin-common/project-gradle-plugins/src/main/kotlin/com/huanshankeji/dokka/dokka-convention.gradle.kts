@@ -18,7 +18,7 @@ dokka {
     // Lazy: version is often set after this plugin is applied.
     moduleVersion.convention(
         versionStringProvider().zip(providers.gitCommitHash()) { version, hash ->
-            "$version ($hash)"
+            if (hash in version) version else "$version ($hash)"
         }
     )
     pluginsConfiguration.named<DokkaHtmlPluginParameters>("html") {
