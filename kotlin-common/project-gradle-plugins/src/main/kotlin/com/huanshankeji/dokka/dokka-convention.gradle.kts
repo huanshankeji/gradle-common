@@ -17,9 +17,8 @@ val extension = extensions.create<DokkaConventionExtension>("dokkaConvention")
  * `footerMessage` is rendered into each module's pages, so the same text shows
  * when this plugin is applied on the documented modules.
  */
-val versionAndCommitHash = dokkaVersionAndCommitHash()
-
 dokka {
+    val versionAndCommitHash = dokkaVersionAndCommitHash()
     moduleVersion.convention(versionAndCommitHash)
     pluginsConfiguration.getByName<DokkaHtmlPluginParameters>(DokkaHtmlPluginParameters.DOKKA_HTML_PARAMETERS_NAME)
         .footerMessage.convention(versionAndCommitHash)
