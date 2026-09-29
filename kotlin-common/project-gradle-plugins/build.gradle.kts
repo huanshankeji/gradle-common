@@ -80,8 +80,9 @@ gradlePlugin {
             scriptPlugin(
                 "benchmark.kotlinx-benchmark-jvm-conventions",
                 "kotlinx-benchmark conventions for Kotlin JVM",
-                "Applies the kotlinx-benchmark and `allopen` plugins, adds the kotlinx-benchmark dependencies, " +
-                        "and registers a separate `benchmarks` source set that depends on `main` by default."
+                "Applies the kotlinx-benchmark and `allopen` plugins. " +
+                        "Call required `kotlinxBenchmarkConventions.sourceSetType(...)` " +
+                        "(`RegisterSeparate` for a `benchmarks` source set that depends on `main`, or `Main`)."
             )
             scriptPlugin(
                 "benchmark.kotlinx-benchmark-multiplatform-conventions",

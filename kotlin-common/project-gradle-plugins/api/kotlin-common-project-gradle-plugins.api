@@ -204,8 +204,9 @@ public final class com/huanshankeji/VersionsAndDependenciesKt {
 	public static final fun getCommonVersions ()Lcom/huanshankeji/CommonVersions;
 }
 
-public abstract interface class com/huanshankeji/benchmark/KotlinxBenchmarkConventionsExtension {
-	public abstract fun getSourceSetType ()Lorg/gradle/api/provider/Property;
+public abstract class com/huanshankeji/benchmark/KotlinxBenchmarkConventionsExtension {
+	public fun <init> ()V
+	public final fun sourceSetType (Lcom/huanshankeji/SourceSetType;)V
 }
 
 public final class com/huanshankeji/benchmark/KotlinxBenchmarkConventionsExtensionKt {

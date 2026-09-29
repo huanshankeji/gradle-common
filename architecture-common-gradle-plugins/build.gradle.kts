@@ -13,6 +13,8 @@ dependencies {
      enabling it to always depend on a release version. */
 
     // implementation(commonGradleClasspathDependencies.composeMultiplatform.gradlePlugin.pluginProject()) // bootstrapping
+
+    testImplementation(kotlin("test"))
 }
 
 gradlePlugin {

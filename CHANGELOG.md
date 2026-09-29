@@ -18,6 +18,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - **Breaking:** build-logic module overhaul: nested `kotlin-common/` with shared `gradle-library` modules; `kotlin-common` subprojects use concatenated project names (CPN); updated published artifact coordinates
+- **Breaking:** `com.huanshankeji.benchmark.kotlinx-benchmark-jvm-conventions` no longer reads `sourceSetType` in `afterEvaluate`. Call `kotlinxBenchmarkConventions.sourceSetType(...)` after applying (`RegisterSeparate` is the previous implicit default; `Main` registers the `main` source set). `KotlinxBenchmarkConventionsExtension.sourceSetType` is now a function, not a `Property` (#59)
+- Replace configuration-time `afterEvaluate` with lazy `Provider` repository URLs in the deprecated `com.huanshankeji.github-packages-maven-publish` and `com.huanshankeji.gitlab-project-level-maven-endpoint-publish` plugins (same pattern as the replacement plugins) (#59)
+- `com.huanshankeji.generate-kotlin-js-browser-webroot-for-vertx-web` registers the sync task lazily instead of in `afterEvaluate` (#59)
+- `com.huanshankeji.benchmark.kotlinx-benchmark-multiplatform-conventions` registers benchmark targets with `kotlin.targets.configureEach` instead of `afterEvaluate` (#59)
 - Adapt this changelog to [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) 1.1.0 (#73)
 - Update Gradle to 9.6.1
 - Bump Kotlin to 2.4.0, including `CommonVersions` and `gradle-kotlin-dsl-plugins` 6.7.3 for build logic

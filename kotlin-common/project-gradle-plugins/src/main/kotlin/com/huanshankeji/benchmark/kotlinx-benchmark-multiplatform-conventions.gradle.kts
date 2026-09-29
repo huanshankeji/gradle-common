@@ -1,7 +1,7 @@
 package com.huanshankeji.benchmark
 
 import com.huanshankeji.commonDependencies
-import org.gradle.kotlin.dsl.invoke
+import org.jetbrains.kotlin.gradle.plugin.KotlinPlatformType
 
 plugins {
     kotlin("multiplatform")
@@ -12,7 +12,7 @@ plugins {
 /*
 There are 2 reasons creating a benchmark(s) module is not supported:
 1. I didn't find an official way to add a `commonBenchmarks` compilation and make it depend on `commonMain;
-1. The benchmark targets are added in `afterEvaluate` so benchmark(s) module dependencies can't be added.
+1. The kotlinx-benchmark plugin materializes benchmark tasks in `afterEvaluate`, so benchmark(s) module dependencies can't be added.
  */
 
 /*
@@ -26,11 +26,11 @@ kotlin.sourceSets.commonMain {
     }
 }
 
-afterEvaluate {
-    benchmark {
-        targets {
-            kotlin.targets.forEach { register(it.name) }
-        }
+benchmark {
+    val benchmarkTargets = targets
+    kotlin.targets.configureEach {
+        if (platformType != KotlinPlatformType.common)
+            benchmarkTargets.register(name)
     }
 }
 

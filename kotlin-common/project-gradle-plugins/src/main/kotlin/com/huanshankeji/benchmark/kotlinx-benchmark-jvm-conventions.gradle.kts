@@ -12,10 +12,7 @@ plugins {
 }
 
 val extension = extensions.createKotlinxBenchmarkConventionsExtension()
-
-afterEvaluate {
-    val sourceSetType = extension.sourceSetType.getOrElse(RegisterSeparate)
-
+extension.applySourceSetType = { sourceSetType ->
     val MAIN = "main"
     val BENCHMAKRS = "benchmarks"
 
@@ -45,8 +42,13 @@ afterEvaluate {
             )
         }
     }
+}
 
-    allOpen {
-        annotation("org.openjdk.jmh.annotations.State")
-    }
+// Fail-fast validation only. See https://docs.gradle.org/current/userguide/best_practices_general.html#when_afterevaluate_may_still_be_appropriate.
+afterEvaluate {
+    extension.ensureSourceSetTypeCalled()
+}
+
+allOpen {
+    annotation("org.openjdk.jmh.annotations.State")
 }

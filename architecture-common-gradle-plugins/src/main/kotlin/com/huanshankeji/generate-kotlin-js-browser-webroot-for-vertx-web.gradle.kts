@@ -17,25 +17,18 @@ interface Extension {
 
 val extension = extensions.create<Extension>("generateKotlinJsResources")
 
-afterEvaluate {
-    val frontendProject = project(extension.webFrontendProjectPath.get())
-    val jsBrowserDistribution by frontendProject.tasks.getting(Sync::class)
-    /*val jsBrowserWebpack by lazy {
-        tasks.getByPath(
-            extension.webFrontendProjectPath.get() +
-                    if (extension.production.get()) ":jsBrowserProductionWebpack" else ":jsBrowserDevelopmentWebpack"
-        ) as KotlinWebpack
-    }*/
-    val browserDistributionResourcesDirectory = layout.buildDirectory.get().dir("browserDistributionResources")
+val browserDistributionResourcesDirectory = layout.buildDirectory.dir("browserDistributionResources")
 
-    val syncJsBrowserDistributionToResourcesWebroot by tasks.registering(Sync::class) {
-        //dependsOn(jsBrowserDistribution)
-        from(jsBrowserDistribution)
-        //if (extension.production.get())
-        extension.includes.getOrNull()?.let { include(it) }
-        into(browserDistributionResourcesDirectory.dir(extension.webRoot.getOrElse("webroot")))
-    }
+val syncJsBrowserDistributionToResourcesWebroot = tasks.register<Sync>("syncJsBrowserDistributionToResourcesWebroot") {
+    from(extension.webFrontendProjectPath.flatMap { path ->
+        project(path).tasks.named("jsBrowserDistribution")
+    })
+    //if (extension.production.get())
+    extension.includes.getOrNull()?.let { include(it) }
+    into(browserDistributionResourcesDirectory.map { it.dir(extension.webRoot.getOrElse("webroot")) })
+}
 
+pluginManager.withPlugin("java") {
     sourceSets.main {
         resources.srcDir(files(browserDistributionResourcesDirectory).builtBy(syncJsBrowserDistributionToResourcesWebroot))
     }
