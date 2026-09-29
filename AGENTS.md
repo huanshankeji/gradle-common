@@ -118,6 +118,9 @@ Configuration cache is enabled ([gradle.properties](gradle.properties)). Expect 
   as plugins.
 - Release branch: `release` publishes to the Gradle Plugin Portal (`publishPlugins`); all other branches publish to GitHub Packages.
 - Release notes: [CHANGELOG.md](CHANGELOG.md) (single change log for all published artifacts going forward).
+  Follow [Keep a Changelog 1.1.0](https://keepachangelog.com/en/1.1.0/): under each version, use only
+  `Added`, `Changed`, `Deprecated`, `Removed`, `Fixed`, and `Security`. Nest team-only or in-repo notes
+  under those types (`#### Team`, `#### Internal`).
 - Outdated per-artifact change logs (historical releases only): [PLUGINS_CHANGELOG.md](PLUGINS_CHANGELOG.md), [COMMON_GRADLE_DEPENDENCIES_CHANGELOG.md](COMMON_GRADLE_DEPENDENCIES_CHANGELOG.md).
 
 When bumping dependency versions, update `CommonVersions` (and `gradle/libs.versions.toml` where applicable) and note the change in [CHANGELOG.md](CHANGELOG.md) if the release is user-visible.
