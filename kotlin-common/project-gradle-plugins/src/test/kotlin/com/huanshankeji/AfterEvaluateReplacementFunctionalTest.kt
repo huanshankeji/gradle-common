@@ -34,11 +34,11 @@ class AfterEvaluateReplacementFunctionalTest {
 
             tasks.register("assertConventions") {
                 doLast {
-                    val sourceSetNames = extensions.getByType(org.gradle.api.tasks.SourceSetContainer::class.java).names
+                    val sourceSetNames = project.extensions.getByType(org.gradle.api.tasks.SourceSetContainer::class.java).names
                     check("benchmarks" in sourceSetNames) { "source sets: ${'$'}sourceSetNames" }
-                    val runtime = configurations.getByName("benchmarksImplementation").dependencies
+                    val runtime = project.configurations.getByName("benchmarksImplementation").dependencies
                     check(runtime.any { it.name == "kotlinx-benchmark-runtime" }) { runtime.map { it.name } }
-                    val targets = extensions.getByType(kotlinx.benchmark.gradle.BenchmarksExtension::class.java).targets.names
+                    val targets = project.extensions.getByType(kotlinx.benchmark.gradle.BenchmarksExtension::class.java).targets.names
                     check("benchmarks" in targets) { "targets: ${'$'}targets" }
                 }
             }
@@ -61,11 +61,11 @@ class AfterEvaluateReplacementFunctionalTest {
 
             tasks.register("assertConventions") {
                 doLast {
-                    val sourceSetNames = extensions.getByType(org.gradle.api.tasks.SourceSetContainer::class.java).names
+                    val sourceSetNames = project.extensions.getByType(org.gradle.api.tasks.SourceSetContainer::class.java).names
                     check("benchmarks" !in sourceSetNames) { "source sets: ${'$'}sourceSetNames" }
-                    val runtime = configurations.getByName("implementation").dependencies
+                    val runtime = project.configurations.getByName("implementation").dependencies
                     check(runtime.any { it.name == "kotlinx-benchmark-runtime" }) { runtime.map { it.name } }
-                    val targets = extensions.getByType(kotlinx.benchmark.gradle.BenchmarksExtension::class.java).targets.names
+                    val targets = project.extensions.getByType(kotlinx.benchmark.gradle.BenchmarksExtension::class.java).targets.names
                     check("main" in targets) { "targets: ${'$'}targets" }
                 }
             }
@@ -102,7 +102,7 @@ class AfterEvaluateReplacementFunctionalTest {
 
             tasks.register("assertConventions") {
                 doLast {
-                    val targets = extensions.getByType(kotlinx.benchmark.gradle.BenchmarksExtension::class.java).targets.names
+                    val targets = project.extensions.getByType(kotlinx.benchmark.gradle.BenchmarksExtension::class.java).targets.names
                     check("jvm" in targets) { "targets: ${'$'}targets" }
                 }
             }
@@ -146,7 +146,7 @@ class AfterEvaluateReplacementFunctionalTest {
 
             tasks.register("assertRepositories") {
                 doLast {
-                    val publishing = extensions.getByType(org.gradle.api.publish.PublishingExtension::class.java)
+                    val publishing = project.extensions.getByType(org.gradle.api.publish.PublishingExtension::class.java)
                     val github = publishing.repositories.getByName("GitHubPackages") as org.gradle.api.artifacts.repositories.MavenArtifactRepository
                     check(github.url.toString() == "https://maven.pkg.github.com/huanshankeji/gradle-common") { github.url }
                     val gitlab = publishing.repositories.getByName("GitLab") as org.gradle.api.artifacts.repositories.MavenArtifactRepository

@@ -18,7 +18,7 @@ allOpen {
     annotation("org.openjdk.jmh.annotations.State")
 }
 
-fun configureConventions() {
+private fun configureConventions() {
     val sourceSetType = extension.sourceSetType.get()
 
     val MAIN = "main"
@@ -54,13 +54,13 @@ fun configureConventions() {
 
 /*
 `sourceSetType` is set in the build script after this plugin is applied, and it chooses which source set
-to create. That cannot be wired as a lazy `Property`. kotlinx-benchmark creates the `benchmark` task at the
-start of its own `afterEvaluate`, before `benchmark.targets` is materialized — late enough to see the
-build script's value, and early enough to register the target before materialization.
+to create. That cannot be wired as a lazy `Property`. kotlinx-benchmark realizes `benchmark.configurations`
+inside its `afterEvaluate` before materializing `benchmark.targets`, which is late enough to see the
+build script's value and early enough to register the target before materialization.
  */
-var conventionsConfigured = false
-tasks.configureEach {
-    if (!conventionsConfigured && name == "benchmark") {
+private var conventionsConfigured = false
+benchmark.configurations.configureEach {
+    if (!conventionsConfigured) {
         conventionsConfigured = true
         configureConventions()
     }
