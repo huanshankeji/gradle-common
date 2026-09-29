@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - New context-parameter Maven registry APIs under `com.huanshankeji.github.packages.maven` and `com.huanshankeji.gitlab.packageregistry.maven`
 - `com.huanshankeji.gitversioning.opensourceconvention.githubpackages.publish`: GitHub Packages + Maven Central open-source publish; call required `gitVersioningOpenSourceConventionGithubPackagesPublish.signAllPublicationsIfRelease(isRelease)` to enable signing on release (both destinations stay configured; pick the publish task for the intended destination)
 - Thin settings-plugin module `kotlin-common-settings-gradle-plugins` so consumers are not forced to pull project-plugin runtime classpaths; `com.huanshankeji.base-settings-conventions` (Foojay toolchain resolver) and `setProjectConcatenatedNames`
+- `com.huanshankeji.dokka.dokka-convention` shows the project version and Git commit hash in generated Dokka HTML (`moduleVersion` and the HTML footer) (#16)
 
 ### Changed
 

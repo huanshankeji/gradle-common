@@ -92,7 +92,10 @@ gradlePlugin {
 
         scriptPlugin(
             "dokka.dokka-convention",
-            "Dokka convention plugin"
+            "Dokka convention plugin",
+            "Source links plus project version and Git commit hash in the generated HTML. " +
+                    "Apply on the aggregating project as well (the root that runs dokkaGeneratePublicationHtml). " +
+                    "Set the project version before generation; the plugin reads it lazily."
         )
         scriptPlugin(
             "root-project-conventions",
