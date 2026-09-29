@@ -26,10 +26,11 @@ kotlin.sourceSets.commonMain {
     }
 }
 
-afterEvaluate {
+kotlin.targets.all {
+    val targetName = name
     benchmark {
         targets {
-            kotlin.targets.forEach { register(it.name) }
+            register(targetName)
         }
     }
 }

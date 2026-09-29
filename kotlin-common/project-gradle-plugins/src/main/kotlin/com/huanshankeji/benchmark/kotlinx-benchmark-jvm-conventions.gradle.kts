@@ -12,9 +12,14 @@ plugins {
 }
 
 val extension = extensions.createKotlinxBenchmarkConventionsExtension()
+extension.sourceSetType.convention(RegisterSeparate)
 
-afterEvaluate {
-    val sourceSetType = extension.sourceSetType.getOrElse(RegisterSeparate)
+allOpen {
+    annotation("org.openjdk.jmh.annotations.State")
+}
+
+fun configureConventions() {
+    val sourceSetType = extension.sourceSetType.get()
 
     val MAIN = "main"
     val BENCHMAKRS = "benchmarks"
@@ -45,8 +50,18 @@ afterEvaluate {
             )
         }
     }
+}
 
-    allOpen {
-        annotation("org.openjdk.jmh.annotations.State")
+/*
+`sourceSetType` is set in the build script after this plugin is applied, and it chooses which source set
+to create. That cannot be wired as a lazy `Property`. kotlinx-benchmark creates the `benchmark` task at the
+start of its own `afterEvaluate`, before `benchmark.targets` is materialized — late enough to see the
+build script's value, and early enough to register the target before materialization.
+ */
+var conventionsConfigured = false
+tasks.configureEach {
+    if (!conventionsConfigured && name == "benchmark") {
+        conventionsConfigured = true
+        configureConventions()
     }
 }

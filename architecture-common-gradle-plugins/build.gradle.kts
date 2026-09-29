@@ -6,6 +6,9 @@ dependencies {
     implementation(project(":kotlin-common:kotlin-common-project-gradle-plugins"))
     implementation(libs.bundles.architectureCommonGradlePlugins.implementation)
 
+    testImplementation(kotlin("test"))
+    testImplementation(gradleTestKit())
+
     //api(project(":common-gradle-dependencies"))
     //implementation(project(":common-gradle-dependencies"))
     /* This project depends on a specific version of the Maven dependency of "common-gradle-dependencies"

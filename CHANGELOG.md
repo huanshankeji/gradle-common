@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Replace `Project.afterEvaluate` configuration with lazy providers and domain-object callbacks (#59). `com.huanshankeji.gitversioning.opensourceconvention.githubpackages.publish` still uses `afterEvaluate` to fail configuration when `signAllPublicationsIfRelease` was not called
 - **Breaking:** build-logic module overhaul: nested `kotlin-common/` with shared `gradle-library` modules; `kotlin-common` subprojects use concatenated project names (CPN); updated published artifact coordinates
 - Adapt this changelog to [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) 1.1.0 (#73)
 - Update Gradle to 9.6.1
