@@ -23,7 +23,8 @@ gradlePlugin {
         )
         scriptPlugin(
             "kotlin-multiplatform-conventional-targets",
-            "Kotlin Multiplatform conventions with the conventional targets JVM, JS (browser), iOS (`iosX64`, `iosArm64`, and `iosSimulatorArm64`), and Wasm JS"
+            "Kotlin Multiplatform conventions with the conventional targets JVM, JS (browser), and iOS (`iosArm64` and `iosSimulatorArm64`) " +
+                    "(deprecated, replaced by `com.huanshankeji.kotlin-multiplatform-js-browser-conventions` plus project-declared JVM/iOS targets)"
         )
 
         scriptPlugin(

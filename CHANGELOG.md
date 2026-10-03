@@ -24,6 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Deprecated
 
+- `com.huanshankeji.kotlin-multiplatform-conventional-targets` (use `com.huanshankeji.kotlin-multiplatform-js-browser-conventions` and declare JVM and iOS targets in the project)
 - `com.huanshankeji.default-web-frontend-conventions` (use `com.huanshankeji.web-frontend-conventions`; the old plugin keeps its own implementation and the `defaultWebFrontendConventions` extension)
 - `com.huanshankeji.default-material-web-frontend-conventions` (no longer used or needed)
 - Project-receiver GitHub Packages / GitLab package-registry Maven helpers in `com.huanshankeji` (use `com.huanshankeji.github.packages.maven` / `com.huanshankeji.gitlab.packageregistry.maven`)
