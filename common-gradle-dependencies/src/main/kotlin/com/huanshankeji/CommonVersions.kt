@@ -33,7 +33,7 @@ class CommonVersions(
     // https://docs.junit.org/6.0.0/release-notes/, https://github.com/junit-team/junit-framework/releases
     val orgJunit: String = "5.14.0", // JUnit 5 actually // JUnit 6 requires Java 17
     // https://github.com/kotest/kotest/releases
-    val kotest: String = "6.0.4",
+    val kotest: String = "6.2.6",
     // https://jdbc.postgresql.org/changelogs/, https://github.com/pgjdbc/pgjdbc/releases
     val postgreSql: String = "42.7.8",
     // https://github.com/qos-ch/slf4j/tags
