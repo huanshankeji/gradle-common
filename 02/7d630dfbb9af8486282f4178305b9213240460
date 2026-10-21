@@ -1,0 +1,21 @@
+buildSrc/src/main/kotlin/VersionsAndDependencies.kt
+  s_e9c6096bd2e7f1::t_05fef195e067a4 5
+common-gradle-dependencies/src/main/kotlin/com/huanshankeji/CommonVersions.kt
+  s_e9c6096bd2e7f1::t_a0f50edaaa5aec 36
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "027d630dfbb9af8486282f4178305b9213240460",
+  "prompts": {},
+  "sessions": {
+    "s_e9c6096bd2e7f1": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1593c-8322-7c92-bef2-8e4190aae095",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Yongshun Ye <shreckye@gmail.com>"
+    }
+  }
+}
