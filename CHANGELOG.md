@@ -19,7 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - **Breaking:** build-logic module overhaul: nested `kotlin-common/` with shared `gradle-library` modules; `kotlin-common` subprojects use concatenated project names (CPN); updated published artifact coordinates
 - Adapt this changelog to [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) 1.1.0 (#73)
-- Update Gradle to 9.8.1 and replace deprecated Kotlin DSL container delegates with explicit lookups and task registration
+- Update Gradle to 9.8.2 and replace deprecated Kotlin DSL container delegates with explicit lookups and task registration
 - Bump Kotlin to 2.4.21, including `CommonVersions` and `gradle-kotlin-dsl-plugins` 6.7.13 for build logic; track the compiler-generated `GithubDokkaConventionExtension.DefaultImpls` compatibility bridge in the ABI reference
 
 ### Deprecated
