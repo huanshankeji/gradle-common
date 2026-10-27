@@ -21,7 +21,7 @@ dokka = "2.2.0"
 vanniktech-mavenPublish = "0.36.0"
 benManes-gradleVersionsPlugin = "0.54.0"
 # Gradle build-logic tooling
-# Kotlin 2.4.21 requires newer Kotlin DSL tooling than Gradle 9.8.1 bundles; see README.
+# Kotlin 2.4.21 requires newer Kotlin DSL tooling than Gradle 9.8.2 bundles; see README.
 gradle-kotlinDslPlugins = "6.7.13"
 # https://plugins.gradle.org/plugin/com.gradle.plugin-publish
 gradle-pluginPublishPlugin = "2.0.0"

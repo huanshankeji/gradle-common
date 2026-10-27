@@ -11,15 +11,15 @@ This library currently mainly serves our use, and the APIs are experimental and 
 
 ## Gradle version and Kotlin version
 
-See [gradle/wrapper/gradle-wrapper.properties](gradle/wrapper/gradle-wrapper.properties) for the Gradle wrapper version and [buildSrc/settings.gradle.kts](buildSrc/settings.gradle.kts) (Kotlin Gradle plugin `apply false` registration) for the Kotlin version used to compile build logic and plugin sources — keep it in sync with [CommonVersions.kt](common-gradle-dependencies/src/main/kotlin/com/huanshankeji/CommonVersions.kt). These versions are tested against and used by us (`./gradlew check`). There might be compatibility issues when you use other versions of Gradle or Kotlin, especially versions with different [MAJOR](https://semver.org/) versions.
+See [gradle/wrapper/gradle-wrapper.properties](gradle/wrapper/gradle-wrapper.properties) for the Gradle wrapper version and [buildSrc/settings.gradle.kts](buildSrc/settings.gradle.kts) (Kotlin Gradle plugin `apply false` registration) for the Kotlin version used to compile build logic and plugin sources. These versions are tested against and used by us (`./gradlew check`). There might be compatibility issues when you use other versions of Gradle or Kotlin, especially versions with different [MAJOR](https://semver.org/) versions.
 
 This library is currently based on **Gradle 9**. There might be compatibility issues with lower versions of Gradle.
 
 ### Build-logic Kotlin vs Gradle's embedded Kotlin
 
-Gradle's `kotlin-dsl` plugin (used in `buildSrc`) ships with an **embedded Kotlin** version (Kotlin **2.4.10** on Gradle **9.8.2**). We intentionally compile build logic and precompiled script plugins with a **newer and possibly latest Kotlin Gradle plugin** (currently **2.4.21**, pinned in `buildSrc/settings.gradle.kts`) instead of relying on that embedded version.
+Gradle **9.8.2** embeds Kotlin **2.4.10** to compile ordinary build scripts, including `buildSrc/build.gradle.kts` and module `build.gradle.kts` files. Applying a different Kotlin Gradle plugin does not replace that script compiler. We intentionally compile build-logic sources and precompiled script plugins with a **newer and possibly latest Kotlin Gradle plugin** (currently **2.4.21**, pinned in `buildSrc/settings.gradle.kts`) instead of relying on that embedded version.
 
-Gradle warns that mixing `kotlin-dsl` with a different Kotlin Gradle plugin version is unsupported. We accept that warning; `./gradlew check` passes with it. Example (safe to ignore):
+Gradle warns that mixing `kotlin-dsl` with a different Kotlin Gradle plugin version is unsupported. This mismatch is intentional and passes our current checks (`./gradlew check`). Example:
 
 ```
 WARNING: Unsupported Kotlin plugin version.
@@ -27,7 +27,7 @@ The `embedded-kotlin` and `kotlin-dsl` plugins rely on features of Kotlin `2.4.1
 Using the `kotlin-dsl` plugin together with a different Kotlin version (for example, by using the Kotlin Gradle plugin (`kotlin(jvm)`)) in the same project is not recommended.
 ```
 
-The bundled Kotlin DSL plugin pins Kotlin stdlib 2.4.10 strictly, which conflicts with the 2.4.21 compiler classpath during precompiled script accessor generation. The newer Kotlin DSL tooling in the version catalog is required for this combination.
+This is a tested exception to Gradle's expected tooling combination, not a general compatibility guarantee. Details of this repository's tooling override and upgrade instructions for maintainers are under [Developer notices](#kotlin-and-gradle-upgrades).
 
 See also [Gradle: Kotlin DSL plugin](https://docs.gradle.org/current/userguide/kotlin_dsl.html#sec:kotlin-dsl_plugin).
 
@@ -76,3 +76,11 @@ Please note that this project often has breaking/incompatible changes, and the G
 ## Developer notices
 
 1. IntelliJ IDEA doesn't work well with applying plugins to script plugins in project sources. If a script plugin's code does not resolve, try restarting IntelliJ IDEA.
+
+### Kotlin and Gradle upgrades
+
+Keep the build-logic Kotlin version in [buildSrc/settings.gradle.kts](buildSrc/settings.gradle.kts) in sync with [CommonVersions.kt](common-gradle-dependencies/src/main/kotlin/com/huanshankeji/CommonVersions.kt).
+
+Gradle 9.8.2's expected Kotlin DSL plugin (6.7.6) pins Kotlin stdlib 2.4.10 strictly, which conflicts with the 2.4.21 compiler classpath during precompiled script accessor generation. We override it with Kotlin DSL tooling 6.7.13 in [the version catalog](gradle/libs.versions.toml), which pins stdlib 2.4.21. See [Build-logic Kotlin vs Gradle's embedded Kotlin](#build-logic-kotlin-vs-gradles-embedded-kotlin) for the distinction between the embedded script compiler and the compiler used for build-logic sources.
+
+Compatibility must be revalidated when upgrading Gradle or Kotlin. Validate a representative downstream build as well as this repository's checks (`./gradlew check`), and remove the tooling override once Gradle's expected tooling supports the chosen Kotlin version.
