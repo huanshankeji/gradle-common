@@ -19,7 +19,7 @@ val extension = extensions.create<Extension>("generateKotlinJsResources")
 
 afterEvaluate {
     val frontendProject = project(extension.webFrontendProjectPath.get())
-    val jsBrowserDistribution by frontendProject.tasks.getting(Sync::class)
+    val jsBrowserDistribution = frontendProject.tasks.getByName<Sync>("jsBrowserDistribution")
     /*val jsBrowserWebpack by lazy {
         tasks.getByPath(
             extension.webFrontendProjectPath.get() +
@@ -28,7 +28,7 @@ afterEvaluate {
     }*/
     val browserDistributionResourcesDirectory = layout.buildDirectory.get().dir("browserDistributionResources")
 
-    val syncJsBrowserDistributionToResourcesWebroot by tasks.registering(Sync::class) {
+    val syncJsBrowserDistributionToResourcesWebroot = tasks.register<Sync>("syncJsBrowserDistributionToResourcesWebroot") {
         //dependsOn(jsBrowserDistribution)
         from(jsBrowserDistribution)
         //if (extension.production.get())

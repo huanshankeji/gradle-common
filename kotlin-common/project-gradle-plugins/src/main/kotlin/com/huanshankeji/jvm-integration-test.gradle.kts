@@ -14,10 +14,10 @@ sourceSets {
     }
 }
 
-val intTestImplementation by configurations.getting {
+val intTestImplementation = configurations.getByName("intTestImplementation") {
     extendsFrom(configurations.implementation.get())
 }
-val intTestRuntimeOnly by configurations.getting
+val intTestRuntimeOnly = configurations.getByName("intTestRuntimeOnly")
 
 configurations["intTestRuntimeOnly"].extendsFrom(configurations.runtimeOnly.get())
 
