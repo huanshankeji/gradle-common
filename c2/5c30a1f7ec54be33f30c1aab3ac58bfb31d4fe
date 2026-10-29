@@ -1,0 +1,30 @@
+gradle/wrapper/gradle-wrapper.properties
+  h_6630c9ca8bc8dc 4
+gradle/libs.versions.toml
+  s_dafc7855c9960b::t_3d2948f499e266 24
+README.md
+  s_dafc7855c9960b::t_42d463948a1a52 14,22
+  s_dafc7855c9960b::t_1987a5cd6b852f 30,79-86
+  s_dafc7855c9960b::t_88619435835168 20
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "c25c30a1f7ec54be33f30c1aab3ac58bfb31d4fe",
+  "prompts": {},
+  "humans": {
+    "h_6630c9ca8bc8dc": {
+      "author": "Yongshun Ye <shreckye@gmail.com>"
+    }
+  },
+  "sessions": {
+    "s_dafc7855c9960b": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a17ce5-1f01-7af1-bcfb-c1a8ae8cff0a",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Yongshun Ye <shreckye@gmail.com>"
+    }
+  }
+}
