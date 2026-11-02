@@ -12,13 +12,8 @@ plugins {
 /*
 There are 2 reasons creating a benchmark(s) module is not supported:
 1. I didn't find an official way to add a `commonBenchmarks` compilation and make it depend on `commonMain;
-1. The benchmark targets are added in `afterEvaluate` so benchmark(s) module dependencies can't be added.
+1. The upstream benchmark plugin configures compilations after project evaluation so benchmark(s) module dependencies can't be added.
  */
-
-/*
-val extension = extensions.createKotlinxBenchmarkConventionsExtension()
-val sourceSetType = extension.sourceSetType.getOrElse(RegisterSeparate)
-*/
 
 kotlin.sourceSets.commonMain {
     dependencies {
@@ -26,12 +21,8 @@ kotlin.sourceSets.commonMain {
     }
 }
 
-afterEvaluate {
-    benchmark {
-        targets {
-            kotlin.targets.forEach { register(it.name) }
-        }
-    }
+kotlin.targets.all {
+    benchmark.targets.register(name)
 }
 
 allOpen {

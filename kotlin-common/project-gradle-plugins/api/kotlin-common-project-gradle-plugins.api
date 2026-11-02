@@ -204,18 +204,15 @@ public final class com/huanshankeji/VersionsAndDependenciesKt {
 	public static final fun getCommonVersions ()Lcom/huanshankeji/CommonVersions;
 }
 
-public abstract interface class com/huanshankeji/benchmark/KotlinxBenchmarkConventionsExtension {
-	public abstract fun getSourceSetType ()Lorg/gradle/api/provider/Property;
-}
-
-public final class com/huanshankeji/benchmark/KotlinxBenchmarkConventionsExtensionKt {
-	public static final fun createKotlinxBenchmarkConventionsExtension (Lorg/gradle/api/plugins/ExtensionContainer;)Lcom/huanshankeji/benchmark/KotlinxBenchmarkConventionsExtension;
-}
-
 public final class com/huanshankeji/benchmark/KotlinxBenchmarkJvmConventionsPlugin : org/gradle/api/Plugin {
 	public fun <init> ()V
 	public synthetic fun apply (Ljava/lang/Object;)V
 	public fun apply (Lorg/gradle/api/Project;)V
+}
+
+public final class com/huanshankeji/benchmark/KotlinxBenchmarkJvmKt {
+	public static final fun configureKotlinxBenchmarkJvm (Lorg/gradle/api/Project;Lcom/huanshankeji/SourceSetType;)V
+	public static synthetic fun configureKotlinxBenchmarkJvm$default (Lorg/gradle/api/Project;Lcom/huanshankeji/SourceSetType;ILjava/lang/Object;)V
 }
 
 public final class com/huanshankeji/benchmark/KotlinxBenchmarkMultiplatformConventionsPlugin : org/gradle/api/Plugin {
@@ -226,7 +223,6 @@ public final class com/huanshankeji/benchmark/KotlinxBenchmarkMultiplatformConve
 
 public final class com/huanshankeji/benchmark/Kotlinx_benchmark_jvm_conventions_gradle : org/gradle/kotlin/dsl/precompile/v1/PrecompiledProjectScript {
 	public fun <init> (Lorg/gradle/api/Project;Lorg/gradle/api/Project;)V
-	public final fun getExtension ()Lcom/huanshankeji/benchmark/KotlinxBenchmarkConventionsExtension;
 	public static final fun main ([Ljava/lang/String;)V
 }
 

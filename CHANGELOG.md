@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Replace deferred publishing, benchmark, and JS webroot configuration with providers and container callbacks (#59). JVM benchmark conventions now create `benchmarks` immediately; **breaking:** replace `kotlinxBenchmarkConventions.sourceSetType` with `configureKotlinxBenchmarkJvm(SourceSetType.Main)` (instead of applying the JVM benchmark convention plugin) when benchmarking `main`.
 - **Breaking:** build-logic module overhaul: nested `kotlin-common/` with shared `gradle-library` modules; `kotlin-common` subprojects use concatenated project names (CPN); updated published artifact coordinates
 - Adapt this changelog to [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) 1.1.0 (#73)
 - Update Gradle to 9.8.2 and replace deprecated Kotlin DSL container delegates with explicit lookups and task registration
