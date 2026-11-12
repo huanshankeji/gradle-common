@@ -9,7 +9,6 @@ dependencies {
     api(libs.bundles.kotlinCommonProjectGradlePlugins.api)
 
     testImplementation(kotlin("test"))
-    testImplementation(gradleTestKit())
 }
 
 gradlePlugin {

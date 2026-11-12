@@ -13,6 +13,7 @@ import org.jetbrains.kotlin.allopen.gradle.AllOpenExtension
 /**
  * Configures JVM benchmarks immediately, so the selected source set is available to the build script.
  * Call once instead of applying the JVM benchmark convention plugin when selecting [Main].
+ * Apply `org.jetbrains.kotlinx.benchmark` in `plugins {}` if the build script also needs its Kotlin DSL accessors.
  */
 fun Project.configureKotlinxBenchmarkJvm(sourceSetType: SourceSetType = RegisterSeparate) {
     pluginManager.apply("org.jetbrains.kotlin.jvm")

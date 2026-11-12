@@ -1,7 +1,5 @@
 package com.huanshankeji
 
-import com.huanshankeji.gitlab.packageregistry.maven.GITLAB_COM_HOST
-import com.huanshankeji.gitlab.packageregistry.maven.gitlabPackageRegistryProjectLevelEndpointMavenRepository
 import com.huanshankeji.publish.publishing
 
 // This plugin is deprecated and can be removed directly in the future.
@@ -28,15 +26,15 @@ interface Extension {
 
 val extension = extensions.create<Extension>("gitlabPackagesPublish")
 
-publishing {
-    repositories {
-        context(providers, ::uri) {
-            gitlabPackageRegistryProjectLevelEndpointMavenRepository(
-                hostProvider = extension.host.orElse(GITLAB_COM_HOST),
-                projectIdOrProjectPathProvider = extension.projectId,
-            ) {
-                name = "GitLab"
-            }
+afterEvaluate {
+    publishing {
+        repositories {
+            @Suppress("DEPRECATION")
+            gitlabProjectLevelMavenRepository(
+                this,
+                host = extension.host.getOrElse(GITLAB_HOST),
+                projectIdOrProjectPath = extension.projectId.get(),
+            )
         }
     }
 }
