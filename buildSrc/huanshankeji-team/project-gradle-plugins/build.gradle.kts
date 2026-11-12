@@ -13,6 +13,7 @@ dependencies {
     // the team plugins configure via type-safe accessors (compiled across this project boundary).
     api(project(":kotlin-common:kotlin-common-project-gradle-plugins"))
     api(project(":huanshankeji-team:gradle-library"))
+    implementation(libs.dokka.gradlePlugin)
 }
 
 // Source-link the `huanshankeji-team/project-gradle-plugins` sources.

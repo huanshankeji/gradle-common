@@ -35,4 +35,10 @@ extensions.create<GithubDokkaConventionExtension>("githubDokkaConvention").apply
     dokkaConvention {
         this.sourceLinkRemoteUrlRoot.set(sourceLinkRemoteUrlRoot)
     }
+
+    dokka {
+        pluginsConfiguration.html {
+            footerMessage.convention(gitRef)
+        }
+    }
 }
