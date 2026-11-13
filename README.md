@@ -13,13 +13,13 @@ This library currently mainly serves our use, and the APIs are experimental and 
 
 See [gradle/wrapper/gradle-wrapper.properties](gradle/wrapper/gradle-wrapper.properties) for the Gradle wrapper version and [buildSrc/settings.gradle.kts](buildSrc/settings.gradle.kts) (Kotlin Gradle plugin `apply false` registration) for the Kotlin version used to compile build logic and plugin sources. These versions are tested against and used by us (`./gradlew check`). There might be compatibility issues when you use other versions of Gradle or Kotlin, especially versions with different [MAJOR](https://semver.org/) versions.
 
-This library requires **Gradle 9.9 or later** for the `ProviderFactory.present` API.
+This library is currently based on **Gradle 9**. There might be compatibility issues with lower versions of Gradle.
 
 ### Build-logic Kotlin vs Gradle's embedded Kotlin
 
-Gradle **9.9.1** embeds Kotlin **2.4.21** to compile ordinary build scripts, including `buildSrc/build.gradle.kts` and module `build.gradle.kts` files. Applying a different Kotlin Gradle plugin does not replace that script compiler. The Kotlin Gradle plugin used to compile build-logic sources and precompiled script plugins is pinned separately in `buildSrc/settings.gradle.kts`, currently to the same **2.4.21** version.
+Gradle uses its embedded Kotlin compiler for ordinary build scripts, including `buildSrc/build.gradle.kts` and module `build.gradle.kts` files. The Kotlin Gradle plugin used to compile build-logic sources and precompiled script plugins is pinned separately in [buildSrc/settings.gradle.kts](buildSrc/settings.gradle.kts). Applying it does not replace Gradle's script compiler.
 
-The embedded and build-logic Kotlin versions now match, so the previous unsupported-version warning and Kotlin DSL tooling override are no longer needed. Upgrade instructions for maintainers are under [Developer notices](#kotlin-and-gradle-upgrades).
+The versions may match or differ as Gradle and Kotlin are upgraded independently. Gradle's Kotlin-version mismatch warnings are safe to ignore; validate the chosen combination with `./gradlew check` after upgrades. Upgrade instructions for maintainers are under [Developer notices](#kotlin-and-gradle-upgrades).
 
 See also [Gradle: Kotlin DSL plugin](https://docs.gradle.org/current/userguide/kotlin_dsl.html#sec:kotlin-dsl_plugin).
 
@@ -73,6 +73,6 @@ Please note that this project often has breaking/incompatible changes, and the G
 
 Keep the build-logic Kotlin version in [buildSrc/settings.gradle.kts](buildSrc/settings.gradle.kts) in sync with [CommonVersions.kt](common-gradle-dependencies/src/main/kotlin/com/huanshankeji/CommonVersions.kt).
 
-The Kotlin DSL tooling dependency (6.7.13) in [the version catalog](gradle/libs.versions.toml) matches Gradle 9.9.1's expected version and Kotlin stdlib 2.4.21. The dependency supplies the `kotlin-dsl` plugin applied by the precompiled build conventions; it no longer overrides Gradle's expected tooling. See [Build-logic Kotlin vs Gradle's embedded Kotlin](#build-logic-kotlin-vs-gradles-embedded-kotlin) for the distinction between the embedded script compiler and the compiler used for build-logic sources.
+The Kotlin DSL tooling dependency in [the version catalog](gradle/libs.versions.toml) supplies the `kotlin-dsl` plugin applied by the precompiled build conventions. Its version may match or differ from Gradle's expected tooling, depending on the selected build-logic Kotlin version. See [Build-logic Kotlin vs Gradle's embedded Kotlin](#build-logic-kotlin-vs-gradles-embedded-kotlin) for the distinction between the embedded script compiler and the compiler used for build-logic sources.
 
-Compatibility must be revalidated when upgrading Gradle or Kotlin. Validate a representative downstream build as well as this repository's checks (`./gradlew check`), and keep the Kotlin DSL tooling dependency aligned with Gradle's expected version when it supports the chosen Kotlin version.
+Compatibility must be revalidated when upgrading Gradle or Kotlin. Validate a representative downstream build as well as this repository's checks (`./gradlew check`), and adjust the Kotlin DSL tooling dependency if needed.
