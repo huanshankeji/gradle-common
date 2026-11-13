@@ -17,17 +17,9 @@ This library is currently based on **Gradle 9**. There might be compatibility is
 
 ### Build-logic Kotlin vs Gradle's embedded Kotlin
 
-Gradle **9.8.2** embeds Kotlin **2.4.10** to compile ordinary build scripts, including `buildSrc/build.gradle.kts` and module `build.gradle.kts` files. Applying a different Kotlin Gradle plugin does not replace that script compiler. We intentionally compile build-logic sources and precompiled script plugins with a **newer and possibly latest Kotlin Gradle plugin** (currently **2.4.21**, pinned in `buildSrc/settings.gradle.kts`) instead of relying on that embedded version.
+Gradle uses its embedded Kotlin compiler for ordinary build scripts, including `buildSrc/build.gradle.kts` and module `build.gradle.kts` files. The Kotlin Gradle plugin used to compile build-logic sources and precompiled script plugins is pinned separately in [buildSrc/settings.gradle.kts](buildSrc/settings.gradle.kts). Applying it does not replace Gradle's script compiler.
 
-Gradle warns that mixing `kotlin-dsl` with a different Kotlin Gradle plugin version is unsupported. This mismatch is intentional and passes our current checks (`./gradlew check`). Example:
-
-```
-WARNING: Unsupported Kotlin plugin version.
-The `embedded-kotlin` and `kotlin-dsl` plugins rely on features of Kotlin `2.4.10` that might work differently than in the requested version `2.4.21`.
-Using the `kotlin-dsl` plugin together with a different Kotlin version (for example, by using the Kotlin Gradle plugin (`kotlin(jvm)`)) in the same project is not recommended.
-```
-
-This is a tested exception to Gradle's expected tooling combination, not a general compatibility guarantee. Details of this repository's tooling override and upgrade instructions for maintainers are under [Developer notices](#kotlin-and-gradle-upgrades).
+The versions may match or differ as Gradle and Kotlin are upgraded independently. Gradle's Kotlin-version mismatch warnings are safe to ignore; validate the chosen combination with `./gradlew check` after upgrades. Upgrade instructions for maintainers are under [Developer notices](#kotlin-and-gradle-upgrades).
 
 See also [Gradle: Kotlin DSL plugin](https://docs.gradle.org/current/userguide/kotlin_dsl.html#sec:kotlin-dsl_plugin).
 
@@ -81,6 +73,6 @@ Please note that this project often has breaking/incompatible changes, and the G
 
 Keep the build-logic Kotlin version in [buildSrc/settings.gradle.kts](buildSrc/settings.gradle.kts) in sync with [CommonVersions.kt](common-gradle-dependencies/src/main/kotlin/com/huanshankeji/CommonVersions.kt).
 
-Gradle 9.8.2's expected Kotlin DSL plugin (6.7.6) pins Kotlin stdlib 2.4.10 strictly, which conflicts with the 2.4.21 compiler classpath during precompiled script accessor generation. We override it with Kotlin DSL tooling 6.7.13 in [the version catalog](gradle/libs.versions.toml), which pins stdlib 2.4.21. See [Build-logic Kotlin vs Gradle's embedded Kotlin](#build-logic-kotlin-vs-gradles-embedded-kotlin) for the distinction between the embedded script compiler and the compiler used for build-logic sources.
+The Kotlin DSL tooling dependency in [the version catalog](gradle/libs.versions.toml) supplies the `kotlin-dsl` plugin applied by the precompiled build conventions. Its version may match or differ from Gradle's expected tooling, depending on the selected build-logic Kotlin version. See [Build-logic Kotlin vs Gradle's embedded Kotlin](#build-logic-kotlin-vs-gradles-embedded-kotlin) for the distinction between the embedded script compiler and the compiler used for build-logic sources.
 
-Compatibility must be revalidated when upgrading Gradle or Kotlin. Validate a representative downstream build as well as this repository's checks (`./gradlew check`), and remove the tooling override once Gradle's expected tooling supports the chosen Kotlin version.
+Compatibility must be revalidated when upgrading Gradle or Kotlin. Validate a representative downstream build as well as this repository's checks (`./gradlew check`), and adjust the Kotlin DSL tooling dependency if needed.

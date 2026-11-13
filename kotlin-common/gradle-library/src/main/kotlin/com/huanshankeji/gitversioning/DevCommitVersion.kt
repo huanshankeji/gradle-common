@@ -27,7 +27,7 @@ fun ProviderFactory.devCommitOrReleaseVersionProvider(
     baseVersion: String,
     isRelease: Boolean,
 ): Provider<String> =
-    if (isRelease) provider { baseVersion }
+    if (isRelease) present(baseVersion)
     else devCommitVersionProvider(baseVersion)
 
 /**
@@ -46,7 +46,7 @@ fun ProviderFactory.projectVersionFromGitProvider(
         .map { it.toBoolean() }
         .orElse(false)
     return forceRelease.flatMap { forceRelease ->
-        if (forceRelease) provider { baseVersion }
+        if (forceRelease) present(baseVersion)
         else isReleaseBranch(releaseBranch).flatMap { isReleaseBranch ->
             devCommitOrReleaseVersionProvider(baseVersion, isReleaseBranch)
         }
