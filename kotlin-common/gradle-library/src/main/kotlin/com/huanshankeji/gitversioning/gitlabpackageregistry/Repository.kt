@@ -29,8 +29,8 @@ fun RepositoryHandler.gitlabPackageRegistryProjectLevelEndpointConventionMavenRe
     conventionMavenRepositories(
         {
             gitlabPackageRegistryProjectLevelEndpointMavenRepository(
-                providers.provider { host },
-                providers.provider { projectIdOrProjectPath },
+                providers.present(host),
+                providers.present(projectIdOrProjectPath),
             )
         },
         versionRegexes,

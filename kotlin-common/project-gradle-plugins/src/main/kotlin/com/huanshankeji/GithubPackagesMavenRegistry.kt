@@ -19,8 +19,8 @@ fun Project.githubPackagesMavenRegistrySetUrlAndCredentials(
 ) =
     context(providers, ::uri) {
         mavenArtifactRepository.githubPackagesSetUrlAndCredentials(
-            provider { owner },
-            provider { repository }
+            providers.present(owner),
+            providers.present(repository)
         )
     }
 
@@ -28,7 +28,7 @@ fun Project.githubPackagesMavenRegistrySetUrlAndCredentials(
 fun Project.repositoriesAddGithubPackagesMavenRegistry(owner: String, repository: String) =
     repositories {
         context(providers, ::uri) {
-            githubPackagesMavenRegistry(provider { owner }, provider { repository })
+            githubPackagesMavenRegistry(providers.present(owner), providers.present(repository))
         }
     }
 
@@ -41,7 +41,7 @@ fun Project.publishingRepositoriesAddGithubPackagesMavenRepository(
     publishing {
         repositories {
             context(providers, ::uri) {
-                githubPackagesMavenRegistry(provider { owner }, provider { repository }) {
+                githubPackagesMavenRegistry(providers.present(owner), providers.present(repository)) {
                     this.name = name
                 }
             }

@@ -32,6 +32,6 @@ fun ProviderFactory.isReleaseBranch(releaseBranch: String = "release"): Provider
  */
 fun Project.conventionalGitRef(): Provider<String> =
     versionStringProvider().flatMap { version ->
-        if (isStandardReleaseVersion(version)) provider { "v$version" }
+        if (isStandardReleaseVersion(version)) providers.present("v$version")
         else providers.gitCommitHash()
     }

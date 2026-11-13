@@ -24,8 +24,8 @@ fun RepositoryHandler.githubPackagesSingleProjectOpenSourceConventionMavenReposi
     openSourceConventionMavenRepositories(
         {
             githubPackagesMavenRegistry(
-                providers.provider { githubOwner },
-                providers.provider { githubRepository },
+                providers.present(githubOwner),
+                providers.present(githubRepository),
             )
         },
         versionRegexes,

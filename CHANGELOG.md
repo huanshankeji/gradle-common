@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Require Gradle 9.9 or later and use `ProviderFactory.present` for fixed values in versioning and Maven repository helpers; update the wrapper to 9.9.1, whose embedded Kotlin and expected Kotlin DSL tooling match the existing build-logic versions
 - **Breaking:** build-logic module overhaul: nested `kotlin-common/` with shared `gradle-library` modules; `kotlin-common` subprojects use concatenated project names (CPN); updated published artifact coordinates
 - Adapt this changelog to [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) 1.1.0 (#73)
 - Update Gradle to 9.8.2 and replace deprecated Kotlin DSL container delegates with explicit lookups and task registration

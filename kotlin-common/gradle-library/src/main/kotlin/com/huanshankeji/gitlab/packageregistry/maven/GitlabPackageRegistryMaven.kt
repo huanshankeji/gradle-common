@@ -92,7 +92,7 @@ const val GITLAB_COM_HOST = "gitlab.com"
  */
 context(providers: ProviderFactory, _: (path: Any) -> URI)
 fun RepositoryHandler.gitlabPackageRegistryProjectLevelEndpointMavenRepository(
-    hostProvider: Provider<String> = providers.provider { GITLAB_COM_HOST },
+    hostProvider: Provider<String> = providers.present(GITLAB_COM_HOST),
     projectIdOrProjectPathProvider: Provider<String>,
     extraAction: MavenArtifactRepository.() -> Unit = {}
 ): MavenArtifactRepository =
@@ -108,7 +108,7 @@ fun RepositoryHandler.gitlabPackageRegistryProjectLevelEndpointMavenRepository(
  */
 @GradleCommonExperimentalApi
 fun MavenRepositoryHandlerContext.gitlabPackageRegistryProjectLevelEndpointMavenRepository(
-    hostProvider: Provider<String> = providers.provider { GITLAB_COM_HOST },
+    hostProvider: Provider<String> = providers.present(GITLAB_COM_HOST),
     projectIdOrProjectPathProvider: Provider<String>,
     extraAction: MavenArtifactRepository.() -> Unit = {},
 ) =
@@ -130,7 +130,7 @@ fun MavenRepositoryHandlerContext.gitlabPackageRegistryProjectLevelEndpointMaven
  */
 context(providers: ProviderFactory, _: (path: Any) -> URI)
 fun RepositoryHandler.gitlabPackageRegistryGroupLevelEndpointMavenRepository(
-    hostProvider: Provider<String> = providers.provider { GITLAB_COM_HOST },
+    hostProvider: Provider<String> = providers.present(GITLAB_COM_HOST),
     groupIdProvider: Provider<String>,
     extraAction: MavenArtifactRepository.() -> Unit = {}
 ): MavenArtifactRepository =
@@ -146,7 +146,7 @@ fun RepositoryHandler.gitlabPackageRegistryGroupLevelEndpointMavenRepository(
  */
 @GradleCommonExperimentalApi
 fun MavenRepositoryHandlerContext.gitlabPackageRegistryGroupLevelEndpointMavenRepository(
-    hostProvider: Provider<String> = providers.provider { GITLAB_COM_HOST },
+    hostProvider: Provider<String> = providers.present(GITLAB_COM_HOST),
     groupIdProvider: Provider<String>,
     extraAction: MavenArtifactRepository.() -> Unit = {},
 ) =
@@ -165,7 +165,7 @@ fun MavenRepositoryHandlerContext.gitlabPackageRegistryGroupLevelEndpointMavenRe
  */
 context(providers: ProviderFactory, _: (path: Any) -> URI)
 fun RepositoryHandler.gitlabPackageRegistryInstanceLevelEndpointMavenRepository(
-    hostProvider: Provider<String> = providers.provider { GITLAB_COM_HOST },
+    hostProvider: Provider<String> = providers.present(GITLAB_COM_HOST),
     extraAction: MavenArtifactRepository.() -> Unit = {}
 ): MavenArtifactRepository =
     gitlabPackageRegistryMavenRepository(
@@ -178,7 +178,7 @@ fun RepositoryHandler.gitlabPackageRegistryInstanceLevelEndpointMavenRepository(
  */
 @GradleCommonExperimentalApi
 fun MavenRepositoryHandlerContext.gitlabPackageRegistryInstanceLevelEndpointMavenRepository(
-    hostProvider: Provider<String> = providers.provider { GITLAB_COM_HOST },
+    hostProvider: Provider<String> = providers.present(GITLAB_COM_HOST),
     extraAction: MavenArtifactRepository.() -> Unit = {},
 ) =
     context(providers, uri) {
