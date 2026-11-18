@@ -1,0 +1,23 @@
+AGENTS.md
+  s_825837ac8eb2cc::t_8b78b673265ba7 9
+  s_825837ac8eb2cc::t_df90e32671cbc1 4,7-8,11-23,27,36-41,43,47-52,57-58,60-62,64-67,71
+  s_825837ac8eb2cc::t_7b840ca1e1e569 3
+  s_825837ac8eb2cc::t_d3799925e8c00a 34,42,53,59,63
+  s_825837ac8eb2cc::t_362fa20283b258 35
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "278e13ad4d94d391e0b0fc2b4428e8691ced8781",
+  "prompts": {},
+  "sessions": {
+    "s_825837ac8eb2cc": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1edf8-6692-70c3-bc5e-1ff3f7db49f9",
+        "model": "gpt-6.2-sol"
+      },
+      "human_author": "Yongshun Ye <shreckye@gmail.com>"
+    }
+  }
+}
