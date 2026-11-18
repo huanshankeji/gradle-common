@@ -9,6 +9,7 @@ This directory holds **historical** agent-oriented documentation preserved uncha
 ## Boundaries
 
 - **Do not modify files here** when updating agent instructions for this repository. Edit root [AGENTS.md](../../AGENTS.md) instead.
-- To promote deferred notes into active instructions, edit [agent-deferred-notes.md](agent-deferred-notes.md) deliberately — do not sync or “refresh” [copilot-instructions.md](copilot-instructions.md) or other archived files to match current project state.
+- Do not read or update the archived `copilot-instructions.md`. Use the root `AGENTS.md` for current instructions.
+- To promote deferred notes into active instructions, edit [agent-deferred-notes.md](agent-deferred-notes.md) deliberately. Do not sync other archived files to match the current project state.
 
 See [README.md](README.md) for a file index.
