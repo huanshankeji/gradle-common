@@ -17,26 +17,31 @@ interface Extension {
 
 val extension = extensions.create<Extension>("generateKotlinJsResources")
 
-afterEvaluate {
-    val frontendProject = project(extension.webFrontendProjectPath.get())
-    val jsBrowserDistribution = frontendProject.tasks.getByName<Sync>("jsBrowserDistribution")
-    /*val jsBrowserWebpack by lazy {
-        tasks.getByPath(
-            extension.webFrontendProjectPath.get() +
-                    if (extension.production.get()) ":jsBrowserProductionWebpack" else ":jsBrowserDevelopmentWebpack"
-        ) as KotlinWebpack
-    }*/
-    val browserDistributionResourcesDirectory = layout.buildDirectory.get().dir("browserDistributionResources")
+private val jsBrowserDistribution = extension.webFrontendProjectPath.flatMap {
+    project(it).tasks.named<Sync>("jsBrowserDistribution")
+}
+/*val jsBrowserWebpack by lazy {
+    tasks.getByPath(
+        extension.webFrontendProjectPath.get() +
+                if (extension.production.get()) ":jsBrowserProductionWebpack" else ":jsBrowserDevelopmentWebpack"
+    ) as KotlinWebpack
+}*/
+private val browserDistributionResourcesDirectory = layout.buildDirectory.dir("browserDistributionResources")
 
-    val syncJsBrowserDistributionToResourcesWebroot = tasks.register<Sync>("syncJsBrowserDistributionToResourcesWebroot") {
-        //dependsOn(jsBrowserDistribution)
-        from(jsBrowserDistribution)
-        //if (extension.production.get())
-        extension.includes.getOrNull()?.let { include(it) }
-        into(browserDistributionResourcesDirectory.dir(extension.webRoot.getOrElse("webroot")))
-    }
+private val syncJsBrowserDistributionToResourcesWebroot = tasks.register<Sync>("syncJsBrowserDistributionToResourcesWebroot") {
+    val distributionIncludes = extension.includes
+    //dependsOn(jsBrowserDistribution)
+    from(jsBrowserDistribution.map {
+        it.outputs.files.asFileTree.matching {
+            //if (extension.production.get())
+            include(distributionIncludes.getOrElse(emptyList()))
+        }
+    })
+    into(browserDistributionResourcesDirectory.zip(extension.webRoot.orElse("webroot")) { directory, webRoot ->
+        directory.dir(webRoot)
+    })
+}
 
-    sourceSets.main {
-        resources.srcDir(files(browserDistributionResourcesDirectory).builtBy(syncJsBrowserDistributionToResourcesWebroot))
-    }
+sourceSets.named("main").configure {
+    resources.srcDir(files(browserDistributionResourcesDirectory).builtBy(syncJsBrowserDistributionToResourcesWebroot))
 }
